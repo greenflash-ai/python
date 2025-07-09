@@ -3,12 +3,12 @@
 Types:
 
 ```python
-from greenflash_public_api.types import GenericSuccess
+from greenflash_public_api.types import GenericSuccess, MessageCreateResponse
 ```
 
 Methods:
 
-- <code title="post /messages">client.messages.<a href="./src/greenflash_public_api/resources/messages.py">create</a>(\*\*<a href="src/greenflash_public_api/types/message_create_params.py">params</a>) -> <a href="./src/greenflash_public_api/types/generic_success.py">GenericSuccess</a></code>
+- <code title="post /messages">client.messages.<a href="./src/greenflash_public_api/resources/messages.py">create</a>(\*\*<a href="src/greenflash_public_api/types/message_create_params.py">params</a>) -> <a href="./src/greenflash_public_api/types/message_create_response.py">MessageCreateResponse</a></code>
 
 # Identify
 
