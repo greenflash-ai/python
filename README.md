@@ -1,6 +1,6 @@
 # Greenflash Public API Python API library
 
-[![PyPI version](<https://img.shields.io/pypi/v/greenflash_public_api.svg?label=pypi%20(stable)>)](https://pypi.org/project/greenflash_public_api/)
+[![PyPI version](<https://img.shields.io/pypi/v/greenflash_sdk.svg?label=pypi%20(stable)>)](https://pypi.org/project/greenflash_sdk/)
 
 The Greenflash Public API Python library provides convenient access to the Greenflash Public API REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -15,12 +15,9 @@ The full API of this library can be found in [api.md](api.md).
 ## Installation
 
 ```sh
-# install from the production repo
-pip install git+ssh://git@github.com/greenflash-ai/python.git
+# install from PyPI
+pip install --pre greenflash_sdk
 ```
-
-> [!NOTE]
-> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install --pre greenflash_public_api`
 
 ## Usage
 
@@ -120,8 +117,8 @@ By default, the async client uses `httpx` for HTTP requests. However, for improv
 You can enable this by installing `aiohttp`:
 
 ```sh
-# install from the production repo
-pip install 'greenflash_public_api[aiohttp] @ git+ssh://git@github.com/greenflash-ai/python.git'
+# install from PyPI
+pip install --pre greenflash_sdk[aiohttp]
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
