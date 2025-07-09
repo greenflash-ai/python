@@ -1,5 +1,5 @@
 [project]
-name = "greenflash_public_api"
+name = "greenflash_sdk"
 version = "0.0.1-alpha.0"
 description = "The official Python library for the greenflash-public-api API"
 dynamic = ["readme"]
