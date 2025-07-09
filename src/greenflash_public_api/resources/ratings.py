@@ -63,7 +63,7 @@ class RatingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GenericSuccess:
         """
-        Log ratings for a conversation or message
+        Capture Conversation or Message Ratings
 
         Args:
           extra_headers: Send extra headers
@@ -135,7 +135,7 @@ class AsyncRatingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GenericSuccess:
         """
-        Log ratings for a conversation or message
+        Capture Conversation or Message Ratings
 
         Args:
           extra_headers: Send extra headers

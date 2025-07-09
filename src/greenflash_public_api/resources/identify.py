@@ -58,7 +58,7 @@ class IdentifyResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> IdentifyCreateOrUpdateResponse:
         """
-        Create or update user profiles
+        Create or Update User Profiles
 
         Args:
           extra_headers: Send extra headers
@@ -126,7 +126,7 @@ class AsyncIdentifyResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> IdentifyCreateOrUpdateResponse:
         """
-        Create or update user profiles
+        Create or Update User Profiles
 
         Args:
           extra_headers: Send extra headers

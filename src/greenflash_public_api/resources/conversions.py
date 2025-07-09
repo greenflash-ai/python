@@ -66,7 +66,7 @@ class ConversionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ConversionLogResponse:
         """
-        Log business conversion events
+        Create Business Conversion Events
 
         Args:
           extra_headers: Send extra headers
@@ -142,7 +142,7 @@ class AsyncConversionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ConversionLogResponse:
         """
-        Log business conversion events
+        Create Business Conversion Events
 
         Args:
           extra_headers: Send extra headers

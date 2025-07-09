@@ -38,7 +38,7 @@ class TestRatings:
             conversation_id="conv-0001",
             external_conversation_id="externalConversationId",
             feedback="Helpful response!",
-            message_id="messageId",
+            message_id="msg-001",
             rated_at=parse_datetime("2025-07-09T09:00:00Z"),
         )
         assert_matches_type(GenericSuccess, rating, path=["response"])
@@ -99,7 +99,7 @@ class TestAsyncRatings:
             conversation_id="conv-0001",
             external_conversation_id="externalConversationId",
             feedback="Helpful response!",
-            message_id="messageId",
+            message_id="msg-001",
             rated_at=parse_datetime("2025-07-09T09:00:00Z"),
         )
         assert_matches_type(GenericSuccess, rating, path=["response"])
