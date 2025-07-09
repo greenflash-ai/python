@@ -9,7 +9,7 @@ import pytest
 
 from tests.utils import assert_matches_type
 from greenflash_public_api import GreenflashPublicAPI, AsyncGreenflashPublicAPI
-from greenflash_public_api.types import GenericSuccess
+from greenflash_public_api.types import MessageCreateResponse
 from greenflash_public_api._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -43,7 +43,7 @@ class TestMessages:
                 }
             ],
         )
-        assert_matches_type(GenericSuccess, message, path=["response"])
+        assert_matches_type(MessageCreateResponse, message, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -61,7 +61,7 @@ class TestMessages:
                             "context": "context",
                             "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                             "metadata": {},
-                            "tokens": 0,
+                            "tokens": 1,
                         },
                         {
                             "content": "Hi there!",
@@ -71,11 +71,14 @@ class TestMessages:
                             "context": "context",
                             "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                             "metadata": {},
-                            "tokens": 0,
+                            "tokens": 2,
                         },
                     ],
                     "turn_index": 0,
-                    "system_prompt_override": "systemPromptOverride",
+                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "metadata": {},
+                    "model_override": "modelOverride",
+                    "system_prompt_override": "You are a helpful assistant.",
                 }
             ],
             conversation_id="conversationId",
@@ -83,11 +86,25 @@ class TestMessages:
             metadata={"source": "chat-widget"},
             model="gpt-greenflash-1",
             product_id="prod-789",
-            project_id="projectId",
-            system_prompt="You are a helpful assistant.",
-            version_id="versionId",
+            project_id="proj-001",
+            system_prompt={
+                "components": [
+                    {
+                        "content": "You are a helpful assistant.",
+                        "source": "customer",
+                        "type": "system",
+                        "is_dynamic": True,
+                        "name": "name",
+                        "tags": ["string"],
+                        "version": 0,
+                    }
+                ],
+                "external_template_id": "externalTemplateId",
+                "template_id": "tmpl-001",
+            },
+            version_id="ver-001",
         )
-        assert_matches_type(GenericSuccess, message, path=["response"])
+        assert_matches_type(MessageCreateResponse, message, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -118,7 +135,7 @@ class TestMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         message = response.parse()
-        assert_matches_type(GenericSuccess, message, path=["response"])
+        assert_matches_type(MessageCreateResponse, message, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -149,7 +166,7 @@ class TestMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             message = response.parse()
-            assert_matches_type(GenericSuccess, message, path=["response"])
+            assert_matches_type(MessageCreateResponse, message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -184,7 +201,7 @@ class TestAsyncMessages:
                 }
             ],
         )
-        assert_matches_type(GenericSuccess, message, path=["response"])
+        assert_matches_type(MessageCreateResponse, message, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -202,7 +219,7 @@ class TestAsyncMessages:
                             "context": "context",
                             "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                             "metadata": {},
-                            "tokens": 0,
+                            "tokens": 1,
                         },
                         {
                             "content": "Hi there!",
@@ -212,11 +229,14 @@ class TestAsyncMessages:
                             "context": "context",
                             "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                             "metadata": {},
-                            "tokens": 0,
+                            "tokens": 2,
                         },
                     ],
                     "turn_index": 0,
-                    "system_prompt_override": "systemPromptOverride",
+                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "metadata": {},
+                    "model_override": "modelOverride",
+                    "system_prompt_override": "You are a helpful assistant.",
                 }
             ],
             conversation_id="conversationId",
@@ -224,11 +244,25 @@ class TestAsyncMessages:
             metadata={"source": "chat-widget"},
             model="gpt-greenflash-1",
             product_id="prod-789",
-            project_id="projectId",
-            system_prompt="You are a helpful assistant.",
-            version_id="versionId",
+            project_id="proj-001",
+            system_prompt={
+                "components": [
+                    {
+                        "content": "You are a helpful assistant.",
+                        "source": "customer",
+                        "type": "system",
+                        "is_dynamic": True,
+                        "name": "name",
+                        "tags": ["string"],
+                        "version": 0,
+                    }
+                ],
+                "external_template_id": "externalTemplateId",
+                "template_id": "tmpl-001",
+            },
+            version_id="ver-001",
         )
-        assert_matches_type(GenericSuccess, message, path=["response"])
+        assert_matches_type(MessageCreateResponse, message, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -259,7 +293,7 @@ class TestAsyncMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         message = await response.parse()
-        assert_matches_type(GenericSuccess, message, path=["response"])
+        assert_matches_type(MessageCreateResponse, message, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -290,6 +324,6 @@ class TestAsyncMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             message = await response.parse()
-            assert_matches_type(GenericSuccess, message, path=["response"])
+            assert_matches_type(MessageCreateResponse, message, path=["response"])
 
         assert cast(Any, response.is_closed) is True

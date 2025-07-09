@@ -18,7 +18,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.generic_success import GenericSuccess
+from ..types.message_create_response import MessageCreateResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
 
@@ -54,7 +54,7 @@ class MessagesResource(SyncAPIResource):
         model: str | NotGiven = NOT_GIVEN,
         product_id: str | NotGiven = NOT_GIVEN,
         project_id: str | NotGiven = NOT_GIVEN,
-        system_prompt: str | NotGiven = NOT_GIVEN,
+        system_prompt: message_create_params.SystemPrompt | NotGiven = NOT_GIVEN,
         version_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -62,9 +62,9 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GenericSuccess:
+    ) -> MessageCreateResponse:
         """
-        Log messages or full conversations
+        Create Conversations or Messages
 
         Args:
           extra_headers: Send extra headers
@@ -95,7 +95,7 @@ class MessagesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GenericSuccess,
+            cast_to=MessageCreateResponse,
         )
 
 
@@ -130,7 +130,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         model: str | NotGiven = NOT_GIVEN,
         product_id: str | NotGiven = NOT_GIVEN,
         project_id: str | NotGiven = NOT_GIVEN,
-        system_prompt: str | NotGiven = NOT_GIVEN,
+        system_prompt: message_create_params.SystemPrompt | NotGiven = NOT_GIVEN,
         version_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -138,9 +138,9 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GenericSuccess:
+    ) -> MessageCreateResponse:
         """
-        Log messages or full conversations
+        Create Conversations or Messages
 
         Args:
           extra_headers: Send extra headers
@@ -171,7 +171,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GenericSuccess,
+            cast_to=MessageCreateResponse,
         )
 
 

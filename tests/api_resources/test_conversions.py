@@ -39,10 +39,10 @@ class TestConversions:
             value_type="currency",
             conversation_id="conv-0001",
             converted_at=parse_datetime("2025-07-09T09:15:00Z"),
-            external_conversation_id="externalConversationId",
+            external_conversation_id="conv-456",
             metadata={"sku": "ABC-123"},
-            product_id="productId",
-            project_id="projectId",
+            product_id="prod-789",
+            project_id="proj-001",
         )
         assert_matches_type(ConversionLogResponse, conversion, path=["response"])
 
@@ -105,10 +105,10 @@ class TestAsyncConversions:
             value_type="currency",
             conversation_id="conv-0001",
             converted_at=parse_datetime("2025-07-09T09:15:00Z"),
-            external_conversation_id="externalConversationId",
+            external_conversation_id="conv-456",
             metadata={"sku": "ABC-123"},
-            product_id="productId",
-            project_id="projectId",
+            product_id="prod-789",
+            project_id="proj-001",
         )
         assert_matches_type(ConversionLogResponse, conversion, path=["response"])
 

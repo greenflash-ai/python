@@ -33,7 +33,7 @@ client = GreenflashPublicAPI(
     ),  # This is the default and can be omitted
 )
 
-generic_success = client.messages.create(
+message = client.messages.create(
     external_user_id="user-123",
     turns=[
         {
@@ -55,7 +55,7 @@ generic_success = client.messages.create(
         }
     ],
 )
-print(generic_success.success)
+print(message.conversation_id)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -80,7 +80,7 @@ client = AsyncGreenflashPublicAPI(
 
 
 async def main() -> None:
-    generic_success = await client.messages.create(
+    message = await client.messages.create(
         external_user_id="user-123",
         turns=[
             {
@@ -102,7 +102,7 @@ async def main() -> None:
             }
         ],
     )
-    print(generic_success.success)
+    print(message.conversation_id)
 
 
 asyncio.run(main())
@@ -137,7 +137,7 @@ async def main() -> None:
         ),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
-        generic_success = await client.messages.create(
+        message = await client.messages.create(
             external_user_id="user-123",
             turns=[
                 {
@@ -159,7 +159,7 @@ async def main() -> None:
                 }
             ],
         )
-        print(generic_success.success)
+        print(message.conversation_id)
 
 
 asyncio.run(main())
@@ -380,7 +380,7 @@ response = client.messages.with_raw_response.create(
 print(response.headers.get('X-My-Header'))
 
 message = response.parse()  # get the object that `messages.create()` would have returned
-print(message.success)
+print(message.conversation_id)
 ```
 
 These methods return an [`APIResponse`](https://github.com/greenflash-ai/python/tree/main/src/greenflash_public_api/_response.py) object.
