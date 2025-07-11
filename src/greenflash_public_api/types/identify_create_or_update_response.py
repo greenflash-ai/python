@@ -7,7 +7,7 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["IdentifyCreateOrUpdateProfileResponse", "Participant"]
+__all__ = ["IdentifyCreateOrUpdateResponse", "Participant"]
 
 
 class Participant(BaseModel):
@@ -33,7 +33,7 @@ class Participant(BaseModel):
     phone: Optional[str] = None
 
 
-class IdentifyCreateOrUpdateProfileResponse(BaseModel):
+class IdentifyCreateOrUpdateResponse(BaseModel):
     participant: Participant
 
     success: bool

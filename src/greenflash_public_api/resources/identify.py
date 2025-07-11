@@ -6,7 +6,7 @@ from typing import Dict
 
 import httpx
 
-from ..types import identify_create_or_update_profile_params
+from ..types import identify_create_or_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -18,7 +18,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.identify_create_or_update_profile_response import IdentifyCreateOrUpdateProfileResponse
+from ..types.identify_create_or_update_response import IdentifyCreateOrUpdateResponse
 
 __all__ = ["IdentifyResource", "AsyncIdentifyResource"]
 
@@ -43,7 +43,7 @@ class IdentifyResource(SyncAPIResource):
         """
         return IdentifyResourceWithStreamingResponse(self)
 
-    def create_or_update_profile(
+    def create_or_update(
         self,
         *,
         external_user_id: str,
@@ -58,7 +58,7 @@ class IdentifyResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IdentifyCreateOrUpdateProfileResponse:
+    ) -> IdentifyCreateOrUpdateResponse:
         """
         Create or Update User Profiles
 
@@ -82,12 +82,12 @@ class IdentifyResource(SyncAPIResource):
                     "name": name,
                     "phone": phone,
                 },
-                identify_create_or_update_profile_params.IdentifyCreateOrUpdateProfileParams,
+                identify_create_or_update_params.IdentifyCreateOrUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IdentifyCreateOrUpdateProfileResponse,
+            cast_to=IdentifyCreateOrUpdateResponse,
         )
 
 
@@ -111,7 +111,7 @@ class AsyncIdentifyResource(AsyncAPIResource):
         """
         return AsyncIdentifyResourceWithStreamingResponse(self)
 
-    async def create_or_update_profile(
+    async def create_or_update(
         self,
         *,
         external_user_id: str,
@@ -126,7 +126,7 @@ class AsyncIdentifyResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IdentifyCreateOrUpdateProfileResponse:
+    ) -> IdentifyCreateOrUpdateResponse:
         """
         Create or Update User Profiles
 
@@ -150,12 +150,12 @@ class AsyncIdentifyResource(AsyncAPIResource):
                     "name": name,
                     "phone": phone,
                 },
-                identify_create_or_update_profile_params.IdentifyCreateOrUpdateProfileParams,
+                identify_create_or_update_params.IdentifyCreateOrUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IdentifyCreateOrUpdateProfileResponse,
+            cast_to=IdentifyCreateOrUpdateResponse,
         )
 
 
@@ -163,8 +163,8 @@ class IdentifyResourceWithRawResponse:
     def __init__(self, identify: IdentifyResource) -> None:
         self._identify = identify
 
-        self.create_or_update_profile = to_raw_response_wrapper(
-            identify.create_or_update_profile,
+        self.create_or_update = to_raw_response_wrapper(
+            identify.create_or_update,
         )
 
 
@@ -172,8 +172,8 @@ class AsyncIdentifyResourceWithRawResponse:
     def __init__(self, identify: AsyncIdentifyResource) -> None:
         self._identify = identify
 
-        self.create_or_update_profile = async_to_raw_response_wrapper(
-            identify.create_or_update_profile,
+        self.create_or_update = async_to_raw_response_wrapper(
+            identify.create_or_update,
         )
 
 
@@ -181,8 +181,8 @@ class IdentifyResourceWithStreamingResponse:
     def __init__(self, identify: IdentifyResource) -> None:
         self._identify = identify
 
-        self.create_or_update_profile = to_streamed_response_wrapper(
-            identify.create_or_update_profile,
+        self.create_or_update = to_streamed_response_wrapper(
+            identify.create_or_update,
         )
 
 
@@ -190,6 +190,6 @@ class AsyncIdentifyResourceWithStreamingResponse:
     def __init__(self, identify: AsyncIdentifyResource) -> None:
         self._identify = identify
 
-        self.create_or_update_profile = async_to_streamed_response_wrapper(
-            identify.create_or_update_profile,
+        self.create_or_update = async_to_streamed_response_wrapper(
+            identify.create_or_update,
         )

@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import conversion_create_params
+from ..types import conversion_log_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -20,7 +20,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.conversion_create_response import ConversionCreateResponse
+from ..types.conversion_log_response import ConversionLogResponse
 
 __all__ = ["ConversionsResource", "AsyncConversionsResource"]
 
@@ -45,7 +45,7 @@ class ConversionsResource(SyncAPIResource):
         """
         return ConversionsResourceWithStreamingResponse(self)
 
-    def create(
+    def log(
         self,
         *,
         action: str,
@@ -64,7 +64,7 @@ class ConversionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConversionCreateResponse:
+    ) -> ConversionLogResponse:
         """
         Create Business Conversion Events
 
@@ -92,12 +92,12 @@ class ConversionsResource(SyncAPIResource):
                     "product_id": product_id,
                     "project_id": project_id,
                 },
-                conversion_create_params.ConversionCreateParams,
+                conversion_log_params.ConversionLogParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConversionCreateResponse,
+            cast_to=ConversionLogResponse,
         )
 
 
@@ -121,7 +121,7 @@ class AsyncConversionsResource(AsyncAPIResource):
         """
         return AsyncConversionsResourceWithStreamingResponse(self)
 
-    async def create(
+    async def log(
         self,
         *,
         action: str,
@@ -140,7 +140,7 @@ class AsyncConversionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConversionCreateResponse:
+    ) -> ConversionLogResponse:
         """
         Create Business Conversion Events
 
@@ -168,12 +168,12 @@ class AsyncConversionsResource(AsyncAPIResource):
                     "product_id": product_id,
                     "project_id": project_id,
                 },
-                conversion_create_params.ConversionCreateParams,
+                conversion_log_params.ConversionLogParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConversionCreateResponse,
+            cast_to=ConversionLogResponse,
         )
 
 
@@ -181,8 +181,8 @@ class ConversionsResourceWithRawResponse:
     def __init__(self, conversions: ConversionsResource) -> None:
         self._conversions = conversions
 
-        self.create = to_raw_response_wrapper(
-            conversions.create,
+        self.log = to_raw_response_wrapper(
+            conversions.log,
         )
 
 
@@ -190,8 +190,8 @@ class AsyncConversionsResourceWithRawResponse:
     def __init__(self, conversions: AsyncConversionsResource) -> None:
         self._conversions = conversions
 
-        self.create = async_to_raw_response_wrapper(
-            conversions.create,
+        self.log = async_to_raw_response_wrapper(
+            conversions.log,
         )
 
 
@@ -199,8 +199,8 @@ class ConversionsResourceWithStreamingResponse:
     def __init__(self, conversions: ConversionsResource) -> None:
         self._conversions = conversions
 
-        self.create = to_streamed_response_wrapper(
-            conversions.create,
+        self.log = to_streamed_response_wrapper(
+            conversions.log,
         )
 
 
@@ -208,6 +208,6 @@ class AsyncConversionsResourceWithStreamingResponse:
     def __init__(self, conversions: AsyncConversionsResource) -> None:
         self._conversions = conversions
 
-        self.create = async_to_streamed_response_wrapper(
-            conversions.create,
+        self.log = async_to_streamed_response_wrapper(
+            conversions.log,
         )
