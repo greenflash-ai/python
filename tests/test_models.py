@@ -7,9 +7,9 @@ import pytest
 import pydantic
 from pydantic import Field
 
-from greenflash_public_api._utils import PropertyInfo
-from greenflash_public_api._compat import PYDANTIC_V2, parse_obj, model_dump, model_json
-from greenflash_public_api._models import BaseModel, construct_type
+from greenflash._utils import PropertyInfo
+from greenflash._compat import PYDANTIC_V2, parse_obj, model_dump, model_json
+from greenflash._models import BaseModel, construct_type
 
 
 class BasicModel(BaseModel):

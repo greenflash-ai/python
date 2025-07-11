@@ -8,15 +8,15 @@ from typing_extensions import Required, Annotated, TypedDict
 
 import pytest
 
-from greenflash_public_api._types import NOT_GIVEN, Base64FileInput
-from greenflash_public_api._utils import (
+from greenflash._types import NOT_GIVEN, Base64FileInput
+from greenflash._utils import (
     PropertyInfo,
     transform as _transform,
     parse_datetime,
     async_transform as _async_transform,
 )
-from greenflash_public_api._compat import PYDANTIC_V2
-from greenflash_public_api._models import BaseModel
+from greenflash._compat import PYDANTIC_V2
+from greenflash._models import BaseModel
 
 _T = TypeVar("_T")
 

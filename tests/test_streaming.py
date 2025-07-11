@@ -5,8 +5,8 @@ from typing import Iterator, AsyncIterator
 import httpx
 import pytest
 
-from greenflash_public_api import Greenflash, AsyncGreenflash
-from greenflash_public_api._streaming import Stream, AsyncStream, ServerSentEvent
+from greenflash import Greenflash, AsyncGreenflash
+from greenflash._streaming import Stream, AsyncStream, ServerSentEvent
 
 
 @pytest.mark.asyncio

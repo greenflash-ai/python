@@ -4,7 +4,7 @@ from urllib.parse import unquote
 
 import pytest
 
-from greenflash_public_api._qs import Querystring, stringify
+from greenflash._qs import Querystring, stringify
 
 
 def test_empty() -> None:
