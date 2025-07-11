@@ -8,8 +8,8 @@ from typing import Any, TypeVar, Iterator, cast
 from datetime import date, datetime
 from typing_extensions import Literal, get_args, get_origin, assert_type
 
-from greenflash_public_api._types import Omit, NoneType
-from greenflash_public_api._utils import (
+from greenflash._types import Omit, NoneType
+from greenflash._utils import (
     is_dict,
     is_list,
     is_list_type,
@@ -18,8 +18,8 @@ from greenflash_public_api._utils import (
     is_annotated_type,
     is_type_alias_type,
 )
-from greenflash_public_api._compat import PYDANTIC_V2, field_outer_type, get_model_fields
-from greenflash_public_api._models import BaseModel
+from greenflash._compat import PYDANTIC_V2, field_outer_type, get_model_fields
+from greenflash._models import BaseModel
 
 BaseModelT = TypeVar("BaseModelT", bound=BaseModel)
 

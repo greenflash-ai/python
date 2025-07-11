@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from greenflash import Greenflash, AsyncGreenflash
 from tests.utils import assert_matches_type
-from greenflash_public_api import Greenflash, AsyncGreenflash
-from greenflash_public_api.types import IdentifyCreateOrUpdateResponse
+from greenflash.types import IdentifyCreateOrUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

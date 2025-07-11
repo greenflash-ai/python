@@ -10,15 +10,15 @@ import httpx
 import pytest
 from pytest_asyncio import is_async_test
 
-from greenflash_public_api import Greenflash, AsyncGreenflash, DefaultAioHttpClient
-from greenflash_public_api._utils import is_dict
+from greenflash import Greenflash, AsyncGreenflash, DefaultAioHttpClient
+from greenflash._utils import is_dict
 
 if TYPE_CHECKING:
     from _pytest.fixtures import FixtureRequest  # pyright: ignore[reportPrivateImportUsage]
 
 pytest.register_assert_rewrite("tests.utils")
 
-logging.getLogger("greenflash_public_api").setLevel(logging.DEBUG)
+logging.getLogger("greenflash").setLevel(logging.DEBUG)
 
 
 # automatically add `pytest.mark.asyncio()` to all of our async tests
