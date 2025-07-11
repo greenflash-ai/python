@@ -40,7 +40,7 @@ class TestConversions:
             conversation_id="conv-0001",
             converted_at=parse_datetime("2025-07-09T09:15:00Z"),
             external_conversation_id="conv-456",
-            metadata={"sku": "ABC-123"},
+            metadata={"sku": "bar"},
             product_id="prod-789",
             project_id="proj-001",
         )
@@ -106,7 +106,7 @@ class TestAsyncConversions:
             conversation_id="conv-0001",
             converted_at=parse_datetime("2025-07-09T09:15:00Z"),
             external_conversation_id="conv-456",
-            metadata={"sku": "ABC-123"},
+            metadata={"sku": "bar"},
             product_id="prod-789",
             project_id="proj-001",
         )

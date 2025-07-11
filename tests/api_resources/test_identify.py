@@ -32,7 +32,7 @@ class TestIdentify:
             external_user_id="user-123",
             anonymized=False,
             email="alice@example.com",
-            metadata={"plan": "premium"},
+            metadata={"plan": "bar"},
             name="Alice Example",
             phone="+15551234567",
         )
@@ -85,7 +85,7 @@ class TestAsyncIdentify:
             external_user_id="user-123",
             anonymized=False,
             email="alice@example.com",
-            metadata={"plan": "premium"},
+            metadata={"plan": "bar"},
             name="Alice Example",
             phone="+15551234567",
         )

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Dict, List, Union, Iterable
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
@@ -30,7 +30,7 @@ class MessageCreateParams(TypedDict, total=False):
 
     external_conversation_id: Annotated[str, PropertyInfo(alias="externalConversationId")]
 
-    metadata: object
+    metadata: Dict[str, object]
 
     model: str
 
@@ -56,7 +56,7 @@ class TurnMessage(TypedDict, total=False):
 
     created_at: Annotated[Union[str, datetime], PropertyInfo(alias="createdAt", format="iso8601")]
 
-    metadata: object
+    metadata: Dict[str, object]
 
     tokens: int
 
@@ -95,7 +95,7 @@ class Turn(TypedDict, total=False):
 
     created_at: Annotated[Union[str, datetime], PropertyInfo(alias="createdAt", format="iso8601")]
 
-    metadata: object
+    metadata: Dict[str, object]
 
     model_override: Annotated[str, PropertyInfo(alias="modelOverride")]
 
