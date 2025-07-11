@@ -2,23 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable
+from typing import Dict, Union, Iterable
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
+from .system_prompt_param import SystemPromptParam
 
-__all__ = [
-    "MessageCreateParams",
-    "Turn",
-    "TurnMessage",
-    "TurnSystemPromptOverride",
-    "TurnSystemPromptOverrideSystemPrompt",
-    "TurnSystemPromptOverrideSystemPromptComponent",
-    "SystemPrompt",
-    "SystemPromptSystemPrompt",
-    "SystemPromptSystemPromptComponent",
-]
+__all__ = ["MessageCreateParams", "Turn", "TurnMessage", "TurnSystemPromptOverride", "SystemPrompt"]
 
 
 class MessageCreateParams(TypedDict, total=False):
@@ -112,55 +103,7 @@ class TurnMessage(TypedDict, total=False):
     """The number of tokens in the message."""
 
 
-class TurnSystemPromptOverrideSystemPromptComponent(TypedDict, total=False):
-    content: Required[str]
-    """The content of the component."""
-
-    component_id: Annotated[str, PropertyInfo(alias="componentId")]
-    """The ID of the component."""
-
-    external_component_id: Annotated[str, PropertyInfo(alias="externalComponentId")]
-    """Your own external identifier for the component."""
-
-    is_dynamic: Annotated[bool, PropertyInfo(alias="isDynamic")]
-    """Whether the component is dynamic."""
-
-    name: str
-    """Name of the component."""
-
-    source: Literal["customer", "participant", "greenflash", "agent"]
-    """Source of the component.
-
-    One of: 'customer', 'participant', 'greenflash', 'agent'. Defaults to
-    'customer'.
-    """
-
-    tags: List[str]
-    """Array of string tags associated with the component."""
-
-    type: Literal["system", "endUser", "userModified", "rag", "agent"]
-    """Type of the component.
-
-    One of: 'system', 'endUser', 'userModified', 'rag', 'agent'. Defaults to
-    'system'.
-    """
-
-    version: int
-    """Version of the component."""
-
-
-class TurnSystemPromptOverrideSystemPrompt(TypedDict, total=False):
-    components: Iterable[TurnSystemPromptOverrideSystemPromptComponent]
-    """Array of component objects."""
-
-    external_template_id: Annotated[str, PropertyInfo(alias="externalTemplateId")]
-    """Your own external identifier for the template."""
-
-    template_id: Annotated[str, PropertyInfo(alias="templateId")]
-    """The ID of the template."""
-
-
-TurnSystemPromptOverride: TypeAlias = Union[str, TurnSystemPromptOverrideSystemPrompt]
+TurnSystemPromptOverride: TypeAlias = Union[str, SystemPromptParam]
 
 
 class Turn(TypedDict, total=False):
@@ -187,52 +130,4 @@ class Turn(TypedDict, total=False):
     """
 
 
-class SystemPromptSystemPromptComponent(TypedDict, total=False):
-    content: Required[str]
-    """The content of the component."""
-
-    component_id: Annotated[str, PropertyInfo(alias="componentId")]
-    """The ID of the component."""
-
-    external_component_id: Annotated[str, PropertyInfo(alias="externalComponentId")]
-    """Your own external identifier for the component."""
-
-    is_dynamic: Annotated[bool, PropertyInfo(alias="isDynamic")]
-    """Whether the component is dynamic."""
-
-    name: str
-    """Name of the component."""
-
-    source: Literal["customer", "participant", "greenflash", "agent"]
-    """Source of the component.
-
-    One of: 'customer', 'participant', 'greenflash', 'agent'. Defaults to
-    'customer'.
-    """
-
-    tags: List[str]
-    """Array of string tags associated with the component."""
-
-    type: Literal["system", "endUser", "userModified", "rag", "agent"]
-    """Type of the component.
-
-    One of: 'system', 'endUser', 'userModified', 'rag', 'agent'. Defaults to
-    'system'.
-    """
-
-    version: int
-    """Version of the component."""
-
-
-class SystemPromptSystemPrompt(TypedDict, total=False):
-    components: Iterable[SystemPromptSystemPromptComponent]
-    """Array of component objects."""
-
-    external_template_id: Annotated[str, PropertyInfo(alias="externalTemplateId")]
-    """Your own external identifier for the template."""
-
-    template_id: Annotated[str, PropertyInfo(alias="templateId")]
-    """The ID of the template."""
-
-
-SystemPrompt: TypeAlias = Union[str, SystemPromptSystemPrompt]
+SystemPrompt: TypeAlias = Union[str, SystemPromptParam]

@@ -1,6 +1,6 @@
 # Greenflash Python API library
 
-[![PyPI version](<https://img.shields.io/pypi/v/greenflash_sdk.svg?label=pypi%20(stable)>)](https://pypi.org/project/greenflash_sdk/)
+[![PyPI version](<https://img.shields.io/pypi/v/greenflash.svg?label=pypi%20(stable)>)](https://pypi.org/project/greenflash/)
 
 The Greenflash Python library provides convenient access to the Greenflash REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -20,7 +20,7 @@ pip install git+ssh://git@github.com/greenflash-ai/python.git
 ```
 
 > [!NOTE]
-> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install --pre greenflash_sdk`
+> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install --pre greenflash`
 
 ## Usage
 
@@ -35,21 +35,19 @@ client = Greenflash(
 )
 
 message = client.messages.create(
-    external_user_id="user-123",
+    external_user_id="externalUserId",
     turns=[
         {
             "messages": [
                 {
-                    "content": "Hello!",
+                    "content": "content",
                     "role": "user",
-                },
-                {
-                    "content": "Hi there!",
-                    "role": "assistant",
-                },
+                }
             ]
         }
     ],
+    external_conversation_id="externalConversationId",
+    product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 )
 print(message.conversation_id)
 ```
@@ -75,21 +73,19 @@ client = AsyncGreenflash(
 
 async def main() -> None:
     message = await client.messages.create(
-        external_user_id="user-123",
+        external_user_id="externalUserId",
         turns=[
             {
                 "messages": [
                     {
-                        "content": "Hello!",
+                        "content": "content",
                         "role": "user",
-                    },
-                    {
-                        "content": "Hi there!",
-                        "role": "assistant",
-                    },
+                    }
                 ]
             }
         ],
+        external_conversation_id="externalConversationId",
+        product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
     )
     print(message.conversation_id)
 
@@ -107,7 +103,7 @@ You can enable this by installing `aiohttp`:
 
 ```sh
 # install from the production repo
-pip install 'greenflash_sdk[aiohttp] @ git+ssh://git@github.com/greenflash-ai/python.git'
+pip install 'greenflash[aiohttp] @ git+ssh://git@github.com/greenflash-ai/python.git'
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
@@ -125,21 +121,19 @@ async def main() -> None:
         http_client=DefaultAioHttpClient(),
     ) as client:
         message = await client.messages.create(
-            external_user_id="user-123",
+            external_user_id="externalUserId",
             turns=[
                 {
                     "messages": [
                         {
-                            "content": "Hello!",
+                            "content": "content",
                             "role": "user",
-                        },
-                        {
-                            "content": "Hi there!",
-                            "role": "assistant",
-                        },
+                        }
                     ]
                 }
             ],
+            external_conversation_id="externalConversationId",
+            product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         print(message.conversation_id)
 
@@ -184,6 +178,7 @@ try:
                 ]
             }
         ],
+        external_conversation_id="externalConversationId",
         product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
     )
 except greenflash.APIConnectionError as e:
@@ -240,6 +235,7 @@ client.with_options(max_retries=5).messages.create(
             ]
         }
     ],
+    external_conversation_id="externalConversationId",
     product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 )
 ```
@@ -276,6 +272,7 @@ client.with_options(timeout=5.0).messages.create(
             ]
         }
     ],
+    external_conversation_id="externalConversationId",
     product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 )
 ```
@@ -326,6 +323,7 @@ response = client.messages.with_raw_response.create(
             "role": "user",
         }]
     }],
+    external_conversation_id="externalConversationId",
     product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 )
 print(response.headers.get('X-My-Header'))
@@ -357,6 +355,7 @@ with client.messages.with_streaming_response.create(
             ]
         }
     ],
+    external_conversation_id="externalConversationId",
     product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 ) as response:
     print(response.headers.get("X-My-Header"))
