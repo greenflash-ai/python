@@ -37,12 +37,12 @@ class TestConversions:
             external_user_id="user-123",
             value="99.99",
             value_type="currency",
-            conversation_id="conv-0001",
+            conversation_id="123e4567-e89b-12d3-a456-426614174000",
             converted_at=parse_datetime("2025-07-09T09:15:00Z"),
             external_conversation_id="conv-456",
             metadata={"sku": "bar"},
-            product_id="prod-789",
-            project_id="proj-001",
+            product_id="123e4567-e89b-12d3-a456-426614174000",
+            project_id="123e4567-e89b-12d3-a456-426614174000",
         )
         assert_matches_type(ConversionLogResponse, conversion, path=["response"])
 
@@ -103,12 +103,12 @@ class TestAsyncConversions:
             external_user_id="user-123",
             value="99.99",
             value_type="currency",
-            conversation_id="conv-0001",
+            conversation_id="123e4567-e89b-12d3-a456-426614174000",
             converted_at=parse_datetime("2025-07-09T09:15:00Z"),
             external_conversation_id="conv-456",
             metadata={"sku": "bar"},
-            product_id="prod-789",
-            project_id="proj-001",
+            product_id="123e4567-e89b-12d3-a456-426614174000",
+            project_id="123e4567-e89b-12d3-a456-426614174000",
         )
         assert_matches_type(ConversionLogResponse, conversion, path=["response"])
 
