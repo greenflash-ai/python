@@ -3,7 +3,7 @@
 Types:
 
 ```python
-from greenflash.types import GenericSuccess, MessageCreateResponse
+from greenflash.types import SystemPrompt, MessageCreateResponse
 ```
 
 Methods:
@@ -23,6 +23,12 @@ Methods:
 - <code title="post /identify">client.identify.<a href="./src/greenflash/resources/identify.py">create_or_update</a>(\*\*<a href="src/greenflash/types/identify_create_or_update_params.py">params</a>) -> <a href="./src/greenflash/types/identify_create_or_update_response.py">IdentifyCreateOrUpdateResponse</a></code>
 
 # Ratings
+
+Types:
+
+```python
+from greenflash.types import GenericSuccess
+```
 
 Methods:
 
