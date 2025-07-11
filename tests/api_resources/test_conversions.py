@@ -8,7 +8,7 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from greenflash_public_api import GreenflashPublicAPI, AsyncGreenflashPublicAPI
+from greenflash_public_api import Greenflash, AsyncGreenflash
 from greenflash_public_api.types import ConversionLogResponse
 from greenflash_public_api._utils import parse_datetime
 
@@ -20,7 +20,7 @@ class TestConversions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_log(self, client: GreenflashPublicAPI) -> None:
+    def test_method_log(self, client: Greenflash) -> None:
         conversion = client.conversions.log(
             action="purchase",
             external_user_id="user-123",
@@ -31,7 +31,7 @@ class TestConversions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_log_with_all_params(self, client: GreenflashPublicAPI) -> None:
+    def test_method_log_with_all_params(self, client: Greenflash) -> None:
         conversion = client.conversions.log(
             action="purchase",
             external_user_id="user-123",
@@ -48,7 +48,7 @@ class TestConversions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_log(self, client: GreenflashPublicAPI) -> None:
+    def test_raw_response_log(self, client: Greenflash) -> None:
         response = client.conversions.with_raw_response.log(
             action="purchase",
             external_user_id="user-123",
@@ -63,7 +63,7 @@ class TestConversions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_log(self, client: GreenflashPublicAPI) -> None:
+    def test_streaming_response_log(self, client: Greenflash) -> None:
         with client.conversions.with_streaming_response.log(
             action="purchase",
             external_user_id="user-123",
@@ -86,7 +86,7 @@ class TestAsyncConversions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_log(self, async_client: AsyncGreenflashPublicAPI) -> None:
+    async def test_method_log(self, async_client: AsyncGreenflash) -> None:
         conversion = await async_client.conversions.log(
             action="purchase",
             external_user_id="user-123",
@@ -97,7 +97,7 @@ class TestAsyncConversions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_log_with_all_params(self, async_client: AsyncGreenflashPublicAPI) -> None:
+    async def test_method_log_with_all_params(self, async_client: AsyncGreenflash) -> None:
         conversion = await async_client.conversions.log(
             action="purchase",
             external_user_id="user-123",
@@ -114,7 +114,7 @@ class TestAsyncConversions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_log(self, async_client: AsyncGreenflashPublicAPI) -> None:
+    async def test_raw_response_log(self, async_client: AsyncGreenflash) -> None:
         response = await async_client.conversions.with_raw_response.log(
             action="purchase",
             external_user_id="user-123",
@@ -129,7 +129,7 @@ class TestAsyncConversions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_log(self, async_client: AsyncGreenflashPublicAPI) -> None:
+    async def test_streaming_response_log(self, async_client: AsyncGreenflash) -> None:
         async with async_client.conversions.with_streaming_response.log(
             action="purchase",
             external_user_id="user-123",

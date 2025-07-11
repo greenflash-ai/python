@@ -36,20 +36,20 @@ __all__ = [
     "Transport",
     "ProxiesTypes",
     "RequestOptions",
-    "GreenflashPublicAPI",
-    "AsyncGreenflashPublicAPI",
+    "Greenflash",
+    "AsyncGreenflash",
     "Client",
     "AsyncClient",
 ]
 
 
-class GreenflashPublicAPI(SyncAPIClient):
+class Greenflash(SyncAPIClient):
     messages: messages.MessagesResource
     identify: identify.IdentifyResource
     ratings: ratings.RatingsResource
     conversions: conversions.ConversionsResource
-    with_raw_response: GreenflashPublicAPIWithRawResponse
-    with_streaming_response: GreenflashPublicAPIWithStreamedResponse
+    with_raw_response: GreenflashWithRawResponse
+    with_streaming_response: GreenflashWithStreamedResponse
 
     # client options
     api_key: str | None
@@ -77,7 +77,7 @@ class GreenflashPublicAPI(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous GreenflashPublicAPI client instance.
+        """Construct a new synchronous Greenflash client instance.
 
         This automatically infers the `api_key` argument from the `GREENFLASH_PUBLIC_API_API_KEY` environment variable if it is not provided.
         """
@@ -86,9 +86,9 @@ class GreenflashPublicAPI(SyncAPIClient):
         self.api_key = api_key
 
         if base_url is None:
-            base_url = os.environ.get("GREENFLASH_PUBLIC_API_BASE_URL")
+            base_url = os.environ.get("GREENFLASH_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.greenflash.ai/api/v1"
+            base_url = f"https://greenflash.ai/api/v1"
 
         super().__init__(
             version=__version__,
@@ -105,8 +105,8 @@ class GreenflashPublicAPI(SyncAPIClient):
         self.identify = identify.IdentifyResource(self)
         self.ratings = ratings.RatingsResource(self)
         self.conversions = conversions.ConversionsResource(self)
-        self.with_raw_response = GreenflashPublicAPIWithRawResponse(self)
-        self.with_streaming_response = GreenflashPublicAPIWithStreamedResponse(self)
+        self.with_raw_response = GreenflashWithRawResponse(self)
+        self.with_streaming_response = GreenflashWithStreamedResponse(self)
 
     @property
     @override
@@ -226,13 +226,13 @@ class GreenflashPublicAPI(SyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class AsyncGreenflashPublicAPI(AsyncAPIClient):
+class AsyncGreenflash(AsyncAPIClient):
     messages: messages.AsyncMessagesResource
     identify: identify.AsyncIdentifyResource
     ratings: ratings.AsyncRatingsResource
     conversions: conversions.AsyncConversionsResource
-    with_raw_response: AsyncGreenflashPublicAPIWithRawResponse
-    with_streaming_response: AsyncGreenflashPublicAPIWithStreamedResponse
+    with_raw_response: AsyncGreenflashWithRawResponse
+    with_streaming_response: AsyncGreenflashWithStreamedResponse
 
     # client options
     api_key: str | None
@@ -260,7 +260,7 @@ class AsyncGreenflashPublicAPI(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async AsyncGreenflashPublicAPI client instance.
+        """Construct a new async AsyncGreenflash client instance.
 
         This automatically infers the `api_key` argument from the `GREENFLASH_PUBLIC_API_API_KEY` environment variable if it is not provided.
         """
@@ -269,9 +269,9 @@ class AsyncGreenflashPublicAPI(AsyncAPIClient):
         self.api_key = api_key
 
         if base_url is None:
-            base_url = os.environ.get("GREENFLASH_PUBLIC_API_BASE_URL")
+            base_url = os.environ.get("GREENFLASH_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.greenflash.ai/api/v1"
+            base_url = f"https://greenflash.ai/api/v1"
 
         super().__init__(
             version=__version__,
@@ -288,8 +288,8 @@ class AsyncGreenflashPublicAPI(AsyncAPIClient):
         self.identify = identify.AsyncIdentifyResource(self)
         self.ratings = ratings.AsyncRatingsResource(self)
         self.conversions = conversions.AsyncConversionsResource(self)
-        self.with_raw_response = AsyncGreenflashPublicAPIWithRawResponse(self)
-        self.with_streaming_response = AsyncGreenflashPublicAPIWithStreamedResponse(self)
+        self.with_raw_response = AsyncGreenflashWithRawResponse(self)
+        self.with_streaming_response = AsyncGreenflashWithStreamedResponse(self)
 
     @property
     @override
@@ -409,38 +409,38 @@ class AsyncGreenflashPublicAPI(AsyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class GreenflashPublicAPIWithRawResponse:
-    def __init__(self, client: GreenflashPublicAPI) -> None:
+class GreenflashWithRawResponse:
+    def __init__(self, client: Greenflash) -> None:
         self.messages = messages.MessagesResourceWithRawResponse(client.messages)
         self.identify = identify.IdentifyResourceWithRawResponse(client.identify)
         self.ratings = ratings.RatingsResourceWithRawResponse(client.ratings)
         self.conversions = conversions.ConversionsResourceWithRawResponse(client.conversions)
 
 
-class AsyncGreenflashPublicAPIWithRawResponse:
-    def __init__(self, client: AsyncGreenflashPublicAPI) -> None:
+class AsyncGreenflashWithRawResponse:
+    def __init__(self, client: AsyncGreenflash) -> None:
         self.messages = messages.AsyncMessagesResourceWithRawResponse(client.messages)
         self.identify = identify.AsyncIdentifyResourceWithRawResponse(client.identify)
         self.ratings = ratings.AsyncRatingsResourceWithRawResponse(client.ratings)
         self.conversions = conversions.AsyncConversionsResourceWithRawResponse(client.conversions)
 
 
-class GreenflashPublicAPIWithStreamedResponse:
-    def __init__(self, client: GreenflashPublicAPI) -> None:
+class GreenflashWithStreamedResponse:
+    def __init__(self, client: Greenflash) -> None:
         self.messages = messages.MessagesResourceWithStreamingResponse(client.messages)
         self.identify = identify.IdentifyResourceWithStreamingResponse(client.identify)
         self.ratings = ratings.RatingsResourceWithStreamingResponse(client.ratings)
         self.conversions = conversions.ConversionsResourceWithStreamingResponse(client.conversions)
 
 
-class AsyncGreenflashPublicAPIWithStreamedResponse:
-    def __init__(self, client: AsyncGreenflashPublicAPI) -> None:
+class AsyncGreenflashWithStreamedResponse:
+    def __init__(self, client: AsyncGreenflash) -> None:
         self.messages = messages.AsyncMessagesResourceWithStreamingResponse(client.messages)
         self.identify = identify.AsyncIdentifyResourceWithStreamingResponse(client.identify)
         self.ratings = ratings.AsyncRatingsResourceWithStreamingResponse(client.ratings)
         self.conversions = conversions.AsyncConversionsResourceWithStreamingResponse(client.conversions)
 
 
-Client = GreenflashPublicAPI
+Client = Greenflash
 
-AsyncClient = AsyncGreenflashPublicAPI
+AsyncClient = AsyncGreenflash

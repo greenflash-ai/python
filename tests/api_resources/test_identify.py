@@ -8,7 +8,7 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from greenflash_public_api import GreenflashPublicAPI, AsyncGreenflashPublicAPI
+from greenflash_public_api import Greenflash, AsyncGreenflash
 from greenflash_public_api.types import IdentifyCreateOrUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -19,7 +19,7 @@ class TestIdentify:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_or_update(self, client: GreenflashPublicAPI) -> None:
+    def test_method_create_or_update(self, client: Greenflash) -> None:
         identify = client.identify.create_or_update(
             external_user_id="user-123",
         )
@@ -27,7 +27,7 @@ class TestIdentify:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_or_update_with_all_params(self, client: GreenflashPublicAPI) -> None:
+    def test_method_create_or_update_with_all_params(self, client: Greenflash) -> None:
         identify = client.identify.create_or_update(
             external_user_id="user-123",
             anonymized=False,
@@ -40,7 +40,7 @@ class TestIdentify:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_or_update(self, client: GreenflashPublicAPI) -> None:
+    def test_raw_response_create_or_update(self, client: Greenflash) -> None:
         response = client.identify.with_raw_response.create_or_update(
             external_user_id="user-123",
         )
@@ -52,7 +52,7 @@ class TestIdentify:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_or_update(self, client: GreenflashPublicAPI) -> None:
+    def test_streaming_response_create_or_update(self, client: Greenflash) -> None:
         with client.identify.with_streaming_response.create_or_update(
             external_user_id="user-123",
         ) as response:
@@ -72,7 +72,7 @@ class TestAsyncIdentify:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_or_update(self, async_client: AsyncGreenflashPublicAPI) -> None:
+    async def test_method_create_or_update(self, async_client: AsyncGreenflash) -> None:
         identify = await async_client.identify.create_or_update(
             external_user_id="user-123",
         )
@@ -80,7 +80,7 @@ class TestAsyncIdentify:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_or_update_with_all_params(self, async_client: AsyncGreenflashPublicAPI) -> None:
+    async def test_method_create_or_update_with_all_params(self, async_client: AsyncGreenflash) -> None:
         identify = await async_client.identify.create_or_update(
             external_user_id="user-123",
             anonymized=False,
@@ -93,7 +93,7 @@ class TestAsyncIdentify:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_or_update(self, async_client: AsyncGreenflashPublicAPI) -> None:
+    async def test_raw_response_create_or_update(self, async_client: AsyncGreenflash) -> None:
         response = await async_client.identify.with_raw_response.create_or_update(
             external_user_id="user-123",
         )
@@ -105,7 +105,7 @@ class TestAsyncIdentify:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_or_update(self, async_client: AsyncGreenflashPublicAPI) -> None:
+    async def test_streaming_response_create_or_update(self, async_client: AsyncGreenflash) -> None:
         async with async_client.identify.with_streaming_response.create_or_update(
             external_user_id="user-123",
         ) as response:

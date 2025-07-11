@@ -8,7 +8,7 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from greenflash_public_api import GreenflashPublicAPI, AsyncGreenflashPublicAPI
+from greenflash_public_api import Greenflash, AsyncGreenflash
 from greenflash_public_api.types import GenericSuccess
 from greenflash_public_api._utils import parse_datetime
 
@@ -20,7 +20,7 @@ class TestRatings:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_log(self, client: GreenflashPublicAPI) -> None:
+    def test_method_log(self, client: Greenflash) -> None:
         rating = client.ratings.log(
             rating=4,
             rating_max=5,
@@ -30,7 +30,7 @@ class TestRatings:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_log_with_all_params(self, client: GreenflashPublicAPI) -> None:
+    def test_method_log_with_all_params(self, client: Greenflash) -> None:
         rating = client.ratings.log(
             rating=4,
             rating_max=5,
@@ -45,7 +45,7 @@ class TestRatings:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_log(self, client: GreenflashPublicAPI) -> None:
+    def test_raw_response_log(self, client: Greenflash) -> None:
         response = client.ratings.with_raw_response.log(
             rating=4,
             rating_max=5,
@@ -59,7 +59,7 @@ class TestRatings:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_log(self, client: GreenflashPublicAPI) -> None:
+    def test_streaming_response_log(self, client: Greenflash) -> None:
         with client.ratings.with_streaming_response.log(
             rating=4,
             rating_max=5,
@@ -81,7 +81,7 @@ class TestAsyncRatings:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_log(self, async_client: AsyncGreenflashPublicAPI) -> None:
+    async def test_method_log(self, async_client: AsyncGreenflash) -> None:
         rating = await async_client.ratings.log(
             rating=4,
             rating_max=5,
@@ -91,7 +91,7 @@ class TestAsyncRatings:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_log_with_all_params(self, async_client: AsyncGreenflashPublicAPI) -> None:
+    async def test_method_log_with_all_params(self, async_client: AsyncGreenflash) -> None:
         rating = await async_client.ratings.log(
             rating=4,
             rating_max=5,
@@ -106,7 +106,7 @@ class TestAsyncRatings:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_log(self, async_client: AsyncGreenflashPublicAPI) -> None:
+    async def test_raw_response_log(self, async_client: AsyncGreenflash) -> None:
         response = await async_client.ratings.with_raw_response.log(
             rating=4,
             rating_max=5,
@@ -120,7 +120,7 @@ class TestAsyncRatings:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_log(self, async_client: AsyncGreenflashPublicAPI) -> None:
+    async def test_streaming_response_log(self, async_client: AsyncGreenflash) -> None:
         async with async_client.ratings.with_streaming_response.log(
             rating=4,
             rating_max=5,

@@ -10,7 +10,7 @@ import httpx
 import pytest
 from pytest_asyncio import is_async_test
 
-from greenflash_public_api import GreenflashPublicAPI, DefaultAioHttpClient, AsyncGreenflashPublicAPI
+from greenflash_public_api import Greenflash, AsyncGreenflash, DefaultAioHttpClient
 from greenflash_public_api._utils import is_dict
 
 if TYPE_CHECKING:
@@ -49,17 +49,17 @@ api_key = "My API Key"
 
 
 @pytest.fixture(scope="session")
-def client(request: FixtureRequest) -> Iterator[GreenflashPublicAPI]:
+def client(request: FixtureRequest) -> Iterator[Greenflash]:
     strict = getattr(request, "param", True)
     if not isinstance(strict, bool):
         raise TypeError(f"Unexpected fixture parameter type {type(strict)}, expected {bool}")
 
-    with GreenflashPublicAPI(base_url=base_url, api_key=api_key, _strict_response_validation=strict) as client:
+    with Greenflash(base_url=base_url, api_key=api_key, _strict_response_validation=strict) as client:
         yield client
 
 
 @pytest.fixture(scope="session")
-async def async_client(request: FixtureRequest) -> AsyncIterator[AsyncGreenflashPublicAPI]:
+async def async_client(request: FixtureRequest) -> AsyncIterator[AsyncGreenflash]:
     param = getattr(request, "param", True)
 
     # defaults
@@ -78,7 +78,7 @@ async def async_client(request: FixtureRequest) -> AsyncIterator[AsyncGreenflash
     else:
         raise TypeError(f"Unexpected fixture parameter type {type(param)}, expected bool or dict")
 
-    async with AsyncGreenflashPublicAPI(
+    async with AsyncGreenflash(
         base_url=base_url, api_key=api_key, _strict_response_validation=strict, http_client=http_client
     ) as client:
         yield client
