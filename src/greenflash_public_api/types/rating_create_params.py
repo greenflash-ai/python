@@ -8,10 +8,10 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["RatingLogParams"]
+__all__ = ["RatingCreateParams"]
 
 
-class RatingLogParams(TypedDict, total=False):
+class RatingCreateParams(TypedDict, total=False):
     rating: Required[float]
 
     rating_max: Required[Annotated[float, PropertyInfo(alias="ratingMax")]]

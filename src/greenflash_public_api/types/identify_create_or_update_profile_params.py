@@ -7,10 +7,10 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["IdentifyCreateOrUpdateParams"]
+__all__ = ["IdentifyCreateOrUpdateProfileParams"]
 
 
-class IdentifyCreateOrUpdateParams(TypedDict, total=False):
+class IdentifyCreateOrUpdateProfileParams(TypedDict, total=False):
     external_user_id: Required[Annotated[str, PropertyInfo(alias="externalUserId")]]
 
     anonymized: bool

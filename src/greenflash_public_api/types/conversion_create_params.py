@@ -8,10 +8,10 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["ConversionLogParams"]
+__all__ = ["ConversionCreateParams"]
 
 
-class ConversionLogParams(TypedDict, total=False):
+class ConversionCreateParams(TypedDict, total=False):
     action: Required[str]
 
     external_user_id: Required[Annotated[str, PropertyInfo(alias="externalUserId")]]

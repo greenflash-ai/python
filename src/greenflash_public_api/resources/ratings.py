@@ -7,7 +7,7 @@ from datetime import datetime
 
 import httpx
 
-from ..types import rating_log_params
+from ..types import rating_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -31,7 +31,7 @@ class RatingsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/greenflash-ai/python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/greenflash-public-api-python#accessing-raw-response-data-eg-headers
         """
         return RatingsResourceWithRawResponse(self)
 
@@ -40,11 +40,11 @@ class RatingsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/greenflash-ai/python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/greenflash-public-api-python#with_streaming_response
         """
         return RatingsResourceWithStreamingResponse(self)
 
-    def log(
+    def create(
         self,
         *,
         rating: float,
@@ -87,7 +87,7 @@ class RatingsResource(SyncAPIResource):
                     "message_id": message_id,
                     "rated_at": rated_at,
                 },
-                rating_log_params.RatingLogParams,
+                rating_create_params.RatingCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -103,7 +103,7 @@ class AsyncRatingsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/greenflash-ai/python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/greenflash-public-api-python#accessing-raw-response-data-eg-headers
         """
         return AsyncRatingsResourceWithRawResponse(self)
 
@@ -112,11 +112,11 @@ class AsyncRatingsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/greenflash-ai/python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/greenflash-public-api-python#with_streaming_response
         """
         return AsyncRatingsResourceWithStreamingResponse(self)
 
-    async def log(
+    async def create(
         self,
         *,
         rating: float,
@@ -159,7 +159,7 @@ class AsyncRatingsResource(AsyncAPIResource):
                     "message_id": message_id,
                     "rated_at": rated_at,
                 },
-                rating_log_params.RatingLogParams,
+                rating_create_params.RatingCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -172,8 +172,8 @@ class RatingsResourceWithRawResponse:
     def __init__(self, ratings: RatingsResource) -> None:
         self._ratings = ratings
 
-        self.log = to_raw_response_wrapper(
-            ratings.log,
+        self.create = to_raw_response_wrapper(
+            ratings.create,
         )
 
 
@@ -181,8 +181,8 @@ class AsyncRatingsResourceWithRawResponse:
     def __init__(self, ratings: AsyncRatingsResource) -> None:
         self._ratings = ratings
 
-        self.log = async_to_raw_response_wrapper(
-            ratings.log,
+        self.create = async_to_raw_response_wrapper(
+            ratings.create,
         )
 
 
@@ -190,8 +190,8 @@ class RatingsResourceWithStreamingResponse:
     def __init__(self, ratings: RatingsResource) -> None:
         self._ratings = ratings
 
-        self.log = to_streamed_response_wrapper(
-            ratings.log,
+        self.create = to_streamed_response_wrapper(
+            ratings.create,
         )
 
 
@@ -199,6 +199,6 @@ class AsyncRatingsResourceWithStreamingResponse:
     def __init__(self, ratings: AsyncRatingsResource) -> None:
         self._ratings = ratings
 
-        self.log = async_to_streamed_response_wrapper(
-            ratings.log,
+        self.create = async_to_streamed_response_wrapper(
+            ratings.create,
         )
