@@ -8,13 +8,13 @@ from typing import TYPE_CHECKING
 import anyio
 
 if TYPE_CHECKING:
-    from ._client import GreenflashPublicAPI, AsyncGreenflashPublicAPI
+    from ._client import GreenflashAPI, AsyncGreenflashAPI
 
 
 class SyncAPIResource:
-    _client: GreenflashPublicAPI
+    _client: GreenflashAPI
 
-    def __init__(self, client: GreenflashPublicAPI) -> None:
+    def __init__(self, client: GreenflashAPI) -> None:
         self._client = client
         self._get = client.get
         self._post = client.post
@@ -28,9 +28,9 @@ class SyncAPIResource:
 
 
 class AsyncAPIResource:
-    _client: AsyncGreenflashPublicAPI
+    _client: AsyncGreenflashAPI
 
-    def __init__(self, client: AsyncGreenflashPublicAPI) -> None:
+    def __init__(self, client: AsyncGreenflashAPI) -> None:
         self._client = client
         self._get = client.get
         self._post = client.post

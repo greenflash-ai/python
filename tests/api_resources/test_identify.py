@@ -8,8 +8,8 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from greenflash_public_api import GreenflashPublicAPI, AsyncGreenflashPublicAPI
-from greenflash_public_api.types import IdentifyCreateOrUpdateProfileResponse
+from greenflash_public_api import GreenflashAPI, AsyncGreenflashAPI
+from greenflash_public_api.types import IdentifyCreateOrUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,16 +19,16 @@ class TestIdentify:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_or_update_profile(self, client: GreenflashPublicAPI) -> None:
-        identify = client.identify.create_or_update_profile(
+    def test_method_create_or_update(self, client: GreenflashAPI) -> None:
+        identify = client.identify.create_or_update(
             external_user_id="user-123",
         )
-        assert_matches_type(IdentifyCreateOrUpdateProfileResponse, identify, path=["response"])
+        assert_matches_type(IdentifyCreateOrUpdateResponse, identify, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_or_update_profile_with_all_params(self, client: GreenflashPublicAPI) -> None:
-        identify = client.identify.create_or_update_profile(
+    def test_method_create_or_update_with_all_params(self, client: GreenflashAPI) -> None:
+        identify = client.identify.create_or_update(
             external_user_id="user-123",
             anonymized=False,
             email="alice@example.com",
@@ -36,31 +36,31 @@ class TestIdentify:
             name="Alice Example",
             phone="+15551234567",
         )
-        assert_matches_type(IdentifyCreateOrUpdateProfileResponse, identify, path=["response"])
+        assert_matches_type(IdentifyCreateOrUpdateResponse, identify, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_or_update_profile(self, client: GreenflashPublicAPI) -> None:
-        response = client.identify.with_raw_response.create_or_update_profile(
+    def test_raw_response_create_or_update(self, client: GreenflashAPI) -> None:
+        response = client.identify.with_raw_response.create_or_update(
             external_user_id="user-123",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identify = response.parse()
-        assert_matches_type(IdentifyCreateOrUpdateProfileResponse, identify, path=["response"])
+        assert_matches_type(IdentifyCreateOrUpdateResponse, identify, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_or_update_profile(self, client: GreenflashPublicAPI) -> None:
-        with client.identify.with_streaming_response.create_or_update_profile(
+    def test_streaming_response_create_or_update(self, client: GreenflashAPI) -> None:
+        with client.identify.with_streaming_response.create_or_update(
             external_user_id="user-123",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identify = response.parse()
-            assert_matches_type(IdentifyCreateOrUpdateProfileResponse, identify, path=["response"])
+            assert_matches_type(IdentifyCreateOrUpdateResponse, identify, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -72,18 +72,16 @@ class TestAsyncIdentify:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_or_update_profile(self, async_client: AsyncGreenflashPublicAPI) -> None:
-        identify = await async_client.identify.create_or_update_profile(
+    async def test_method_create_or_update(self, async_client: AsyncGreenflashAPI) -> None:
+        identify = await async_client.identify.create_or_update(
             external_user_id="user-123",
         )
-        assert_matches_type(IdentifyCreateOrUpdateProfileResponse, identify, path=["response"])
+        assert_matches_type(IdentifyCreateOrUpdateResponse, identify, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_or_update_profile_with_all_params(
-        self, async_client: AsyncGreenflashPublicAPI
-    ) -> None:
-        identify = await async_client.identify.create_or_update_profile(
+    async def test_method_create_or_update_with_all_params(self, async_client: AsyncGreenflashAPI) -> None:
+        identify = await async_client.identify.create_or_update(
             external_user_id="user-123",
             anonymized=False,
             email="alice@example.com",
@@ -91,30 +89,30 @@ class TestAsyncIdentify:
             name="Alice Example",
             phone="+15551234567",
         )
-        assert_matches_type(IdentifyCreateOrUpdateProfileResponse, identify, path=["response"])
+        assert_matches_type(IdentifyCreateOrUpdateResponse, identify, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_or_update_profile(self, async_client: AsyncGreenflashPublicAPI) -> None:
-        response = await async_client.identify.with_raw_response.create_or_update_profile(
+    async def test_raw_response_create_or_update(self, async_client: AsyncGreenflashAPI) -> None:
+        response = await async_client.identify.with_raw_response.create_or_update(
             external_user_id="user-123",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identify = await response.parse()
-        assert_matches_type(IdentifyCreateOrUpdateProfileResponse, identify, path=["response"])
+        assert_matches_type(IdentifyCreateOrUpdateResponse, identify, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_or_update_profile(self, async_client: AsyncGreenflashPublicAPI) -> None:
-        async with async_client.identify.with_streaming_response.create_or_update_profile(
+    async def test_streaming_response_create_or_update(self, async_client: AsyncGreenflashAPI) -> None:
+        async with async_client.identify.with_streaming_response.create_or_update(
             external_user_id="user-123",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identify = await response.parse()
-            assert_matches_type(IdentifyCreateOrUpdateProfileResponse, identify, path=["response"])
+            assert_matches_type(IdentifyCreateOrUpdateResponse, identify, path=["response"])
 
         assert cast(Any, response.is_closed) is True

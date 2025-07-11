@@ -12,9 +12,9 @@ from ._client import (
     Transport,
     AsyncClient,
     AsyncStream,
+    GreenflashAPI,
     RequestOptions,
-    GreenflashPublicAPI,
-    AsyncGreenflashPublicAPI,
+    AsyncGreenflashAPI,
 )
 from ._models import BaseModel
 from ._version import __title__, __version__
@@ -29,10 +29,10 @@ from ._exceptions import (
     APITimeoutError,
     BadRequestError,
     APIConnectionError,
+    GreenflashAPIError,
     AuthenticationError,
     InternalServerError,
     PermissionDeniedError,
-    GreenflashPublicAPIError,
     UnprocessableEntityError,
     APIResponseValidationError,
 )
@@ -49,7 +49,7 @@ __all__ = [
     "NotGiven",
     "NOT_GIVEN",
     "Omit",
-    "GreenflashPublicAPIError",
+    "GreenflashAPIError",
     "APIError",
     "APIStatusError",
     "APITimeoutError",
@@ -69,8 +69,8 @@ __all__ = [
     "AsyncClient",
     "Stream",
     "AsyncStream",
-    "GreenflashPublicAPI",
-    "AsyncGreenflashPublicAPI",
+    "GreenflashAPI",
+    "AsyncGreenflashAPI",
     "file_from_path",
     "BaseModel",
     "DEFAULT_TIMEOUT",

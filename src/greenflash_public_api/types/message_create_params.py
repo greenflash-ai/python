@@ -2,14 +2,23 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import Dict, List, Union, Iterable
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
-from .system_prompt_param import SystemPromptParam
 
-__all__ = ["MessageCreateParams", "Turn", "TurnMessage", "TurnSystemPromptOverride", "SystemPrompt"]
+__all__ = [
+    "MessageCreateParams",
+    "Turn",
+    "TurnMessage",
+    "TurnSystemPromptOverride",
+    "TurnSystemPromptOverrideSystemPrompt",
+    "TurnSystemPromptOverrideSystemPromptComponent",
+    "SystemPrompt",
+    "SystemPromptSystemPrompt",
+    "SystemPromptSystemPromptComponent",
+]
 
 
 class MessageCreateParams(TypedDict, total=False):
@@ -52,7 +61,31 @@ class TurnMessage(TypedDict, total=False):
     tokens: int
 
 
-TurnSystemPromptOverride: TypeAlias = Union[str, SystemPromptParam]
+class TurnSystemPromptOverrideSystemPromptComponent(TypedDict, total=False):
+    content: Required[str]
+
+    source: Required[Literal["customer", "participant", "greenflash", "agent"]]
+
+    type: Required[Literal["system", "endUser", "userModified", "rag", "agent"]]
+
+    is_dynamic: Annotated[bool, PropertyInfo(alias="isDynamic")]
+
+    name: str
+
+    tags: List[str]
+
+    version: int
+
+
+class TurnSystemPromptOverrideSystemPrompt(TypedDict, total=False):
+    components: Iterable[TurnSystemPromptOverrideSystemPromptComponent]
+
+    external_template_id: Annotated[str, PropertyInfo(alias="externalTemplateId")]
+
+    template_id: Annotated[str, PropertyInfo(alias="templateId")]
+
+
+TurnSystemPromptOverride: TypeAlias = Union[str, TurnSystemPromptOverrideSystemPrompt]
 
 
 class Turn(TypedDict, total=False):
@@ -69,4 +102,28 @@ class Turn(TypedDict, total=False):
     system_prompt_override: Annotated[TurnSystemPromptOverride, PropertyInfo(alias="systemPromptOverride")]
 
 
-SystemPrompt: TypeAlias = Union[str, SystemPromptParam]
+class SystemPromptSystemPromptComponent(TypedDict, total=False):
+    content: Required[str]
+
+    source: Required[Literal["customer", "participant", "greenflash", "agent"]]
+
+    type: Required[Literal["system", "endUser", "userModified", "rag", "agent"]]
+
+    is_dynamic: Annotated[bool, PropertyInfo(alias="isDynamic")]
+
+    name: str
+
+    tags: List[str]
+
+    version: int
+
+
+class SystemPromptSystemPrompt(TypedDict, total=False):
+    components: Iterable[SystemPromptSystemPromptComponent]
+
+    external_template_id: Annotated[str, PropertyInfo(alias="externalTemplateId")]
+
+    template_id: Annotated[str, PropertyInfo(alias="templateId")]
+
+
+SystemPrompt: TypeAlias = Union[str, SystemPromptSystemPrompt]

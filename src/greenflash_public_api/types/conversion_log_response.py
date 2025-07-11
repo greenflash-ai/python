@@ -4,8 +4,8 @@ from pydantic import Field as FieldInfo
 
 from .generic_success import GenericSuccess
 
-__all__ = ["ConversionCreateResponse"]
+__all__ = ["ConversionLogResponse"]
 
 
-class ConversionCreateResponse(GenericSuccess):
+class ConversionLogResponse(GenericSuccess):
     conversion_id: str = FieldInfo(alias="conversionId")

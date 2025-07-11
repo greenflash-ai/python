@@ -21,15 +21,10 @@ import pytest
 from respx import MockRouter
 from pydantic import ValidationError
 
-from greenflash_public_api import GreenflashPublicAPI, AsyncGreenflashPublicAPI, APIResponseValidationError
+from greenflash_public_api import GreenflashAPI, AsyncGreenflashAPI, APIResponseValidationError
 from greenflash_public_api._types import Omit
 from greenflash_public_api._models import BaseModel, FinalRequestOptions
-from greenflash_public_api._exceptions import (
-    APIStatusError,
-    APITimeoutError,
-    GreenflashPublicAPIError,
-    APIResponseValidationError,
-)
+from greenflash_public_api._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
 from greenflash_public_api._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
@@ -55,7 +50,7 @@ def _low_retry_timeout(*_args: Any, **_kwargs: Any) -> float:
     return 0.1
 
 
-def _get_open_connections(client: GreenflashPublicAPI | AsyncGreenflashPublicAPI) -> int:
+def _get_open_connections(client: GreenflashAPI | AsyncGreenflashAPI) -> int:
     transport = client._client._transport
     assert isinstance(transport, httpx.HTTPTransport) or isinstance(transport, httpx.AsyncHTTPTransport)
 
@@ -63,8 +58,8 @@ def _get_open_connections(client: GreenflashPublicAPI | AsyncGreenflashPublicAPI
     return len(pool._requests)
 
 
-class TestGreenflashPublicAPI:
-    client = GreenflashPublicAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+class TestGreenflashAPI:
+    client = GreenflashAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response(self, respx_mock: MockRouter) -> None:
@@ -111,7 +106,7 @@ class TestGreenflashPublicAPI:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = GreenflashPublicAPI(
+        client = GreenflashAPI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         assert client.default_headers["X-Foo"] == "bar"
@@ -145,7 +140,7 @@ class TestGreenflashPublicAPI:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = GreenflashPublicAPI(
+        client = GreenflashAPI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
@@ -271,7 +266,7 @@ class TestGreenflashPublicAPI:
         assert timeout == httpx.Timeout(100.0)
 
     def test_client_timeout_option(self) -> None:
-        client = GreenflashPublicAPI(
+        client = GreenflashAPI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
         )
 
@@ -282,7 +277,7 @@ class TestGreenflashPublicAPI:
     def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         with httpx.Client(timeout=None) as http_client:
-            client = GreenflashPublicAPI(
+            client = GreenflashAPI(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -292,7 +287,7 @@ class TestGreenflashPublicAPI:
 
         # no timeout given to the httpx client should not use the httpx default
         with httpx.Client() as http_client:
-            client = GreenflashPublicAPI(
+            client = GreenflashAPI(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -302,7 +297,7 @@ class TestGreenflashPublicAPI:
 
         # explicitly passing the default timeout currently results in it being ignored
         with httpx.Client(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = GreenflashPublicAPI(
+            client = GreenflashAPI(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -313,7 +308,7 @@ class TestGreenflashPublicAPI:
     async def test_invalid_http_client(self) -> None:
         with pytest.raises(TypeError, match="Invalid `http_client` arg"):
             async with httpx.AsyncClient() as http_client:
-                GreenflashPublicAPI(
+                GreenflashAPI(
                     base_url=base_url,
                     api_key=api_key,
                     _strict_response_validation=True,
@@ -321,14 +316,14 @@ class TestGreenflashPublicAPI:
                 )
 
     def test_default_headers_option(self) -> None:
-        client = GreenflashPublicAPI(
+        client = GreenflashAPI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
-        client2 = GreenflashPublicAPI(
+        client2 = GreenflashAPI(
             base_url=base_url,
             api_key=api_key,
             _strict_response_validation=True,
@@ -342,17 +337,26 @@ class TestGreenflashPublicAPI:
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
     def test_validate_headers(self) -> None:
-        client = GreenflashPublicAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = GreenflashAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
-        with pytest.raises(GreenflashPublicAPIError):
-            with update_env(**{"GREENFLASH_PUBLIC_API_API_KEY": Omit()}):
-                client2 = GreenflashPublicAPI(base_url=base_url, api_key=None, _strict_response_validation=True)
-            _ = client2
+        with update_env(**{"GREENFLASH_PUBLIC_API_API_KEY": Omit()}):
+            client2 = GreenflashAPI(base_url=base_url, api_key=None, _strict_response_validation=True)
+
+        with pytest.raises(
+            TypeError,
+            match="Could not resolve authentication method. Expected the api_key to be set. Or for the `Authorization` headers to be explicitly omitted",
+        ):
+            client2._build_request(FinalRequestOptions(method="get", url="/foo"))
+
+        request2 = client2._build_request(
+            FinalRequestOptions(method="get", url="/foo", headers={"Authorization": Omit()})
+        )
+        assert request2.headers.get("Authorization") is None
 
     def test_default_query_option(self) -> None:
-        client = GreenflashPublicAPI(
+        client = GreenflashAPI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"query_param": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -466,7 +470,7 @@ class TestGreenflashPublicAPI:
         params = dict(request.url.params)
         assert params == {"foo": "2"}
 
-    def test_multipart_repeating_array(self, client: GreenflashPublicAPI) -> None:
+    def test_multipart_repeating_array(self, client: GreenflashAPI) -> None:
         request = client._build_request(
             FinalRequestOptions.construct(
                 method="get",
@@ -553,7 +557,7 @@ class TestGreenflashPublicAPI:
         assert response.foo == 2
 
     def test_base_url_setter(self) -> None:
-        client = GreenflashPublicAPI(
+        client = GreenflashAPI(
             base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True
         )
         assert client.base_url == "https://example.com/from_init/"
@@ -563,17 +567,17 @@ class TestGreenflashPublicAPI:
         assert client.base_url == "https://example.com/from_setter/"
 
     def test_base_url_env(self) -> None:
-        with update_env(GREENFLASH_PUBLIC_API_BASE_URL="http://localhost:5000/from/env"):
-            client = GreenflashPublicAPI(api_key=api_key, _strict_response_validation=True)
+        with update_env(GREENFLASH_API_BASE_URL="http://localhost:5000/from/env"):
+            client = GreenflashAPI(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
         [
-            GreenflashPublicAPI(
+            GreenflashAPI(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            GreenflashPublicAPI(
+            GreenflashAPI(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -582,7 +586,7 @@ class TestGreenflashPublicAPI:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_trailing_slash(self, client: GreenflashPublicAPI) -> None:
+    def test_base_url_trailing_slash(self, client: GreenflashAPI) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -595,10 +599,10 @@ class TestGreenflashPublicAPI:
     @pytest.mark.parametrize(
         "client",
         [
-            GreenflashPublicAPI(
+            GreenflashAPI(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            GreenflashPublicAPI(
+            GreenflashAPI(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -607,7 +611,7 @@ class TestGreenflashPublicAPI:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_no_trailing_slash(self, client: GreenflashPublicAPI) -> None:
+    def test_base_url_no_trailing_slash(self, client: GreenflashAPI) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -620,10 +624,10 @@ class TestGreenflashPublicAPI:
     @pytest.mark.parametrize(
         "client",
         [
-            GreenflashPublicAPI(
+            GreenflashAPI(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            GreenflashPublicAPI(
+            GreenflashAPI(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -632,7 +636,7 @@ class TestGreenflashPublicAPI:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_absolute_request_url(self, client: GreenflashPublicAPI) -> None:
+    def test_absolute_request_url(self, client: GreenflashAPI) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -643,7 +647,7 @@ class TestGreenflashPublicAPI:
         assert request.url == "https://myapi.com/foo"
 
     def test_copied_client_does_not_close_http(self) -> None:
-        client = GreenflashPublicAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = GreenflashAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -654,7 +658,7 @@ class TestGreenflashPublicAPI:
         assert not client.is_closed()
 
     def test_client_context_manager(self) -> None:
-        client = GreenflashPublicAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = GreenflashAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -675,7 +679,7 @@ class TestGreenflashPublicAPI:
 
     def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            GreenflashPublicAPI(
+            GreenflashAPI(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None)
             )
 
@@ -686,12 +690,12 @@ class TestGreenflashPublicAPI:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = GreenflashPublicAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        strict_client = GreenflashAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             strict_client.get("/foo", cast_to=Model)
 
-        client = GreenflashPublicAPI(base_url=base_url, api_key=api_key, _strict_response_validation=False)
+        client = GreenflashAPI(base_url=base_url, api_key=api_key, _strict_response_validation=False)
 
         response = client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -719,7 +723,7 @@ class TestGreenflashPublicAPI:
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = GreenflashPublicAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = GreenflashAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
@@ -728,7 +732,7 @@ class TestGreenflashPublicAPI:
 
     @mock.patch("greenflash_public_api._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: GreenflashPublicAPI) -> None:
+    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: GreenflashAPI) -> None:
         respx_mock.post("/messages").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
@@ -759,7 +763,7 @@ class TestGreenflashPublicAPI:
 
     @mock.patch("greenflash_public_api._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: GreenflashPublicAPI) -> None:
+    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: GreenflashAPI) -> None:
         respx_mock.post("/messages").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
@@ -793,7 +797,7 @@ class TestGreenflashPublicAPI:
     @pytest.mark.parametrize("failure_mode", ["status", "exception"])
     def test_retries_taken(
         self,
-        client: GreenflashPublicAPI,
+        client: GreenflashAPI,
         failures_before_success: int,
         failure_mode: Literal["status", "exception"],
         respx_mock: MockRouter,
@@ -843,7 +847,7 @@ class TestGreenflashPublicAPI:
     @mock.patch("greenflash_public_api._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_omit_retry_count_header(
-        self, client: GreenflashPublicAPI, failures_before_success: int, respx_mock: MockRouter
+        self, client: GreenflashAPI, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = client.with_options(max_retries=4)
 
@@ -888,7 +892,7 @@ class TestGreenflashPublicAPI:
     @mock.patch("greenflash_public_api._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_overwrite_retry_count_header(
-        self, client: GreenflashPublicAPI, failures_before_success: int, respx_mock: MockRouter
+        self, client: GreenflashAPI, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = client.with_options(max_retries=4)
 
@@ -979,8 +983,8 @@ class TestGreenflashPublicAPI:
         assert exc_info.value.response.headers["Location"] == f"{base_url}/redirected"
 
 
-class TestAsyncGreenflashPublicAPI:
-    client = AsyncGreenflashPublicAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+class TestAsyncGreenflashAPI:
+    client = AsyncGreenflashAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
@@ -1029,7 +1033,7 @@ class TestAsyncGreenflashPublicAPI:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = AsyncGreenflashPublicAPI(
+        client = AsyncGreenflashAPI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         assert client.default_headers["X-Foo"] == "bar"
@@ -1063,7 +1067,7 @@ class TestAsyncGreenflashPublicAPI:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = AsyncGreenflashPublicAPI(
+        client = AsyncGreenflashAPI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
@@ -1189,7 +1193,7 @@ class TestAsyncGreenflashPublicAPI:
         assert timeout == httpx.Timeout(100.0)
 
     async def test_client_timeout_option(self) -> None:
-        client = AsyncGreenflashPublicAPI(
+        client = AsyncGreenflashAPI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
         )
 
@@ -1200,7 +1204,7 @@ class TestAsyncGreenflashPublicAPI:
     async def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         async with httpx.AsyncClient(timeout=None) as http_client:
-            client = AsyncGreenflashPublicAPI(
+            client = AsyncGreenflashAPI(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -1210,7 +1214,7 @@ class TestAsyncGreenflashPublicAPI:
 
         # no timeout given to the httpx client should not use the httpx default
         async with httpx.AsyncClient() as http_client:
-            client = AsyncGreenflashPublicAPI(
+            client = AsyncGreenflashAPI(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -1220,7 +1224,7 @@ class TestAsyncGreenflashPublicAPI:
 
         # explicitly passing the default timeout currently results in it being ignored
         async with httpx.AsyncClient(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = AsyncGreenflashPublicAPI(
+            client = AsyncGreenflashAPI(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -1231,7 +1235,7 @@ class TestAsyncGreenflashPublicAPI:
     def test_invalid_http_client(self) -> None:
         with pytest.raises(TypeError, match="Invalid `http_client` arg"):
             with httpx.Client() as http_client:
-                AsyncGreenflashPublicAPI(
+                AsyncGreenflashAPI(
                     base_url=base_url,
                     api_key=api_key,
                     _strict_response_validation=True,
@@ -1239,14 +1243,14 @@ class TestAsyncGreenflashPublicAPI:
                 )
 
     def test_default_headers_option(self) -> None:
-        client = AsyncGreenflashPublicAPI(
+        client = AsyncGreenflashAPI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
-        client2 = AsyncGreenflashPublicAPI(
+        client2 = AsyncGreenflashAPI(
             base_url=base_url,
             api_key=api_key,
             _strict_response_validation=True,
@@ -1260,17 +1264,26 @@ class TestAsyncGreenflashPublicAPI:
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
     def test_validate_headers(self) -> None:
-        client = AsyncGreenflashPublicAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncGreenflashAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
-        with pytest.raises(GreenflashPublicAPIError):
-            with update_env(**{"GREENFLASH_PUBLIC_API_API_KEY": Omit()}):
-                client2 = AsyncGreenflashPublicAPI(base_url=base_url, api_key=None, _strict_response_validation=True)
-            _ = client2
+        with update_env(**{"GREENFLASH_PUBLIC_API_API_KEY": Omit()}):
+            client2 = AsyncGreenflashAPI(base_url=base_url, api_key=None, _strict_response_validation=True)
+
+        with pytest.raises(
+            TypeError,
+            match="Could not resolve authentication method. Expected the api_key to be set. Or for the `Authorization` headers to be explicitly omitted",
+        ):
+            client2._build_request(FinalRequestOptions(method="get", url="/foo"))
+
+        request2 = client2._build_request(
+            FinalRequestOptions(method="get", url="/foo", headers={"Authorization": Omit()})
+        )
+        assert request2.headers.get("Authorization") is None
 
     def test_default_query_option(self) -> None:
-        client = AsyncGreenflashPublicAPI(
+        client = AsyncGreenflashAPI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"query_param": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1384,7 +1397,7 @@ class TestAsyncGreenflashPublicAPI:
         params = dict(request.url.params)
         assert params == {"foo": "2"}
 
-    def test_multipart_repeating_array(self, async_client: AsyncGreenflashPublicAPI) -> None:
+    def test_multipart_repeating_array(self, async_client: AsyncGreenflashAPI) -> None:
         request = async_client._build_request(
             FinalRequestOptions.construct(
                 method="get",
@@ -1471,7 +1484,7 @@ class TestAsyncGreenflashPublicAPI:
         assert response.foo == 2
 
     def test_base_url_setter(self) -> None:
-        client = AsyncGreenflashPublicAPI(
+        client = AsyncGreenflashAPI(
             base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True
         )
         assert client.base_url == "https://example.com/from_init/"
@@ -1481,17 +1494,17 @@ class TestAsyncGreenflashPublicAPI:
         assert client.base_url == "https://example.com/from_setter/"
 
     def test_base_url_env(self) -> None:
-        with update_env(GREENFLASH_PUBLIC_API_BASE_URL="http://localhost:5000/from/env"):
-            client = AsyncGreenflashPublicAPI(api_key=api_key, _strict_response_validation=True)
+        with update_env(GREENFLASH_API_BASE_URL="http://localhost:5000/from/env"):
+            client = AsyncGreenflashAPI(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncGreenflashPublicAPI(
+            AsyncGreenflashAPI(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            AsyncGreenflashPublicAPI(
+            AsyncGreenflashAPI(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -1500,7 +1513,7 @@ class TestAsyncGreenflashPublicAPI:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_trailing_slash(self, client: AsyncGreenflashPublicAPI) -> None:
+    def test_base_url_trailing_slash(self, client: AsyncGreenflashAPI) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1513,10 +1526,10 @@ class TestAsyncGreenflashPublicAPI:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncGreenflashPublicAPI(
+            AsyncGreenflashAPI(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            AsyncGreenflashPublicAPI(
+            AsyncGreenflashAPI(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -1525,7 +1538,7 @@ class TestAsyncGreenflashPublicAPI:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_no_trailing_slash(self, client: AsyncGreenflashPublicAPI) -> None:
+    def test_base_url_no_trailing_slash(self, client: AsyncGreenflashAPI) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1538,10 +1551,10 @@ class TestAsyncGreenflashPublicAPI:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncGreenflashPublicAPI(
+            AsyncGreenflashAPI(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            AsyncGreenflashPublicAPI(
+            AsyncGreenflashAPI(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -1550,7 +1563,7 @@ class TestAsyncGreenflashPublicAPI:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_absolute_request_url(self, client: AsyncGreenflashPublicAPI) -> None:
+    def test_absolute_request_url(self, client: AsyncGreenflashAPI) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1561,7 +1574,7 @@ class TestAsyncGreenflashPublicAPI:
         assert request.url == "https://myapi.com/foo"
 
     async def test_copied_client_does_not_close_http(self) -> None:
-        client = AsyncGreenflashPublicAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncGreenflashAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -1573,7 +1586,7 @@ class TestAsyncGreenflashPublicAPI:
         assert not client.is_closed()
 
     async def test_client_context_manager(self) -> None:
-        client = AsyncGreenflashPublicAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncGreenflashAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         async with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -1595,7 +1608,7 @@ class TestAsyncGreenflashPublicAPI:
 
     async def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            AsyncGreenflashPublicAPI(
+            AsyncGreenflashAPI(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None)
             )
 
@@ -1607,12 +1620,12 @@ class TestAsyncGreenflashPublicAPI:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = AsyncGreenflashPublicAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        strict_client = AsyncGreenflashAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             await strict_client.get("/foo", cast_to=Model)
 
-        client = AsyncGreenflashPublicAPI(base_url=base_url, api_key=api_key, _strict_response_validation=False)
+        client = AsyncGreenflashAPI(base_url=base_url, api_key=api_key, _strict_response_validation=False)
 
         response = await client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -1641,7 +1654,7 @@ class TestAsyncGreenflashPublicAPI:
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     @pytest.mark.asyncio
     async def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = AsyncGreenflashPublicAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncGreenflashAPI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
@@ -1651,7 +1664,7 @@ class TestAsyncGreenflashPublicAPI:
     @mock.patch("greenflash_public_api._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(
-        self, respx_mock: MockRouter, async_client: AsyncGreenflashPublicAPI
+        self, respx_mock: MockRouter, async_client: AsyncGreenflashAPI
     ) -> None:
         respx_mock.post("/messages").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
@@ -1684,7 +1697,7 @@ class TestAsyncGreenflashPublicAPI:
     @mock.patch("greenflash_public_api._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(
-        self, respx_mock: MockRouter, async_client: AsyncGreenflashPublicAPI
+        self, respx_mock: MockRouter, async_client: AsyncGreenflashAPI
     ) -> None:
         respx_mock.post("/messages").mock(return_value=httpx.Response(500))
 
@@ -1720,7 +1733,7 @@ class TestAsyncGreenflashPublicAPI:
     @pytest.mark.parametrize("failure_mode", ["status", "exception"])
     async def test_retries_taken(
         self,
-        async_client: AsyncGreenflashPublicAPI,
+        async_client: AsyncGreenflashAPI,
         failures_before_success: int,
         failure_mode: Literal["status", "exception"],
         respx_mock: MockRouter,
@@ -1771,7 +1784,7 @@ class TestAsyncGreenflashPublicAPI:
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     async def test_omit_retry_count_header(
-        self, async_client: AsyncGreenflashPublicAPI, failures_before_success: int, respx_mock: MockRouter
+        self, async_client: AsyncGreenflashAPI, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = async_client.with_options(max_retries=4)
 
@@ -1817,7 +1830,7 @@ class TestAsyncGreenflashPublicAPI:
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     async def test_overwrite_retry_count_header(
-        self, async_client: AsyncGreenflashPublicAPI, failures_before_success: int, respx_mock: MockRouter
+        self, async_client: AsyncGreenflashAPI, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = async_client.with_options(max_retries=4)
 
