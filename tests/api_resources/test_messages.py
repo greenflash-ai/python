@@ -81,12 +81,12 @@ class TestMessages:
                     "system_prompt_override": "You are a helpful assistant.",
                 }
             ],
-            conversation_id="conversationId",
+            conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             external_conversation_id="conv-456",
             metadata={"source": "bar"},
             model="gpt-greenflash-1",
-            product_id="prod-789",
-            project_id="proj-001",
+            product_id="123e4567-e89b-12d3-a456-426614174000",
+            project_id="123e4567-e89b-12d3-a456-426614174000",
             system_prompt={
                 "components": [
                     {
@@ -102,7 +102,7 @@ class TestMessages:
                 "external_template_id": "externalTemplateId",
                 "template_id": "tmpl-001",
             },
-            version_id="ver-001",
+            version_id="123e4567-e89b-12d3-a456-426614174000",
         )
         assert_matches_type(MessageCreateResponse, message, path=["response"])
 
@@ -239,12 +239,12 @@ class TestAsyncMessages:
                     "system_prompt_override": "You are a helpful assistant.",
                 }
             ],
-            conversation_id="conversationId",
+            conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             external_conversation_id="conv-456",
             metadata={"source": "bar"},
             model="gpt-greenflash-1",
-            product_id="prod-789",
-            project_id="proj-001",
+            product_id="123e4567-e89b-12d3-a456-426614174000",
+            project_id="123e4567-e89b-12d3-a456-426614174000",
             system_prompt={
                 "components": [
                     {
@@ -260,7 +260,7 @@ class TestAsyncMessages:
                 "external_template_id": "externalTemplateId",
                 "template_id": "tmpl-001",
             },
-            version_id="ver-001",
+            version_id="123e4567-e89b-12d3-a456-426614174000",
         )
         assert_matches_type(MessageCreateResponse, message, path=["response"])
 
