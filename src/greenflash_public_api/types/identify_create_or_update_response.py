@@ -18,6 +18,7 @@ class Participant(BaseModel):
     created_at: datetime = FieldInfo(alias="createdAt")
 
     external_id: str = FieldInfo(alias="externalId")
+    """The external ID of the participant"""
 
     metadata: object
 
