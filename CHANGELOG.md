@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0-alpha.4 (2025-07-11)
+
+Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
+
+### Chores
+
+* **internal:** codegen related update ([084e7cf](https://github.com/greenflash-ai/python/commit/084e7cf7b896d1b965d4e78b9693c61bc277ab6b))
+* **internal:** version bump ([851db65](https://github.com/greenflash-ai/python/commit/851db6588128dd72d9f6dfd284872df1daf9c5aa))
+* **readme:** fix version rendering on pypi ([0c61810](https://github.com/greenflash-ai/python/commit/0c61810050e91daf95abfdf1c41dee883eddd0c3))
+
 ## 0.1.0-alpha.3 (2025-07-11)
 
 Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
