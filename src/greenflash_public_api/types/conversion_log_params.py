@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import Dict, Union
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -26,7 +26,7 @@ class ConversionLogParams(TypedDict, total=False):
 
     external_conversation_id: Annotated[str, PropertyInfo(alias="externalConversationId")]
 
-    metadata: object
+    metadata: Dict[str, object]
 
     product_id: Annotated[str, PropertyInfo(alias="productId")]
 

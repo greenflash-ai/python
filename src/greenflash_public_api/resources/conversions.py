@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import Dict, Union
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -55,7 +55,7 @@ class ConversionsResource(SyncAPIResource):
         conversation_id: str | NotGiven = NOT_GIVEN,
         converted_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         external_conversation_id: str | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
         product_id: str | NotGiven = NOT_GIVEN,
         project_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -131,7 +131,7 @@ class AsyncConversionsResource(AsyncAPIResource):
         conversation_id: str | NotGiven = NOT_GIVEN,
         converted_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         external_conversation_id: str | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
         product_id: str | NotGiven = NOT_GIVEN,
         project_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

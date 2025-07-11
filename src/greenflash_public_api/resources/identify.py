@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Dict
+
 import httpx
 
 from ..types import identify_create_or_update_params
@@ -47,7 +49,7 @@ class IdentifyResource(SyncAPIResource):
         external_user_id: str,
         anonymized: bool | NotGiven = NOT_GIVEN,
         email: str | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         phone: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -115,7 +117,7 @@ class AsyncIdentifyResource(AsyncAPIResource):
         external_user_id: str,
         anonymized: bool | NotGiven = NOT_GIVEN,
         email: str | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         phone: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
