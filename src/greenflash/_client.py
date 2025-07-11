@@ -79,16 +79,16 @@ class Greenflash(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous Greenflash client instance.
 
-        This automatically infers the `api_key` argument from the `GREENFLASH_PUBLIC_API_API_KEY` environment variable if it is not provided.
+        This automatically infers the `api_key` argument from the `GREENFLASH_API_KEY` environment variable if it is not provided.
         """
         if api_key is None:
-            api_key = os.environ.get("GREENFLASH_PUBLIC_API_API_KEY")
+            api_key = os.environ.get("GREENFLASH_API_KEY")
         self.api_key = api_key
 
         if base_url is None:
             base_url = os.environ.get("GREENFLASH_BASE_URL")
         if base_url is None:
-            base_url = f"https://greenflash.ai/api/v1"
+            base_url = f"https://www.greenflash.ai/api/v1"
 
         super().__init__(
             version=__version__,
@@ -262,16 +262,16 @@ class AsyncGreenflash(AsyncAPIClient):
     ) -> None:
         """Construct a new async AsyncGreenflash client instance.
 
-        This automatically infers the `api_key` argument from the `GREENFLASH_PUBLIC_API_API_KEY` environment variable if it is not provided.
+        This automatically infers the `api_key` argument from the `GREENFLASH_API_KEY` environment variable if it is not provided.
         """
         if api_key is None:
-            api_key = os.environ.get("GREENFLASH_PUBLIC_API_API_KEY")
+            api_key = os.environ.get("GREENFLASH_API_KEY")
         self.api_key = api_key
 
         if base_url is None:
             base_url = os.environ.get("GREENFLASH_BASE_URL")
         if base_url is None:
-            base_url = f"https://greenflash.ai/api/v1"
+            base_url = f"https://www.greenflash.ai/api/v1"
 
         super().__init__(
             version=__version__,

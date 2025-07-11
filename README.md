@@ -28,12 +28,10 @@ The full API of this library can be found in [api.md](api.md).
 
 ```python
 import os
-from greenflash_public_api import Greenflash
+from greenflash import Greenflash
 
 client = Greenflash(
-    api_key=os.environ.get(
-        "GREENFLASH_PUBLIC_API_API_KEY"
-    ),  # This is the default and can be omitted
+    api_key=os.environ.get("GREENFLASH_API_KEY"),  # This is the default and can be omitted
 )
 
 message = client.messages.create(
@@ -58,7 +56,7 @@ print(message.conversation_id)
 
 While you can provide an `api_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `GREENFLASH_PUBLIC_API_API_KEY="My API Key"` to your `.env` file
+to add `GREENFLASH_API_KEY="My API Key"` to your `.env` file
 so that your API Key is not stored in source control.
 
 ## Async usage
@@ -68,12 +66,10 @@ Simply import `AsyncGreenflash` instead of `Greenflash` and use `await` with eac
 ```python
 import os
 import asyncio
-from greenflash_public_api import AsyncGreenflash
+from greenflash import AsyncGreenflash
 
 client = AsyncGreenflash(
-    api_key=os.environ.get(
-        "GREENFLASH_PUBLIC_API_API_KEY"
-    ),  # This is the default and can be omitted
+    api_key=os.environ.get("GREENFLASH_API_KEY"),  # This is the default and can be omitted
 )
 
 
@@ -119,15 +115,13 @@ Then you can enable it by instantiating the client with `http_client=DefaultAioH
 ```python
 import os
 import asyncio
-from greenflash_public_api import DefaultAioHttpClient
-from greenflash_public_api import AsyncGreenflash
+from greenflash import DefaultAioHttpClient
+from greenflash import AsyncGreenflash
 
 
 async def main() -> None:
     async with AsyncGreenflash(
-        api_key=os.environ.get(
-            "GREENFLASH_PUBLIC_API_API_KEY"
-        ),  # This is the default and can be omitted
+        api_key=os.environ.get("GREENFLASH_API_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         message = await client.messages.create(
@@ -164,43 +158,40 @@ Typed requests and responses provide autocomplete and documentation within your 
 
 ## Handling errors
 
-When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `greenflash_public_api.APIConnectionError` is raised.
+When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `greenflash.APIConnectionError` is raised.
 
 When the API returns a non-success status code (that is, 4xx or 5xx
-response), a subclass of `greenflash_public_api.APIStatusError` is raised, containing `status_code` and `response` properties.
+response), a subclass of `greenflash.APIStatusError` is raised, containing `status_code` and `response` properties.
 
-All errors inherit from `greenflash_public_api.APIError`.
+All errors inherit from `greenflash.APIError`.
 
 ```python
-import greenflash_public_api
-from greenflash_public_api import Greenflash
+import greenflash
+from greenflash import Greenflash
 
 client = Greenflash()
 
 try:
     client.messages.create(
-        external_user_id="user-123",
+        external_user_id="externalUserId",
         turns=[
             {
                 "messages": [
                     {
-                        "content": "Hello!",
+                        "content": "content",
                         "role": "user",
-                    },
-                    {
-                        "content": "Hi there!",
-                        "role": "assistant",
-                    },
+                    }
                 ]
             }
         ],
+        product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
     )
-except greenflash_public_api.APIConnectionError as e:
+except greenflash.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
-except greenflash_public_api.RateLimitError as e:
+except greenflash.RateLimitError as e:
     print("A 429 status code was received; we should back off a bit.")
-except greenflash_public_api.APIStatusError as e:
+except greenflash.APIStatusError as e:
     print("Another non-200-range status code was received")
     print(e.status_code)
     print(e.response)
@@ -228,7 +219,7 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from greenflash_public_api import Greenflash
+from greenflash import Greenflash
 
 # Configure the default for all requests:
 client = Greenflash(
@@ -238,21 +229,18 @@ client = Greenflash(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).messages.create(
-    external_user_id="user-123",
+    external_user_id="externalUserId",
     turns=[
         {
             "messages": [
                 {
-                    "content": "Hello!",
+                    "content": "content",
                     "role": "user",
-                },
-                {
-                    "content": "Hi there!",
-                    "role": "assistant",
-                },
+                }
             ]
         }
     ],
+    product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 )
 ```
 
@@ -262,7 +250,7 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:
 
 ```python
-from greenflash_public_api import Greenflash
+from greenflash import Greenflash
 
 # Configure the default for all requests:
 client = Greenflash(
@@ -277,21 +265,18 @@ client = Greenflash(
 
 # Override per-request:
 client.with_options(timeout=5.0).messages.create(
-    external_user_id="user-123",
+    external_user_id="externalUserId",
     turns=[
         {
             "messages": [
                 {
-                    "content": "Hello!",
+                    "content": "content",
                     "role": "user",
-                },
-                {
-                    "content": "Hi there!",
-                    "role": "assistant",
-                },
+                }
             ]
         }
     ],
+    product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 )
 ```
 
@@ -330,20 +315,18 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from greenflash_public_api import Greenflash
+from greenflash import Greenflash
 
 client = Greenflash()
 response = client.messages.with_raw_response.create(
-    external_user_id="user-123",
+    external_user_id="externalUserId",
     turns=[{
         "messages": [{
-            "content": "Hello!",
+            "content": "content",
             "role": "user",
-        }, {
-            "content": "Hi there!",
-            "role": "assistant",
         }]
     }],
+    product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 )
 print(response.headers.get('X-My-Header'))
 
@@ -351,9 +334,9 @@ message = response.parse()  # get the object that `messages.create()` would have
 print(message.conversation_id)
 ```
 
-These methods return an [`APIResponse`](https://github.com/greenflash-ai/python/tree/main/src/greenflash_public_api/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/greenflash-ai/python/tree/main/src/greenflash/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/greenflash-ai/python/tree/main/src/greenflash_public_api/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/greenflash-ai/python/tree/main/src/greenflash/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -363,21 +346,18 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.messages.with_streaming_response.create(
-    external_user_id="user-123",
+    external_user_id="externalUserId",
     turns=[
         {
             "messages": [
                 {
-                    "content": "Hello!",
+                    "content": "content",
                     "role": "user",
-                },
-                {
-                    "content": "Hi there!",
-                    "role": "assistant",
-                },
+                }
             ]
         }
     ],
+    product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 ) as response:
     print(response.headers.get("X-My-Header"))
 
@@ -431,7 +411,7 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 
 ```python
 import httpx
-from greenflash_public_api import Greenflash, DefaultHttpxClient
+from greenflash import Greenflash, DefaultHttpxClient
 
 client = Greenflash(
     # Or use the `GREENFLASH_BASE_URL` env var
@@ -454,7 +434,7 @@ client.with_options(http_client=DefaultHttpxClient(...))
 By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
 
 ```py
-from greenflash_public_api import Greenflash
+from greenflash import Greenflash
 
 with Greenflash() as client:
   # make requests here
@@ -482,8 +462,8 @@ If you've upgraded to the latest version but aren't seeing any new features you 
 You can determine the version that is being used at runtime with:
 
 ```py
-import greenflash_public_api
-print(greenflash_public_api.__version__)
+import greenflash
+print(greenflash.__version__)
 ```
 
 ## Requirements
