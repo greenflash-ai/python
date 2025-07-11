@@ -60,9 +60,29 @@ class IdentifyResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> IdentifyCreateOrUpdateResponse:
         """
-        Create or Update User Profiles
+        The `/identify` endpoint allows you to create or update user profiles in the
+        system. This endpoint is used to manage user identity information that can be
+        referenced in other API calls using the `externalUserId`.
+
+        When you call this endpoint with an `externalUserId` that already exists, the
+        user profile will be updated. If the `externalUserId` doesn't exist yet, a new
+        profile will be created.
 
         Args:
+          external_user_id: Your unique identifier for the user. This is used to reference the user in other
+              API calls.
+
+          anonymized: Whether the user's personal information should be anonymized. Defaults to false
+              for new users.
+
+          email: The user's email address. Must be a valid email format.
+
+          metadata: Additional metadata associated with the user as key-value pairs.
+
+          name: The user's full name.
+
+          phone: The user's phone number.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -128,9 +148,29 @@ class AsyncIdentifyResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> IdentifyCreateOrUpdateResponse:
         """
-        Create or Update User Profiles
+        The `/identify` endpoint allows you to create or update user profiles in the
+        system. This endpoint is used to manage user identity information that can be
+        referenced in other API calls using the `externalUserId`.
+
+        When you call this endpoint with an `externalUserId` that already exists, the
+        user profile will be updated. If the `externalUserId` doesn't exist yet, a new
+        profile will be created.
 
         Args:
+          external_user_id: Your unique identifier for the user. This is used to reference the user in other
+              API calls.
+
+          anonymized: Whether the user's personal information should be anonymized. Defaults to false
+              for new users.
+
+          email: The user's email address. Must be a valid email format.
+
+          metadata: Additional metadata associated with the user as key-value pairs.
+
+          name: The user's full name.
+
+          phone: The user's phone number.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

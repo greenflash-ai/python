@@ -43,18 +43,13 @@ message = client.messages.create(
             "messages": [
                 {
                     "content": "Hello!",
-                    "content_type": "text",
-                    "message_index": 0,
                     "role": "user",
                 },
                 {
                     "content": "Hi there!",
-                    "content_type": "text",
-                    "message_index": 1,
                     "role": "assistant",
                 },
-            ],
-            "turn_index": 0,
+            ]
         }
     ],
 )
@@ -90,18 +85,13 @@ async def main() -> None:
                 "messages": [
                     {
                         "content": "Hello!",
-                        "content_type": "text",
-                        "message_index": 0,
                         "role": "user",
                     },
                     {
                         "content": "Hi there!",
-                        "content_type": "text",
-                        "message_index": 1,
                         "role": "assistant",
                     },
-                ],
-                "turn_index": 0,
+                ]
             }
         ],
     )
@@ -147,18 +137,13 @@ async def main() -> None:
                     "messages": [
                         {
                             "content": "Hello!",
-                            "content_type": "text",
-                            "message_index": 0,
                             "role": "user",
                         },
                         {
                             "content": "Hi there!",
-                            "content_type": "text",
-                            "message_index": 1,
                             "role": "assistant",
                         },
-                    ],
-                    "turn_index": 0,
+                    ]
                 }
             ],
         )
@@ -200,18 +185,13 @@ try:
                 "messages": [
                     {
                         "content": "Hello!",
-                        "content_type": "text",
-                        "message_index": 0,
                         "role": "user",
                     },
                     {
                         "content": "Hi there!",
-                        "content_type": "text",
-                        "message_index": 1,
                         "role": "assistant",
                     },
-                ],
-                "turn_index": 0,
+                ]
             }
         ],
     )
@@ -264,18 +244,13 @@ client.with_options(max_retries=5).messages.create(
             "messages": [
                 {
                     "content": "Hello!",
-                    "content_type": "text",
-                    "message_index": 0,
                     "role": "user",
                 },
                 {
                     "content": "Hi there!",
-                    "content_type": "text",
-                    "message_index": 1,
                     "role": "assistant",
                 },
-            ],
-            "turn_index": 0,
+            ]
         }
     ],
 )
@@ -308,18 +283,13 @@ client.with_options(timeout=5.0).messages.create(
             "messages": [
                 {
                     "content": "Hello!",
-                    "content_type": "text",
-                    "message_index": 0,
                     "role": "user",
                 },
                 {
                     "content": "Hi there!",
-                    "content_type": "text",
-                    "message_index": 1,
                     "role": "assistant",
                 },
-            ],
-            "turn_index": 0,
+            ]
         }
     ],
 )
@@ -368,16 +338,11 @@ response = client.messages.with_raw_response.create(
     turns=[{
         "messages": [{
             "content": "Hello!",
-            "content_type": "text",
-            "message_index": 0,
             "role": "user",
         }, {
             "content": "Hi there!",
-            "content_type": "text",
-            "message_index": 1,
             "role": "assistant",
-        }],
-        "turn_index": 0,
+        }]
     }],
 )
 print(response.headers.get('X-My-Header'))
@@ -404,18 +369,13 @@ with client.messages.with_streaming_response.create(
             "messages": [
                 {
                     "content": "Hello!",
-                    "content_type": "text",
-                    "message_index": 0,
                     "role": "user",
                 },
                 {
                     "content": "Hi there!",
-                    "content_type": "text",
-                    "message_index": 1,
                     "role": "assistant",
                 },
-            ],
-            "turn_index": 0,
+            ]
         }
     ],
 ) as response:
