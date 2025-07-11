@@ -15,8 +15,8 @@ The full API of this library can be found in [api.md](api.md).
 ## Installation
 
 ```sh
-# install from this staging repo
-pip install git+ssh://git@github.com/stainless-sdks/greenflash-public-api-python.git
+# install from the production repo
+pip install git+ssh://git@github.com/greenflash-ai/python.git
 ```
 
 > [!NOTE]
@@ -120,8 +120,8 @@ By default, the async client uses `httpx` for HTTP requests. However, for improv
 You can enable this by installing `aiohttp`:
 
 ```sh
-# install from this staging repo
-pip install 'greenflash_public_api[aiohttp] @ git+ssh://git@github.com/stainless-sdks/greenflash-public-api-python.git'
+# install from the production repo
+pip install 'greenflash_public_api[aiohttp] @ git+ssh://git@github.com/greenflash-ai/python.git'
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
@@ -386,9 +386,9 @@ message = response.parse()  # get the object that `messages.create()` would have
 print(message.conversation_id)
 ```
 
-These methods return an [`APIResponse`](https://github.com/stainless-sdks/greenflash-public-api-python/tree/main/src/greenflash_public_api/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/greenflash-ai/python/tree/main/src/greenflash_public_api/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/greenflash-public-api-python/tree/main/src/greenflash_public_api/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/greenflash-ai/python/tree/main/src/greenflash_public_api/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -513,7 +513,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/greenflash-public-api-python/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/greenflash-ai/python/issues) with questions, bugs, or suggestions.
 
 ### Determining the installed version
 
