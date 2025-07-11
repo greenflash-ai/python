@@ -8,7 +8,7 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from greenflash_public_api import GreenflashAPI, AsyncGreenflashAPI
+from greenflash_public_api import Greenflash, AsyncGreenflash
 from greenflash_public_api.types import MessageCreateResponse
 from greenflash_public_api._utils import parse_datetime
 
@@ -20,7 +20,7 @@ class TestMessages:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create(self, client: GreenflashAPI) -> None:
+    def test_method_create(self, client: Greenflash) -> None:
         message = client.messages.create(
             external_user_id="user-123",
             turns=[
@@ -47,7 +47,7 @@ class TestMessages:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params(self, client: GreenflashAPI) -> None:
+    def test_method_create_with_all_params(self, client: Greenflash) -> None:
         message = client.messages.create(
             external_user_id="user-123",
             turns=[
@@ -108,7 +108,7 @@ class TestMessages:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create(self, client: GreenflashAPI) -> None:
+    def test_raw_response_create(self, client: Greenflash) -> None:
         response = client.messages.with_raw_response.create(
             external_user_id="user-123",
             turns=[
@@ -139,7 +139,7 @@ class TestMessages:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create(self, client: GreenflashAPI) -> None:
+    def test_streaming_response_create(self, client: Greenflash) -> None:
         with client.messages.with_streaming_response.create(
             external_user_id="user-123",
             turns=[
@@ -178,7 +178,7 @@ class TestAsyncMessages:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create(self, async_client: AsyncGreenflashAPI) -> None:
+    async def test_method_create(self, async_client: AsyncGreenflash) -> None:
         message = await async_client.messages.create(
             external_user_id="user-123",
             turns=[
@@ -205,7 +205,7 @@ class TestAsyncMessages:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncGreenflashAPI) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncGreenflash) -> None:
         message = await async_client.messages.create(
             external_user_id="user-123",
             turns=[
@@ -266,7 +266,7 @@ class TestAsyncMessages:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncGreenflashAPI) -> None:
+    async def test_raw_response_create(self, async_client: AsyncGreenflash) -> None:
         response = await async_client.messages.with_raw_response.create(
             external_user_id="user-123",
             turns=[
@@ -297,7 +297,7 @@ class TestAsyncMessages:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncGreenflashAPI) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncGreenflash) -> None:
         async with async_client.messages.with_streaming_response.create(
             external_user_id="user-123",
             turns=[
