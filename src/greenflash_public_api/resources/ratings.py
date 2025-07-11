@@ -63,9 +63,34 @@ class RatingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GenericSuccess:
         """
-        Capture Conversation or Message Ratings
+        The `/ratings` endpoint allows you to record user ratings for conversations or
+        individual messages. This is useful for collecting feedback about the quality of
+        responses or overall conversation experiences.
+
+        You can rate either a specific message (using `messageId`) or an entire
+        conversation (using either `conversationId` or `externalConversationId`).
 
         Args:
+          rating: The rating value. Must be between ratingMin and ratingMax (inclusive).
+
+          rating_max: The maximum possible rating value (e.g., 5 for a 1-5 scale).
+
+          rating_min: The minimum possible rating value (e.g., 1 for a 1-5 scale).
+
+          conversation_id: The internal ID of the conversation to rate. Either conversationId,
+              externalConversationId, or messageId must be provided.
+
+          external_conversation_id: Your external identifier for the conversation to rate. Either conversationId,
+              externalConversationId, or messageId must be provided.
+
+          feedback: Optional text feedback accompanying the rating.
+
+          message_id: The ID of a specific message to rate. Either conversationId,
+              externalConversationId, or messageId must be provided.
+
+          rated_at: The timestamp when the rating was given. If not provided, the current time will
+              be used.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -135,9 +160,34 @@ class AsyncRatingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GenericSuccess:
         """
-        Capture Conversation or Message Ratings
+        The `/ratings` endpoint allows you to record user ratings for conversations or
+        individual messages. This is useful for collecting feedback about the quality of
+        responses or overall conversation experiences.
+
+        You can rate either a specific message (using `messageId`) or an entire
+        conversation (using either `conversationId` or `externalConversationId`).
 
         Args:
+          rating: The rating value. Must be between ratingMin and ratingMax (inclusive).
+
+          rating_max: The maximum possible rating value (e.g., 5 for a 1-5 scale).
+
+          rating_min: The minimum possible rating value (e.g., 1 for a 1-5 scale).
+
+          conversation_id: The internal ID of the conversation to rate. Either conversationId,
+              externalConversationId, or messageId must be provided.
+
+          external_conversation_id: Your external identifier for the conversation to rate. Either conversationId,
+              externalConversationId, or messageId must be provided.
+
+          feedback: Optional text feedback accompanying the rating.
+
+          message_id: The ID of a specific message to rate. Either conversationId,
+              externalConversationId, or messageId must be provided.
+
+          rated_at: The timestamp when the rating was given. If not provided, the current time will
+              be used.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

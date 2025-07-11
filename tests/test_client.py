@@ -741,18 +741,13 @@ class TestGreenflash:
                         "messages": [
                             {
                                 "content": "Hello!",
-                                "content_type": "text",
-                                "message_index": 0,
                                 "role": "user",
                             },
                             {
                                 "content": "Hi there!",
-                                "content_type": "text",
-                                "message_index": 1,
                                 "role": "assistant",
                             },
-                        ],
-                        "turn_index": 0,
+                        ]
                     }
                 ],
             ).__enter__()
@@ -772,18 +767,13 @@ class TestGreenflash:
                         "messages": [
                             {
                                 "content": "Hello!",
-                                "content_type": "text",
-                                "message_index": 0,
                                 "role": "user",
                             },
                             {
                                 "content": "Hi there!",
-                                "content_type": "text",
-                                "message_index": 1,
                                 "role": "assistant",
                             },
-                        ],
-                        "turn_index": 0,
+                        ]
                     }
                 ],
             ).__enter__()
@@ -822,18 +812,13 @@ class TestGreenflash:
                     "messages": [
                         {
                             "content": "Hello!",
-                            "content_type": "text",
-                            "message_index": 0,
                             "role": "user",
                         },
                         {
                             "content": "Hi there!",
-                            "content_type": "text",
-                            "message_index": 1,
                             "role": "assistant",
                         },
-                    ],
-                    "turn_index": 0,
+                    ]
                 }
             ],
         )
@@ -867,18 +852,13 @@ class TestGreenflash:
                     "messages": [
                         {
                             "content": "Hello!",
-                            "content_type": "text",
-                            "message_index": 0,
                             "role": "user",
                         },
                         {
                             "content": "Hi there!",
-                            "content_type": "text",
-                            "message_index": 1,
                             "role": "assistant",
                         },
-                    ],
-                    "turn_index": 0,
+                    ]
                 }
             ],
             extra_headers={"x-stainless-retry-count": Omit()},
@@ -912,18 +892,13 @@ class TestGreenflash:
                     "messages": [
                         {
                             "content": "Hello!",
-                            "content_type": "text",
-                            "message_index": 0,
                             "role": "user",
                         },
                         {
                             "content": "Hi there!",
-                            "content_type": "text",
-                            "message_index": 1,
                             "role": "assistant",
                         },
-                    ],
-                    "turn_index": 0,
+                    ]
                 }
             ],
             extra_headers={"x-stainless-retry-count": "42"},
@@ -1674,18 +1649,13 @@ class TestAsyncGreenflash:
                         "messages": [
                             {
                                 "content": "Hello!",
-                                "content_type": "text",
-                                "message_index": 0,
                                 "role": "user",
                             },
                             {
                                 "content": "Hi there!",
-                                "content_type": "text",
-                                "message_index": 1,
                                 "role": "assistant",
                             },
-                        ],
-                        "turn_index": 0,
+                        ]
                     }
                 ],
             ).__aenter__()
@@ -1707,18 +1677,13 @@ class TestAsyncGreenflash:
                         "messages": [
                             {
                                 "content": "Hello!",
-                                "content_type": "text",
-                                "message_index": 0,
                                 "role": "user",
                             },
                             {
                                 "content": "Hi there!",
-                                "content_type": "text",
-                                "message_index": 1,
                                 "role": "assistant",
                             },
-                        ],
-                        "turn_index": 0,
+                        ]
                     }
                 ],
             ).__aenter__()
@@ -1758,18 +1723,13 @@ class TestAsyncGreenflash:
                     "messages": [
                         {
                             "content": "Hello!",
-                            "content_type": "text",
-                            "message_index": 0,
                             "role": "user",
                         },
                         {
                             "content": "Hi there!",
-                            "content_type": "text",
-                            "message_index": 1,
                             "role": "assistant",
                         },
-                    ],
-                    "turn_index": 0,
+                    ]
                 }
             ],
         )
@@ -1804,18 +1764,13 @@ class TestAsyncGreenflash:
                     "messages": [
                         {
                             "content": "Hello!",
-                            "content_type": "text",
-                            "message_index": 0,
                             "role": "user",
                         },
                         {
                             "content": "Hi there!",
-                            "content_type": "text",
-                            "message_index": 1,
                             "role": "assistant",
                         },
-                    ],
-                    "turn_index": 0,
+                    ]
                 }
             ],
             extra_headers={"x-stainless-retry-count": Omit()},
@@ -1850,18 +1805,13 @@ class TestAsyncGreenflash:
                     "messages": [
                         {
                             "content": "Hello!",
-                            "content_type": "text",
-                            "message_index": 0,
                             "role": "user",
                         },
                         {
                             "content": "Hi there!",
-                            "content_type": "text",
-                            "message_index": 1,
                             "role": "assistant",
                         },
-                    ],
-                    "turn_index": 0,
+                    ]
                 }
             ],
             extra_headers={"x-stainless-retry-count": "42"},
