@@ -28,11 +28,15 @@ class Turn(BaseModel):
 
 class MessageCreateResponse(BaseModel):
     conversation_id: str = FieldInfo(alias="conversationId")
+    """The ID of the conversation that was created or updated."""
 
     success: bool
+    """Indicates whether the API call was successful."""
 
     system_prompt_component_ids: Optional[List[str]] = FieldInfo(alias="systemPromptComponentIds", default=None)
+    """The component IDs used internally to track the system prompt components."""
 
     system_prompt_template_id: Optional[str] = FieldInfo(alias="systemPromptTemplateId", default=None)
+    """The template ID used internally to track the system prompt template."""
 
     turns: Optional[List[Turn]] = None

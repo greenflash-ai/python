@@ -9,3 +9,4 @@ __all__ = ["ConversionLogResponse"]
 
 class ConversionLogResponse(GenericSuccess):
     conversion_id: str = FieldInfo(alias="conversionId")
+    """The unique identifier for the conversion record that was created."""

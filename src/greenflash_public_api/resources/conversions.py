@@ -66,9 +66,37 @@ class ConversionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ConversionLogResponse:
         """
-        Create Business Conversion Events
+        The `/conversions` endpoint allows you to record business conversion events.
+        This is useful for tracking user actions that lead to conversions, such as
+        purchases, signups, or upgrades.
+
+        You can record conversions for either a specific conversation (using
+        `conversationId`) or an entire conversation (using either
+        `externalConversationId`).
 
         Args:
+          action: The action or event name that represents the conversion (e.g., "purchase",
+              "signup", "upgrade").
+
+          external_user_id: The external ID of the user who performed the conversion action.
+
+          value: The value of the conversion. Interpretation depends on valueType.
+
+          value_type: The type of the value. Must be one of: 'currency', 'numeric', or 'text'.
+
+          conversation_id: The internal ID of the conversation that led to the conversion.
+
+          converted_at: The timestamp when the conversion occurred. If not provided, the current time
+              will be used.
+
+          external_conversation_id: Your external identifier for the conversation that led to the conversion.
+
+          metadata: Additional metadata about the conversion as key-value pairs.
+
+          product_id: The ID of the product associated with this conversion.
+
+          project_id: The ID of the project associated with this conversion.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -142,9 +170,37 @@ class AsyncConversionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ConversionLogResponse:
         """
-        Create Business Conversion Events
+        The `/conversions` endpoint allows you to record business conversion events.
+        This is useful for tracking user actions that lead to conversions, such as
+        purchases, signups, or upgrades.
+
+        You can record conversions for either a specific conversation (using
+        `conversationId`) or an entire conversation (using either
+        `externalConversationId`).
 
         Args:
+          action: The action or event name that represents the conversion (e.g., "purchase",
+              "signup", "upgrade").
+
+          external_user_id: The external ID of the user who performed the conversion action.
+
+          value: The value of the conversion. Interpretation depends on valueType.
+
+          value_type: The type of the value. Must be one of: 'currency', 'numeric', or 'text'.
+
+          conversation_id: The internal ID of the conversation that led to the conversion.
+
+          converted_at: The timestamp when the conversion occurred. If not provided, the current time
+              will be used.
+
+          external_conversation_id: Your external identifier for the conversation that led to the conversion.
+
+          metadata: Additional metadata about the conversion as key-value pairs.
+
+          product_id: The ID of the product associated with this conversion.
+
+          project_id: The ID of the project associated with this conversion.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

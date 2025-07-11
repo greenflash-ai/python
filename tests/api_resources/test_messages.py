@@ -28,18 +28,13 @@ class TestMessages:
                     "messages": [
                         {
                             "content": "Hello!",
-                            "content_type": "text",
-                            "message_index": 0,
                             "role": "user",
                         },
                         {
                             "content": "Hi there!",
-                            "content_type": "text",
-                            "message_index": 1,
                             "role": "assistant",
                         },
-                    ],
-                    "turn_index": 0,
+                    ]
                 }
             ],
         )
@@ -55,35 +50,35 @@ class TestMessages:
                     "messages": [
                         {
                             "content": "Hello!",
-                            "content_type": "text",
-                            "message_index": 0,
                             "role": "user",
+                            "content_type": "text",
                             "context": "context",
                             "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                            "message_index": 0,
                             "metadata": {"foo": "bar"},
                             "tokens": 1,
                         },
                         {
                             "content": "Hi there!",
-                            "content_type": "text",
-                            "message_index": 1,
                             "role": "assistant",
+                            "content_type": "text",
                             "context": "context",
                             "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                            "message_index": 1,
                             "metadata": {"foo": "bar"},
                             "tokens": 2,
                         },
                     ],
-                    "turn_index": 0,
                     "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "metadata": {"foo": "bar"},
                     "model_override": "modelOverride",
                     "system_prompt_override": "You are a helpful assistant.",
+                    "turn_index": 0,
                 }
             ],
             conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             external_conversation_id="conv-456",
-            metadata={"source": "bar"},
+            metadata={"campaign": "bar"},
             model="gpt-greenflash-1",
             product_id="123e4567-e89b-12d3-a456-426614174000",
             project_id="123e4567-e89b-12d3-a456-426614174000",
@@ -91,11 +86,13 @@ class TestMessages:
                 "components": [
                     {
                         "content": "You are a helpful assistant.",
-                        "source": "customer",
-                        "type": "system",
+                        "component_id": "componentId",
+                        "external_component_id": "externalComponentId",
                         "is_dynamic": True,
                         "name": "name",
+                        "source": "customer",
                         "tags": ["string"],
+                        "type": "system",
                         "version": 0,
                     }
                 ],
@@ -116,18 +113,13 @@ class TestMessages:
                     "messages": [
                         {
                             "content": "Hello!",
-                            "content_type": "text",
-                            "message_index": 0,
                             "role": "user",
                         },
                         {
                             "content": "Hi there!",
-                            "content_type": "text",
-                            "message_index": 1,
                             "role": "assistant",
                         },
-                    ],
-                    "turn_index": 0,
+                    ]
                 }
             ],
         )
@@ -147,18 +139,13 @@ class TestMessages:
                     "messages": [
                         {
                             "content": "Hello!",
-                            "content_type": "text",
-                            "message_index": 0,
                             "role": "user",
                         },
                         {
                             "content": "Hi there!",
-                            "content_type": "text",
-                            "message_index": 1,
                             "role": "assistant",
                         },
-                    ],
-                    "turn_index": 0,
+                    ]
                 }
             ],
         ) as response:
@@ -186,18 +173,13 @@ class TestAsyncMessages:
                     "messages": [
                         {
                             "content": "Hello!",
-                            "content_type": "text",
-                            "message_index": 0,
                             "role": "user",
                         },
                         {
                             "content": "Hi there!",
-                            "content_type": "text",
-                            "message_index": 1,
                             "role": "assistant",
                         },
-                    ],
-                    "turn_index": 0,
+                    ]
                 }
             ],
         )
@@ -213,35 +195,35 @@ class TestAsyncMessages:
                     "messages": [
                         {
                             "content": "Hello!",
-                            "content_type": "text",
-                            "message_index": 0,
                             "role": "user",
+                            "content_type": "text",
                             "context": "context",
                             "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                            "message_index": 0,
                             "metadata": {"foo": "bar"},
                             "tokens": 1,
                         },
                         {
                             "content": "Hi there!",
-                            "content_type": "text",
-                            "message_index": 1,
                             "role": "assistant",
+                            "content_type": "text",
                             "context": "context",
                             "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                            "message_index": 1,
                             "metadata": {"foo": "bar"},
                             "tokens": 2,
                         },
                     ],
-                    "turn_index": 0,
                     "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "metadata": {"foo": "bar"},
                     "model_override": "modelOverride",
                     "system_prompt_override": "You are a helpful assistant.",
+                    "turn_index": 0,
                 }
             ],
             conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             external_conversation_id="conv-456",
-            metadata={"source": "bar"},
+            metadata={"campaign": "bar"},
             model="gpt-greenflash-1",
             product_id="123e4567-e89b-12d3-a456-426614174000",
             project_id="123e4567-e89b-12d3-a456-426614174000",
@@ -249,11 +231,13 @@ class TestAsyncMessages:
                 "components": [
                     {
                         "content": "You are a helpful assistant.",
-                        "source": "customer",
-                        "type": "system",
+                        "component_id": "componentId",
+                        "external_component_id": "externalComponentId",
                         "is_dynamic": True,
                         "name": "name",
+                        "source": "customer",
                         "tags": ["string"],
+                        "type": "system",
                         "version": 0,
                     }
                 ],
@@ -274,18 +258,13 @@ class TestAsyncMessages:
                     "messages": [
                         {
                             "content": "Hello!",
-                            "content_type": "text",
-                            "message_index": 0,
                             "role": "user",
                         },
                         {
                             "content": "Hi there!",
-                            "content_type": "text",
-                            "message_index": 1,
                             "role": "assistant",
                         },
-                    ],
-                    "turn_index": 0,
+                    ]
                 }
             ],
         )
@@ -305,18 +284,13 @@ class TestAsyncMessages:
                     "messages": [
                         {
                             "content": "Hello!",
-                            "content_type": "text",
-                            "message_index": 0,
                             "role": "user",
                         },
                         {
                             "content": "Hi there!",
-                            "content_type": "text",
-                            "message_index": 1,
                             "role": "assistant",
                         },
-                    ],
-                    "turn_index": 0,
+                    ]
                 }
             ],
         ) as response:

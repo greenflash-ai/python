@@ -64,9 +64,47 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MessageCreateResponse:
         """
-        Create Conversations or Messages
+        The `/messages` endpoint allows you to log messages between your users and your
+        products.
+
+        Full conversations can be logged all at once in a single request with multiple
+        turns, or sequentially over multiple requests with a single turn per request.
+
+        The simplest way to log a message is to pass the `role` and `content` of the
+        message to the API along with an `externalConversationId` for the converasation
+        and your `productId`.
+
+        However, we recommend that you pass as much information about the conversation
+        as possible to allow you to analyze and optimize your prompts, models, and more.
 
         Args:
+          external_user_id: The external user ID that will be mapped to a participant in our system.
+
+          turns: An array of conversation turns, each containing messages exchanged during that
+              turn.
+
+          conversation_id: The conversation ID. When provided, this will update an existing conversation
+              instead of creating a new one. Either conversationId, externalConversationId,
+              productId, or projectId must be provided.
+
+          external_conversation_id: Your own external identifier for the conversation. Either conversationId,
+              externalConversationId, productId, or projectId must be provided.
+
+          metadata: Additional metadata for the conversation.
+
+          model: The AI model used for the conversation.
+
+          product_id: The ID of the product this conversation belongs to. Either conversationId,
+              externalConversationId, productId, or projectId must be provided.
+
+          project_id: The ID of the project this conversation belongs to. Either conversationId,
+              externalConversationId, productId, or projectId must be provided.
+
+          system_prompt: System prompt for the conversation. Can be a simple string or a template object
+              with components.
+
+          version_id: The ID of the product version.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -140,9 +178,47 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MessageCreateResponse:
         """
-        Create Conversations or Messages
+        The `/messages` endpoint allows you to log messages between your users and your
+        products.
+
+        Full conversations can be logged all at once in a single request with multiple
+        turns, or sequentially over multiple requests with a single turn per request.
+
+        The simplest way to log a message is to pass the `role` and `content` of the
+        message to the API along with an `externalConversationId` for the converasation
+        and your `productId`.
+
+        However, we recommend that you pass as much information about the conversation
+        as possible to allow you to analyze and optimize your prompts, models, and more.
 
         Args:
+          external_user_id: The external user ID that will be mapped to a participant in our system.
+
+          turns: An array of conversation turns, each containing messages exchanged during that
+              turn.
+
+          conversation_id: The conversation ID. When provided, this will update an existing conversation
+              instead of creating a new one. Either conversationId, externalConversationId,
+              productId, or projectId must be provided.
+
+          external_conversation_id: Your own external identifier for the conversation. Either conversationId,
+              externalConversationId, productId, or projectId must be provided.
+
+          metadata: Additional metadata for the conversation.
+
+          model: The AI model used for the conversation.
+
+          product_id: The ID of the product this conversation belongs to. Either conversationId,
+              externalConversationId, productId, or projectId must be provided.
+
+          project_id: The ID of the project this conversation belongs to. Either conversationId,
+              externalConversationId, productId, or projectId must be provided.
+
+          system_prompt: System prompt for the conversation. Can be a simple string or a template object
+              with components.
+
+          version_id: The ID of the product version.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
