@@ -9,7 +9,7 @@ import pytest
 
 from tests.utils import assert_matches_type
 from greenflash_public_api import GreenflashPublicAPI, AsyncGreenflashPublicAPI
-from greenflash_public_api.types import ConversionLogResponse
+from greenflash_public_api.types import ConversionCreateResponse
 from greenflash_public_api._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -20,19 +20,19 @@ class TestConversions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_log(self, client: GreenflashPublicAPI) -> None:
-        conversion = client.conversions.log(
+    def test_method_create(self, client: GreenflashPublicAPI) -> None:
+        conversion = client.conversions.create(
             action="purchase",
             external_user_id="user-123",
             value="99.99",
             value_type="currency",
         )
-        assert_matches_type(ConversionLogResponse, conversion, path=["response"])
+        assert_matches_type(ConversionCreateResponse, conversion, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_log_with_all_params(self, client: GreenflashPublicAPI) -> None:
-        conversion = client.conversions.log(
+    def test_method_create_with_all_params(self, client: GreenflashPublicAPI) -> None:
+        conversion = client.conversions.create(
             action="purchase",
             external_user_id="user-123",
             value="99.99",
@@ -44,12 +44,12 @@ class TestConversions:
             product_id="123e4567-e89b-12d3-a456-426614174000",
             project_id="123e4567-e89b-12d3-a456-426614174000",
         )
-        assert_matches_type(ConversionLogResponse, conversion, path=["response"])
+        assert_matches_type(ConversionCreateResponse, conversion, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_log(self, client: GreenflashPublicAPI) -> None:
-        response = client.conversions.with_raw_response.log(
+    def test_raw_response_create(self, client: GreenflashPublicAPI) -> None:
+        response = client.conversions.with_raw_response.create(
             action="purchase",
             external_user_id="user-123",
             value="99.99",
@@ -59,12 +59,12 @@ class TestConversions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         conversion = response.parse()
-        assert_matches_type(ConversionLogResponse, conversion, path=["response"])
+        assert_matches_type(ConversionCreateResponse, conversion, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_log(self, client: GreenflashPublicAPI) -> None:
-        with client.conversions.with_streaming_response.log(
+    def test_streaming_response_create(self, client: GreenflashPublicAPI) -> None:
+        with client.conversions.with_streaming_response.create(
             action="purchase",
             external_user_id="user-123",
             value="99.99",
@@ -74,7 +74,7 @@ class TestConversions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             conversion = response.parse()
-            assert_matches_type(ConversionLogResponse, conversion, path=["response"])
+            assert_matches_type(ConversionCreateResponse, conversion, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -86,19 +86,19 @@ class TestAsyncConversions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_log(self, async_client: AsyncGreenflashPublicAPI) -> None:
-        conversion = await async_client.conversions.log(
+    async def test_method_create(self, async_client: AsyncGreenflashPublicAPI) -> None:
+        conversion = await async_client.conversions.create(
             action="purchase",
             external_user_id="user-123",
             value="99.99",
             value_type="currency",
         )
-        assert_matches_type(ConversionLogResponse, conversion, path=["response"])
+        assert_matches_type(ConversionCreateResponse, conversion, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_log_with_all_params(self, async_client: AsyncGreenflashPublicAPI) -> None:
-        conversion = await async_client.conversions.log(
+    async def test_method_create_with_all_params(self, async_client: AsyncGreenflashPublicAPI) -> None:
+        conversion = await async_client.conversions.create(
             action="purchase",
             external_user_id="user-123",
             value="99.99",
@@ -110,12 +110,12 @@ class TestAsyncConversions:
             product_id="123e4567-e89b-12d3-a456-426614174000",
             project_id="123e4567-e89b-12d3-a456-426614174000",
         )
-        assert_matches_type(ConversionLogResponse, conversion, path=["response"])
+        assert_matches_type(ConversionCreateResponse, conversion, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_log(self, async_client: AsyncGreenflashPublicAPI) -> None:
-        response = await async_client.conversions.with_raw_response.log(
+    async def test_raw_response_create(self, async_client: AsyncGreenflashPublicAPI) -> None:
+        response = await async_client.conversions.with_raw_response.create(
             action="purchase",
             external_user_id="user-123",
             value="99.99",
@@ -125,12 +125,12 @@ class TestAsyncConversions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         conversion = await response.parse()
-        assert_matches_type(ConversionLogResponse, conversion, path=["response"])
+        assert_matches_type(ConversionCreateResponse, conversion, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_log(self, async_client: AsyncGreenflashPublicAPI) -> None:
-        async with async_client.conversions.with_streaming_response.log(
+    async def test_streaming_response_create(self, async_client: AsyncGreenflashPublicAPI) -> None:
+        async with async_client.conversions.with_streaming_response.create(
             action="purchase",
             external_user_id="user-123",
             value="99.99",
@@ -140,6 +140,6 @@ class TestAsyncConversions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             conversion = await response.parse()
-            assert_matches_type(ConversionLogResponse, conversion, path=["response"])
+            assert_matches_type(ConversionCreateResponse, conversion, path=["response"])
 
         assert cast(Any, response.is_closed) is True

@@ -6,7 +6,7 @@ from typing import Dict
 
 import httpx
 
-from ..types import identify_create_or_update_params
+from ..types import identify_create_or_update_profile_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -18,7 +18,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.identify_create_or_update_response import IdentifyCreateOrUpdateResponse
+from ..types.identify_create_or_update_profile_response import IdentifyCreateOrUpdateProfileResponse
 
 __all__ = ["IdentifyResource", "AsyncIdentifyResource"]
 
@@ -30,7 +30,7 @@ class IdentifyResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/greenflash-ai/python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/greenflash-public-api-python#accessing-raw-response-data-eg-headers
         """
         return IdentifyResourceWithRawResponse(self)
 
@@ -39,11 +39,11 @@ class IdentifyResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/greenflash-ai/python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/greenflash-public-api-python#with_streaming_response
         """
         return IdentifyResourceWithStreamingResponse(self)
 
-    def create_or_update(
+    def create_or_update_profile(
         self,
         *,
         external_user_id: str,
@@ -58,7 +58,7 @@ class IdentifyResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IdentifyCreateOrUpdateResponse:
+    ) -> IdentifyCreateOrUpdateProfileResponse:
         """
         Create or Update User Profiles
 
@@ -82,12 +82,12 @@ class IdentifyResource(SyncAPIResource):
                     "name": name,
                     "phone": phone,
                 },
-                identify_create_or_update_params.IdentifyCreateOrUpdateParams,
+                identify_create_or_update_profile_params.IdentifyCreateOrUpdateProfileParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IdentifyCreateOrUpdateResponse,
+            cast_to=IdentifyCreateOrUpdateProfileResponse,
         )
 
 
@@ -98,7 +98,7 @@ class AsyncIdentifyResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/greenflash-ai/python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/greenflash-public-api-python#accessing-raw-response-data-eg-headers
         """
         return AsyncIdentifyResourceWithRawResponse(self)
 
@@ -107,11 +107,11 @@ class AsyncIdentifyResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/greenflash-ai/python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/greenflash-public-api-python#with_streaming_response
         """
         return AsyncIdentifyResourceWithStreamingResponse(self)
 
-    async def create_or_update(
+    async def create_or_update_profile(
         self,
         *,
         external_user_id: str,
@@ -126,7 +126,7 @@ class AsyncIdentifyResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IdentifyCreateOrUpdateResponse:
+    ) -> IdentifyCreateOrUpdateProfileResponse:
         """
         Create or Update User Profiles
 
@@ -150,12 +150,12 @@ class AsyncIdentifyResource(AsyncAPIResource):
                     "name": name,
                     "phone": phone,
                 },
-                identify_create_or_update_params.IdentifyCreateOrUpdateParams,
+                identify_create_or_update_profile_params.IdentifyCreateOrUpdateProfileParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IdentifyCreateOrUpdateResponse,
+            cast_to=IdentifyCreateOrUpdateProfileResponse,
         )
 
 
@@ -163,8 +163,8 @@ class IdentifyResourceWithRawResponse:
     def __init__(self, identify: IdentifyResource) -> None:
         self._identify = identify
 
-        self.create_or_update = to_raw_response_wrapper(
-            identify.create_or_update,
+        self.create_or_update_profile = to_raw_response_wrapper(
+            identify.create_or_update_profile,
         )
 
 
@@ -172,8 +172,8 @@ class AsyncIdentifyResourceWithRawResponse:
     def __init__(self, identify: AsyncIdentifyResource) -> None:
         self._identify = identify
 
-        self.create_or_update = async_to_raw_response_wrapper(
-            identify.create_or_update,
+        self.create_or_update_profile = async_to_raw_response_wrapper(
+            identify.create_or_update_profile,
         )
 
 
@@ -181,8 +181,8 @@ class IdentifyResourceWithStreamingResponse:
     def __init__(self, identify: IdentifyResource) -> None:
         self._identify = identify
 
-        self.create_or_update = to_streamed_response_wrapper(
-            identify.create_or_update,
+        self.create_or_update_profile = to_streamed_response_wrapper(
+            identify.create_or_update_profile,
         )
 
 
@@ -190,6 +190,6 @@ class AsyncIdentifyResourceWithStreamingResponse:
     def __init__(self, identify: AsyncIdentifyResource) -> None:
         self._identify = identify
 
-        self.create_or_update = async_to_streamed_response_wrapper(
-            identify.create_or_update,
+        self.create_or_update_profile = async_to_streamed_response_wrapper(
+            identify.create_or_update_profile,
         )

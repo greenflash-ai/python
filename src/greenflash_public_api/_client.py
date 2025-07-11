@@ -13,7 +13,6 @@ from ._qs import Querystring
 from ._types import (
     NOT_GIVEN,
     Omit,
-    Headers,
     Timeout,
     NotGiven,
     Transport,
@@ -24,7 +23,7 @@ from ._utils import is_given, get_async_library
 from ._version import __version__
 from .resources import ratings, identify, messages, conversions
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
-from ._exceptions import APIStatusError
+from ._exceptions import APIStatusError, GreenflashPublicAPIError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -52,7 +51,7 @@ class GreenflashPublicAPI(SyncAPIClient):
     with_streaming_response: GreenflashPublicAPIWithStreamedResponse
 
     # client options
-    api_key: str | None
+    api_key: str
 
     def __init__(
         self,
@@ -83,12 +82,16 @@ class GreenflashPublicAPI(SyncAPIClient):
         """
         if api_key is None:
             api_key = os.environ.get("GREENFLASH_PUBLIC_API_API_KEY")
+        if api_key is None:
+            raise GreenflashPublicAPIError(
+                "The api_key client option must be set either by passing api_key to the client or by setting the GREENFLASH_PUBLIC_API_API_KEY environment variable"
+            )
         self.api_key = api_key
 
         if base_url is None:
             base_url = os.environ.get("GREENFLASH_PUBLIC_API_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.greenflash.ai/api/v1"
+            base_url = f"https://greenflash.ai/api/v1"
 
         super().__init__(
             version=__version__,
@@ -117,8 +120,6 @@ class GreenflashPublicAPI(SyncAPIClient):
     @override
     def auth_headers(self) -> dict[str, str]:
         api_key = self.api_key
-        if api_key is None:
-            return {}
         return {"Authorization": f"Bearer {api_key}"}
 
     @property
@@ -129,17 +130,6 @@ class GreenflashPublicAPI(SyncAPIClient):
             "X-Stainless-Async": "false",
             **self._custom_headers,
         }
-
-    @override
-    def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if self.api_key and headers.get("Authorization"):
-            return
-        if isinstance(custom_headers.get("Authorization"), Omit):
-            return
-
-        raise TypeError(
-            '"Could not resolve authentication method. Expected the api_key to be set. Or for the `Authorization` headers to be explicitly omitted"'
-        )
 
     def copy(
         self,
@@ -235,7 +225,7 @@ class AsyncGreenflashPublicAPI(AsyncAPIClient):
     with_streaming_response: AsyncGreenflashPublicAPIWithStreamedResponse
 
     # client options
-    api_key: str | None
+    api_key: str
 
     def __init__(
         self,
@@ -266,12 +256,16 @@ class AsyncGreenflashPublicAPI(AsyncAPIClient):
         """
         if api_key is None:
             api_key = os.environ.get("GREENFLASH_PUBLIC_API_API_KEY")
+        if api_key is None:
+            raise GreenflashPublicAPIError(
+                "The api_key client option must be set either by passing api_key to the client or by setting the GREENFLASH_PUBLIC_API_API_KEY environment variable"
+            )
         self.api_key = api_key
 
         if base_url is None:
             base_url = os.environ.get("GREENFLASH_PUBLIC_API_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.greenflash.ai/api/v1"
+            base_url = f"https://greenflash.ai/api/v1"
 
         super().__init__(
             version=__version__,
@@ -300,8 +294,6 @@ class AsyncGreenflashPublicAPI(AsyncAPIClient):
     @override
     def auth_headers(self) -> dict[str, str]:
         api_key = self.api_key
-        if api_key is None:
-            return {}
         return {"Authorization": f"Bearer {api_key}"}
 
     @property
@@ -312,17 +304,6 @@ class AsyncGreenflashPublicAPI(AsyncAPIClient):
             "X-Stainless-Async": f"async:{get_async_library()}",
             **self._custom_headers,
         }
-
-    @override
-    def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if self.api_key and headers.get("Authorization"):
-            return
-        if isinstance(custom_headers.get("Authorization"), Omit):
-            return
-
-        raise TypeError(
-            '"Could not resolve authentication method. Expected the api_key to be set. Or for the `Authorization` headers to be explicitly omitted"'
-        )
 
     def copy(
         self,
