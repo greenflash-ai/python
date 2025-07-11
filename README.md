@@ -1,8 +1,8 @@
-# Greenflash API Python API library
+# Greenflash Python API library
 
 [![PyPI version](<https://img.shields.io/pypi/v/greenflash_sdk.svg?label=pypi%20(stable)>)](https://pypi.org/project/greenflash_sdk/)
 
-The Greenflash API Python library provides convenient access to the Greenflash API REST API from any Python 3.8+
+The Greenflash Python library provides convenient access to the Greenflash REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -28,9 +28,9 @@ The full API of this library can be found in [api.md](api.md).
 
 ```python
 import os
-from greenflash_public_api import GreenflashAPI
+from greenflash_public_api import Greenflash
 
-client = GreenflashAPI(
+client = Greenflash(
     api_key=os.environ.get(
         "GREENFLASH_PUBLIC_API_API_KEY"
     ),  # This is the default and can be omitted
@@ -68,14 +68,14 @@ so that your API Key is not stored in source control.
 
 ## Async usage
 
-Simply import `AsyncGreenflashAPI` instead of `GreenflashAPI` and use `await` with each API call:
+Simply import `AsyncGreenflash` instead of `Greenflash` and use `await` with each API call:
 
 ```python
 import os
 import asyncio
-from greenflash_public_api import AsyncGreenflashAPI
+from greenflash_public_api import AsyncGreenflash
 
-client = AsyncGreenflashAPI(
+client = AsyncGreenflash(
     api_key=os.environ.get(
         "GREENFLASH_PUBLIC_API_API_KEY"
     ),  # This is the default and can be omitted
@@ -130,11 +130,11 @@ Then you can enable it by instantiating the client with `http_client=DefaultAioH
 import os
 import asyncio
 from greenflash_public_api import DefaultAioHttpClient
-from greenflash_public_api import AsyncGreenflashAPI
+from greenflash_public_api import AsyncGreenflash
 
 
 async def main() -> None:
-    async with AsyncGreenflashAPI(
+    async with AsyncGreenflash(
         api_key=os.environ.get(
             "GREENFLASH_PUBLIC_API_API_KEY"
         ),  # This is the default and can be omitted
@@ -188,9 +188,9 @@ All errors inherit from `greenflash_public_api.APIError`.
 
 ```python
 import greenflash_public_api
-from greenflash_public_api import GreenflashAPI
+from greenflash_public_api import Greenflash
 
-client = GreenflashAPI()
+client = Greenflash()
 
 try:
     client.messages.create(
@@ -248,10 +248,10 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from greenflash_public_api import GreenflashAPI
+from greenflash_public_api import Greenflash
 
 # Configure the default for all requests:
-client = GreenflashAPI(
+client = Greenflash(
     # default is 2
     max_retries=0,
 )
@@ -287,16 +287,16 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:
 
 ```python
-from greenflash_public_api import GreenflashAPI
+from greenflash_public_api import Greenflash
 
 # Configure the default for all requests:
-client = GreenflashAPI(
+client = Greenflash(
     # 20 seconds (default is 1 minute)
     timeout=20.0,
 )
 
 # More granular control:
-client = GreenflashAPI(
+client = Greenflash(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
 )
 
@@ -335,10 +335,10 @@ Note that requests that time out are [retried twice by default](#retries).
 
 We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
 
-You can enable logging by setting the environment variable `GREENFLASH_API_LOG` to `info`.
+You can enable logging by setting the environment variable `GREENFLASH_LOG` to `info`.
 
 ```shell
-$ export GREENFLASH_API_LOG=info
+$ export GREENFLASH_LOG=info
 ```
 
 Or to `debug` for more verbose logging.
@@ -360,9 +360,9 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from greenflash_public_api import GreenflashAPI
+from greenflash_public_api import Greenflash
 
-client = GreenflashAPI()
+client = Greenflash()
 response = client.messages.with_raw_response.create(
     external_user_id="user-123",
     turns=[{
@@ -471,10 +471,10 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 
 ```python
 import httpx
-from greenflash_public_api import GreenflashAPI, DefaultHttpxClient
+from greenflash_public_api import Greenflash, DefaultHttpxClient
 
-client = GreenflashAPI(
-    # Or use the `GREENFLASH_API_BASE_URL` env var
+client = Greenflash(
+    # Or use the `GREENFLASH_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
         proxy="http://my.test.proxy.example.com",
@@ -494,9 +494,9 @@ client.with_options(http_client=DefaultHttpxClient(...))
 By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
 
 ```py
-from greenflash_public_api import GreenflashAPI
+from greenflash_public_api import Greenflash
 
-with GreenflashAPI() as client:
+with Greenflash() as client:
   # make requests here
   ...
 

@@ -18,11 +18,11 @@ __all__ = [
 ]
 
 
-class GreenflashAPIError(Exception):
+class GreenflashError(Exception):
     pass
 
 
-class APIError(GreenflashAPIError):
+class APIError(GreenflashError):
     message: str
     request: httpx.Request
 

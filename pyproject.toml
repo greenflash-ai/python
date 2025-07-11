@@ -1,11 +1,11 @@
 [project]
 name = "greenflash_sdk"
 version = "0.1.0-alpha.5"
-description = "The official Python library for the Greenflash API API"
+description = "The official Python library for the Greenflash API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Greenflash API", email = "founders@greenflash.ai" },
+{ name = "Greenflash", email = "founders@greenflash.ai" },
 ]
 dependencies = [
     "httpx>=0.23.0, <1",
