@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Dict, Iterable
 
 import httpx
 
@@ -50,7 +50,7 @@ class MessagesResource(SyncAPIResource):
         turns: Iterable[message_create_params.Turn],
         conversation_id: str | NotGiven = NOT_GIVEN,
         external_conversation_id: str | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
         model: str | NotGiven = NOT_GIVEN,
         product_id: str | NotGiven = NOT_GIVEN,
         project_id: str | NotGiven = NOT_GIVEN,
@@ -126,7 +126,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         turns: Iterable[message_create_params.Turn],
         conversation_id: str | NotGiven = NOT_GIVEN,
         external_conversation_id: str | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
         model: str | NotGiven = NOT_GIVEN,
         product_id: str | NotGiven = NOT_GIVEN,
         project_id: str | NotGiven = NOT_GIVEN,

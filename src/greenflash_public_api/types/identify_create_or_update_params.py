@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Dict
 from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -16,7 +17,7 @@ class IdentifyCreateOrUpdateParams(TypedDict, total=False):
 
     email: str
 
-    metadata: object
+    metadata: Dict[str, object]
 
     name: str
 

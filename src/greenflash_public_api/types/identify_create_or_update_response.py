@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import datetime
 
 from pydantic import Field as FieldInfo
@@ -20,7 +20,7 @@ class Participant(BaseModel):
     external_id: str = FieldInfo(alias="externalId")
     """The external ID of the participant"""
 
-    metadata: object
+    metadata: Dict[str, object]
 
     tenant_id: str = FieldInfo(alias="tenantId")
 
