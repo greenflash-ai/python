@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.8 (2025-07-15)
+
+Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
+
+### Features
+
+* clean up environment call outs ([26dae3f](https://github.com/greenflash-ai/python/commit/26dae3f89b18c9fd0e2a8cb67c06e41dac85b78d))
+
+
+### Bug Fixes
+
+* **client:** don't send Content-Type header on GET requests ([0a99115](https://github.com/greenflash-ai/python/commit/0a9911546ece38d7291bacd6bfd2c20cd93f83fc))
+
 ## 0.1.0-alpha.7 (2025-07-11)
 
 Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
