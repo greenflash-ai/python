@@ -110,7 +110,6 @@ pip install 'greenflash[aiohttp] @ git+ssh://git@github.com/greenflash-ai/python
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
-import os
 import asyncio
 from greenflash import DefaultAioHttpClient
 from greenflash import AsyncGreenflash
@@ -118,7 +117,7 @@ from greenflash import AsyncGreenflash
 
 async def main() -> None:
     async with AsyncGreenflash(
-        api_key=os.environ.get("GREENFLASH_API_KEY"),  # This is the default and can be omitted
+        api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
         message = await client.messages.create(
