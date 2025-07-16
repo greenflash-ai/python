@@ -26,7 +26,10 @@ class TurnItemParam(TypedDict, total=False):
     """Override the conversation-level model for this specific turn."""
 
     system_prompt_override: Annotated[SystemPromptParam, PropertyInfo(alias="systemPromptOverride")]
-    """System prompt as a simple string that will be converted to a template object."""
+    """System prompt for the conversation.
+
+    Can be a simple string or a template object with components.
+    """
 
     turn_index: Annotated[float, PropertyInfo(alias="turnIndex")]
     """The index of the turn in the conversation sequence.

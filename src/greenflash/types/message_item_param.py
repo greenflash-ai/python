@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -26,7 +26,7 @@ class MessageItemParam(TypedDict, total=False):
     One of: 'text', 'image', 'audio', or 'json'. Defaults to 'text'.
     """
 
-    context: Optional[str]
+    context: str
     """Additional context for the message."""
 
     created_at: Annotated[str, PropertyInfo(alias="createdAt")]
