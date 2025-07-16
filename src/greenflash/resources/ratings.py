@@ -2,9 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Union
-from datetime import datetime
-
 import httpx
 
 from ..types import rating_log_params
@@ -19,7 +16,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.generic_success import GenericSuccess
+from ..types.log_response import LogResponse
 
 __all__ = ["RatingsResource", "AsyncRatingsResource"]
 
@@ -54,14 +51,14 @@ class RatingsResource(SyncAPIResource):
         external_conversation_id: str | NotGiven = NOT_GIVEN,
         feedback: str | NotGiven = NOT_GIVEN,
         message_id: str | NotGiven = NOT_GIVEN,
-        rated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        rated_at: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GenericSuccess:
+    ) -> LogResponse:
         """
         The `/ratings` endpoint allows you to record user ratings for conversations or
         individual messages. This is useful for collecting feedback about the quality of
@@ -117,7 +114,7 @@ class RatingsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GenericSuccess,
+            cast_to=LogResponse,
         )
 
 
@@ -151,14 +148,14 @@ class AsyncRatingsResource(AsyncAPIResource):
         external_conversation_id: str | NotGiven = NOT_GIVEN,
         feedback: str | NotGiven = NOT_GIVEN,
         message_id: str | NotGiven = NOT_GIVEN,
-        rated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        rated_at: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GenericSuccess:
+    ) -> LogResponse:
         """
         The `/ratings` endpoint allows you to record user ratings for conversations or
         individual messages. This is useful for collecting feedback about the quality of
@@ -214,7 +211,7 @@ class AsyncRatingsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GenericSuccess,
+            cast_to=LogResponse,
         )
 
 

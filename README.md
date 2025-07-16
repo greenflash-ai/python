@@ -16,9 +16,12 @@ The REST API documentation can be found on [docs.greenflash.ai](https://docs.gre
 ## Installation
 
 ```sh
-# install from PyPI
-pip install --pre greenflash
+# install from the production repo
+pip install git+ssh://git@github.com/greenflash-ai/python.git
 ```
+
+> [!NOTE]
+> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install --pre greenflash`
 
 ## Usage
 
@@ -32,7 +35,7 @@ client = Greenflash(
     api_key=os.environ.get("GREENFLASH_API_KEY"),  # This is the default and can be omitted
 )
 
-message = client.messages.create(
+create_response = client.messages.create(
     external_user_id="externalUserId",
     turns=[
         {
@@ -47,7 +50,7 @@ message = client.messages.create(
     external_conversation_id="externalConversationId",
     product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 )
-print(message.conversation_id)
+print(create_response.conversation_id)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -70,7 +73,7 @@ client = AsyncGreenflash(
 
 
 async def main() -> None:
-    message = await client.messages.create(
+    create_response = await client.messages.create(
         external_user_id="externalUserId",
         turns=[
             {
@@ -85,7 +88,7 @@ async def main() -> None:
         external_conversation_id="externalConversationId",
         product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
     )
-    print(message.conversation_id)
+    print(create_response.conversation_id)
 
 
 asyncio.run(main())
@@ -100,8 +103,8 @@ By default, the async client uses `httpx` for HTTP requests. However, for improv
 You can enable this by installing `aiohttp`:
 
 ```sh
-# install from PyPI
-pip install --pre greenflash[aiohttp]
+# install from the production repo
+pip install 'greenflash[aiohttp] @ git+ssh://git@github.com/greenflash-ai/python.git'
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
@@ -117,7 +120,7 @@ async def main() -> None:
         api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
-        message = await client.messages.create(
+        create_response = await client.messages.create(
             external_user_id="externalUserId",
             turns=[
                 {
@@ -132,7 +135,7 @@ async def main() -> None:
             external_conversation_id="externalConversationId",
             product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        print(message.conversation_id)
+        print(create_response.conversation_id)
 
 
 asyncio.run(main())
