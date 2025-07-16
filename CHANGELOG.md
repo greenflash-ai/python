@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.9 (2025-07-16)
+
+Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
+
+### Features
+
+* **api:** manual updates ([5191242](https://github.com/greenflash-ai/python/commit/5191242eec24b127b45c685dee713ac594ffc94c))
+* **api:** manual updates ([106a53a](https://github.com/greenflash-ai/python/commit/106a53a65052605b46a881148e3e58180bc1b6cf))
+
+
+### Chores
+
+* update SDK settings ([6534280](https://github.com/greenflash-ai/python/commit/65342808d7b94310c586eaf03fbf95fcb519b62e))
+
 ## 0.1.0-alpha.8 (2025-07-15)
 
 Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
