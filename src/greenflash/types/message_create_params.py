@@ -58,10 +58,7 @@ class MessageCreateParams(TypedDict, total=False):
     """
 
     system_prompt: Annotated[SystemPromptParam, PropertyInfo(alias="systemPrompt")]
-    """System prompt for the conversation.
-
-    Can be a simple string or a template object with components.
-    """
+    """System prompt as a simple string that will be converted to a template object."""
 
     version_id: Annotated[str, PropertyInfo(alias="versionId")]
     """The ID of the product version."""
