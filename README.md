@@ -16,12 +16,9 @@ The REST API documentation can be found on [docs.greenflash.ai](https://docs.gre
 ## Installation
 
 ```sh
-# install from the production repo
-pip install git+ssh://git@github.com/greenflash-ai/python.git
+# install from PyPI
+pip install --pre greenflash
 ```
-
-> [!NOTE]
-> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install --pre greenflash`
 
 ## Usage
 
@@ -103,8 +100,8 @@ By default, the async client uses `httpx` for HTTP requests. However, for improv
 You can enable this by installing `aiohttp`:
 
 ```sh
-# install from the production repo
-pip install 'greenflash[aiohttp] @ git+ssh://git@github.com/greenflash-ai/python.git'
+# install from PyPI
+pip install --pre greenflash[aiohttp]
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
