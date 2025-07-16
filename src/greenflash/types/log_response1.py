@@ -2,11 +2,14 @@
 
 from pydantic import Field as FieldInfo
 
-from .generic_success import GenericSuccess
+from .._models import BaseModel
 
-__all__ = ["ConversionLogResponse"]
+__all__ = ["LogResponse"]
 
 
-class ConversionLogResponse(GenericSuccess):
+class LogResponse(BaseModel):
     conversion_id: str = FieldInfo(alias="conversionId")
     """The unique identifier for the conversion record that was created."""
+
+    success: bool
+    """Indicates whether the API call was successful."""

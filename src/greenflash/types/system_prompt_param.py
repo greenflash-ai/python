@@ -2,15 +2,15 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing import List, Union, Iterable
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["SystemPromptParam", "Component"]
+__all__ = ["SystemPromptParam", "UnionMember1", "UnionMember1Component"]
 
 
-class Component(TypedDict, total=False):
+class UnionMember1Component(TypedDict, total=False):
     content: Required[str]
     """The content of the component."""
 
@@ -43,16 +43,22 @@ class Component(TypedDict, total=False):
     'system'.
     """
 
-    version: int
+    version: float
     """Version of the component."""
 
 
-class SystemPromptParam(TypedDict, total=False):
-    components: Iterable[Component]
+class UnionMember1(TypedDict, total=False):
+    components: Required[Iterable[UnionMember1Component]]
     """Array of component objects."""
 
     external_template_id: Annotated[str, PropertyInfo(alias="externalTemplateId")]
     """Your own external identifier for the template."""
 
+    tags: List[str]
+    """Array of string tags associated with the template."""
+
     template_id: Annotated[str, PropertyInfo(alias="templateId")]
     """The ID of the template."""
+
+
+SystemPromptParam: TypeAlias = Union[str, UnionMember1]

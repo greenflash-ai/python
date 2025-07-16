@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Union
-from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -42,7 +40,7 @@ class RatingLogParams(TypedDict, total=False):
     Either conversationId, externalConversationId, or messageId must be provided.
     """
 
-    rated_at: Annotated[Union[str, datetime], PropertyInfo(alias="ratedAt", format="iso8601")]
+    rated_at: Annotated[str, PropertyInfo(alias="ratedAt")]
     """The timestamp when the rating was given.
 
     If not provided, the current time will be used.

@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union
-from datetime import datetime
+from typing import Dict
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -30,7 +29,7 @@ class ConversionLogParams(TypedDict, total=False):
     conversation_id: Annotated[str, PropertyInfo(alias="conversationId")]
     """The internal ID of the conversation that led to the conversion."""
 
-    converted_at: Annotated[Union[str, datetime], PropertyInfo(alias="convertedAt", format="iso8601")]
+    converted_at: Annotated[str, PropertyInfo(alias="convertedAt")]
     """The timestamp when the conversion occurred.
 
     If not provided, the current time will be used.

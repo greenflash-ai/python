@@ -18,7 +18,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.identify_create_or_update_response import IdentifyCreateOrUpdateResponse
+from ..types.create_or_update_response import CreateOrUpdateResponse
 
 __all__ = ["IdentifyResource", "AsyncIdentifyResource"]
 
@@ -58,7 +58,7 @@ class IdentifyResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IdentifyCreateOrUpdateResponse:
+    ) -> CreateOrUpdateResponse:
         """
         The `/identify` endpoint allows you to create or update user profiles in the
         system. This endpoint is used to manage user identity information that can be
@@ -107,7 +107,7 @@ class IdentifyResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IdentifyCreateOrUpdateResponse,
+            cast_to=CreateOrUpdateResponse,
         )
 
 
@@ -146,7 +146,7 @@ class AsyncIdentifyResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IdentifyCreateOrUpdateResponse:
+    ) -> CreateOrUpdateResponse:
         """
         The `/identify` endpoint allows you to create or update user profiles in the
         system. This endpoint is used to manage user identity information that can be
@@ -195,7 +195,7 @@ class AsyncIdentifyResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=IdentifyCreateOrUpdateResponse,
+            cast_to=CreateOrUpdateResponse,
         )
 
 
