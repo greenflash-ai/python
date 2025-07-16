@@ -2,9 +2,9 @@
 
 from .._models import BaseModel
 
-__all__ = ["LogResponse"]
+__all__ = ["LogRatingResponse"]
 
 
-class LogResponse(BaseModel):
+class LogRatingResponse(BaseModel):
     success: bool
     """Indicates whether the API call was successful."""

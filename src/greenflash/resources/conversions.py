@@ -19,7 +19,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.log_response import LogResponse
+from ..types.log_conversion_response import LogConversionResponse
 
 __all__ = ["ConversionsResource", "AsyncConversionsResource"]
 
@@ -63,7 +63,7 @@ class ConversionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LogResponse:
+    ) -> LogConversionResponse:
         """
         The `/conversions` endpoint allows you to record business conversion events.
         This is useful for tracking user actions that lead to conversions, such as
@@ -124,7 +124,7 @@ class ConversionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LogResponse,
+            cast_to=LogConversionResponse,
         )
 
 
@@ -167,7 +167,7 @@ class AsyncConversionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LogResponse:
+    ) -> LogConversionResponse:
         """
         The `/conversions` endpoint allows you to record business conversion events.
         This is useful for tracking user actions that lead to conversions, such as
@@ -228,7 +228,7 @@ class AsyncConversionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LogResponse,
+            cast_to=LogConversionResponse,
         )
 
 

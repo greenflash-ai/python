@@ -7,10 +7,10 @@ from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["SystemPromptParam", "UnionMember1", "UnionMember1Component"]
+__all__ = ["SystemPromptParam", "SystemPromptTemplate", "SystemPromptTemplateComponent"]
 
 
-class UnionMember1Component(TypedDict, total=False):
+class SystemPromptTemplateComponent(TypedDict, total=False):
     content: Required[str]
     """The content of the component."""
 
@@ -47,8 +47,8 @@ class UnionMember1Component(TypedDict, total=False):
     """Version of the component."""
 
 
-class UnionMember1(TypedDict, total=False):
-    components: Required[Iterable[UnionMember1Component]]
+class SystemPromptTemplate(TypedDict, total=False):
+    components: Required[Iterable[SystemPromptTemplateComponent]]
     """Array of component objects."""
 
     external_template_id: Annotated[str, PropertyInfo(alias="externalTemplateId")]
@@ -61,4 +61,4 @@ class UnionMember1(TypedDict, total=False):
     """The ID of the template."""
 
 
-SystemPromptParam: TypeAlias = Union[str, UnionMember1]
+SystemPromptParam: TypeAlias = Union[str, SystemPromptTemplate]
