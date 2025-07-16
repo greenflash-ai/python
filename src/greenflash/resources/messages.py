@@ -102,8 +102,7 @@ class MessagesResource(SyncAPIResource):
           project_id: The ID of the project this conversation belongs to. Either conversationId,
               externalConversationId, productId, or projectId must be provided.
 
-          system_prompt: System prompt for the conversation. Can be a simple string or a template object
-              with components.
+          system_prompt: System prompt as a simple string that will be converted to a template object.
 
           version_id: The ID of the product version.
 
@@ -216,8 +215,7 @@ class AsyncMessagesResource(AsyncAPIResource):
           project_id: The ID of the project this conversation belongs to. Either conversationId,
               externalConversationId, productId, or projectId must be provided.
 
-          system_prompt: System prompt for the conversation. Can be a simple string or a template object
-              with components.
+          system_prompt: System prompt as a simple string that will be converted to a template object.
 
           version_id: The ID of the product version.
 
