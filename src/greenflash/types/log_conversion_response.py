@@ -4,10 +4,10 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["LogResponse"]
+__all__ = ["LogConversionResponse"]
 
 
-class LogResponse(BaseModel):
+class LogConversionResponse(BaseModel):
     conversion_id: str = FieldInfo(alias="conversionId")
     """The unique identifier for the conversion record that was created."""
 

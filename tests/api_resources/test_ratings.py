@@ -9,7 +9,7 @@ import pytest
 
 from greenflash import Greenflash, AsyncGreenflash
 from tests.utils import assert_matches_type
-from greenflash.types import LogResponse
+from greenflash.types import LogRatingResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestRatings:
             rating_max=5,
             rating_min=1,
         )
-        assert_matches_type(LogResponse, rating, path=["response"])
+        assert_matches_type(LogRatingResponse, rating, path=["response"])
 
     @parametrize
     def test_method_log_with_all_params(self, client: Greenflash) -> None:
@@ -38,7 +38,7 @@ class TestRatings:
             message_id="msg-001",
             rated_at="2025-07-09T09:00:00Z",
         )
-        assert_matches_type(LogResponse, rating, path=["response"])
+        assert_matches_type(LogRatingResponse, rating, path=["response"])
 
     @parametrize
     def test_raw_response_log(self, client: Greenflash) -> None:
@@ -51,7 +51,7 @@ class TestRatings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rating = response.parse()
-        assert_matches_type(LogResponse, rating, path=["response"])
+        assert_matches_type(LogRatingResponse, rating, path=["response"])
 
     @parametrize
     def test_streaming_response_log(self, client: Greenflash) -> None:
@@ -64,7 +64,7 @@ class TestRatings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rating = response.parse()
-            assert_matches_type(LogResponse, rating, path=["response"])
+            assert_matches_type(LogRatingResponse, rating, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -81,7 +81,7 @@ class TestAsyncRatings:
             rating_max=5,
             rating_min=1,
         )
-        assert_matches_type(LogResponse, rating, path=["response"])
+        assert_matches_type(LogRatingResponse, rating, path=["response"])
 
     @parametrize
     async def test_method_log_with_all_params(self, async_client: AsyncGreenflash) -> None:
@@ -95,7 +95,7 @@ class TestAsyncRatings:
             message_id="msg-001",
             rated_at="2025-07-09T09:00:00Z",
         )
-        assert_matches_type(LogResponse, rating, path=["response"])
+        assert_matches_type(LogRatingResponse, rating, path=["response"])
 
     @parametrize
     async def test_raw_response_log(self, async_client: AsyncGreenflash) -> None:
@@ -108,7 +108,7 @@ class TestAsyncRatings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rating = await response.parse()
-        assert_matches_type(LogResponse, rating, path=["response"])
+        assert_matches_type(LogRatingResponse, rating, path=["response"])
 
     @parametrize
     async def test_streaming_response_log(self, async_client: AsyncGreenflash) -> None:
@@ -121,6 +121,6 @@ class TestAsyncRatings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rating = await response.parse()
-            assert_matches_type(LogResponse, rating, path=["response"])
+            assert_matches_type(LogRatingResponse, rating, path=["response"])
 
         assert cast(Any, response.is_closed) is True
