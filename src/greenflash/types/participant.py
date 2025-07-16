@@ -1,13 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, Optional
-from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["IdentifyCreateOrUpdateResponse", "Participant"]
+__all__ = ["Participant"]
 
 
 class Participant(BaseModel):
@@ -17,7 +16,7 @@ class Participant(BaseModel):
     anonymized: bool
     """Whether the participant's personal information is anonymized."""
 
-    created_at: datetime = FieldInfo(alias="createdAt")
+    created_at: str = FieldInfo(alias="createdAt")
     """When the participant was first created."""
 
     external_id: str = FieldInfo(alias="externalId")
@@ -29,7 +28,7 @@ class Participant(BaseModel):
     tenant_id: str = FieldInfo(alias="tenantId")
     """The ID of the tenant this participant belongs to."""
 
-    updated_at: datetime = FieldInfo(alias="updatedAt")
+    updated_at: str = FieldInfo(alias="updatedAt")
     """When the participant was last updated."""
 
     email: Optional[str] = None
@@ -40,11 +39,3 @@ class Participant(BaseModel):
 
     phone: Optional[str] = None
     """The participant's phone number."""
-
-
-class IdentifyCreateOrUpdateResponse(BaseModel):
-    participant: Participant
-    """The user profile that was created or updated."""
-
-    success: bool
-    """Indicates whether the API call was successful."""

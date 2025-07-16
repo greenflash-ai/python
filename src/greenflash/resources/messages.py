@@ -18,7 +18,9 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.message_create_response import MessageCreateResponse
+from ..types.create_response import CreateResponse
+from ..types.turn_item_param import TurnItemParam
+from ..types.system_prompt_param import SystemPromptParam
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
 
@@ -47,14 +49,14 @@ class MessagesResource(SyncAPIResource):
         self,
         *,
         external_user_id: str,
-        turns: Iterable[message_create_params.Turn],
+        turns: Iterable[TurnItemParam],
         conversation_id: str | NotGiven = NOT_GIVEN,
         external_conversation_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
         model: str | NotGiven = NOT_GIVEN,
         product_id: str | NotGiven = NOT_GIVEN,
         project_id: str | NotGiven = NOT_GIVEN,
-        system_prompt: message_create_params.SystemPrompt | NotGiven = NOT_GIVEN,
+        system_prompt: SystemPromptParam | NotGiven = NOT_GIVEN,
         version_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -62,7 +64,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageCreateResponse:
+    ) -> CreateResponse:
         """
         The `/messages` endpoint allows you to log messages between your users and your
         products.
@@ -133,7 +135,7 @@ class MessagesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageCreateResponse,
+            cast_to=CreateResponse,
         )
 
 
@@ -161,14 +163,14 @@ class AsyncMessagesResource(AsyncAPIResource):
         self,
         *,
         external_user_id: str,
-        turns: Iterable[message_create_params.Turn],
+        turns: Iterable[TurnItemParam],
         conversation_id: str | NotGiven = NOT_GIVEN,
         external_conversation_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
         model: str | NotGiven = NOT_GIVEN,
         product_id: str | NotGiven = NOT_GIVEN,
         project_id: str | NotGiven = NOT_GIVEN,
-        system_prompt: message_create_params.SystemPrompt | NotGiven = NOT_GIVEN,
+        system_prompt: SystemPromptParam | NotGiven = NOT_GIVEN,
         version_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -176,7 +178,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageCreateResponse:
+    ) -> CreateResponse:
         """
         The `/messages` endpoint allows you to log messages between your users and your
         products.
@@ -247,7 +249,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessageCreateResponse,
+            cast_to=CreateResponse,
         )
 
 

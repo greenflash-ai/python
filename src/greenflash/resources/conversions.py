@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union
-from datetime import datetime
+from typing import Dict
 from typing_extensions import Literal
 
 import httpx
@@ -20,7 +19,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.conversion_log_response import ConversionLogResponse
+from ..types.log_response import LogResponse
 
 __all__ = ["ConversionsResource", "AsyncConversionsResource"]
 
@@ -53,7 +52,7 @@ class ConversionsResource(SyncAPIResource):
         value: str,
         value_type: Literal["currency", "numeric", "text"],
         conversation_id: str | NotGiven = NOT_GIVEN,
-        converted_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        converted_at: str | NotGiven = NOT_GIVEN,
         external_conversation_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
         product_id: str | NotGiven = NOT_GIVEN,
@@ -64,7 +63,7 @@ class ConversionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConversionLogResponse:
+    ) -> LogResponse:
         """
         The `/conversions` endpoint allows you to record business conversion events.
         This is useful for tracking user actions that lead to conversions, such as
@@ -125,7 +124,7 @@ class ConversionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConversionLogResponse,
+            cast_to=LogResponse,
         )
 
 
@@ -157,7 +156,7 @@ class AsyncConversionsResource(AsyncAPIResource):
         value: str,
         value_type: Literal["currency", "numeric", "text"],
         conversation_id: str | NotGiven = NOT_GIVEN,
-        converted_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        converted_at: str | NotGiven = NOT_GIVEN,
         external_conversation_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
         product_id: str | NotGiven = NOT_GIVEN,
@@ -168,7 +167,7 @@ class AsyncConversionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConversionLogResponse:
+    ) -> LogResponse:
         """
         The `/conversions` endpoint allows you to record business conversion events.
         This is useful for tracking user actions that lead to conversions, such as
@@ -229,7 +228,7 @@ class AsyncConversionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ConversionLogResponse,
+            cast_to=LogResponse,
         )
 
 
