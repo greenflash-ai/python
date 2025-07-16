@@ -16,7 +16,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.log_response import LogResponse
+from ..types.log_rating_response import LogRatingResponse
 
 __all__ = ["RatingsResource", "AsyncRatingsResource"]
 
@@ -58,7 +58,7 @@ class RatingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LogResponse:
+    ) -> LogRatingResponse:
         """
         The `/ratings` endpoint allows you to record user ratings for conversations or
         individual messages. This is useful for collecting feedback about the quality of
@@ -114,7 +114,7 @@ class RatingsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LogResponse,
+            cast_to=LogRatingResponse,
         )
 
 
@@ -155,7 +155,7 @@ class AsyncRatingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LogResponse:
+    ) -> LogRatingResponse:
         """
         The `/ratings` endpoint allows you to record user ratings for conversations or
         individual messages. This is useful for collecting feedback about the quality of
@@ -211,7 +211,7 @@ class AsyncRatingsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LogResponse,
+            cast_to=LogRatingResponse,
         )
 
 

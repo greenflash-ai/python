@@ -27,21 +27,21 @@ Methods:
 Types:
 
 ```python
-from greenflash.types import LogParams, LogResponse
+from greenflash.types import LogRatingParams, LogRatingResponse
 ```
 
 Methods:
 
-- <code title="post /ratings">client.ratings.<a href="./src/greenflash/resources/ratings.py">log</a>(\*\*<a href="src/greenflash/types/rating_log_params.py">params</a>) -> <a href="./src/greenflash/types/log_response.py">LogResponse</a></code>
+- <code title="post /ratings">client.ratings.<a href="./src/greenflash/resources/ratings.py">log</a>(\*\*<a href="src/greenflash/types/rating_log_params.py">params</a>) -> <a href="./src/greenflash/types/log_rating_response.py">LogRatingResponse</a></code>
 
 # Conversions
 
 Types:
 
 ```python
-from greenflash.types import LogParams, LogResponse
+from greenflash.types import LogConversionParams, LogConversionResponse
 ```
 
 Methods:
 
-- <code title="post /conversions">client.conversions.<a href="./src/greenflash/resources/conversions.py">log</a>(\*\*<a href="src/greenflash/types/conversion_log_params.py">params</a>) -> <a href="./src/greenflash/types/log_response.py">LogResponse</a></code>
+- <code title="post /conversions">client.conversions.<a href="./src/greenflash/resources/conversions.py">log</a>(\*\*<a href="src/greenflash/types/conversion_log_params.py">params</a>) -> <a href="./src/greenflash/types/log_conversion_response.py">LogConversionResponse</a></code>
