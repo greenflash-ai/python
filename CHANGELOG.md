@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.11 (2025-07-22)
+
+Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
+
+### Bug Fixes
+
+* **parsing:** ignore empty metadata ([52ffaf5](https://github.com/greenflash-ai/python/commit/52ffaf52a8a9549ea31ab90258172f7dad29dff2))
+
 ## 0.1.0-alpha.10 (2025-07-16)
 
 Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
