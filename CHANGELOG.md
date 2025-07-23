@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.12 (2025-07-23)
+
+Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
+
+### Bug Fixes
+
+* **parsing:** parse extra field types ([d71ef29](https://github.com/greenflash-ai/python/commit/d71ef29551c3e051a0bd9441ac4e6539ce12aa0e))
+
 ## 0.1.0-alpha.11 (2025-07-22)
 
 Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
