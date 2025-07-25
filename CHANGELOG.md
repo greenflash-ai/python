@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.13 (2025-07-25)
+
+Full Changelog: [v0.1.0-alpha.12...v0.1.0-alpha.13](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.12...v0.1.0-alpha.13)
+
+### Chores
+
+* **project:** add settings file for vscode ([ee68cef](https://github.com/greenflash-ai/python/commit/ee68cef4af865b09b76ee193c4123bee50ef7a78))
+
 ## 0.1.0-alpha.12 (2025-07-23)
 
 Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
