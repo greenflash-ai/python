@@ -9,18 +9,15 @@ from .._utils import PropertyInfo
 from .message_item_param import MessageItemParam
 from .system_prompt_param import SystemPromptParam
 
-__all__ = ["MessageCreateParams", "Turn"]
+__all__ = ["MessageCreateParams"]
 
 
 class MessageCreateParams(TypedDict, total=False):
     external_user_id: Required[Annotated[str, PropertyInfo(alias="externalUserId")]]
     """The external user ID that will be mapped to a participant in our system."""
 
-    turns: Required[Iterable[Turn]]
-    """
-    An array of conversation turns, each containing messages exchanged during that
-    turn.
-    """
+    messages: Required[Iterable[MessageItemParam]]
+    """An array of conversation messages."""
 
     conversation_id: Annotated[str, PropertyInfo(alias="conversationId")]
     """The conversation ID.
@@ -65,30 +62,3 @@ class MessageCreateParams(TypedDict, total=False):
 
     version_id: Annotated[str, PropertyInfo(alias="versionId")]
     """The ID of the product version."""
-
-
-class Turn(TypedDict, total=False):
-    messages: Required[Iterable[MessageItemParam]]
-    """The messages exchanged during this turn."""
-
-    created_at: Annotated[str, PropertyInfo(alias="createdAt")]
-    """When this turn was created."""
-
-    metadata: Dict[str, object]
-    """Additional metadata for this turn."""
-
-    model_override: Annotated[str, PropertyInfo(alias="modelOverride")]
-    """Override the conversation-level model for this specific turn."""
-
-    system_prompt_override: Annotated[SystemPromptParam, PropertyInfo(alias="systemPromptOverride")]
-    """System prompt for the conversation.
-
-    Can be a simple string or a template object with components.
-    """
-
-    turn_index: Annotated[float, PropertyInfo(alias="turnIndex")]
-    """The index of the turn in the conversation sequence.
-
-    Inferred based on the location in the array and previous records, but can be
-    overridden here.
-    """

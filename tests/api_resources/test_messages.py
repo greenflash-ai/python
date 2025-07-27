@@ -21,20 +21,7 @@ class TestMessages:
     def test_method_create(self, client: Greenflash) -> None:
         message = client.messages.create(
             external_user_id="user-123",
-            turns=[
-                {
-                    "messages": [
-                        {
-                            "content": "Hello!",
-                            "role": "user",
-                        },
-                        {
-                            "content": "Hi there!",
-                            "role": "assistant",
-                        },
-                    ]
-                }
-            ],
+            messages=[{}, {}, {}, {}, {}],
         )
         assert_matches_type(CreateResponse, message, path=["response"])
 
@@ -42,36 +29,87 @@ class TestMessages:
     def test_method_create_with_all_params(self, client: Greenflash) -> None:
         message = client.messages.create(
             external_user_id="user-123",
-            turns=[
+            messages=[
                 {
-                    "messages": [
-                        {
-                            "content": "Hello!",
-                            "role": "user",
-                            "content_type": "text",
-                            "context": "context",
-                            "created_at": "createdAt",
-                            "message_index": 0,
-                            "metadata": {"foo": "bar"},
-                            "tokens": 1,
-                        },
-                        {
-                            "content": "Hi there!",
-                            "role": "assistant",
-                            "content_type": "text",
-                            "context": "context",
-                            "created_at": "createdAt",
-                            "message_index": 1,
-                            "metadata": {"foo": "bar"},
-                            "tokens": 2,
-                        },
-                    ],
+                    "content": "Hello!",
+                    "context": "context",
                     "created_at": "createdAt",
+                    "external_message_id": "user-msg-1",
+                    "input": {"foo": "bar"},
+                    "message_type": "user_message",
                     "metadata": {"foo": "bar"},
                     "model_override": "modelOverride",
-                    "system_prompt_override": "You are a helpful assistant.",
-                    "turn_index": 0,
-                }
+                    "output": {"foo": "bar"},
+                    "parent_external_message_id": "parentExternalMessageId",
+                    "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "role": "user",
+                    "system_prompt_override": "x",
+                    "tool_name": "toolName",
+                },
+                {
+                    "content": "Hi there! How can I help you?",
+                    "context": "context",
+                    "created_at": "createdAt",
+                    "external_message_id": "assistant-msg-1",
+                    "input": {"foo": "bar"},
+                    "message_type": "user_message",
+                    "metadata": {"foo": "bar"},
+                    "model_override": "modelOverride",
+                    "output": {"foo": "bar"},
+                    "parent_external_message_id": "parentExternalMessageId",
+                    "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "role": "assistant",
+                    "system_prompt_override": "x",
+                    "tool_name": "toolName",
+                },
+                {
+                    "content": "Calling search tool",
+                    "context": "context",
+                    "created_at": "createdAt",
+                    "external_message_id": "tool-call-1",
+                    "input": {"query": "bar"},
+                    "message_type": "tool_call",
+                    "metadata": {"foo": "bar"},
+                    "model_override": "modelOverride",
+                    "output": {"foo": "bar"},
+                    "parent_external_message_id": "parentExternalMessageId",
+                    "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "role": "user",
+                    "system_prompt_override": "x",
+                    "tool_name": "web_search",
+                },
+                {
+                    "content": "Search completed",
+                    "context": "context",
+                    "created_at": "createdAt",
+                    "external_message_id": "tool-result-1",
+                    "input": {"foo": "bar"},
+                    "message_type": "observation",
+                    "metadata": {"foo": "bar"},
+                    "model_override": "modelOverride",
+                    "output": {"results": "bar"},
+                    "parent_external_message_id": "tool-call-1",
+                    "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "role": "user",
+                    "system_prompt_override": "x",
+                    "tool_name": "toolName",
+                },
+                {
+                    "content": "Based on the search, today will be sunny with a high of 75°F.",
+                    "context": "context",
+                    "created_at": "createdAt",
+                    "external_message_id": "final-1",
+                    "input": {"foo": "bar"},
+                    "message_type": "final_response",
+                    "metadata": {"foo": "bar"},
+                    "model_override": "modelOverride",
+                    "output": {"foo": "bar"},
+                    "parent_external_message_id": "parentExternalMessageId",
+                    "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "role": "user",
+                    "system_prompt_override": "x",
+                    "tool_name": "toolName",
+                },
             ],
             conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             external_conversation_id="conv-456",
@@ -105,20 +143,7 @@ class TestMessages:
     def test_raw_response_create(self, client: Greenflash) -> None:
         response = client.messages.with_raw_response.create(
             external_user_id="user-123",
-            turns=[
-                {
-                    "messages": [
-                        {
-                            "content": "Hello!",
-                            "role": "user",
-                        },
-                        {
-                            "content": "Hi there!",
-                            "role": "assistant",
-                        },
-                    ]
-                }
-            ],
+            messages=[{}, {}, {}, {}, {}],
         )
 
         assert response.is_closed is True
@@ -130,20 +155,7 @@ class TestMessages:
     def test_streaming_response_create(self, client: Greenflash) -> None:
         with client.messages.with_streaming_response.create(
             external_user_id="user-123",
-            turns=[
-                {
-                    "messages": [
-                        {
-                            "content": "Hello!",
-                            "role": "user",
-                        },
-                        {
-                            "content": "Hi there!",
-                            "role": "assistant",
-                        },
-                    ]
-                }
-            ],
+            messages=[{}, {}, {}, {}, {}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -163,20 +175,7 @@ class TestAsyncMessages:
     async def test_method_create(self, async_client: AsyncGreenflash) -> None:
         message = await async_client.messages.create(
             external_user_id="user-123",
-            turns=[
-                {
-                    "messages": [
-                        {
-                            "content": "Hello!",
-                            "role": "user",
-                        },
-                        {
-                            "content": "Hi there!",
-                            "role": "assistant",
-                        },
-                    ]
-                }
-            ],
+            messages=[{}, {}, {}, {}, {}],
         )
         assert_matches_type(CreateResponse, message, path=["response"])
 
@@ -184,36 +183,87 @@ class TestAsyncMessages:
     async def test_method_create_with_all_params(self, async_client: AsyncGreenflash) -> None:
         message = await async_client.messages.create(
             external_user_id="user-123",
-            turns=[
+            messages=[
                 {
-                    "messages": [
-                        {
-                            "content": "Hello!",
-                            "role": "user",
-                            "content_type": "text",
-                            "context": "context",
-                            "created_at": "createdAt",
-                            "message_index": 0,
-                            "metadata": {"foo": "bar"},
-                            "tokens": 1,
-                        },
-                        {
-                            "content": "Hi there!",
-                            "role": "assistant",
-                            "content_type": "text",
-                            "context": "context",
-                            "created_at": "createdAt",
-                            "message_index": 1,
-                            "metadata": {"foo": "bar"},
-                            "tokens": 2,
-                        },
-                    ],
+                    "content": "Hello!",
+                    "context": "context",
                     "created_at": "createdAt",
+                    "external_message_id": "user-msg-1",
+                    "input": {"foo": "bar"},
+                    "message_type": "user_message",
                     "metadata": {"foo": "bar"},
                     "model_override": "modelOverride",
-                    "system_prompt_override": "You are a helpful assistant.",
-                    "turn_index": 0,
-                }
+                    "output": {"foo": "bar"},
+                    "parent_external_message_id": "parentExternalMessageId",
+                    "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "role": "user",
+                    "system_prompt_override": "x",
+                    "tool_name": "toolName",
+                },
+                {
+                    "content": "Hi there! How can I help you?",
+                    "context": "context",
+                    "created_at": "createdAt",
+                    "external_message_id": "assistant-msg-1",
+                    "input": {"foo": "bar"},
+                    "message_type": "user_message",
+                    "metadata": {"foo": "bar"},
+                    "model_override": "modelOverride",
+                    "output": {"foo": "bar"},
+                    "parent_external_message_id": "parentExternalMessageId",
+                    "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "role": "assistant",
+                    "system_prompt_override": "x",
+                    "tool_name": "toolName",
+                },
+                {
+                    "content": "Calling search tool",
+                    "context": "context",
+                    "created_at": "createdAt",
+                    "external_message_id": "tool-call-1",
+                    "input": {"query": "bar"},
+                    "message_type": "tool_call",
+                    "metadata": {"foo": "bar"},
+                    "model_override": "modelOverride",
+                    "output": {"foo": "bar"},
+                    "parent_external_message_id": "parentExternalMessageId",
+                    "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "role": "user",
+                    "system_prompt_override": "x",
+                    "tool_name": "web_search",
+                },
+                {
+                    "content": "Search completed",
+                    "context": "context",
+                    "created_at": "createdAt",
+                    "external_message_id": "tool-result-1",
+                    "input": {"foo": "bar"},
+                    "message_type": "observation",
+                    "metadata": {"foo": "bar"},
+                    "model_override": "modelOverride",
+                    "output": {"results": "bar"},
+                    "parent_external_message_id": "tool-call-1",
+                    "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "role": "user",
+                    "system_prompt_override": "x",
+                    "tool_name": "toolName",
+                },
+                {
+                    "content": "Based on the search, today will be sunny with a high of 75°F.",
+                    "context": "context",
+                    "created_at": "createdAt",
+                    "external_message_id": "final-1",
+                    "input": {"foo": "bar"},
+                    "message_type": "final_response",
+                    "metadata": {"foo": "bar"},
+                    "model_override": "modelOverride",
+                    "output": {"foo": "bar"},
+                    "parent_external_message_id": "parentExternalMessageId",
+                    "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "role": "user",
+                    "system_prompt_override": "x",
+                    "tool_name": "toolName",
+                },
             ],
             conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             external_conversation_id="conv-456",
@@ -247,20 +297,7 @@ class TestAsyncMessages:
     async def test_raw_response_create(self, async_client: AsyncGreenflash) -> None:
         response = await async_client.messages.with_raw_response.create(
             external_user_id="user-123",
-            turns=[
-                {
-                    "messages": [
-                        {
-                            "content": "Hello!",
-                            "role": "user",
-                        },
-                        {
-                            "content": "Hi there!",
-                            "role": "assistant",
-                        },
-                    ]
-                }
-            ],
+            messages=[{}, {}, {}, {}, {}],
         )
 
         assert response.is_closed is True
@@ -272,20 +309,7 @@ class TestAsyncMessages:
     async def test_streaming_response_create(self, async_client: AsyncGreenflash) -> None:
         async with async_client.messages.with_streaming_response.create(
             external_user_id="user-123",
-            turns=[
-                {
-                    "messages": [
-                        {
-                            "content": "Hello!",
-                            "role": "user",
-                        },
-                        {
-                            "content": "Hi there!",
-                            "role": "assistant",
-                        },
-                    ]
-                }
-            ],
+            messages=[{}, {}, {}, {}, {}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

@@ -34,20 +34,7 @@ client = Greenflash(
 
 create_response = client.messages.create(
     external_user_id="externalUserId",
-    turns=[
-        {
-            "messages": [
-                {
-                    "content": "Hello!",
-                    "role": "user",
-                },
-                {
-                    "content": "Hi there!",
-                    "role": "assistant",
-                },
-            ]
-        }
-    ],
+    messages=[{}],
     external_conversation_id="externalConversationId",
     product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 )
@@ -76,20 +63,7 @@ client = AsyncGreenflash(
 async def main() -> None:
     create_response = await client.messages.create(
         external_user_id="externalUserId",
-        turns=[
-            {
-                "messages": [
-                    {
-                        "content": "Hello!",
-                        "role": "user",
-                    },
-                    {
-                        "content": "Hi there!",
-                        "role": "assistant",
-                    },
-                ]
-            }
-        ],
+        messages=[{}],
         external_conversation_id="externalConversationId",
         product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
     )
@@ -127,20 +101,7 @@ async def main() -> None:
     ) as client:
         create_response = await client.messages.create(
             external_user_id="externalUserId",
-            turns=[
-                {
-                    "messages": [
-                        {
-                            "content": "Hello!",
-                            "role": "user",
-                        },
-                        {
-                            "content": "Hi there!",
-                            "role": "assistant",
-                        },
-                    ]
-                }
-            ],
+            messages=[{}],
             external_conversation_id="externalConversationId",
             product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -177,20 +138,7 @@ client = Greenflash()
 try:
     client.messages.create(
         external_user_id="externalUserId",
-        turns=[
-            {
-                "messages": [
-                    {
-                        "content": "Hello!",
-                        "role": "user",
-                    },
-                    {
-                        "content": "Hi there!",
-                        "role": "assistant",
-                    },
-                ]
-            }
-        ],
+        messages=[{}],
         external_conversation_id="externalConversationId",
         product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
     )
@@ -238,20 +186,7 @@ client = Greenflash(
 # Or, configure per-request:
 client.with_options(max_retries=5).messages.create(
     external_user_id="externalUserId",
-    turns=[
-        {
-            "messages": [
-                {
-                    "content": "Hello!",
-                    "role": "user",
-                },
-                {
-                    "content": "Hi there!",
-                    "role": "assistant",
-                },
-            ]
-        }
-    ],
+    messages=[{}],
     external_conversation_id="externalConversationId",
     product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 )
@@ -279,20 +214,7 @@ client = Greenflash(
 # Override per-request:
 client.with_options(timeout=5.0).messages.create(
     external_user_id="externalUserId",
-    turns=[
-        {
-            "messages": [
-                {
-                    "content": "Hello!",
-                    "role": "user",
-                },
-                {
-                    "content": "Hi there!",
-                    "role": "assistant",
-                },
-            ]
-        }
-    ],
+    messages=[{}],
     external_conversation_id="externalConversationId",
     product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 )
@@ -338,15 +260,7 @@ from greenflash import Greenflash
 client = Greenflash()
 response = client.messages.with_raw_response.create(
     external_user_id="externalUserId",
-    turns=[{
-        "messages": [{
-            "content": "Hello!",
-            "role": "user",
-        }, {
-            "content": "Hi there!",
-            "role": "assistant",
-        }]
-    }],
+    messages=[{}],
     external_conversation_id="externalConversationId",
     product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 )
@@ -369,20 +283,7 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 ```python
 with client.messages.with_streaming_response.create(
     external_user_id="externalUserId",
-    turns=[
-        {
-            "messages": [
-                {
-                    "content": "Hello!",
-                    "role": "user",
-                },
-                {
-                    "content": "Hi there!",
-                    "role": "assistant",
-                },
-            ]
-        }
-    ],
+    messages=[{}],
     external_conversation_id="externalConversationId",
     product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 ) as response:
