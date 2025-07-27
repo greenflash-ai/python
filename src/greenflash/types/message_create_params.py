@@ -6,7 +6,7 @@ from typing import Dict, Iterable
 from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .turn_item_param import TurnItemParam
+from .message_item_param import MessageItemParam
 from .system_prompt_param import SystemPromptParam
 
 __all__ = ["MessageCreateParams"]
@@ -16,11 +16,8 @@ class MessageCreateParams(TypedDict, total=False):
     external_user_id: Required[Annotated[str, PropertyInfo(alias="externalUserId")]]
     """The external user ID that will be mapped to a participant in our system."""
 
-    turns: Required[Iterable[TurnItemParam]]
-    """
-    An array of conversation turns, each containing messages exchanged during that
-    turn.
-    """
+    messages: Required[Iterable[MessageItemParam]]
+    """An array of conversation messages."""
 
     conversation_id: Annotated[str, PropertyInfo(alias="conversationId")]
     """The conversation ID.

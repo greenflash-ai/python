@@ -19,7 +19,7 @@ from .._response import (
 )
 from .._base_client import make_request_options
 from ..types.create_response import CreateResponse
-from ..types.turn_item_param import TurnItemParam
+from ..types.message_item_param import MessageItemParam
 from ..types.system_prompt_param import SystemPromptParam
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
@@ -49,7 +49,7 @@ class MessagesResource(SyncAPIResource):
         self,
         *,
         external_user_id: str,
-        turns: Iterable[TurnItemParam],
+        messages: Iterable[MessageItemParam],
         conversation_id: str | NotGiven = NOT_GIVEN,
         external_conversation_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
@@ -67,23 +67,34 @@ class MessagesResource(SyncAPIResource):
     ) -> CreateResponse:
         """
         The `/messages` endpoint allows you to log messages between your users and your
-        products.
+        products, supporting both simple chat scenarios and complex agentic workflows.
 
-        Full conversations can be logged all at once in a single request with multiple
-        turns, or sequentially over multiple requests with a single turn per request.
+        **Simple Chat:** Use the `role` field with values like "user", "assistant", or
+        "system" for basic conversational AI.
+
+        **Agentic Workflows:** Use the `messageType` field for complex scenarios
+        including tool calls, thoughts, observations, retrievals, and more.
+
+        **Message Ordering:** Messages in the array will be stored with sequential
+        timestamps to preserve order. You can optionally provide explicit `createdAt`
+        timestamps for historical data import.
+
+        **Message Threading:** Messages can reference parent messages using either
+        `parentMessageId` (internal ID) or `parentExternalMessageId` (your external ID)
+        to create threaded conversations.
 
         The simplest way to log a message is to pass the `role` and `content` of the
-        message to the API along with an `externalConversationId` for the converasation
+        message to the API along with an `externalConversationId` for the conversation
         and your `productId`.
 
-        However, we recommend that you pass as much information about the conversation
-        as possible to allow you to analyze and optimize your prompts, models, and more.
+        For agentic workflows, you can include structured data via `input`/`output`
+        fields, tool names for `tool_call` messages, and various message types to
+        represent the full execution trace.
 
         Args:
           external_user_id: The external user ID that will be mapped to a participant in our system.
 
-          turns: An array of conversation turns, each containing messages exchanged during that
-              turn.
+          messages: An array of conversation messages.
 
           conversation_id: The conversation ID. When provided, this will update an existing conversation
               instead of creating a new one. Either conversationId, externalConversationId,
@@ -120,7 +131,7 @@ class MessagesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "external_user_id": external_user_id,
-                    "turns": turns,
+                    "messages": messages,
                     "conversation_id": conversation_id,
                     "external_conversation_id": external_conversation_id,
                     "metadata": metadata,
@@ -163,7 +174,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         self,
         *,
         external_user_id: str,
-        turns: Iterable[TurnItemParam],
+        messages: Iterable[MessageItemParam],
         conversation_id: str | NotGiven = NOT_GIVEN,
         external_conversation_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
@@ -181,23 +192,34 @@ class AsyncMessagesResource(AsyncAPIResource):
     ) -> CreateResponse:
         """
         The `/messages` endpoint allows you to log messages between your users and your
-        products.
+        products, supporting both simple chat scenarios and complex agentic workflows.
 
-        Full conversations can be logged all at once in a single request with multiple
-        turns, or sequentially over multiple requests with a single turn per request.
+        **Simple Chat:** Use the `role` field with values like "user", "assistant", or
+        "system" for basic conversational AI.
+
+        **Agentic Workflows:** Use the `messageType` field for complex scenarios
+        including tool calls, thoughts, observations, retrievals, and more.
+
+        **Message Ordering:** Messages in the array will be stored with sequential
+        timestamps to preserve order. You can optionally provide explicit `createdAt`
+        timestamps for historical data import.
+
+        **Message Threading:** Messages can reference parent messages using either
+        `parentMessageId` (internal ID) or `parentExternalMessageId` (your external ID)
+        to create threaded conversations.
 
         The simplest way to log a message is to pass the `role` and `content` of the
-        message to the API along with an `externalConversationId` for the converasation
+        message to the API along with an `externalConversationId` for the conversation
         and your `productId`.
 
-        However, we recommend that you pass as much information about the conversation
-        as possible to allow you to analyze and optimize your prompts, models, and more.
+        For agentic workflows, you can include structured data via `input`/`output`
+        fields, tool names for `tool_call` messages, and various message types to
+        represent the full execution trace.
 
         Args:
           external_user_id: The external user ID that will be mapped to a participant in our system.
 
-          turns: An array of conversation turns, each containing messages exchanged during that
-              turn.
+          messages: An array of conversation messages.
 
           conversation_id: The conversation ID. When provided, this will update an existing conversation
               instead of creating a new one. Either conversationId, externalConversationId,
@@ -234,7 +256,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "external_user_id": external_user_id,
-                    "turns": turns,
+                    "messages": messages,
                     "conversation_id": conversation_id,
                     "external_conversation_id": external_conversation_id,
                     "metadata": metadata,
