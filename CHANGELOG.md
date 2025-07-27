@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.15 (2025-07-27)
+
+Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
+
+### Features
+
+* **api:** manual updates ([5f77c93](https://github.com/greenflash-ai/python/commit/5f77c9308e3560443e88c4026affdb7324f61746))
+
 ## 0.1.0-alpha.14 (2025-07-27)
 
 Full Changelog: [v0.1.0-alpha.13...v0.1.0-alpha.14](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.13...v0.1.0-alpha.14)
