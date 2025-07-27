@@ -38,9 +38,13 @@ create_response = client.messages.create(
         {
             "messages": [
                 {
-                    "content": "content",
+                    "content": "Hello!",
                     "role": "user",
-                }
+                },
+                {
+                    "content": "Hi there!",
+                    "role": "assistant",
+                },
             ]
         }
     ],
@@ -76,9 +80,13 @@ async def main() -> None:
             {
                 "messages": [
                     {
-                        "content": "content",
+                        "content": "Hello!",
                         "role": "user",
-                    }
+                    },
+                    {
+                        "content": "Hi there!",
+                        "role": "assistant",
+                    },
                 ]
             }
         ],
@@ -123,9 +131,13 @@ async def main() -> None:
                 {
                     "messages": [
                         {
-                            "content": "content",
+                            "content": "Hello!",
                             "role": "user",
-                        }
+                        },
+                        {
+                            "content": "Hi there!",
+                            "role": "assistant",
+                        },
                     ]
                 }
             ],
@@ -169,9 +181,13 @@ try:
             {
                 "messages": [
                     {
-                        "content": "content",
+                        "content": "Hello!",
                         "role": "user",
-                    }
+                    },
+                    {
+                        "content": "Hi there!",
+                        "role": "assistant",
+                    },
                 ]
             }
         ],
@@ -226,9 +242,13 @@ client.with_options(max_retries=5).messages.create(
         {
             "messages": [
                 {
-                    "content": "content",
+                    "content": "Hello!",
                     "role": "user",
-                }
+                },
+                {
+                    "content": "Hi there!",
+                    "role": "assistant",
+                },
             ]
         }
     ],
@@ -263,9 +283,13 @@ client.with_options(timeout=5.0).messages.create(
         {
             "messages": [
                 {
-                    "content": "content",
+                    "content": "Hello!",
                     "role": "user",
-                }
+                },
+                {
+                    "content": "Hi there!",
+                    "role": "assistant",
+                },
             ]
         }
     ],
@@ -316,8 +340,11 @@ response = client.messages.with_raw_response.create(
     external_user_id="externalUserId",
     turns=[{
         "messages": [{
-            "content": "content",
+            "content": "Hello!",
             "role": "user",
+        }, {
+            "content": "Hi there!",
+            "role": "assistant",
         }]
     }],
     external_conversation_id="externalConversationId",
@@ -346,9 +373,13 @@ with client.messages.with_streaming_response.create(
         {
             "messages": [
                 {
-                    "content": "content",
+                    "content": "Hello!",
                     "role": "user",
-                }
+                },
+                {
+                    "content": "Hi there!",
+                    "role": "assistant",
+                },
             ]
         }
     ],
