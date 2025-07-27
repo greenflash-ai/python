@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -15,7 +15,7 @@ class MessageItemParam(TypedDict, total=False):
     content: str
     """String content of the message. Required for language-based analyses."""
 
-    context: Optional[str]
+    context: str
     """Additional context (e.g., RAG data) used in generating the message."""
 
     created_at: Annotated[str, PropertyInfo(alias="createdAt")]
