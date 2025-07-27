@@ -32,10 +32,11 @@ class TestRatings:
             rating=4,
             rating_max=5,
             rating_min=1,
-            conversation_id="123e4567-e89b-12d3-a456-426614174000",
-            external_conversation_id="externalConversationId",
+            conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            external_conversation_id="123e4567-e89b-12d3-a456-426614174000",
+            external_message_id="externalMessageId",
             feedback="Helpful response!",
-            message_id="msg-001",
+            message_id="messageId",
             rated_at="2025-07-09T09:00:00Z",
         )
         assert_matches_type(LogRatingResponse, rating, path=["response"])
@@ -89,10 +90,11 @@ class TestAsyncRatings:
             rating=4,
             rating_max=5,
             rating_min=1,
-            conversation_id="123e4567-e89b-12d3-a456-426614174000",
-            external_conversation_id="externalConversationId",
+            conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            external_conversation_id="123e4567-e89b-12d3-a456-426614174000",
+            external_message_id="externalMessageId",
             feedback="Helpful response!",
-            message_id="msg-001",
+            message_id="messageId",
             rated_at="2025-07-09T09:00:00Z",
         )
         assert_matches_type(LogRatingResponse, rating, path=["response"])

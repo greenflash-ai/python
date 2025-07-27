@@ -22,22 +22,32 @@ class RatingLogParams(TypedDict, total=False):
     conversation_id: Annotated[str, PropertyInfo(alias="conversationId")]
     """The internal ID of the conversation to rate.
 
-    Either conversationId, externalConversationId, or messageId must be provided.
+    Either conversationId, externalConversationId, messageId, or externalMessageId
+    must be provided.
     """
 
     external_conversation_id: Annotated[str, PropertyInfo(alias="externalConversationId")]
     """Your external identifier for the conversation to rate.
 
-    Either conversationId, externalConversationId, or messageId must be provided.
+    Either conversationId, externalConversationId, messageId, or externalMessageId
+    must be provided.
+    """
+
+    external_message_id: Annotated[str, PropertyInfo(alias="externalMessageId")]
+    """Your external identifier for a specific message to rate.
+
+    Either conversationId, externalConversationId, messageId, or externalMessageId
+    must be provided.
     """
 
     feedback: str
     """Optional text feedback accompanying the rating."""
 
     message_id: Annotated[str, PropertyInfo(alias="messageId")]
-    """The ID of a specific message to rate.
+    """The internal ID of a specific message to rate.
 
-    Either conversationId, externalConversationId, or messageId must be provided.
+    Either conversationId, externalConversationId, messageId, or externalMessageId
+    must be provided.
     """
 
     rated_at: Annotated[str, PropertyInfo(alias="ratedAt")]

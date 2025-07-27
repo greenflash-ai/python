@@ -49,6 +49,7 @@ class RatingsResource(SyncAPIResource):
         rating_min: float,
         conversation_id: str | NotGiven = NOT_GIVEN,
         external_conversation_id: str | NotGiven = NOT_GIVEN,
+        external_message_id: str | NotGiven = NOT_GIVEN,
         feedback: str | NotGiven = NOT_GIVEN,
         message_id: str | NotGiven = NOT_GIVEN,
         rated_at: str | NotGiven = NOT_GIVEN,
@@ -64,8 +65,9 @@ class RatingsResource(SyncAPIResource):
         individual messages. This is useful for collecting feedback about the quality of
         responses or overall conversation experiences.
 
-        You can rate either a specific message (using `messageId`) or an entire
-        conversation (using either `conversationId` or `externalConversationId`).
+        You can rate either a specific message (using `messageId` or
+        `externalMessageId`) or an entire conversation (using either `conversationId` or
+        `externalConversationId`).
 
         Args:
           rating: The rating value. Must be between ratingMin and ratingMax (inclusive).
@@ -75,15 +77,18 @@ class RatingsResource(SyncAPIResource):
           rating_min: The minimum possible rating value (e.g., 1 for a 1-5 scale).
 
           conversation_id: The internal ID of the conversation to rate. Either conversationId,
-              externalConversationId, or messageId must be provided.
+              externalConversationId, messageId, or externalMessageId must be provided.
 
           external_conversation_id: Your external identifier for the conversation to rate. Either conversationId,
-              externalConversationId, or messageId must be provided.
+              externalConversationId, messageId, or externalMessageId must be provided.
+
+          external_message_id: Your external identifier for a specific message to rate. Either conversationId,
+              externalConversationId, messageId, or externalMessageId must be provided.
 
           feedback: Optional text feedback accompanying the rating.
 
-          message_id: The ID of a specific message to rate. Either conversationId,
-              externalConversationId, or messageId must be provided.
+          message_id: The internal ID of a specific message to rate. Either conversationId,
+              externalConversationId, messageId, or externalMessageId must be provided.
 
           rated_at: The timestamp when the rating was given. If not provided, the current time will
               be used.
@@ -105,6 +110,7 @@ class RatingsResource(SyncAPIResource):
                     "rating_min": rating_min,
                     "conversation_id": conversation_id,
                     "external_conversation_id": external_conversation_id,
+                    "external_message_id": external_message_id,
                     "feedback": feedback,
                     "message_id": message_id,
                     "rated_at": rated_at,
@@ -146,6 +152,7 @@ class AsyncRatingsResource(AsyncAPIResource):
         rating_min: float,
         conversation_id: str | NotGiven = NOT_GIVEN,
         external_conversation_id: str | NotGiven = NOT_GIVEN,
+        external_message_id: str | NotGiven = NOT_GIVEN,
         feedback: str | NotGiven = NOT_GIVEN,
         message_id: str | NotGiven = NOT_GIVEN,
         rated_at: str | NotGiven = NOT_GIVEN,
@@ -161,8 +168,9 @@ class AsyncRatingsResource(AsyncAPIResource):
         individual messages. This is useful for collecting feedback about the quality of
         responses or overall conversation experiences.
 
-        You can rate either a specific message (using `messageId`) or an entire
-        conversation (using either `conversationId` or `externalConversationId`).
+        You can rate either a specific message (using `messageId` or
+        `externalMessageId`) or an entire conversation (using either `conversationId` or
+        `externalConversationId`).
 
         Args:
           rating: The rating value. Must be between ratingMin and ratingMax (inclusive).
@@ -172,15 +180,18 @@ class AsyncRatingsResource(AsyncAPIResource):
           rating_min: The minimum possible rating value (e.g., 1 for a 1-5 scale).
 
           conversation_id: The internal ID of the conversation to rate. Either conversationId,
-              externalConversationId, or messageId must be provided.
+              externalConversationId, messageId, or externalMessageId must be provided.
 
           external_conversation_id: Your external identifier for the conversation to rate. Either conversationId,
-              externalConversationId, or messageId must be provided.
+              externalConversationId, messageId, or externalMessageId must be provided.
+
+          external_message_id: Your external identifier for a specific message to rate. Either conversationId,
+              externalConversationId, messageId, or externalMessageId must be provided.
 
           feedback: Optional text feedback accompanying the rating.
 
-          message_id: The ID of a specific message to rate. Either conversationId,
-              externalConversationId, or messageId must be provided.
+          message_id: The internal ID of a specific message to rate. Either conversationId,
+              externalConversationId, messageId, or externalMessageId must be provided.
 
           rated_at: The timestamp when the rating was given. If not provided, the current time will
               be used.
@@ -202,6 +213,7 @@ class AsyncRatingsResource(AsyncAPIResource):
                     "rating_min": rating_min,
                     "conversation_id": conversation_id,
                     "external_conversation_id": external_conversation_id,
+                    "external_message_id": external_message_id,
                     "feedback": feedback,
                     "message_id": message_id,
                     "rated_at": rated_at,

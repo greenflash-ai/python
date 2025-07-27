@@ -735,21 +735,7 @@ class TestGreenflash:
 
         with pytest.raises(APITimeoutError):
             client.messages.with_streaming_response.create(
-                external_user_id="user-123",
-                turns=[
-                    {
-                        "messages": [
-                            {
-                                "content": "Hello!",
-                                "role": "user",
-                            },
-                            {
-                                "content": "Hi there!",
-                                "role": "assistant",
-                            },
-                        ]
-                    }
-                ],
+                external_user_id="user-123", messages=[{}, {}, {}, {}, {}]
             ).__enter__()
 
         assert _get_open_connections(self.client) == 0
@@ -761,21 +747,7 @@ class TestGreenflash:
 
         with pytest.raises(APIStatusError):
             client.messages.with_streaming_response.create(
-                external_user_id="user-123",
-                turns=[
-                    {
-                        "messages": [
-                            {
-                                "content": "Hello!",
-                                "role": "user",
-                            },
-                            {
-                                "content": "Hi there!",
-                                "role": "assistant",
-                            },
-                        ]
-                    }
-                ],
+                external_user_id="user-123", messages=[{}, {}, {}, {}, {}]
             ).__enter__()
         assert _get_open_connections(self.client) == 0
 
@@ -805,23 +777,7 @@ class TestGreenflash:
 
         respx_mock.post("/messages").mock(side_effect=retry_handler)
 
-        response = client.messages.with_raw_response.create(
-            external_user_id="user-123",
-            turns=[
-                {
-                    "messages": [
-                        {
-                            "content": "Hello!",
-                            "role": "user",
-                        },
-                        {
-                            "content": "Hi there!",
-                            "role": "assistant",
-                        },
-                    ]
-                }
-            ],
-        )
+        response = client.messages.with_raw_response.create(external_user_id="user-123", messages=[{}, {}, {}, {}, {}])
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -847,20 +803,7 @@ class TestGreenflash:
 
         response = client.messages.with_raw_response.create(
             external_user_id="user-123",
-            turns=[
-                {
-                    "messages": [
-                        {
-                            "content": "Hello!",
-                            "role": "user",
-                        },
-                        {
-                            "content": "Hi there!",
-                            "role": "assistant",
-                        },
-                    ]
-                }
-            ],
+            messages=[{}, {}, {}, {}, {}],
             extra_headers={"x-stainless-retry-count": Omit()},
         )
 
@@ -886,22 +829,7 @@ class TestGreenflash:
         respx_mock.post("/messages").mock(side_effect=retry_handler)
 
         response = client.messages.with_raw_response.create(
-            external_user_id="user-123",
-            turns=[
-                {
-                    "messages": [
-                        {
-                            "content": "Hello!",
-                            "role": "user",
-                        },
-                        {
-                            "content": "Hi there!",
-                            "role": "assistant",
-                        },
-                    ]
-                }
-            ],
-            extra_headers={"x-stainless-retry-count": "42"},
+            external_user_id="user-123", messages=[{}, {}, {}, {}, {}], extra_headers={"x-stainless-retry-count": "42"}
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
@@ -1643,21 +1571,7 @@ class TestAsyncGreenflash:
 
         with pytest.raises(APITimeoutError):
             await async_client.messages.with_streaming_response.create(
-                external_user_id="user-123",
-                turns=[
-                    {
-                        "messages": [
-                            {
-                                "content": "Hello!",
-                                "role": "user",
-                            },
-                            {
-                                "content": "Hi there!",
-                                "role": "assistant",
-                            },
-                        ]
-                    }
-                ],
+                external_user_id="user-123", messages=[{}, {}, {}, {}, {}]
             ).__aenter__()
 
         assert _get_open_connections(self.client) == 0
@@ -1671,21 +1585,7 @@ class TestAsyncGreenflash:
 
         with pytest.raises(APIStatusError):
             await async_client.messages.with_streaming_response.create(
-                external_user_id="user-123",
-                turns=[
-                    {
-                        "messages": [
-                            {
-                                "content": "Hello!",
-                                "role": "user",
-                            },
-                            {
-                                "content": "Hi there!",
-                                "role": "assistant",
-                            },
-                        ]
-                    }
-                ],
+                external_user_id="user-123", messages=[{}, {}, {}, {}, {}]
             ).__aenter__()
         assert _get_open_connections(self.client) == 0
 
@@ -1717,21 +1617,7 @@ class TestAsyncGreenflash:
         respx_mock.post("/messages").mock(side_effect=retry_handler)
 
         response = await client.messages.with_raw_response.create(
-            external_user_id="user-123",
-            turns=[
-                {
-                    "messages": [
-                        {
-                            "content": "Hello!",
-                            "role": "user",
-                        },
-                        {
-                            "content": "Hi there!",
-                            "role": "assistant",
-                        },
-                    ]
-                }
-            ],
+            external_user_id="user-123", messages=[{}, {}, {}, {}, {}]
         )
 
         assert response.retries_taken == failures_before_success
@@ -1759,20 +1645,7 @@ class TestAsyncGreenflash:
 
         response = await client.messages.with_raw_response.create(
             external_user_id="user-123",
-            turns=[
-                {
-                    "messages": [
-                        {
-                            "content": "Hello!",
-                            "role": "user",
-                        },
-                        {
-                            "content": "Hi there!",
-                            "role": "assistant",
-                        },
-                    ]
-                }
-            ],
+            messages=[{}, {}, {}, {}, {}],
             extra_headers={"x-stainless-retry-count": Omit()},
         )
 
@@ -1799,22 +1672,7 @@ class TestAsyncGreenflash:
         respx_mock.post("/messages").mock(side_effect=retry_handler)
 
         response = await client.messages.with_raw_response.create(
-            external_user_id="user-123",
-            turns=[
-                {
-                    "messages": [
-                        {
-                            "content": "Hello!",
-                            "role": "user",
-                        },
-                        {
-                            "content": "Hi there!",
-                            "role": "assistant",
-                        },
-                    ]
-                }
-            ],
-            extra_headers={"x-stainless-retry-count": "42"},
+            external_user_id="user-123", messages=[{}, {}, {}, {}, {}], extra_headers={"x-stainless-retry-count": "42"}
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
