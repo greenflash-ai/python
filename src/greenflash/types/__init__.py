@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from .participant import Participant as Participant
 from .create_response import CreateResponse as CreateResponse
-from .turn_item_param import TurnItemParam as TurnItemParam
 from .rating_log_params import RatingLogParams as RatingLogParams
 from .message_item_param import MessageItemParam as MessageItemParam
 from .log_rating_response import LogRatingResponse as LogRatingResponse

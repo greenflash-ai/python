@@ -19,7 +19,6 @@ from .._response import (
 )
 from .._base_client import make_request_options
 from ..types.create_response import CreateResponse
-from ..types.turn_item_param import TurnItemParam
 from ..types.system_prompt_param import SystemPromptParam
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
@@ -49,7 +48,7 @@ class MessagesResource(SyncAPIResource):
         self,
         *,
         external_user_id: str,
-        turns: Iterable[TurnItemParam],
+        turns: Iterable[message_create_params.Turn],
         conversation_id: str | NotGiven = NOT_GIVEN,
         external_conversation_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
@@ -163,7 +162,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         self,
         *,
         external_user_id: str,
-        turns: Iterable[TurnItemParam],
+        turns: Iterable[message_create_params.Turn],
         conversation_id: str | NotGiven = NOT_GIVEN,
         external_conversation_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, object] | NotGiven = NOT_GIVEN,

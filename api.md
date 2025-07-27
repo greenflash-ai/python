@@ -3,7 +3,7 @@
 Types:
 
 ```python
-from greenflash.types import CreateParams, CreateResponse, MessageItem, SystemPrompt, TurnItem
+from greenflash.types import CreateParams, CreateResponse, MessageItem, SystemPrompt
 ```
 
 Methods:
