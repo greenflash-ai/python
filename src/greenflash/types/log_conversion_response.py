@@ -9,7 +9,7 @@ __all__ = ["LogConversionResponse"]
 
 class LogConversionResponse(BaseModel):
     conversion_id: str = FieldInfo(alias="conversionId")
-    """The unique identifier for the conversion record that was created."""
+    """The unique Greenflash ID of the conversion record that was created."""
 
     success: bool
-    """Indicates whether the API call was successful."""
+    """Whether the API call was successful."""

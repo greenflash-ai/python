@@ -20,21 +20,21 @@ class RatingLogParams(TypedDict, total=False):
     """The minimum possible rating value (e.g., 1 for a 1-5 scale)."""
 
     conversation_id: Annotated[str, PropertyInfo(alias="conversationId")]
-    """The internal ID of the conversation to rate.
+    """The Greenflash conversation ID to rate.
 
     Either conversationId, externalConversationId, messageId, or externalMessageId
     must be provided.
     """
 
     external_conversation_id: Annotated[str, PropertyInfo(alias="externalConversationId")]
-    """Your external identifier for the conversation to rate.
+    """Your external conversation identifier to rate.
 
     Either conversationId, externalConversationId, messageId, or externalMessageId
     must be provided.
     """
 
     external_message_id: Annotated[str, PropertyInfo(alias="externalMessageId")]
-    """Your external identifier for a specific message to rate.
+    """Your external message identifier to rate.
 
     Either conversationId, externalConversationId, messageId, or externalMessageId
     must be provided.
@@ -44,14 +44,11 @@ class RatingLogParams(TypedDict, total=False):
     """Optional text feedback accompanying the rating."""
 
     message_id: Annotated[str, PropertyInfo(alias="messageId")]
-    """The internal ID of a specific message to rate.
+    """The Greenflash message ID to rate.
 
     Either conversationId, externalConversationId, messageId, or externalMessageId
     must be provided.
     """
 
     rated_at: Annotated[str, PropertyInfo(alias="ratedAt")]
-    """The timestamp when the rating was given.
-
-    If not provided, the current time will be used.
-    """
+    """When the rating was given. Defaults to current time if not provided."""

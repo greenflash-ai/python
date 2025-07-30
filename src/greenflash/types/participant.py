@@ -11,7 +11,7 @@ __all__ = ["Participant"]
 
 class Participant(BaseModel):
     id: str
-    """The internal ID of the participant."""
+    """The Greenflash participant ID."""
 
     anonymized: bool
     """Whether the participant's personal information is anonymized."""
@@ -20,13 +20,13 @@ class Participant(BaseModel):
     """When the participant was first created."""
 
     external_id: str = FieldInfo(alias="externalId")
-    """The external ID you provided (matches the externalUserId from the request)."""
+    """Your external user ID (matches the externalUserId from the request)."""
 
     metadata: Dict[str, object]
-    """Additional metadata associated with the participant."""
+    """Additional data about the participant."""
 
     tenant_id: str = FieldInfo(alias="tenantId")
-    """The ID of the tenant this participant belongs to."""
+    """The tenant this participant belongs to."""
 
     updated_at: str = FieldInfo(alias="updatedAt")
     """When the participant was last updated."""

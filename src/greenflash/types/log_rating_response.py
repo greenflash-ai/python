@@ -7,4 +7,4 @@ __all__ = ["LogRatingResponse"]
 
 class LogRatingResponse(BaseModel):
     success: bool
-    """Indicates whether the API call was successful."""
+    """Whether the API call was successful."""

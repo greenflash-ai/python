@@ -60,24 +60,22 @@ class IdentifyResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CreateOrUpdateResponse:
         """
-        The `/identify` endpoint allows you to create or update user profiles in the
-        system. This endpoint is used to manage user identity information that can be
-        referenced in other API calls using the `externalUserId`.
+        Create new user profiles or update existing ones with contact information and
+        metadata.
 
-        When you call this endpoint with an `externalUserId` that already exists, the
-        user profile will be updated. If the `externalUserId` doesn't exist yet, a new
-        profile will be created.
+        Provide an `externalUserId` to identify the user. If this ID already exists, the
+        profile will be updated. If it doesn't exist, a new profile will be created. You
+        can then reference this user in other API calls using the same `externalUserId`.
 
         Args:
-          external_user_id: Your unique identifier for the user. This is used to reference the user in other
-              API calls.
+          external_user_id: Your unique identifier for the user. Use this same ID in other API calls to
+              reference this user.
 
-          anonymized: Whether the user's personal information should be anonymized. Defaults to false
-              for new users.
+          anonymized: Whether to anonymize the user's personal information. Defaults to false.
 
-          email: The user's email address. Must be a valid email format.
+          email: The user's email address.
 
-          metadata: Additional metadata associated with the user as key-value pairs.
+          metadata: Additional data about the user (e.g., plan type, preferences).
 
           name: The user's full name.
 
@@ -148,24 +146,22 @@ class AsyncIdentifyResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CreateOrUpdateResponse:
         """
-        The `/identify` endpoint allows you to create or update user profiles in the
-        system. This endpoint is used to manage user identity information that can be
-        referenced in other API calls using the `externalUserId`.
+        Create new user profiles or update existing ones with contact information and
+        metadata.
 
-        When you call this endpoint with an `externalUserId` that already exists, the
-        user profile will be updated. If the `externalUserId` doesn't exist yet, a new
-        profile will be created.
+        Provide an `externalUserId` to identify the user. If this ID already exists, the
+        profile will be updated. If it doesn't exist, a new profile will be created. You
+        can then reference this user in other API calls using the same `externalUserId`.
 
         Args:
-          external_user_id: Your unique identifier for the user. This is used to reference the user in other
-              API calls.
+          external_user_id: Your unique identifier for the user. Use this same ID in other API calls to
+              reference this user.
 
-          anonymized: Whether the user's personal information should be anonymized. Defaults to false
-              for new users.
+          anonymized: Whether to anonymize the user's personal information. Defaults to false.
 
-          email: The user's email address. Must be a valid email format.
+          email: The user's email address.
 
-          metadata: Additional metadata associated with the user as key-value pairs.
+          metadata: Additional data about the user (e.g., plan type, preferences).
 
           name: The user's full name.
 

@@ -11,4 +11,4 @@ class CreateOrUpdateResponse(BaseModel):
     """The user profile that was created or updated."""
 
     success: bool
-    """Indicates whether the API call was successful."""
+    """Whether the API call was successful."""
