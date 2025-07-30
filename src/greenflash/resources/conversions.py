@@ -65,36 +65,33 @@ class ConversionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LogConversionResponse:
         """
-        The `/conversions` endpoint allows you to record business conversion events.
-        This is useful for tracking user actions that lead to conversions, such as
-        purchases, signups, or upgrades.
+        Track important business events like purchases, signups, or upgrades that result
+        from your conversations.
 
-        You can record conversions for either a specific conversation (using
-        `conversationId`) or an entire conversation (using either
-        `externalConversationId`).
+        Use this endpoint to record when users take valuable actions after interacting
+        with your AI. You can link conversions to specific conversations using either
+        the internal `conversationId` or your own `externalConversationId`.
 
         Args:
-          action: The action or event name that represents the conversion (e.g., "purchase",
-              "signup", "upgrade").
+          action: The type of conversion (e.g., "purchase", "signup", "upgrade").
 
-          external_user_id: The external ID of the user who performed the conversion action.
+          external_user_id: Your unique identifier for the user who completed the conversion.
 
-          value: The value of the conversion. Interpretation depends on valueType.
+          value: The conversion value (interpretation depends on valueType).
 
-          value_type: The type of the value. Must be one of: 'currency', 'numeric', or 'text'.
+          value_type: The type of value: currency (e.g., "$99.99"), numeric (e.g., "5"), or text.
 
-          conversation_id: The internal ID of the conversation that led to the conversion.
+          conversation_id: The Greenflash conversation ID that led to this conversion.
 
-          converted_at: The timestamp when the conversion occurred. If not provided, the current time
-              will be used.
+          converted_at: When the conversion occurred. Defaults to current time if not provided.
 
-          external_conversation_id: Your external identifier for the conversation that led to the conversion.
+          external_conversation_id: Your external conversation identifier that led to this conversion.
 
-          metadata: Additional metadata about the conversion as key-value pairs.
+          metadata: Additional data about the conversion.
 
-          product_id: The ID of the product associated with this conversion.
+          product_id: The Greenflash product associated with this conversion.
 
-          project_id: The ID of the project associated with this conversion.
+          project_id: The Greenflash project associated with this conversion.
 
           extra_headers: Send extra headers
 
@@ -169,36 +166,33 @@ class AsyncConversionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LogConversionResponse:
         """
-        The `/conversions` endpoint allows you to record business conversion events.
-        This is useful for tracking user actions that lead to conversions, such as
-        purchases, signups, or upgrades.
+        Track important business events like purchases, signups, or upgrades that result
+        from your conversations.
 
-        You can record conversions for either a specific conversation (using
-        `conversationId`) or an entire conversation (using either
-        `externalConversationId`).
+        Use this endpoint to record when users take valuable actions after interacting
+        with your AI. You can link conversions to specific conversations using either
+        the internal `conversationId` or your own `externalConversationId`.
 
         Args:
-          action: The action or event name that represents the conversion (e.g., "purchase",
-              "signup", "upgrade").
+          action: The type of conversion (e.g., "purchase", "signup", "upgrade").
 
-          external_user_id: The external ID of the user who performed the conversion action.
+          external_user_id: Your unique identifier for the user who completed the conversion.
 
-          value: The value of the conversion. Interpretation depends on valueType.
+          value: The conversion value (interpretation depends on valueType).
 
-          value_type: The type of the value. Must be one of: 'currency', 'numeric', or 'text'.
+          value_type: The type of value: currency (e.g., "$99.99"), numeric (e.g., "5"), or text.
 
-          conversation_id: The internal ID of the conversation that led to the conversion.
+          conversation_id: The Greenflash conversation ID that led to this conversion.
 
-          converted_at: The timestamp when the conversion occurred. If not provided, the current time
-              will be used.
+          converted_at: When the conversion occurred. Defaults to current time if not provided.
 
-          external_conversation_id: Your external identifier for the conversation that led to the conversion.
+          external_conversation_id: Your external conversation identifier that led to this conversion.
 
-          metadata: Additional metadata about the conversion as key-value pairs.
+          metadata: Additional data about the conversion.
 
-          product_id: The ID of the product associated with this conversion.
+          product_id: The Greenflash product associated with this conversion.
 
-          project_id: The ID of the project associated with this conversion.
+          project_id: The Greenflash project associated with this conversion.
 
           extra_headers: Send extra headers
 

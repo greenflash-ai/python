@@ -12,37 +12,31 @@ __all__ = ["ConversionLogParams"]
 
 class ConversionLogParams(TypedDict, total=False):
     action: Required[str]
-    """
-    The action or event name that represents the conversion (e.g., "purchase",
-    "signup", "upgrade").
-    """
+    """The type of conversion (e.g., "purchase", "signup", "upgrade")."""
 
     external_user_id: Required[Annotated[str, PropertyInfo(alias="externalUserId")]]
-    """The external ID of the user who performed the conversion action."""
+    """Your unique identifier for the user who completed the conversion."""
 
     value: Required[str]
-    """The value of the conversion. Interpretation depends on valueType."""
+    """The conversion value (interpretation depends on valueType)."""
 
     value_type: Required[Annotated[Literal["currency", "numeric", "text"], PropertyInfo(alias="valueType")]]
-    """The type of the value. Must be one of: 'currency', 'numeric', or 'text'."""
+    """The type of value: currency (e.g., "$99.99"), numeric (e.g., "5"), or text."""
 
     conversation_id: Annotated[str, PropertyInfo(alias="conversationId")]
-    """The internal ID of the conversation that led to the conversion."""
+    """The Greenflash conversation ID that led to this conversion."""
 
     converted_at: Annotated[str, PropertyInfo(alias="convertedAt")]
-    """The timestamp when the conversion occurred.
-
-    If not provided, the current time will be used.
-    """
+    """When the conversion occurred. Defaults to current time if not provided."""
 
     external_conversation_id: Annotated[str, PropertyInfo(alias="externalConversationId")]
-    """Your external identifier for the conversation that led to the conversion."""
+    """Your external conversation identifier that led to this conversion."""
 
     metadata: Dict[str, object]
-    """Additional metadata about the conversion as key-value pairs."""
+    """Additional data about the conversion."""
 
     product_id: Annotated[str, PropertyInfo(alias="productId")]
-    """The ID of the product associated with this conversion."""
+    """The Greenflash product associated with this conversion."""
 
     project_id: Annotated[str, PropertyInfo(alias="projectId")]
-    """The ID of the project associated with this conversion."""
+    """The Greenflash project associated with this conversion."""

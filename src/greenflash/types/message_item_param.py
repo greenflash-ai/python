@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Optional
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -13,30 +13,26 @@ __all__ = ["MessageItemParam"]
 
 class MessageItemParam(TypedDict, total=False):
     content: str
-    """String content of the message. Required for language-based analyses."""
+    """The message content. Required for language-based analyses."""
 
-    context: str
-    """Additional context (e.g., RAG data) used in generating the message."""
+    context: Optional[str]
+    """Additional context (e.g., RAG data) used to generate the message."""
 
     created_at: Annotated[str, PropertyInfo(alias="createdAt")]
     """When this message was created.
 
-    If not provided, messages will be assigned sequential timestamps to preserve
-    order. If provided, this timestamp will be used as-is (useful for importing
-    historical data).
+    If not provided, messages get sequential timestamps. Use for importing
+    historical data.
     """
 
     external_message_id: Annotated[str, PropertyInfo(alias="externalMessageId")]
-    """Your own external identifier for this message.
+    """Your external identifier for this message.
 
-    This can be used to reference the message in other API calls.
+    Used to reference the message in other API calls.
     """
 
     input: Dict[str, object]
-    """
-    Structured input data for tool calls, retrievals, or other structured
-    operations.
-    """
+    """Structured input data for tool calls, retrievals, or other operations."""
 
     message_type: Annotated[
         Literal[
@@ -63,23 +59,20 @@ class MessageItemParam(TypedDict, total=False):
     ]
     """Detailed message type for agentic workflows.
 
-    Cannot be used with role. Allowed values: user_message, assistant_message,
+    Cannot be used with role. Available types: user_message, assistant_message,
     system_message, thought, tool_call, observation, final_response, retrieval,
     memory_read, memory_write, chain_start, chain_end, embedding, tool_error,
     callback, llm, task, workflow
     """
 
     metadata: Dict[str, object]
-    """Additional metadata for the message."""
+    """Additional data about the message."""
 
     model_override: Annotated[str, PropertyInfo(alias="modelOverride")]
     """Override the conversation-level model for this specific message."""
 
     output: Dict[str, object]
-    """
-    Structured output data from tool calls, retrievals, or other structured
-    operations.
-    """
+    """Structured output data from tool calls, retrievals, or other operations."""
 
     parent_external_message_id: Annotated[str, PropertyInfo(alias="parentExternalMessageId")]
     """The external ID of the parent message for threading.
@@ -94,9 +87,9 @@ class MessageItemParam(TypedDict, total=False):
     """
 
     role: Literal["user", "assistant", "system"]
-    """Simple message role for basic chat scenarios.
+    """Simple message role for basic chat: user, assistant, or system.
 
-    One of: 'user', 'assistant', or 'system'. Cannot be used with messageType.
+    Cannot be used with messageType.
     """
 
     system_prompt_override: Annotated[SystemPromptParam, PropertyInfo(alias="systemPromptOverride")]
