@@ -15,36 +15,34 @@ class SystemPromptTemplateComponent(TypedDict, total=False):
     """The content of the component."""
 
     component_id: Annotated[str, PropertyInfo(alias="componentId")]
-    """The ID of the component."""
+    """The Greenflash component ID."""
 
     external_component_id: Annotated[str, PropertyInfo(alias="externalComponentId")]
-    """Your own external identifier for the component."""
+    """Your external identifier for the component."""
 
     is_dynamic: Annotated[bool, PropertyInfo(alias="isDynamic")]
-    """Whether the component is dynamic."""
+    """Whether the component content changes dynamically."""
 
     name: str
-    """Name of the component."""
+    """Component name."""
 
     source: Literal["customer", "participant", "greenflash", "agent"]
-    """Source of the component.
+    """Component source: customer, participant, greenflash, or agent.
 
-    One of: 'customer', 'participant', 'greenflash', 'agent'. Defaults to
-    'customer'.
+    Defaults to customer.
     """
 
     tags: List[str]
-    """Array of string tags associated with the component."""
+    """Tags to categorize the component."""
 
     type: Literal["system", "endUser", "userModified", "rag", "agent"]
-    """Type of the component.
+    """Component type: system, endUser, userModified, rag, or agent.
 
-    One of: 'system', 'endUser', 'userModified', 'rag', 'agent'. Defaults to
-    'system'.
+    Defaults to system.
     """
 
     version: float
-    """Version of the component."""
+    """Component version number."""
 
 
 class SystemPromptTemplate(TypedDict, total=False):
@@ -52,13 +50,13 @@ class SystemPromptTemplate(TypedDict, total=False):
     """Array of component objects."""
 
     external_template_id: Annotated[str, PropertyInfo(alias="externalTemplateId")]
-    """Your own external identifier for the template."""
+    """Your external identifier for the template."""
 
     tags: List[str]
-    """Array of string tags associated with the template."""
+    """Tags to categorize the template."""
 
     template_id: Annotated[str, PropertyInfo(alias="templateId")]
-    """The ID of the template."""
+    """The Greenflash template ID."""
 
 
 SystemPromptParam: TypeAlias = Union[str, SystemPromptTemplate]

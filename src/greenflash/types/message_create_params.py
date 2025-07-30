@@ -14,41 +14,41 @@ __all__ = ["MessageCreateParams"]
 
 class MessageCreateParams(TypedDict, total=False):
     external_user_id: Required[Annotated[str, PropertyInfo(alias="externalUserId")]]
-    """The external user ID that will be mapped to a participant in our system."""
+    """Your external user ID that will be mapped to a participant in our system."""
 
     messages: Required[Iterable[MessageItemParam]]
-    """An array of conversation messages."""
+    """Array of conversation messages."""
 
     conversation_id: Annotated[str, PropertyInfo(alias="conversationId")]
-    """The conversation ID.
+    """The Greenflash conversation ID.
 
-    When provided, this will update an existing conversation instead of creating a
-    new one. Either conversationId, externalConversationId, productId, or projectId
-    must be provided.
+    When provided, updates an existing conversation instead of creating a new one.
+    Either conversationId, externalConversationId, productId, or projectId must be
+    provided.
     """
 
     external_conversation_id: Annotated[str, PropertyInfo(alias="externalConversationId")]
-    """Your own external identifier for the conversation.
+    """Your external identifier for the conversation.
 
     Either conversationId, externalConversationId, productId, or projectId must be
     provided.
     """
 
     metadata: Dict[str, object]
-    """Additional metadata for the conversation."""
+    """Additional data about the conversation."""
 
     model: str
     """The AI model used for the conversation."""
 
     product_id: Annotated[str, PropertyInfo(alias="productId")]
-    """The ID of the product this conversation belongs to.
+    """The Greenflash product this conversation belongs to.
 
     Either conversationId, externalConversationId, productId, or projectId must be
     provided.
     """
 
     project_id: Annotated[str, PropertyInfo(alias="projectId")]
-    """The ID of the project this conversation belongs to.
+    """The Greenflash project this conversation belongs to.
 
     Either conversationId, externalConversationId, productId, or projectId must be
     provided.
@@ -61,4 +61,4 @@ class MessageCreateParams(TypedDict, total=False):
     """
 
     version_id: Annotated[str, PropertyInfo(alias="versionId")]
-    """The ID of the product version."""
+    """The product version ID."""

@@ -66,57 +66,55 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CreateResponse:
         """
-        The `/messages` endpoint allows you to log messages between your users and your
-        products, supporting both simple chat scenarios and complex agentic workflows.
+        Record conversations between your users and AI, supporting both simple chat and
+        complex agentic workflows.
 
-        **Simple Chat:** Use the `role` field with values like "user", "assistant", or
-        "system" for basic conversational AI.
+        **Simple Chat:** Use `role` with values like "user", "assistant", or "system"
+        for basic conversations.
 
-        **Agentic Workflows:** Use the `messageType` field for complex scenarios
-        including tool calls, thoughts, observations, retrievals, and more.
+        **Agentic Workflows:** Use `messageType` for complex scenarios including tool
+        calls, thoughts, observations, and more.
 
-        **Message Ordering:** Messages in the array will be stored with sequential
-        timestamps to preserve order. You can optionally provide explicit `createdAt`
-        timestamps for historical data import.
+        **Message Ordering:** Messages are stored with sequential timestamps. You can
+        provide explicit `createdAt` timestamps for historical data.
 
-        **Message Threading:** Messages can reference parent messages using either
-        `parentMessageId` (internal ID) or `parentExternalMessageId` (your external ID)
-        to create threaded conversations.
+        **Message Threading:** Reference parent messages using `parentMessageId`
+        (internal ID) or `parentExternalMessageId` (your external ID) to create threaded
+        conversations.
 
-        The simplest way to log a message is to pass the `role` and `content` of the
-        message to the API along with an `externalConversationId` for the conversation
-        and your `productId`.
+        The simplest way to log a message is to provide the `role` and `content` along
+        with an `externalConversationId` and your `productId`.
 
-        For agentic workflows, you can include structured data via `input`/`output`
-        fields, tool names for `tool_call` messages, and various message types to
-        represent the full execution trace.
+        For agentic workflows, include structured data via `input`/`output` fields, tool
+        names for `tool_call` messages, and various message types to represent the full
+        execution trace.
 
         Args:
-          external_user_id: The external user ID that will be mapped to a participant in our system.
+          external_user_id: Your external user ID that will be mapped to a participant in our system.
 
-          messages: An array of conversation messages.
+          messages: Array of conversation messages.
 
-          conversation_id: The conversation ID. When provided, this will update an existing conversation
+          conversation_id: The Greenflash conversation ID. When provided, updates an existing conversation
               instead of creating a new one. Either conversationId, externalConversationId,
               productId, or projectId must be provided.
 
-          external_conversation_id: Your own external identifier for the conversation. Either conversationId,
+          external_conversation_id: Your external identifier for the conversation. Either conversationId,
               externalConversationId, productId, or projectId must be provided.
 
-          metadata: Additional metadata for the conversation.
+          metadata: Additional data about the conversation.
 
           model: The AI model used for the conversation.
 
-          product_id: The ID of the product this conversation belongs to. Either conversationId,
+          product_id: The Greenflash product this conversation belongs to. Either conversationId,
               externalConversationId, productId, or projectId must be provided.
 
-          project_id: The ID of the project this conversation belongs to. Either conversationId,
+          project_id: The Greenflash project this conversation belongs to. Either conversationId,
               externalConversationId, productId, or projectId must be provided.
 
           system_prompt: System prompt for the conversation. Can be a simple string or a template object
               with components.
 
-          version_id: The ID of the product version.
+          version_id: The product version ID.
 
           extra_headers: Send extra headers
 
@@ -191,57 +189,55 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CreateResponse:
         """
-        The `/messages` endpoint allows you to log messages between your users and your
-        products, supporting both simple chat scenarios and complex agentic workflows.
+        Record conversations between your users and AI, supporting both simple chat and
+        complex agentic workflows.
 
-        **Simple Chat:** Use the `role` field with values like "user", "assistant", or
-        "system" for basic conversational AI.
+        **Simple Chat:** Use `role` with values like "user", "assistant", or "system"
+        for basic conversations.
 
-        **Agentic Workflows:** Use the `messageType` field for complex scenarios
-        including tool calls, thoughts, observations, retrievals, and more.
+        **Agentic Workflows:** Use `messageType` for complex scenarios including tool
+        calls, thoughts, observations, and more.
 
-        **Message Ordering:** Messages in the array will be stored with sequential
-        timestamps to preserve order. You can optionally provide explicit `createdAt`
-        timestamps for historical data import.
+        **Message Ordering:** Messages are stored with sequential timestamps. You can
+        provide explicit `createdAt` timestamps for historical data.
 
-        **Message Threading:** Messages can reference parent messages using either
-        `parentMessageId` (internal ID) or `parentExternalMessageId` (your external ID)
-        to create threaded conversations.
+        **Message Threading:** Reference parent messages using `parentMessageId`
+        (internal ID) or `parentExternalMessageId` (your external ID) to create threaded
+        conversations.
 
-        The simplest way to log a message is to pass the `role` and `content` of the
-        message to the API along with an `externalConversationId` for the conversation
-        and your `productId`.
+        The simplest way to log a message is to provide the `role` and `content` along
+        with an `externalConversationId` and your `productId`.
 
-        For agentic workflows, you can include structured data via `input`/`output`
-        fields, tool names for `tool_call` messages, and various message types to
-        represent the full execution trace.
+        For agentic workflows, include structured data via `input`/`output` fields, tool
+        names for `tool_call` messages, and various message types to represent the full
+        execution trace.
 
         Args:
-          external_user_id: The external user ID that will be mapped to a participant in our system.
+          external_user_id: Your external user ID that will be mapped to a participant in our system.
 
-          messages: An array of conversation messages.
+          messages: Array of conversation messages.
 
-          conversation_id: The conversation ID. When provided, this will update an existing conversation
+          conversation_id: The Greenflash conversation ID. When provided, updates an existing conversation
               instead of creating a new one. Either conversationId, externalConversationId,
               productId, or projectId must be provided.
 
-          external_conversation_id: Your own external identifier for the conversation. Either conversationId,
+          external_conversation_id: Your external identifier for the conversation. Either conversationId,
               externalConversationId, productId, or projectId must be provided.
 
-          metadata: Additional metadata for the conversation.
+          metadata: Additional data about the conversation.
 
           model: The AI model used for the conversation.
 
-          product_id: The ID of the product this conversation belongs to. Either conversationId,
+          product_id: The Greenflash product this conversation belongs to. Either conversationId,
               externalConversationId, productId, or projectId must be provided.
 
-          project_id: The ID of the project this conversation belongs to. Either conversationId,
+          project_id: The Greenflash project this conversation belongs to. Either conversationId,
               externalConversationId, productId, or projectId must be provided.
 
           system_prompt: System prompt for the conversation. Can be a simple string or a template object
               with components.
 
-          version_id: The ID of the product version.
+          version_id: The product version ID.
 
           extra_headers: Send extra headers
 

@@ -11,7 +11,7 @@ __all__ = ["CreateResponse", "Message"]
 
 class Message(BaseModel):
     message_id: str = FieldInfo(alias="messageId")
-    """The internal ID of the message."""
+    """The internal Greenflash message ID."""
 
     message_type: str = FieldInfo(alias="messageType")
     """The type of the message that was created."""
@@ -28,7 +28,7 @@ class CreateResponse(BaseModel):
     """The messages that were processed."""
 
     success: bool
-    """Indicates whether the API call was successful."""
+    """Whether the API call was successful."""
 
     system_prompt_component_ids: List[str] = FieldInfo(alias="systemPromptComponentIds")
     """The component IDs used internally to track the system prompt components."""

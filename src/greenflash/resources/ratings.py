@@ -61,13 +61,12 @@ class RatingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LogRatingResponse:
         """
-        The `/ratings` endpoint allows you to record user ratings for conversations or
-        individual messages. This is useful for collecting feedback about the quality of
-        responses or overall conversation experiences.
+        Record user feedback and ratings for conversations or individual messages.
 
-        You can rate either a specific message (using `messageId` or
-        `externalMessageId`) or an entire conversation (using either `conversationId` or
-        `externalConversationId`).
+        Use this endpoint to collect feedback about response quality or overall
+        conversation experiences. You can rate either a specific message (using
+        `messageId` or `externalMessageId`) or an entire conversation (using
+        `conversationId` or `externalConversationId`).
 
         Args:
           rating: The rating value. Must be between ratingMin and ratingMax (inclusive).
@@ -76,22 +75,21 @@ class RatingsResource(SyncAPIResource):
 
           rating_min: The minimum possible rating value (e.g., 1 for a 1-5 scale).
 
-          conversation_id: The internal ID of the conversation to rate. Either conversationId,
+          conversation_id: The Greenflash conversation ID to rate. Either conversationId,
               externalConversationId, messageId, or externalMessageId must be provided.
 
-          external_conversation_id: Your external identifier for the conversation to rate. Either conversationId,
+          external_conversation_id: Your external conversation identifier to rate. Either conversationId,
               externalConversationId, messageId, or externalMessageId must be provided.
 
-          external_message_id: Your external identifier for a specific message to rate. Either conversationId,
+          external_message_id: Your external message identifier to rate. Either conversationId,
               externalConversationId, messageId, or externalMessageId must be provided.
 
           feedback: Optional text feedback accompanying the rating.
 
-          message_id: The internal ID of a specific message to rate. Either conversationId,
+          message_id: The Greenflash message ID to rate. Either conversationId,
               externalConversationId, messageId, or externalMessageId must be provided.
 
-          rated_at: The timestamp when the rating was given. If not provided, the current time will
-              be used.
+          rated_at: When the rating was given. Defaults to current time if not provided.
 
           extra_headers: Send extra headers
 
@@ -164,13 +162,12 @@ class AsyncRatingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LogRatingResponse:
         """
-        The `/ratings` endpoint allows you to record user ratings for conversations or
-        individual messages. This is useful for collecting feedback about the quality of
-        responses or overall conversation experiences.
+        Record user feedback and ratings for conversations or individual messages.
 
-        You can rate either a specific message (using `messageId` or
-        `externalMessageId`) or an entire conversation (using either `conversationId` or
-        `externalConversationId`).
+        Use this endpoint to collect feedback about response quality or overall
+        conversation experiences. You can rate either a specific message (using
+        `messageId` or `externalMessageId`) or an entire conversation (using
+        `conversationId` or `externalConversationId`).
 
         Args:
           rating: The rating value. Must be between ratingMin and ratingMax (inclusive).
@@ -179,22 +176,21 @@ class AsyncRatingsResource(AsyncAPIResource):
 
           rating_min: The minimum possible rating value (e.g., 1 for a 1-5 scale).
 
-          conversation_id: The internal ID of the conversation to rate. Either conversationId,
+          conversation_id: The Greenflash conversation ID to rate. Either conversationId,
               externalConversationId, messageId, or externalMessageId must be provided.
 
-          external_conversation_id: Your external identifier for the conversation to rate. Either conversationId,
+          external_conversation_id: Your external conversation identifier to rate. Either conversationId,
               externalConversationId, messageId, or externalMessageId must be provided.
 
-          external_message_id: Your external identifier for a specific message to rate. Either conversationId,
+          external_message_id: Your external message identifier to rate. Either conversationId,
               externalConversationId, messageId, or externalMessageId must be provided.
 
           feedback: Optional text feedback accompanying the rating.
 
-          message_id: The internal ID of a specific message to rate. Either conversationId,
+          message_id: The Greenflash message ID to rate. Either conversationId,
               externalConversationId, messageId, or externalMessageId must be provided.
 
-          rated_at: The timestamp when the rating was given. If not provided, the current time will
-              be used.
+          rated_at: When the rating was given. Defaults to current time if not provided.
 
           extra_headers: Send extra headers
 
