@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.17 (2025-07-31)
+
+Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
+
+### Features
+
+* **client:** support file upload requests ([085ba90](https://github.com/greenflash-ai/python/commit/085ba90d92cf23b25d6e083afc1af1343d7e3565))
+
 ## 0.1.0-alpha.16 (2025-07-30)
 
 Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
