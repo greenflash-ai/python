@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.18 (2025-08-06)
+
+Full Changelog: [v0.1.0-alpha.17...v0.1.0-alpha.18](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.17...v0.1.0-alpha.18)
+
+### Chores
+
+* **internal:** fix ruff target version ([afac1f2](https://github.com/greenflash-ai/python/commit/afac1f2690faf9cb11bf470c3c0bd52ecc739486))
+
 ## 0.1.0-alpha.17 (2025-07-31)
 
 Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
