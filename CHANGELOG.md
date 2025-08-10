@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.19 (2025-08-10)
+
+Full Changelog: [v0.1.0-alpha.18...v0.1.0-alpha.19](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.18...v0.1.0-alpha.19)
+
+### Chores
+
+* **internal:** update comment in script ([057d62c](https://github.com/greenflash-ai/python/commit/057d62c099f5116d51c7a1d1de4101da66702864))
+* update @stainless-api/prism-cli to v5.15.0 ([743f2a2](https://github.com/greenflash-ai/python/commit/743f2a2aa59d351b9dcac900604b9e849895d8b5))
+
 ## 0.1.0-alpha.18 (2025-08-06)
 
 Full Changelog: [v0.1.0-alpha.17...v0.1.0-alpha.18](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.17...v0.1.0-alpha.18)
