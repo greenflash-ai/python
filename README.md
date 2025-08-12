@@ -28,17 +28,23 @@ The full API of this library can be found in [api.md](api.md).
 import os
 from greenflash import Greenflash
 
-client = Greenflash(
-    api_key=os.environ.get("GREENFLASH_API_KEY"),  # This is the default and can be omitted
-)
+client = Greenflash(api_key=os.environ.get("GREENFLASH_API_KEY"))
 
 create_response = client.messages.create(
-    external_user_id="externalUserId",
-    messages=[{}],
-    external_conversation_id="externalConversationId",
     product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+    external_user_id="externalUserId",
+    external_conversation_id="externalConversationId",
+    messages= messages: [
+        {
+            'role': 'user',
+            'content': 'Hello, how can you help me today?'
+        },
+        {
+            'role': 'assistant',
+            'content': 'I can answer any questions you have!'
+        }
+    ]    
 )
-print(create_response.conversation_id)
 ```
 
 While you can provide an `api_key` keyword argument,
