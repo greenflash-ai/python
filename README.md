@@ -34,7 +34,7 @@ create_response = client.messages.create(
     product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
     external_user_id="externalUserId",
     external_conversation_id="externalConversationId",
-    messages= messages: [
+    messages= [
         {
             'role': 'user',
             'content': 'Hello, how can you help me today?'
