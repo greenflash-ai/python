@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0-alpha.20 (2025-08-26)
+
+Full Changelog: [v0.1.0-alpha.19...v0.1.0-alpha.20](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.19...v0.1.0-alpha.20)
+
+### Chores
+
+* **internal:** change ci workflow machines ([2be4f09](https://github.com/greenflash-ai/python/commit/2be4f09577140eb0f2b9a4e27e7e0ff3d08d6021))
+* update github action ([ad2e871](https://github.com/greenflash-ai/python/commit/ad2e871bbe5feaf7946f5abcb05ab4b5be440d1e))
+* update SDK preview from latest OpenAPI spec ([835b699](https://github.com/greenflash-ai/python/commit/835b699c2d5d33a33096661fd8dc9b964ea0a071))
+
 ## 0.1.0-alpha.19 (2025-08-10)
 
 Full Changelog: [v0.1.0-alpha.18...v0.1.0-alpha.19](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.18...v0.1.0-alpha.19)
