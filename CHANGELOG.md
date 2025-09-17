@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.1.0-alpha.21 (2025-09-17)
+
+Full Changelog: [v0.1.0-alpha.20...v0.1.0-alpha.21](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.20...v0.1.0-alpha.21)
+
+### Features
+
+* improve future compat with pydantic v3 ([3504aaa](https://github.com/greenflash-ai/python/commit/3504aaa75afaf69ae289441c0cef68bd66bdb3f0))
+* **types:** replace List[str] with SequenceNotStr in params ([71c3998](https://github.com/greenflash-ai/python/commit/71c39986cdf27592e30f91256392dba01200abda))
+
+
+### Bug Fixes
+
+* avoid newer type syntax ([8d58bca](https://github.com/greenflash-ai/python/commit/8d58bca83fb69fae469c62a123046263a73c9e97))
+
+
+### Chores
+
+* **internal:** add Sequence related utils ([72cc80d](https://github.com/greenflash-ai/python/commit/72cc80d65296b9668aaf99f1a97f659fe407aae5))
+* **internal:** move mypy configurations to `pyproject.toml` file ([a185c72](https://github.com/greenflash-ai/python/commit/a185c720b4cb869851132d0d08c0b32268071f71))
+* **internal:** update pydantic dependency ([8f88e90](https://github.com/greenflash-ai/python/commit/8f88e90e7e6b782724da028756895ead3b45d1c9))
+* **internal:** update pyright exclude list ([6813265](https://github.com/greenflash-ai/python/commit/6813265f97b18903115d09e6e8524a284212985f))
+* **tests:** simplify `get_platform` test ([07ab091](https://github.com/greenflash-ai/python/commit/07ab091aff213eabb7ae6e0ae5095f3dad147ae4))
+
 ## 0.1.0-alpha.20 (2025-08-26)
 
 Full Changelog: [v0.1.0-alpha.19...v0.1.0-alpha.20](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.19...v0.1.0-alpha.20)
