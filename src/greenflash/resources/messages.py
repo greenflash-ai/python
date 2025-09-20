@@ -7,7 +7,7 @@ from typing import Dict, Iterable
 import httpx
 
 from ..types import message_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -50,20 +50,20 @@ class MessagesResource(SyncAPIResource):
         *,
         external_user_id: str,
         messages: Iterable[MessageItemParam],
-        conversation_id: str | NotGiven = NOT_GIVEN,
-        external_conversation_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
-        model: str | NotGiven = NOT_GIVEN,
-        product_id: str | NotGiven = NOT_GIVEN,
-        project_id: str | NotGiven = NOT_GIVEN,
-        system_prompt: SystemPromptParam | NotGiven = NOT_GIVEN,
-        version_id: str | NotGiven = NOT_GIVEN,
+        conversation_id: str | Omit = omit,
+        external_conversation_id: str | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
+        model: str | Omit = omit,
+        product_id: str | Omit = omit,
+        project_id: str | Omit = omit,
+        system_prompt: SystemPromptParam | Omit = omit,
+        version_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateResponse:
         """
         Record conversations between your users and AI, supporting both simple chat and
@@ -173,20 +173,20 @@ class AsyncMessagesResource(AsyncAPIResource):
         *,
         external_user_id: str,
         messages: Iterable[MessageItemParam],
-        conversation_id: str | NotGiven = NOT_GIVEN,
-        external_conversation_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
-        model: str | NotGiven = NOT_GIVEN,
-        product_id: str | NotGiven = NOT_GIVEN,
-        project_id: str | NotGiven = NOT_GIVEN,
-        system_prompt: SystemPromptParam | NotGiven = NOT_GIVEN,
-        version_id: str | NotGiven = NOT_GIVEN,
+        conversation_id: str | Omit = omit,
+        external_conversation_id: str | Omit = omit,
+        metadata: Dict[str, object] | Omit = omit,
+        model: str | Omit = omit,
+        product_id: str | Omit = omit,
+        project_id: str | Omit = omit,
+        system_prompt: SystemPromptParam | Omit = omit,
+        version_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateResponse:
         """
         Record conversations between your users and AI, supporting both simple chat and

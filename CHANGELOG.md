@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.22 (2025-09-20)
+
+Full Changelog: [v0.1.0-alpha.21...v0.1.0-alpha.22](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.21...v0.1.0-alpha.22)
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([3daae6d](https://github.com/greenflash-ai/python/commit/3daae6d028f4efcc15379680ebed11facc4f0407))
+* **types:** change optional parameter type from NotGiven to Omit ([5d3209e](https://github.com/greenflash-ai/python/commit/5d3209e6646e3c4b8166e9fc9e436559b7eb1d4f))
+
 ## 0.1.0-alpha.21 (2025-09-17)
 
 Full Changelog: [v0.1.0-alpha.20...v0.1.0-alpha.21](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.20...v0.1.0-alpha.21)
