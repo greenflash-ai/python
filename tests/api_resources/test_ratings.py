@@ -20,6 +20,7 @@ class TestRatings:
     @parametrize
     def test_method_log(self, client: Greenflash) -> None:
         rating = client.ratings.log(
+            product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             rating=4,
             rating_max=5,
             rating_min=1,
@@ -29,6 +30,7 @@ class TestRatings:
     @parametrize
     def test_method_log_with_all_params(self, client: Greenflash) -> None:
         rating = client.ratings.log(
+            product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             rating=4,
             rating_max=5,
             rating_min=1,
@@ -44,6 +46,7 @@ class TestRatings:
     @parametrize
     def test_raw_response_log(self, client: Greenflash) -> None:
         response = client.ratings.with_raw_response.log(
+            product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             rating=4,
             rating_max=5,
             rating_min=1,
@@ -57,6 +60,7 @@ class TestRatings:
     @parametrize
     def test_streaming_response_log(self, client: Greenflash) -> None:
         with client.ratings.with_streaming_response.log(
+            product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             rating=4,
             rating_max=5,
             rating_min=1,
@@ -78,6 +82,7 @@ class TestAsyncRatings:
     @parametrize
     async def test_method_log(self, async_client: AsyncGreenflash) -> None:
         rating = await async_client.ratings.log(
+            product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             rating=4,
             rating_max=5,
             rating_min=1,
@@ -87,6 +92,7 @@ class TestAsyncRatings:
     @parametrize
     async def test_method_log_with_all_params(self, async_client: AsyncGreenflash) -> None:
         rating = await async_client.ratings.log(
+            product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             rating=4,
             rating_max=5,
             rating_min=1,
@@ -102,6 +108,7 @@ class TestAsyncRatings:
     @parametrize
     async def test_raw_response_log(self, async_client: AsyncGreenflash) -> None:
         response = await async_client.ratings.with_raw_response.log(
+            product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             rating=4,
             rating_max=5,
             rating_min=1,
@@ -115,6 +122,7 @@ class TestAsyncRatings:
     @parametrize
     async def test_streaming_response_log(self, async_client: AsyncGreenflash) -> None:
         async with async_client.ratings.with_streaming_response.log(
+            product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             rating=4,
             rating_max=5,
             rating_min=1,

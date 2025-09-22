@@ -6,7 +6,6 @@ from typing import Dict, Optional
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .system_prompt_param import SystemPromptParam
 
 __all__ = ["MessageItemParam"]
 
@@ -68,9 +67,6 @@ class MessageItemParam(TypedDict, total=False):
     metadata: Dict[str, object]
     """Additional data about the message."""
 
-    model_override: Annotated[str, PropertyInfo(alias="modelOverride")]
-    """Override the conversation-level model for this specific message."""
-
     output: Dict[str, object]
     """Structured output data from tool calls, retrievals, or other operations."""
 
@@ -90,12 +86,6 @@ class MessageItemParam(TypedDict, total=False):
     """Simple message role for basic chat: user, assistant, or system.
 
     Cannot be used with messageType.
-    """
-
-    system_prompt_override: Annotated[SystemPromptParam, PropertyInfo(alias="systemPromptOverride")]
-    """System prompt for the conversation.
-
-    Can be a simple string or a template object with components.
     """
 
     tool_name: Annotated[str, PropertyInfo(alias="toolName")]
