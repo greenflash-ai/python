@@ -88,7 +88,7 @@ class Greenflash(SyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("GREENFLASH_BASE_URL")
         if base_url is None:
-            base_url = f"https://greenflash.ai/api/v1"
+            base_url = f"https://www.greenflash.ai/api/v1"
 
         super().__init__(
             version=__version__,
@@ -271,7 +271,7 @@ class AsyncGreenflash(AsyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("GREENFLASH_BASE_URL")
         if base_url is None:
-            base_url = f"https://greenflash.ai/api/v1"
+            base_url = f"https://www.greenflash.ai/api/v1"
 
         super().__init__(
             version=__version__,

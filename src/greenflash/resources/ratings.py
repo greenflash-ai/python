@@ -44,6 +44,7 @@ class RatingsResource(SyncAPIResource):
     def log(
         self,
         *,
+        product_id: str,
         rating: float,
         rating_max: float,
         rating_min: float,
@@ -69,6 +70,8 @@ class RatingsResource(SyncAPIResource):
         `conversationId` or `externalConversationId`).
 
         Args:
+          product_id: The Greenflash product ID to rate.
+
           rating: The rating value. Must be between ratingMin and ratingMax (inclusive).
 
           rating_max: The maximum possible rating value (e.g., 5 for a 1-5 scale).
@@ -103,6 +106,7 @@ class RatingsResource(SyncAPIResource):
             "/ratings",
             body=maybe_transform(
                 {
+                    "product_id": product_id,
                     "rating": rating,
                     "rating_max": rating_max,
                     "rating_min": rating_min,
@@ -145,6 +149,7 @@ class AsyncRatingsResource(AsyncAPIResource):
     async def log(
         self,
         *,
+        product_id: str,
         rating: float,
         rating_max: float,
         rating_min: float,
@@ -170,6 +175,8 @@ class AsyncRatingsResource(AsyncAPIResource):
         `conversationId` or `externalConversationId`).
 
         Args:
+          product_id: The Greenflash product ID to rate.
+
           rating: The rating value. Must be between ratingMin and ratingMax (inclusive).
 
           rating_max: The maximum possible rating value (e.g., 5 for a 1-5 scale).
@@ -204,6 +211,7 @@ class AsyncRatingsResource(AsyncAPIResource):
             "/ratings",
             body=await async_maybe_transform(
                 {
+                    "product_id": product_id,
                     "rating": rating,
                     "rating_max": rating_max,
                     "rating_min": rating_min,

@@ -10,6 +10,9 @@ __all__ = ["RatingLogParams"]
 
 
 class RatingLogParams(TypedDict, total=False):
+    product_id: Required[Annotated[str, PropertyInfo(alias="productId")]]
+    """The Greenflash product ID to rate."""
+
     rating: Required[float]
     """The rating value. Must be between ratingMin and ratingMax (inclusive)."""
 
