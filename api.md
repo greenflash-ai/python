@@ -53,3 +53,7 @@ Types:
 ```python
 from greenflash.types import UpdateOrganizationParams, UpdateOrganizationResponse
 ```
+
+Methods:
+
+- <code title="post /organizations">client.organizations.<a href="./src/greenflash/resources/organizations.py">update</a>(\*\*<a href="src/greenflash/types/organization_update_params.py">params</a>) -> <a href="./src/greenflash/types/update_organization_response.py">UpdateOrganizationResponse</a></code>
