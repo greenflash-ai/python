@@ -45,3 +45,11 @@ from greenflash.types import LogConversionParams, LogConversionResponse
 Methods:
 
 - <code title="post /conversions">client.conversions.<a href="./src/greenflash/resources/conversions.py">log</a>(\*\*<a href="src/greenflash/types/conversion_log_params.py">params</a>) -> <a href="./src/greenflash/types/log_conversion_response.py">LogConversionResponse</a></code>
+
+# Organizations
+
+Types:
+
+```python
+from greenflash.types import UpdateOrganizationParams, UpdateOrganizationResponse
+```
