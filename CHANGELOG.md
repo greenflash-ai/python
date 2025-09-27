@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0-alpha.24 (2025-09-27)
+
+Full Changelog: [v0.1.0-alpha.23...v0.1.0-alpha.24](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.23...v0.1.0-alpha.24)
+
+### Features
+
+* **api:** add organization endpoint ([2af098e](https://github.com/greenflash-ai/python/commit/2af098e976a5f23634491745c351e158da196b3f))
+* **api:** add organizations and examples to config ([5cc1517](https://github.com/greenflash-ai/python/commit/5cc15177f0a7dfa7ddfbe7901edfb7f54fe72efc))
+* **api:** organization to organizations ([74a91af](https://github.com/greenflash-ai/python/commit/74a91af2f510a7ce9f5dce7252954d537af27d07))
+
 ## 0.1.0-alpha.23 (2025-09-22)
 
 Full Changelog: [v0.1.0-alpha.22...v0.1.0-alpha.23](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.22...v0.1.0-alpha.23)
