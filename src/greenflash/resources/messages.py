@@ -52,6 +52,7 @@ class MessagesResource(SyncAPIResource):
         messages: Iterable[MessageItemParam],
         conversation_id: str | Omit = omit,
         external_conversation_id: str | Omit = omit,
+        external_organization_id: str | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
         model: str | Omit = omit,
         product_id: str | Omit = omit,
@@ -82,6 +83,10 @@ class MessagesResource(SyncAPIResource):
         (internal ID) or `parentExternalMessageId` (your external ID) to create threaded
         conversations.
 
+        **User Organization:** Optionally provide an `externalOrganizationId` to
+        associate the user with an organization. If the organization doesn't exist, it
+        will be created automatically.
+
         The simplest way to log a message is to provide the `role` and `content` along
         with an `externalConversationId` and your `productId`.
 
@@ -100,6 +105,9 @@ class MessagesResource(SyncAPIResource):
 
           external_conversation_id: Your external identifier for the conversation. Either conversationId,
               externalConversationId, productId, or projectId must be provided.
+
+          external_organization_id: Your unique identifier for the organization this user belongs to. If provided,
+              the user will be associated with this organization.
 
           metadata: Additional data about the conversation.
 
@@ -132,6 +140,7 @@ class MessagesResource(SyncAPIResource):
                     "messages": messages,
                     "conversation_id": conversation_id,
                     "external_conversation_id": external_conversation_id,
+                    "external_organization_id": external_organization_id,
                     "metadata": metadata,
                     "model": model,
                     "product_id": product_id,
@@ -175,6 +184,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         messages: Iterable[MessageItemParam],
         conversation_id: str | Omit = omit,
         external_conversation_id: str | Omit = omit,
+        external_organization_id: str | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
         model: str | Omit = omit,
         product_id: str | Omit = omit,
@@ -205,6 +215,10 @@ class AsyncMessagesResource(AsyncAPIResource):
         (internal ID) or `parentExternalMessageId` (your external ID) to create threaded
         conversations.
 
+        **User Organization:** Optionally provide an `externalOrganizationId` to
+        associate the user with an organization. If the organization doesn't exist, it
+        will be created automatically.
+
         The simplest way to log a message is to provide the `role` and `content` along
         with an `externalConversationId` and your `productId`.
 
@@ -223,6 +237,9 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           external_conversation_id: Your external identifier for the conversation. Either conversationId,
               externalConversationId, productId, or projectId must be provided.
+
+          external_organization_id: Your unique identifier for the organization this user belongs to. If provided,
+              the user will be associated with this organization.
 
           metadata: Additional data about the conversation.
 
@@ -255,6 +272,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                     "messages": messages,
                     "conversation_id": conversation_id,
                     "external_conversation_id": external_conversation_id,
+                    "external_organization_id": external_organization_id,
                     "metadata": metadata,
                     "model": model,
                     "product_id": product_id,

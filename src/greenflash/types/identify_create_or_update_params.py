@@ -23,6 +23,12 @@ class IdentifyCreateOrUpdateParams(TypedDict, total=False):
     email: str
     """The user's email address."""
 
+    external_organization_id: Annotated[str, PropertyInfo(alias="externalOrganizationId")]
+    """Your unique identifier for the organization this user belongs to.
+
+    If provided, the user will be associated with this organization.
+    """
+
     metadata: Dict[str, object]
     """Additional data about the user (e.g., plan type, preferences)."""
 
