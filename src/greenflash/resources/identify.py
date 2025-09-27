@@ -49,6 +49,7 @@ class IdentifyResource(SyncAPIResource):
         external_user_id: str,
         anonymized: bool | Omit = omit,
         email: str | Omit = omit,
+        external_organization_id: str | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
         name: str | Omit = omit,
         phone: str | Omit = omit,
@@ -67,6 +68,10 @@ class IdentifyResource(SyncAPIResource):
         profile will be updated. If it doesn't exist, a new profile will be created. You
         can then reference this user in other API calls using the same `externalUserId`.
 
+        Optionally provide an `externalOrganizationId` to associate the user with an
+        organization. If the organization doesn't exist, it will be created
+        automatically.
+
         Args:
           external_user_id: Your unique identifier for the user. Use this same ID in other API calls to
               reference this user.
@@ -74,6 +79,9 @@ class IdentifyResource(SyncAPIResource):
           anonymized: Whether to anonymize the user's personal information. Defaults to false.
 
           email: The user's email address.
+
+          external_organization_id: Your unique identifier for the organization this user belongs to. If provided,
+              the user will be associated with this organization.
 
           metadata: Additional data about the user (e.g., plan type, preferences).
 
@@ -96,6 +104,7 @@ class IdentifyResource(SyncAPIResource):
                     "external_user_id": external_user_id,
                     "anonymized": anonymized,
                     "email": email,
+                    "external_organization_id": external_organization_id,
                     "metadata": metadata,
                     "name": name,
                     "phone": phone,
@@ -135,6 +144,7 @@ class AsyncIdentifyResource(AsyncAPIResource):
         external_user_id: str,
         anonymized: bool | Omit = omit,
         email: str | Omit = omit,
+        external_organization_id: str | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
         name: str | Omit = omit,
         phone: str | Omit = omit,
@@ -153,6 +163,10 @@ class AsyncIdentifyResource(AsyncAPIResource):
         profile will be updated. If it doesn't exist, a new profile will be created. You
         can then reference this user in other API calls using the same `externalUserId`.
 
+        Optionally provide an `externalOrganizationId` to associate the user with an
+        organization. If the organization doesn't exist, it will be created
+        automatically.
+
         Args:
           external_user_id: Your unique identifier for the user. Use this same ID in other API calls to
               reference this user.
@@ -160,6 +174,9 @@ class AsyncIdentifyResource(AsyncAPIResource):
           anonymized: Whether to anonymize the user's personal information. Defaults to false.
 
           email: The user's email address.
+
+          external_organization_id: Your unique identifier for the organization this user belongs to. If provided,
+              the user will be associated with this organization.
 
           metadata: Additional data about the user (e.g., plan type, preferences).
 
@@ -182,6 +199,7 @@ class AsyncIdentifyResource(AsyncAPIResource):
                     "external_user_id": external_user_id,
                     "anonymized": anonymized,
                     "email": email,
+                    "external_organization_id": external_organization_id,
                     "metadata": metadata,
                     "name": name,
                     "phone": phone,
