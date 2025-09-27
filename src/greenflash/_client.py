@@ -22,7 +22,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import ratings, identify, messages, conversions
+from .resources import ratings, identify, messages, conversions, organizations
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -48,6 +48,7 @@ class Greenflash(SyncAPIClient):
     identify: identify.IdentifyResource
     ratings: ratings.RatingsResource
     conversions: conversions.ConversionsResource
+    organizations: organizations.OrganizationsResource
     with_raw_response: GreenflashWithRawResponse
     with_streaming_response: GreenflashWithStreamedResponse
 
@@ -105,6 +106,7 @@ class Greenflash(SyncAPIClient):
         self.identify = identify.IdentifyResource(self)
         self.ratings = ratings.RatingsResource(self)
         self.conversions = conversions.ConversionsResource(self)
+        self.organizations = organizations.OrganizationsResource(self)
         self.with_raw_response = GreenflashWithRawResponse(self)
         self.with_streaming_response = GreenflashWithStreamedResponse(self)
 
@@ -231,6 +233,7 @@ class AsyncGreenflash(AsyncAPIClient):
     identify: identify.AsyncIdentifyResource
     ratings: ratings.AsyncRatingsResource
     conversions: conversions.AsyncConversionsResource
+    organizations: organizations.AsyncOrganizationsResource
     with_raw_response: AsyncGreenflashWithRawResponse
     with_streaming_response: AsyncGreenflashWithStreamedResponse
 
@@ -288,6 +291,7 @@ class AsyncGreenflash(AsyncAPIClient):
         self.identify = identify.AsyncIdentifyResource(self)
         self.ratings = ratings.AsyncRatingsResource(self)
         self.conversions = conversions.AsyncConversionsResource(self)
+        self.organizations = organizations.AsyncOrganizationsResource(self)
         self.with_raw_response = AsyncGreenflashWithRawResponse(self)
         self.with_streaming_response = AsyncGreenflashWithStreamedResponse(self)
 
@@ -415,6 +419,7 @@ class GreenflashWithRawResponse:
         self.identify = identify.IdentifyResourceWithRawResponse(client.identify)
         self.ratings = ratings.RatingsResourceWithRawResponse(client.ratings)
         self.conversions = conversions.ConversionsResourceWithRawResponse(client.conversions)
+        self.organizations = organizations.OrganizationsResourceWithRawResponse(client.organizations)
 
 
 class AsyncGreenflashWithRawResponse:
@@ -423,6 +428,7 @@ class AsyncGreenflashWithRawResponse:
         self.identify = identify.AsyncIdentifyResourceWithRawResponse(client.identify)
         self.ratings = ratings.AsyncRatingsResourceWithRawResponse(client.ratings)
         self.conversions = conversions.AsyncConversionsResourceWithRawResponse(client.conversions)
+        self.organizations = organizations.AsyncOrganizationsResourceWithRawResponse(client.organizations)
 
 
 class GreenflashWithStreamedResponse:
@@ -431,6 +437,7 @@ class GreenflashWithStreamedResponse:
         self.identify = identify.IdentifyResourceWithStreamingResponse(client.identify)
         self.ratings = ratings.RatingsResourceWithStreamingResponse(client.ratings)
         self.conversions = conversions.ConversionsResourceWithStreamingResponse(client.conversions)
+        self.organizations = organizations.OrganizationsResourceWithStreamingResponse(client.organizations)
 
 
 class AsyncGreenflashWithStreamedResponse:
@@ -439,6 +446,7 @@ class AsyncGreenflashWithStreamedResponse:
         self.identify = identify.AsyncIdentifyResourceWithStreamingResponse(client.identify)
         self.ratings = ratings.AsyncRatingsResourceWithStreamingResponse(client.ratings)
         self.conversions = conversions.AsyncConversionsResourceWithStreamingResponse(client.conversions)
+        self.organizations = organizations.AsyncOrganizationsResourceWithStreamingResponse(client.organizations)
 
 
 Client = Greenflash

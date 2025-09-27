@@ -12,4 +12,6 @@ from .conversion_log_params import ConversionLogParams as ConversionLogParams
 from .message_create_params import MessageCreateParams as MessageCreateParams
 from .log_conversion_response import LogConversionResponse as LogConversionResponse
 from .create_or_update_response import CreateOrUpdateResponse as CreateOrUpdateResponse
+from .organization_update_params import OrganizationUpdateParams as OrganizationUpdateParams
+from .update_organization_response import UpdateOrganizationResponse as UpdateOrganizationResponse
 from .identify_create_or_update_params import IdentifyCreateOrUpdateParams as IdentifyCreateOrUpdateParams
