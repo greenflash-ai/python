@@ -3,10 +3,10 @@
 from .._models import BaseModel
 from .tenant_organization import TenantOrganization
 
-__all__ = ["UpdateOrganizationResponse"]
+__all__ = ["CreateOrganizationResponse"]
 
 
-class UpdateOrganizationResponse(BaseModel):
+class CreateOrganizationResponse(BaseModel):
     organization: TenantOrganization
     """The organization that was created or updated."""
 

@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Union
+from datetime import date
 from typing_extensions import Literal
 
 import httpx
@@ -52,7 +53,7 @@ class ConversionsResource(SyncAPIResource):
         value: str,
         value_type: Literal["currency", "numeric", "text"],
         conversation_id: str | Omit = omit,
-        converted_at: str | Omit = omit,
+        converted_at: Union[str, date] | Omit = omit,
         external_conversation_id: str | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
         product_id: str | Omit = omit,
@@ -153,7 +154,7 @@ class AsyncConversionsResource(AsyncAPIResource):
         value: str,
         value_type: Literal["currency", "numeric", "text"],
         conversation_id: str | Omit = omit,
-        converted_at: str | Omit = omit,
+        converted_at: Union[str, date] | Omit = omit,
         external_conversation_id: str | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
         product_id: str | Omit = omit,

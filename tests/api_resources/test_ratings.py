@@ -10,6 +10,7 @@ import pytest
 from greenflash import Greenflash, AsyncGreenflash
 from tests.utils import assert_matches_type
 from greenflash.types import LogRatingResponse
+from greenflash._utils import parse_date
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -39,7 +40,7 @@ class TestRatings:
             external_message_id="externalMessageId",
             feedback="Helpful response!",
             message_id="messageId",
-            rated_at="2025-07-09T09:00:00Z",
+            rated_at=parse_date("2019-12-27"),
         )
         assert_matches_type(LogRatingResponse, rating, path=["response"])
 
@@ -101,7 +102,7 @@ class TestAsyncRatings:
             external_message_id="externalMessageId",
             feedback="Helpful response!",
             message_id="messageId",
-            rated_at="2025-07-09T09:00:00Z",
+            rated_at=parse_date("2019-12-27"),
         )
         assert_matches_type(LogRatingResponse, rating, path=["response"])
 

@@ -28,23 +28,17 @@ The full API of this library can be found in [api.md](api.md).
 import os
 from greenflash import Greenflash
 
-client = Greenflash(api_key=os.environ.get("GREENFLASH_API_KEY"))
-
-create_response = client.messages.create(
-    product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-    external_user_id="externalUserId",
-    external_conversation_id="externalConversationId",
-    messages=[
-        {
-            'role': 'user',
-            'content': 'Hello, how can you help me today?'
-        },
-        {
-            'role': 'assistant',
-            'content': 'I can answer any questions you have!'
-        }
-    ]    
+client = Greenflash(
+    api_key=os.environ.get("GREENFLASH_API_KEY"),  # This is the default and can be omitted
 )
+
+create_message_response = client.messages.create(
+    external_user_id="externalUserId",
+    messages=[{}],
+    external_conversation_id="externalConversationId",
+    product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+)
+print(create_message_response.conversation_id)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -67,13 +61,13 @@ client = AsyncGreenflash(
 
 
 async def main() -> None:
-    create_response = await client.messages.create(
+    create_message_response = await client.messages.create(
         external_user_id="externalUserId",
         messages=[{}],
         external_conversation_id="externalConversationId",
         product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
     )
-    print(create_response.conversation_id)
+    print(create_message_response.conversation_id)
 
 
 asyncio.run(main())
@@ -105,13 +99,13 @@ async def main() -> None:
         api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
-        create_response = await client.messages.create(
+        create_message_response = await client.messages.create(
             external_user_id="externalUserId",
             messages=[{}],
             external_conversation_id="externalConversationId",
             product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        print(create_response.conversation_id)
+        print(create_message_response.conversation_id)
 
 
 asyncio.run(main())

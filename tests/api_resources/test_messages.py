@@ -9,7 +9,8 @@ import pytest
 
 from greenflash import Greenflash, AsyncGreenflash
 from tests.utils import assert_matches_type
-from greenflash.types import CreateResponse
+from greenflash.types import CreateMessageResponse
+from greenflash._utils import parse_date
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +24,7 @@ class TestMessages:
             external_user_id="user-123",
             messages=[{}, {}, {}, {}, {}],
         )
-        assert_matches_type(CreateResponse, message, path=["response"])
+        assert_matches_type(CreateMessageResponse, message, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Greenflash) -> None:
@@ -33,7 +34,7 @@ class TestMessages:
                 {
                     "content": "Hello!",
                     "context": "context",
-                    "created_at": "createdAt",
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "user-msg-1",
                     "input": {"foo": "bar"},
                     "message_type": "user_message",
@@ -47,7 +48,7 @@ class TestMessages:
                 {
                     "content": "Hi there! How can I help you?",
                     "context": "context",
-                    "created_at": "createdAt",
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "assistant-msg-1",
                     "input": {"foo": "bar"},
                     "message_type": "user_message",
@@ -61,7 +62,7 @@ class TestMessages:
                 {
                     "content": "Calling search tool",
                     "context": "context",
-                    "created_at": "createdAt",
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "tool-call-1",
                     "input": {"query": "bar"},
                     "message_type": "tool_call",
@@ -75,7 +76,7 @@ class TestMessages:
                 {
                     "content": "Search completed",
                     "context": "context",
-                    "created_at": "createdAt",
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "tool-result-1",
                     "input": {"foo": "bar"},
                     "message_type": "observation",
@@ -89,7 +90,7 @@ class TestMessages:
                 {
                     "content": "Based on the search, today will be sunny with a high of 75°F.",
                     "context": "context",
-                    "created_at": "createdAt",
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "final-1",
                     "input": {"foo": "bar"},
                     "message_type": "final_response",
@@ -128,7 +129,7 @@ class TestMessages:
             },
             version_id="123e4567-e89b-12d3-a456-426614174003",
         )
-        assert_matches_type(CreateResponse, message, path=["response"])
+        assert_matches_type(CreateMessageResponse, message, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Greenflash) -> None:
@@ -140,7 +141,7 @@ class TestMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         message = response.parse()
-        assert_matches_type(CreateResponse, message, path=["response"])
+        assert_matches_type(CreateMessageResponse, message, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Greenflash) -> None:
@@ -152,7 +153,7 @@ class TestMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             message = response.parse()
-            assert_matches_type(CreateResponse, message, path=["response"])
+            assert_matches_type(CreateMessageResponse, message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -168,7 +169,7 @@ class TestAsyncMessages:
             external_user_id="user-123",
             messages=[{}, {}, {}, {}, {}],
         )
-        assert_matches_type(CreateResponse, message, path=["response"])
+        assert_matches_type(CreateMessageResponse, message, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGreenflash) -> None:
@@ -178,7 +179,7 @@ class TestAsyncMessages:
                 {
                     "content": "Hello!",
                     "context": "context",
-                    "created_at": "createdAt",
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "user-msg-1",
                     "input": {"foo": "bar"},
                     "message_type": "user_message",
@@ -192,7 +193,7 @@ class TestAsyncMessages:
                 {
                     "content": "Hi there! How can I help you?",
                     "context": "context",
-                    "created_at": "createdAt",
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "assistant-msg-1",
                     "input": {"foo": "bar"},
                     "message_type": "user_message",
@@ -206,7 +207,7 @@ class TestAsyncMessages:
                 {
                     "content": "Calling search tool",
                     "context": "context",
-                    "created_at": "createdAt",
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "tool-call-1",
                     "input": {"query": "bar"},
                     "message_type": "tool_call",
@@ -220,7 +221,7 @@ class TestAsyncMessages:
                 {
                     "content": "Search completed",
                     "context": "context",
-                    "created_at": "createdAt",
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "tool-result-1",
                     "input": {"foo": "bar"},
                     "message_type": "observation",
@@ -234,7 +235,7 @@ class TestAsyncMessages:
                 {
                     "content": "Based on the search, today will be sunny with a high of 75°F.",
                     "context": "context",
-                    "created_at": "createdAt",
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "final-1",
                     "input": {"foo": "bar"},
                     "message_type": "final_response",
@@ -273,7 +274,7 @@ class TestAsyncMessages:
             },
             version_id="123e4567-e89b-12d3-a456-426614174003",
         )
-        assert_matches_type(CreateResponse, message, path=["response"])
+        assert_matches_type(CreateMessageResponse, message, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGreenflash) -> None:
@@ -285,7 +286,7 @@ class TestAsyncMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         message = await response.parse()
-        assert_matches_type(CreateResponse, message, path=["response"])
+        assert_matches_type(CreateMessageResponse, message, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGreenflash) -> None:
@@ -297,6 +298,6 @@ class TestAsyncMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             message = await response.parse()
-            assert_matches_type(CreateResponse, message, path=["response"])
+            assert_matches_type(CreateMessageResponse, message, path=["response"])
 
         assert cast(Any, response.is_closed) is True

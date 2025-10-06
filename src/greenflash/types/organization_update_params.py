@@ -2,22 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, Annotated, TypedDict
-
-from .._utils import PropertyInfo
+from typing import Dict
+from typing_extensions import TypedDict
 
 __all__ = ["OrganizationUpdateParams"]
 
 
 class OrganizationUpdateParams(TypedDict, total=False):
-    name: Required[str]
-    """The organization's name to update."""
+    metadata: Dict[str, object]
+    """Custom metadata for the organization."""
 
-    external_organization_id: Annotated[str, PropertyInfo(alias="externalOrganizationId")]
-    """Your external organization ID.
-
-    Either organizationId or externalOrganizationId must be provided.
-    """
-
-    organization_id: Annotated[str, PropertyInfo(alias="organizationId")]
-    """The Greenflash organization ID."""
+    name: str
+    """The organization's name."""

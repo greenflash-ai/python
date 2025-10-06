@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Union
+from datetime import date
 from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -53,5 +55,5 @@ class RatingLogParams(TypedDict, total=False):
     must be provided.
     """
 
-    rated_at: Annotated[str, PropertyInfo(alias="ratedAt")]
+    rated_at: Annotated[Union[str, date], PropertyInfo(alias="ratedAt", format="iso8601")]
     """When the rating was given. Defaults to current time if not provided."""
