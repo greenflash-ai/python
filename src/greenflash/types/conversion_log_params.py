@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Union
+from datetime import date
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -26,7 +27,7 @@ class ConversionLogParams(TypedDict, total=False):
     conversation_id: Annotated[str, PropertyInfo(alias="conversationId")]
     """The Greenflash conversation ID that led to this conversion."""
 
-    converted_at: Annotated[str, PropertyInfo(alias="convertedAt")]
+    converted_at: Annotated[Union[str, date], PropertyInfo(alias="convertedAt", format="iso8601")]
     """When the conversion occurred. Defaults to current time if not provided."""
 
     external_conversation_id: Annotated[str, PropertyInfo(alias="externalConversationId")]

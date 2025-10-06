@@ -22,7 +22,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import ratings, identify, messages, conversions, organizations
+from .resources import users, ratings, messages, conversions, organizations
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -45,7 +45,7 @@ __all__ = [
 
 class Greenflash(SyncAPIClient):
     messages: messages.MessagesResource
-    identify: identify.IdentifyResource
+    users: users.UsersResource
     ratings: ratings.RatingsResource
     conversions: conversions.ConversionsResource
     organizations: organizations.OrganizationsResource
@@ -103,7 +103,7 @@ class Greenflash(SyncAPIClient):
         )
 
         self.messages = messages.MessagesResource(self)
-        self.identify = identify.IdentifyResource(self)
+        self.users = users.UsersResource(self)
         self.ratings = ratings.RatingsResource(self)
         self.conversions = conversions.ConversionsResource(self)
         self.organizations = organizations.OrganizationsResource(self)
@@ -230,7 +230,7 @@ class Greenflash(SyncAPIClient):
 
 class AsyncGreenflash(AsyncAPIClient):
     messages: messages.AsyncMessagesResource
-    identify: identify.AsyncIdentifyResource
+    users: users.AsyncUsersResource
     ratings: ratings.AsyncRatingsResource
     conversions: conversions.AsyncConversionsResource
     organizations: organizations.AsyncOrganizationsResource
@@ -288,7 +288,7 @@ class AsyncGreenflash(AsyncAPIClient):
         )
 
         self.messages = messages.AsyncMessagesResource(self)
-        self.identify = identify.AsyncIdentifyResource(self)
+        self.users = users.AsyncUsersResource(self)
         self.ratings = ratings.AsyncRatingsResource(self)
         self.conversions = conversions.AsyncConversionsResource(self)
         self.organizations = organizations.AsyncOrganizationsResource(self)
@@ -416,7 +416,7 @@ class AsyncGreenflash(AsyncAPIClient):
 class GreenflashWithRawResponse:
     def __init__(self, client: Greenflash) -> None:
         self.messages = messages.MessagesResourceWithRawResponse(client.messages)
-        self.identify = identify.IdentifyResourceWithRawResponse(client.identify)
+        self.users = users.UsersResourceWithRawResponse(client.users)
         self.ratings = ratings.RatingsResourceWithRawResponse(client.ratings)
         self.conversions = conversions.ConversionsResourceWithRawResponse(client.conversions)
         self.organizations = organizations.OrganizationsResourceWithRawResponse(client.organizations)
@@ -425,7 +425,7 @@ class GreenflashWithRawResponse:
 class AsyncGreenflashWithRawResponse:
     def __init__(self, client: AsyncGreenflash) -> None:
         self.messages = messages.AsyncMessagesResourceWithRawResponse(client.messages)
-        self.identify = identify.AsyncIdentifyResourceWithRawResponse(client.identify)
+        self.users = users.AsyncUsersResourceWithRawResponse(client.users)
         self.ratings = ratings.AsyncRatingsResourceWithRawResponse(client.ratings)
         self.conversions = conversions.AsyncConversionsResourceWithRawResponse(client.conversions)
         self.organizations = organizations.AsyncOrganizationsResourceWithRawResponse(client.organizations)
@@ -434,7 +434,7 @@ class AsyncGreenflashWithRawResponse:
 class GreenflashWithStreamedResponse:
     def __init__(self, client: Greenflash) -> None:
         self.messages = messages.MessagesResourceWithStreamingResponse(client.messages)
-        self.identify = identify.IdentifyResourceWithStreamingResponse(client.identify)
+        self.users = users.UsersResourceWithStreamingResponse(client.users)
         self.ratings = ratings.RatingsResourceWithStreamingResponse(client.ratings)
         self.conversions = conversions.ConversionsResourceWithStreamingResponse(client.conversions)
         self.organizations = organizations.OrganizationsResourceWithStreamingResponse(client.organizations)
@@ -443,7 +443,7 @@ class GreenflashWithStreamedResponse:
 class AsyncGreenflashWithStreamedResponse:
     def __init__(self, client: AsyncGreenflash) -> None:
         self.messages = messages.AsyncMessagesResourceWithStreamingResponse(client.messages)
-        self.identify = identify.AsyncIdentifyResourceWithStreamingResponse(client.identify)
+        self.users = users.AsyncUsersResourceWithStreamingResponse(client.users)
         self.ratings = ratings.AsyncRatingsResourceWithStreamingResponse(client.ratings)
         self.conversions = conversions.AsyncConversionsResourceWithStreamingResponse(client.conversions)
         self.organizations = organizations.AsyncOrganizationsResourceWithStreamingResponse(client.organizations)

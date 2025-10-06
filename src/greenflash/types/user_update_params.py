@@ -3,22 +3,16 @@
 from __future__ import annotations
 
 from typing import Dict
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["IdentifyCreateOrUpdateParams"]
+__all__ = ["UserUpdateParams"]
 
 
-class IdentifyCreateOrUpdateParams(TypedDict, total=False):
-    external_user_id: Required[Annotated[str, PropertyInfo(alias="externalUserId")]]
-    """Your unique identifier for the user.
-
-    Use this same ID in other API calls to reference this user.
-    """
-
+class UserUpdateParams(TypedDict, total=False):
     anonymized: bool
-    """Whether to anonymize the user's personal information. Defaults to false."""
+    """Whether to anonymize the user's personal information."""
 
     email: str
     """The user's email address."""
