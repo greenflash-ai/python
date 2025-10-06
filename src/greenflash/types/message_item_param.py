@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, Union, Optional
+from datetime import date
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -17,7 +18,7 @@ class MessageItemParam(TypedDict, total=False):
     context: Optional[str]
     """Additional context (e.g., RAG data) used to generate the message."""
 
-    created_at: Annotated[str, PropertyInfo(alias="createdAt")]
+    created_at: Annotated[Union[str, date], PropertyInfo(alias="createdAt", format="iso8601")]
     """When this message was created.
 
     If not provided, messages get sequential timestamps. Use for importing

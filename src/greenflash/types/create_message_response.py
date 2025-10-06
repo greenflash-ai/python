@@ -6,7 +6,7 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["CreateResponse", "Message"]
+__all__ = ["CreateMessageResponse", "Message"]
 
 
 class Message(BaseModel):
@@ -20,7 +20,7 @@ class Message(BaseModel):
     """Your external identifier for the message, if provided."""
 
 
-class CreateResponse(BaseModel):
+class CreateMessageResponse(BaseModel):
     conversation_id: str = FieldInfo(alias="conversationId")
     """The ID of the conversation that was created or updated."""
 

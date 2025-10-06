@@ -18,9 +18,9 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.create_response import CreateResponse
 from ..types.message_item_param import MessageItemParam
 from ..types.system_prompt_param import SystemPromptParam
+from ..types.create_message_response import CreateMessageResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
 
@@ -65,7 +65,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CreateResponse:
+    ) -> CreateMessageResponse:
         """
         Record conversations between your users and AI, supporting both simple chat and
         complex agentic workflows.
@@ -153,7 +153,7 @@ class MessagesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CreateResponse,
+            cast_to=CreateMessageResponse,
         )
 
 
@@ -197,7 +197,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CreateResponse:
+    ) -> CreateMessageResponse:
         """
         Record conversations between your users and AI, supporting both simple chat and
         complex agentic workflows.
@@ -285,7 +285,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CreateResponse,
+            cast_to=CreateMessageResponse,
         )
 
 

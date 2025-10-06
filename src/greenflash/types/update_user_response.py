@@ -3,12 +3,12 @@
 from .._models import BaseModel
 from .participant import Participant
 
-__all__ = ["CreateOrUpdateResponse"]
+__all__ = ["UpdateUserResponse"]
 
 
-class CreateOrUpdateResponse(BaseModel):
+class UpdateUserResponse(BaseModel):
     participant: Participant
-    """The user profile that was created or updated."""
+    """The user profile."""
 
     success: bool
     """Whether the API call was successful."""

@@ -10,6 +10,7 @@ import pytest
 from greenflash import Greenflash, AsyncGreenflash
 from tests.utils import assert_matches_type
 from greenflash.types import LogConversionResponse
+from greenflash._utils import parse_date
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -35,7 +36,7 @@ class TestConversions:
             value="99.99",
             value_type="currency",
             conversation_id="123e4567-e89b-12d3-a456-426614174000",
-            converted_at="2025-07-09T09:15:00Z",
+            converted_at=parse_date("2019-12-27"),
             external_conversation_id="conv-456",
             metadata={"sku": "bar"},
             product_id="123e4567-e89b-12d3-a456-426614174001",
@@ -97,7 +98,7 @@ class TestAsyncConversions:
             value="99.99",
             value_type="currency",
             conversation_id="123e4567-e89b-12d3-a456-426614174000",
-            converted_at="2025-07-09T09:15:00Z",
+            converted_at=parse_date("2019-12-27"),
             external_conversation_id="conv-456",
             metadata={"sku": "bar"},
             product_id="123e4567-e89b-12d3-a456-426614174001",
