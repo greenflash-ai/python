@@ -17,9 +17,6 @@ class Participant(BaseModel):
     anonymized: bool
     """Whether the participant's personal information is anonymized."""
 
-    created_at: date = FieldInfo(alias="createdAt")
-    """When the participant was first created."""
-
     external_id: str = FieldInfo(alias="externalId")
     """Your external user ID (matches the externalUserId from the request)."""
 
@@ -29,8 +26,8 @@ class Participant(BaseModel):
     tenant_id: str = FieldInfo(alias="tenantId")
     """The tenant this participant belongs to."""
 
-    updated_at: date = FieldInfo(alias="updatedAt")
-    """When the participant was last updated."""
+    created_at: Optional[date] = FieldInfo(alias="createdAt", default=None)
+    """When the participant was first created."""
 
     email: Optional[str] = None
     """The participant's email address."""
@@ -40,3 +37,6 @@ class Participant(BaseModel):
 
     phone: Optional[str] = None
     """The participant's phone number."""
+
+    updated_at: Optional[date] = FieldInfo(alias="updatedAt", default=None)
+    """When the participant was last updated."""
