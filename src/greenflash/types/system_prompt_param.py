@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
-from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = ["SystemPromptParam", "SystemPromptTemplate", "SystemPromptTemplateComponent"]
@@ -33,9 +32,6 @@ class SystemPromptTemplateComponent(TypedDict, total=False):
     Defaults to customer.
     """
 
-    tags: SequenceNotStr[str]
-    """Tags to categorize the component."""
-
     type: Literal["system", "endUser", "userModified", "rag", "agent"]
     """Component type: system, endUser, userModified, rag, or agent.
 
@@ -52,9 +48,6 @@ class SystemPromptTemplate(TypedDict, total=False):
 
     external_template_id: Annotated[str, PropertyInfo(alias="externalTemplateId")]
     """Your external identifier for the template."""
-
-    tags: SequenceNotStr[str]
-    """Tags to categorize the template."""
 
     template_id: Annotated[str, PropertyInfo(alias="templateId")]
     """The Greenflash template ID."""
