@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, Optional
-from datetime import date
+from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
@@ -26,7 +26,7 @@ class Participant(BaseModel):
     tenant_id: str = FieldInfo(alias="tenantId")
     """The tenant this participant belongs to."""
 
-    created_at: Optional[date] = FieldInfo(alias="createdAt", default=None)
+    created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
     """When the participant was first created."""
 
     email: Optional[str] = None
@@ -38,5 +38,5 @@ class Participant(BaseModel):
     phone: Optional[str] = None
     """The participant's phone number."""
 
-    updated_at: Optional[date] = FieldInfo(alias="updatedAt", default=None)
+    updated_at: Optional[datetime] = FieldInfo(alias="updatedAt", default=None)
     """When the participant was last updated."""
