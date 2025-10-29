@@ -57,7 +57,6 @@ class ConversionsResource(SyncAPIResource):
         external_conversation_id: str | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
         product_id: str | Omit = omit,
-        project_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -92,8 +91,6 @@ class ConversionsResource(SyncAPIResource):
 
           product_id: The Greenflash product associated with this conversion.
 
-          project_id: The Greenflash project associated with this conversion.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -115,7 +112,6 @@ class ConversionsResource(SyncAPIResource):
                     "external_conversation_id": external_conversation_id,
                     "metadata": metadata,
                     "product_id": product_id,
-                    "project_id": project_id,
                 },
                 conversion_log_params.ConversionLogParams,
             ),
@@ -158,7 +154,6 @@ class AsyncConversionsResource(AsyncAPIResource):
         external_conversation_id: str | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
         product_id: str | Omit = omit,
-        project_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -193,8 +188,6 @@ class AsyncConversionsResource(AsyncAPIResource):
 
           product_id: The Greenflash product associated with this conversion.
 
-          project_id: The Greenflash project associated with this conversion.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -216,7 +209,6 @@ class AsyncConversionsResource(AsyncAPIResource):
                     "external_conversation_id": external_conversation_id,
                     "metadata": metadata,
                     "product_id": product_id,
-                    "project_id": project_id,
                 },
                 conversion_log_params.ConversionLogParams,
             ),

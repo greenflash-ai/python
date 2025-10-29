@@ -8,6 +8,14 @@ from .users import (
     UsersResourceWithStreamingResponse,
     AsyncUsersResourceWithStreamingResponse,
 )
+from .prompts import (
+    PromptsResource,
+    AsyncPromptsResource,
+    PromptsResourceWithRawResponse,
+    AsyncPromptsResourceWithRawResponse,
+    PromptsResourceWithStreamingResponse,
+    AsyncPromptsResourceWithStreamingResponse,
+)
 from .ratings import (
     RatingsResource,
     AsyncRatingsResource,
@@ -72,4 +80,10 @@ __all__ = [
     "AsyncOrganizationsResourceWithRawResponse",
     "OrganizationsResourceWithStreamingResponse",
     "AsyncOrganizationsResourceWithStreamingResponse",
+    "PromptsResource",
+    "AsyncPromptsResource",
+    "PromptsResourceWithRawResponse",
+    "AsyncPromptsResourceWithRawResponse",
+    "PromptsResourceWithStreamingResponse",
+    "AsyncPromptsResourceWithStreamingResponse",
 ]

@@ -2,55 +2,31 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
-from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
+from typing import Iterable
+from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .component_input_param import ComponentInputParam
 
-__all__ = ["SystemPromptParam", "SystemPromptTemplate", "SystemPromptTemplateComponent"]
+__all__ = ["SystemPromptParam"]
 
 
-class SystemPromptTemplateComponent(TypedDict, total=False):
-    content: Required[str]
-    """The content of the component."""
+class SystemPromptParam(TypedDict, total=False):
+    components: Iterable[ComponentInputParam]
+    """Array of component objects.
 
-    component_id: Annotated[str, PropertyInfo(alias="componentId")]
-    """The Greenflash component ID."""
-
-    external_component_id: Annotated[str, PropertyInfo(alias="externalComponentId")]
-    """Your external identifier for the component."""
-
-    is_dynamic: Annotated[bool, PropertyInfo(alias="isDynamic")]
-    """Whether the component content changes dynamically."""
-
-    name: str
-    """Component name."""
-
-    source: Literal["customer", "participant", "greenflash", "agent"]
-    """Component source: customer, participant, greenflash, or agent.
-
-    Defaults to customer.
+    When provided with promptId/externalPromptId, will upsert the prompt. When
+    omitted with promptId/externalPromptId, will reference an existing prompt.
     """
 
-    type: Literal["system", "endUser", "userModified", "rag", "agent"]
-    """Component type: system, endUser, userModified, rag, or agent.
+    external_prompt_id: Annotated[str, PropertyInfo(alias="externalPromptId")]
+    """Your external identifier for the prompt.
 
-    Defaults to system.
+    Can be used to reference an existing prompt created via system prompt APIs.
     """
 
-    version: float
-    """Component version number."""
+    prompt_id: Annotated[str, PropertyInfo(alias="promptId")]
+    """Greenflash's internal prompt ID.
 
-
-class SystemPromptTemplate(TypedDict, total=False):
-    components: Required[Iterable[SystemPromptTemplateComponent]]
-    """Array of component objects."""
-
-    external_template_id: Annotated[str, PropertyInfo(alias="externalTemplateId")]
-    """Your external identifier for the template."""
-
-    template_id: Annotated[str, PropertyInfo(alias="templateId")]
-    """The Greenflash template ID."""
-
-
-SystemPromptParam: TypeAlias = Union[str, SystemPromptTemplate]
+    Can be used to reference an existing prompt created via system prompt APIs.
+    """
