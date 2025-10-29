@@ -2,18 +2,32 @@
 
 from __future__ import annotations
 
+from .prompt import Prompt as Prompt
 from .participant import Participant as Participant
+from .slim_prompt import SlimPrompt as SlimPrompt
+from .prompt_component import PromptComponent as PromptComponent
 from .rating_log_params import RatingLogParams as RatingLogParams
 from .message_item_param import MessageItemParam as MessageItemParam
+from .prompt_list_params import PromptListParams as PromptListParams
 from .user_create_params import UserCreateParams as UserCreateParams
 from .user_update_params import UserUpdateParams as UserUpdateParams
+from .get_prompt_response import GetPromptResponse as GetPromptResponse
 from .log_rating_response import LogRatingResponse as LogRatingResponse
 from .system_prompt_param import SystemPromptParam as SystemPromptParam
 from .tenant_organization import TenantOrganization as TenantOrganization
 from .create_user_response import CreateUserResponse as CreateUserResponse
+from .prompt_create_params import PromptCreateParams as PromptCreateParams
+from .prompt_update_params import PromptUpdateParams as PromptUpdateParams
 from .update_user_response import UpdateUserResponse as UpdateUserResponse
+from .component_input_param import ComponentInputParam as ComponentInputParam
 from .conversion_log_params import ConversionLogParams as ConversionLogParams
+from .list_prompts_response import ListPromptsResponse as ListPromptsResponse
 from .message_create_params import MessageCreateParams as MessageCreateParams
+from .slim_prompt_component import SlimPromptComponent as SlimPromptComponent
+from .component_update_param import ComponentUpdateParam as ComponentUpdateParam
+from .create_prompt_response import CreatePromptResponse as CreatePromptResponse
+from .delete_prompt_response import DeletePromptResponse as DeletePromptResponse
+from .update_prompt_response import UpdatePromptResponse as UpdatePromptResponse
 from .create_message_response import CreateMessageResponse as CreateMessageResponse
 from .log_conversion_response import LogConversionResponse as LogConversionResponse
 from .organization_create_params import OrganizationCreateParams as OrganizationCreateParams

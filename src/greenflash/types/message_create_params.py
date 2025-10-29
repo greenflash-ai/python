@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
-from typing_extensions import Required, Annotated, TypedDict
+from typing import Dict, Union, Iterable
+from typing_extensions import Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
 from .message_item_param import MessageItemParam
 from .system_prompt_param import SystemPromptParam
 
-__all__ = ["MessageCreateParams"]
+__all__ = ["MessageCreateParams", "SystemPrompt"]
 
 
 class MessageCreateParams(TypedDict, total=False):
@@ -23,15 +23,13 @@ class MessageCreateParams(TypedDict, total=False):
     """The Greenflash conversation ID.
 
     When provided, updates an existing conversation instead of creating a new one.
-    Either conversationId, externalConversationId, productId, or projectId must be
-    provided.
+    Either conversationId, externalConversationId, productId must be provided.
     """
 
     external_conversation_id: Annotated[str, PropertyInfo(alias="externalConversationId")]
     """Your external identifier for the conversation.
 
-    Either conversationId, externalConversationId, productId, or projectId must be
-    provided.
+    Either conversationId, externalConversationId, productId must be provided.
     """
 
     external_organization_id: Annotated[str, PropertyInfo(alias="externalOrganizationId")]
@@ -49,22 +47,14 @@ class MessageCreateParams(TypedDict, total=False):
     product_id: Annotated[str, PropertyInfo(alias="productId")]
     """The Greenflash product this conversation belongs to.
 
-    Either conversationId, externalConversationId, productId, or projectId must be
-    provided.
+    Either conversationId, externalConversationId, productId must be provided.
     """
 
-    project_id: Annotated[str, PropertyInfo(alias="projectId")]
-    """The Greenflash project this conversation belongs to.
-
-    Either conversationId, externalConversationId, productId, or projectId must be
-    provided.
-    """
-
-    system_prompt: Annotated[SystemPromptParam, PropertyInfo(alias="systemPrompt")]
+    system_prompt: Annotated[SystemPrompt, PropertyInfo(alias="systemPrompt")]
     """System prompt for the conversation.
 
-    Can be a simple string or a template object with components.
+    Can be a simple string or a prompt object with components.
     """
 
-    version_id: Annotated[str, PropertyInfo(alias="versionId")]
-    """The product version ID."""
+
+SystemPrompt: TypeAlias = Union[str, SystemPromptParam]

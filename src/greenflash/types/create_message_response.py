@@ -33,5 +33,5 @@ class CreateMessageResponse(BaseModel):
     system_prompt_component_ids: List[str] = FieldInfo(alias="systemPromptComponentIds")
     """The component IDs used internally to track the system prompt components."""
 
-    system_prompt_template_id: str = FieldInfo(alias="systemPromptTemplateId")
-    """The template ID used internally to track the system prompt template."""
+    system_prompt_prompt_id: str = FieldInfo(alias="systemPromptPromptId")
+    """The prompt ID used internally to track the system prompt."""

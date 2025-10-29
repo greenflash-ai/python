@@ -108,7 +108,6 @@ class TestMessages:
             metadata={"campaign": "bar"},
             model="gpt-greenflash-1",
             product_id="123e4567-e89b-12d3-a456-426614174001",
-            project_id="123e4567-e89b-12d3-a456-426614174002",
             system_prompt={
                 "components": [
                     {
@@ -119,13 +118,11 @@ class TestMessages:
                         "name": "name",
                         "source": "customer",
                         "type": "system",
-                        "version": 0,
                     }
                 ],
-                "external_template_id": "externalTemplateId",
-                "template_id": "123e4567-e89b-12d3-a456-426614174004",
+                "external_prompt_id": "externalPromptId",
+                "prompt_id": "123e4567-e89b-12d3-a456-426614174004",
             },
-            version_id="123e4567-e89b-12d3-a456-426614174003",
         )
         assert_matches_type(CreateMessageResponse, message, path=["response"])
 
@@ -251,7 +248,6 @@ class TestAsyncMessages:
             metadata={"campaign": "bar"},
             model="gpt-greenflash-1",
             product_id="123e4567-e89b-12d3-a456-426614174001",
-            project_id="123e4567-e89b-12d3-a456-426614174002",
             system_prompt={
                 "components": [
                     {
@@ -262,13 +258,11 @@ class TestAsyncMessages:
                         "name": "name",
                         "source": "customer",
                         "type": "system",
-                        "version": 0,
                     }
                 ],
-                "external_template_id": "externalTemplateId",
-                "template_id": "123e4567-e89b-12d3-a456-426614174004",
+                "external_prompt_id": "externalPromptId",
+                "prompt_id": "123e4567-e89b-12d3-a456-426614174004",
             },
-            version_id="123e4567-e89b-12d3-a456-426614174003",
         )
         assert_matches_type(CreateMessageResponse, message, path=["response"])
 

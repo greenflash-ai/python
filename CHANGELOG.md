@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.26 (2025-10-29)
+
+Full Changelog: [v0.1.0-alpha.25...v0.1.0-alpha.26](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.25...v0.1.0-alpha.26)
+
+### Features
+
+* **api:** manual updates ([35290cf](https://github.com/greenflash-ai/python/commit/35290cf68491b7ac16db13b074a1504a64164f3a))
+
+
+### Chores
+
+* bump `httpx-aiohttp` version to 0.1.9 ([f7e8be0](https://github.com/greenflash-ai/python/commit/f7e8be0ab7952f0c34f98daaee1190584ab2d3d9))
+* **internal:** detect missing future annotations with ruff ([91eee0f](https://github.com/greenflash-ai/python/commit/91eee0f2b86d6e7369f9a485ee4bb07af113f101))
+
 ## 0.1.0-alpha.25 (2025-10-09)
 
 Full Changelog: [v0.1.0-alpha.24...v0.1.0-alpha.25](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.24...v0.1.0-alpha.25)
