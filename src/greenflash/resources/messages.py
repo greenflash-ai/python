@@ -19,7 +19,6 @@ from .._response import (
 )
 from .._base_client import make_request_options
 from ..types.message_item_param import MessageItemParam
-from ..types.system_prompt_param import SystemPromptParam
 from ..types.create_message_response import CreateMessageResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
@@ -56,9 +55,7 @@ class MessagesResource(SyncAPIResource):
         metadata: Dict[str, object] | Omit = omit,
         model: str | Omit = omit,
         product_id: str | Omit = omit,
-        project_id: str | Omit = omit,
-        system_prompt: SystemPromptParam | Omit = omit,
-        version_id: str | Omit = omit,
+        system_prompt: message_create_params.SystemPrompt | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -101,10 +98,10 @@ class MessagesResource(SyncAPIResource):
 
           conversation_id: The Greenflash conversation ID. When provided, updates an existing conversation
               instead of creating a new one. Either conversationId, externalConversationId,
-              productId, or projectId must be provided.
+              productId must be provided.
 
           external_conversation_id: Your external identifier for the conversation. Either conversationId,
-              externalConversationId, productId, or projectId must be provided.
+              externalConversationId, productId must be provided.
 
           external_organization_id: Your unique identifier for the organization this user belongs to. If provided,
               the user will be associated with this organization.
@@ -114,15 +111,10 @@ class MessagesResource(SyncAPIResource):
           model: The AI model used for the conversation.
 
           product_id: The Greenflash product this conversation belongs to. Either conversationId,
-              externalConversationId, productId, or projectId must be provided.
+              externalConversationId, productId must be provided.
 
-          project_id: The Greenflash project this conversation belongs to. Either conversationId,
-              externalConversationId, productId, or projectId must be provided.
-
-          system_prompt: System prompt for the conversation. Can be a simple string or a template object
+          system_prompt: System prompt for the conversation. Can be a simple string or a prompt object
               with components.
-
-          version_id: The product version ID.
 
           extra_headers: Send extra headers
 
@@ -144,9 +136,7 @@ class MessagesResource(SyncAPIResource):
                     "metadata": metadata,
                     "model": model,
                     "product_id": product_id,
-                    "project_id": project_id,
                     "system_prompt": system_prompt,
-                    "version_id": version_id,
                 },
                 message_create_params.MessageCreateParams,
             ),
@@ -188,9 +178,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         metadata: Dict[str, object] | Omit = omit,
         model: str | Omit = omit,
         product_id: str | Omit = omit,
-        project_id: str | Omit = omit,
-        system_prompt: SystemPromptParam | Omit = omit,
-        version_id: str | Omit = omit,
+        system_prompt: message_create_params.SystemPrompt | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -233,10 +221,10 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           conversation_id: The Greenflash conversation ID. When provided, updates an existing conversation
               instead of creating a new one. Either conversationId, externalConversationId,
-              productId, or projectId must be provided.
+              productId must be provided.
 
           external_conversation_id: Your external identifier for the conversation. Either conversationId,
-              externalConversationId, productId, or projectId must be provided.
+              externalConversationId, productId must be provided.
 
           external_organization_id: Your unique identifier for the organization this user belongs to. If provided,
               the user will be associated with this organization.
@@ -246,15 +234,10 @@ class AsyncMessagesResource(AsyncAPIResource):
           model: The AI model used for the conversation.
 
           product_id: The Greenflash product this conversation belongs to. Either conversationId,
-              externalConversationId, productId, or projectId must be provided.
+              externalConversationId, productId must be provided.
 
-          project_id: The Greenflash project this conversation belongs to. Either conversationId,
-              externalConversationId, productId, or projectId must be provided.
-
-          system_prompt: System prompt for the conversation. Can be a simple string or a template object
+          system_prompt: System prompt for the conversation. Can be a simple string or a prompt object
               with components.
-
-          version_id: The product version ID.
 
           extra_headers: Send extra headers
 
@@ -276,9 +259,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                     "metadata": metadata,
                     "model": model,
                     "product_id": product_id,
-                    "project_id": project_id,
                     "system_prompt": system_prompt,
-                    "version_id": version_id,
                 },
                 message_create_params.MessageCreateParams,
             ),

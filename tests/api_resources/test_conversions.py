@@ -40,7 +40,6 @@ class TestConversions:
             external_conversation_id="conv-456",
             metadata={"sku": "bar"},
             product_id="123e4567-e89b-12d3-a456-426614174001",
-            project_id="123e4567-e89b-12d3-a456-426614174002",
         )
         assert_matches_type(LogConversionResponse, conversion, path=["response"])
 
@@ -102,7 +101,6 @@ class TestAsyncConversions:
             external_conversation_id="conv-456",
             metadata={"sku": "bar"},
             product_id="123e4567-e89b-12d3-a456-426614174001",
-            project_id="123e4567-e89b-12d3-a456-426614174002",
         )
         assert_matches_type(LogConversionResponse, conversion, path=["response"])
 

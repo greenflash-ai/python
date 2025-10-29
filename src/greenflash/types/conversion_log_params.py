@@ -38,6 +38,3 @@ class ConversionLogParams(TypedDict, total=False):
 
     product_id: Annotated[str, PropertyInfo(alias="productId")]
     """The Greenflash product associated with this conversion."""
-
-    project_id: Annotated[str, PropertyInfo(alias="projectId")]
-    """The Greenflash project associated with this conversion."""
