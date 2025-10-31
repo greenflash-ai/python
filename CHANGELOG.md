@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.27 (2025-10-31)
+
+Full Changelog: [v0.1.0-alpha.26...v0.1.0-alpha.27](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.26...v0.1.0-alpha.27)
+
+### Bug Fixes
+
+* **client:** close streams without requiring full consumption ([bcef392](https://github.com/greenflash-ai/python/commit/bcef392890431c33b64e1cf98656d9a1f03e073c))
+
+
+### Chores
+
+* **internal/tests:** avoid race condition with implicit client cleanup ([9137f05](https://github.com/greenflash-ai/python/commit/9137f05ecf1e21b2c1bf33a62f868fea0915b514))
+
 ## 0.1.0-alpha.26 (2025-10-29)
 
 Full Changelog: [v0.1.0-alpha.25...v0.1.0-alpha.26](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.25...v0.1.0-alpha.26)
