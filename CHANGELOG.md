@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.1.0-alpha.27 (2025-11-24)
+
+Full Changelog: [v0.1.0-alpha.26...v0.1.0-alpha.27](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.26...v0.1.0-alpha.27)
+
+### Features
+
+* **api:** manual updates ([7ec0d67](https://github.com/greenflash-ai/python/commit/7ec0d67da52350b0662c9af3bb75ad1b4b7604c8))
+
+
+### Bug Fixes
+
+* **client:** close streams without requiring full consumption ([bcef392](https://github.com/greenflash-ai/python/commit/bcef392890431c33b64e1cf98656d9a1f03e073c))
+* compat with Python 3.14 ([5988545](https://github.com/greenflash-ai/python/commit/59885458a02d0c518bc262dcd95db393bffae805))
+* **compat:** update signatures of `model_dump` and `model_dump_json` for Pydantic v1 ([e22d13c](https://github.com/greenflash-ai/python/commit/e22d13cae512062d3ae037bd3d1a36de727c0d03))
+
+
+### Chores
+
+* add Python 3.14 classifier and testing ([0eeb499](https://github.com/greenflash-ai/python/commit/0eeb499fc63e9c24bb7db173652976cbe7f688cb))
+* **internal/tests:** avoid race condition with implicit client cleanup ([9137f05](https://github.com/greenflash-ai/python/commit/9137f05ecf1e21b2c1bf33a62f868fea0915b514))
+* **internal:** grammar fix (it's -&gt; its) ([f63f785](https://github.com/greenflash-ai/python/commit/f63f7855532fa93ee4e353bb4c9d9aeacf196925))
+* **package:** drop Python 3.8 support ([b74fd7d](https://github.com/greenflash-ai/python/commit/b74fd7d22aef73f1d36907eb938508c7d3bab396))
+
 ## 0.1.0-alpha.26 (2025-10-29)
 
 Full Changelog: [v0.1.0-alpha.25...v0.1.0-alpha.26](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.25...v0.1.0-alpha.26)
