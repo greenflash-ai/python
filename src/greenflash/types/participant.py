@@ -20,11 +20,14 @@ class Participant(BaseModel):
     external_id: str = FieldInfo(alias="externalId")
     """Your external user ID (matches the externalUserId from the request)."""
 
-    metadata: Dict[str, object]
-    """Additional data about the participant."""
+    external_organization_id: Optional[str] = FieldInfo(alias="externalOrganizationId", default=None)
+    """Your external identifier for the user's organization."""
 
-    tenant_id: str = FieldInfo(alias="tenantId")
-    """The tenant this participant belongs to."""
+    organization_id: Optional[str] = FieldInfo(alias="organizationId", default=None)
+    """The internal organization ID that the user belongs to."""
+
+    properties: Dict[str, object]
+    """Additional data about the participant."""
 
     created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
     """When the participant was first created."""

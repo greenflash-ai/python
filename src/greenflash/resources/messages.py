@@ -52,9 +52,9 @@ class MessagesResource(SyncAPIResource):
         conversation_id: str | Omit = omit,
         external_conversation_id: str | Omit = omit,
         external_organization_id: str | Omit = omit,
-        metadata: Dict[str, object] | Omit = omit,
         model: str | Omit = omit,
         product_id: str | Omit = omit,
+        properties: Dict[str, object] | Omit = omit,
         system_prompt: message_create_params.SystemPrompt | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -63,36 +63,35 @@ class MessagesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateMessageResponse:
-        """
-        Record conversations between your users and AI, supporting both simple chat and
-        complex agentic workflows.
+        """Send us your AI conversations so we can analyze them for you.
 
-        **Simple Chat:** Use `role` with values like "user", "assistant", or "system"
-        for basic conversations.
+        Works with
+        everything from simple chatbots to complex agentic systems.
 
-        **Agentic Workflows:** Use `messageType` for complex scenarios including tool
-        calls, thoughts, observations, and more.
+        **Getting Started (Simple Chat):** Just provide the `role` ("user", "assistant",
+        or "system") and `content` for each message, along with an
+        `externalConversationId` and your `productId`. That's it!
 
-        **Message Ordering:** Messages are stored with sequential timestamps. You can
-        provide explicit `createdAt` timestamps for historical data.
+        **Advanced Usage (Agentic Workflows):** Capture the full execution trace of your
+        AI agents using `messageType` for tool calls, thoughts, observations, and more.
+        Include structured data via `input`/`output` fields to track what your agents
+        are doing.
 
-        **Message Threading:** Reference parent messages using `parentMessageId`
-        (internal ID) or `parentExternalMessageId` (your external ID) to create threaded
-        conversations.
+        **Key Features:**
 
-        **User Organization:** Optionally provide an `externalOrganizationId` to
-        associate the user with an organization. If the organization doesn't exist, it
-        will be created automatically.
+        - **Automatic Ordering:** Messages are stored with sequential timestamps, or
+          provide your own `createdAt` timestamps for historical data.
+        - **Threading:** Create nested conversations by referencing parent messages
+          using `parentMessageId` or `parentExternalMessageId`.
+        - **Organization Tracking:** Associate users with organizations via
+          `externalOrganizationId`. We'll create the organization automatically if it
+          doesn't exist.
 
-        The simplest way to log a message is to provide the `role` and `content` along
-        with an `externalConversationId` and your `productId`.
-
-        For agentic workflows, include structured data via `input`/`output` fields, tool
-        names for `tool_call` messages, and various message types to represent the full
-        execution trace.
+        Perfect for understanding how your AI is performing in production and
+        identifying areas for improvement.
 
         Args:
-          external_user_id: Your external user ID that will be mapped to a participant in our system.
+          external_user_id: Your external user ID that will be mapped to a user in our system.
 
           messages: Array of conversation messages.
 
@@ -106,12 +105,12 @@ class MessagesResource(SyncAPIResource):
           external_organization_id: Your unique identifier for the organization this user belongs to. If provided,
               the user will be associated with this organization.
 
-          metadata: Additional data about the conversation.
-
           model: The AI model used for the conversation.
 
           product_id: The Greenflash product this conversation belongs to. Either conversationId,
               externalConversationId, productId must be provided.
+
+          properties: Additional data about the conversation.
 
           system_prompt: System prompt for the conversation. Can be a simple string or a prompt object
               with components.
@@ -133,9 +132,9 @@ class MessagesResource(SyncAPIResource):
                     "conversation_id": conversation_id,
                     "external_conversation_id": external_conversation_id,
                     "external_organization_id": external_organization_id,
-                    "metadata": metadata,
                     "model": model,
                     "product_id": product_id,
+                    "properties": properties,
                     "system_prompt": system_prompt,
                 },
                 message_create_params.MessageCreateParams,
@@ -175,9 +174,9 @@ class AsyncMessagesResource(AsyncAPIResource):
         conversation_id: str | Omit = omit,
         external_conversation_id: str | Omit = omit,
         external_organization_id: str | Omit = omit,
-        metadata: Dict[str, object] | Omit = omit,
         model: str | Omit = omit,
         product_id: str | Omit = omit,
+        properties: Dict[str, object] | Omit = omit,
         system_prompt: message_create_params.SystemPrompt | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -186,36 +185,35 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateMessageResponse:
-        """
-        Record conversations between your users and AI, supporting both simple chat and
-        complex agentic workflows.
+        """Send us your AI conversations so we can analyze them for you.
 
-        **Simple Chat:** Use `role` with values like "user", "assistant", or "system"
-        for basic conversations.
+        Works with
+        everything from simple chatbots to complex agentic systems.
 
-        **Agentic Workflows:** Use `messageType` for complex scenarios including tool
-        calls, thoughts, observations, and more.
+        **Getting Started (Simple Chat):** Just provide the `role` ("user", "assistant",
+        or "system") and `content` for each message, along with an
+        `externalConversationId` and your `productId`. That's it!
 
-        **Message Ordering:** Messages are stored with sequential timestamps. You can
-        provide explicit `createdAt` timestamps for historical data.
+        **Advanced Usage (Agentic Workflows):** Capture the full execution trace of your
+        AI agents using `messageType` for tool calls, thoughts, observations, and more.
+        Include structured data via `input`/`output` fields to track what your agents
+        are doing.
 
-        **Message Threading:** Reference parent messages using `parentMessageId`
-        (internal ID) or `parentExternalMessageId` (your external ID) to create threaded
-        conversations.
+        **Key Features:**
 
-        **User Organization:** Optionally provide an `externalOrganizationId` to
-        associate the user with an organization. If the organization doesn't exist, it
-        will be created automatically.
+        - **Automatic Ordering:** Messages are stored with sequential timestamps, or
+          provide your own `createdAt` timestamps for historical data.
+        - **Threading:** Create nested conversations by referencing parent messages
+          using `parentMessageId` or `parentExternalMessageId`.
+        - **Organization Tracking:** Associate users with organizations via
+          `externalOrganizationId`. We'll create the organization automatically if it
+          doesn't exist.
 
-        The simplest way to log a message is to provide the `role` and `content` along
-        with an `externalConversationId` and your `productId`.
-
-        For agentic workflows, include structured data via `input`/`output` fields, tool
-        names for `tool_call` messages, and various message types to represent the full
-        execution trace.
+        Perfect for understanding how your AI is performing in production and
+        identifying areas for improvement.
 
         Args:
-          external_user_id: Your external user ID that will be mapped to a participant in our system.
+          external_user_id: Your external user ID that will be mapped to a user in our system.
 
           messages: Array of conversation messages.
 
@@ -229,12 +227,12 @@ class AsyncMessagesResource(AsyncAPIResource):
           external_organization_id: Your unique identifier for the organization this user belongs to. If provided,
               the user will be associated with this organization.
 
-          metadata: Additional data about the conversation.
-
           model: The AI model used for the conversation.
 
           product_id: The Greenflash product this conversation belongs to. Either conversationId,
               externalConversationId, productId must be provided.
+
+          properties: Additional data about the conversation.
 
           system_prompt: System prompt for the conversation. Can be a simple string or a prompt object
               with components.
@@ -256,9 +254,9 @@ class AsyncMessagesResource(AsyncAPIResource):
                     "conversation_id": conversation_id,
                     "external_conversation_id": external_conversation_id,
                     "external_organization_id": external_organization_id,
-                    "metadata": metadata,
                     "model": model,
                     "product_id": product_id,
+                    "properties": properties,
                     "system_prompt": system_prompt,
                 },
                 message_create_params.MessageCreateParams,

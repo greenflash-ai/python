@@ -22,7 +22,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import users, prompts, ratings, messages, conversions, organizations
+from .resources import users, events, prompts, ratings, messages, interactions, organizations
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -45,11 +45,12 @@ __all__ = [
 
 class Greenflash(SyncAPIClient):
     messages: messages.MessagesResource
+    interactions: interactions.InteractionsResource
     users: users.UsersResource
     ratings: ratings.RatingsResource
-    conversions: conversions.ConversionsResource
     organizations: organizations.OrganizationsResource
     prompts: prompts.PromptsResource
+    events: events.EventsResource
     with_raw_response: GreenflashWithRawResponse
     with_streaming_response: GreenflashWithStreamedResponse
 
@@ -104,11 +105,12 @@ class Greenflash(SyncAPIClient):
         )
 
         self.messages = messages.MessagesResource(self)
+        self.interactions = interactions.InteractionsResource(self)
         self.users = users.UsersResource(self)
         self.ratings = ratings.RatingsResource(self)
-        self.conversions = conversions.ConversionsResource(self)
         self.organizations = organizations.OrganizationsResource(self)
         self.prompts = prompts.PromptsResource(self)
+        self.events = events.EventsResource(self)
         self.with_raw_response = GreenflashWithRawResponse(self)
         self.with_streaming_response = GreenflashWithStreamedResponse(self)
 
@@ -232,11 +234,12 @@ class Greenflash(SyncAPIClient):
 
 class AsyncGreenflash(AsyncAPIClient):
     messages: messages.AsyncMessagesResource
+    interactions: interactions.AsyncInteractionsResource
     users: users.AsyncUsersResource
     ratings: ratings.AsyncRatingsResource
-    conversions: conversions.AsyncConversionsResource
     organizations: organizations.AsyncOrganizationsResource
     prompts: prompts.AsyncPromptsResource
+    events: events.AsyncEventsResource
     with_raw_response: AsyncGreenflashWithRawResponse
     with_streaming_response: AsyncGreenflashWithStreamedResponse
 
@@ -291,11 +294,12 @@ class AsyncGreenflash(AsyncAPIClient):
         )
 
         self.messages = messages.AsyncMessagesResource(self)
+        self.interactions = interactions.AsyncInteractionsResource(self)
         self.users = users.AsyncUsersResource(self)
         self.ratings = ratings.AsyncRatingsResource(self)
-        self.conversions = conversions.AsyncConversionsResource(self)
         self.organizations = organizations.AsyncOrganizationsResource(self)
         self.prompts = prompts.AsyncPromptsResource(self)
+        self.events = events.AsyncEventsResource(self)
         self.with_raw_response = AsyncGreenflashWithRawResponse(self)
         self.with_streaming_response = AsyncGreenflashWithStreamedResponse(self)
 
@@ -420,41 +424,45 @@ class AsyncGreenflash(AsyncAPIClient):
 class GreenflashWithRawResponse:
     def __init__(self, client: Greenflash) -> None:
         self.messages = messages.MessagesResourceWithRawResponse(client.messages)
+        self.interactions = interactions.InteractionsResourceWithRawResponse(client.interactions)
         self.users = users.UsersResourceWithRawResponse(client.users)
         self.ratings = ratings.RatingsResourceWithRawResponse(client.ratings)
-        self.conversions = conversions.ConversionsResourceWithRawResponse(client.conversions)
         self.organizations = organizations.OrganizationsResourceWithRawResponse(client.organizations)
         self.prompts = prompts.PromptsResourceWithRawResponse(client.prompts)
+        self.events = events.EventsResourceWithRawResponse(client.events)
 
 
 class AsyncGreenflashWithRawResponse:
     def __init__(self, client: AsyncGreenflash) -> None:
         self.messages = messages.AsyncMessagesResourceWithRawResponse(client.messages)
+        self.interactions = interactions.AsyncInteractionsResourceWithRawResponse(client.interactions)
         self.users = users.AsyncUsersResourceWithRawResponse(client.users)
         self.ratings = ratings.AsyncRatingsResourceWithRawResponse(client.ratings)
-        self.conversions = conversions.AsyncConversionsResourceWithRawResponse(client.conversions)
         self.organizations = organizations.AsyncOrganizationsResourceWithRawResponse(client.organizations)
         self.prompts = prompts.AsyncPromptsResourceWithRawResponse(client.prompts)
+        self.events = events.AsyncEventsResourceWithRawResponse(client.events)
 
 
 class GreenflashWithStreamedResponse:
     def __init__(self, client: Greenflash) -> None:
         self.messages = messages.MessagesResourceWithStreamingResponse(client.messages)
+        self.interactions = interactions.InteractionsResourceWithStreamingResponse(client.interactions)
         self.users = users.UsersResourceWithStreamingResponse(client.users)
         self.ratings = ratings.RatingsResourceWithStreamingResponse(client.ratings)
-        self.conversions = conversions.ConversionsResourceWithStreamingResponse(client.conversions)
         self.organizations = organizations.OrganizationsResourceWithStreamingResponse(client.organizations)
         self.prompts = prompts.PromptsResourceWithStreamingResponse(client.prompts)
+        self.events = events.EventsResourceWithStreamingResponse(client.events)
 
 
 class AsyncGreenflashWithStreamedResponse:
     def __init__(self, client: AsyncGreenflash) -> None:
         self.messages = messages.AsyncMessagesResourceWithStreamingResponse(client.messages)
+        self.interactions = interactions.AsyncInteractionsResourceWithStreamingResponse(client.interactions)
         self.users = users.AsyncUsersResourceWithStreamingResponse(client.users)
         self.ratings = ratings.AsyncRatingsResourceWithStreamingResponse(client.ratings)
-        self.conversions = conversions.AsyncConversionsResourceWithStreamingResponse(client.conversions)
         self.organizations = organizations.AsyncOrganizationsResourceWithStreamingResponse(client.organizations)
         self.prompts = prompts.AsyncPromptsResourceWithStreamingResponse(client.prompts)
+        self.events = events.AsyncEventsResourceWithStreamingResponse(client.events)
 
 
 Client = Greenflash

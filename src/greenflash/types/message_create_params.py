@@ -14,7 +14,7 @@ __all__ = ["MessageCreateParams", "SystemPrompt"]
 
 class MessageCreateParams(TypedDict, total=False):
     external_user_id: Required[Annotated[str, PropertyInfo(alias="externalUserId")]]
-    """Your external user ID that will be mapped to a participant in our system."""
+    """Your external user ID that will be mapped to a user in our system."""
 
     messages: Required[Iterable[MessageItemParam]]
     """Array of conversation messages."""
@@ -38,9 +38,6 @@ class MessageCreateParams(TypedDict, total=False):
     If provided, the user will be associated with this organization.
     """
 
-    metadata: Dict[str, object]
-    """Additional data about the conversation."""
-
     model: str
     """The AI model used for the conversation."""
 
@@ -49,6 +46,9 @@ class MessageCreateParams(TypedDict, total=False):
 
     Either conversationId, externalConversationId, productId must be provided.
     """
+
+    properties: Dict[str, object]
+    """Additional data about the conversation."""
 
     system_prompt: Annotated[SystemPrompt, PropertyInfo(alias="systemPrompt")]
     """System prompt for the conversation.
