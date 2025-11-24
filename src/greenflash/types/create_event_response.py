@@ -4,12 +4,12 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["LogConversionResponse"]
+__all__ = ["CreateEventResponse"]
 
 
-class LogConversionResponse(BaseModel):
-    conversion_id: str = FieldInfo(alias="conversionId")
-    """The unique Greenflash ID of the conversion record that was created."""
+class CreateEventResponse(BaseModel):
+    event_id: str = FieldInfo(alias="eventId")
+    """The unique Greenflash ID of the event record that was created."""
 
     success: bool
     """Whether the API call was successful."""

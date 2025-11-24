@@ -14,11 +14,8 @@ class TenantOrganization(BaseModel):
     id: str
     """The Greenflash organization ID."""
 
-    metadata: Dict[str, object]
-    """Custom metadata for the organization."""
-
-    tenant_id: str = FieldInfo(alias="tenantId")
-    """The tenant this organization belongs to."""
+    properties: Dict[str, object]
+    """Custom organization properties."""
 
     created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
     """When the organization was first created."""

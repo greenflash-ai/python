@@ -29,11 +29,14 @@ class UserCreateParams(TypedDict, total=False):
     If provided, the user will be associated with this organization.
     """
 
-    metadata: Dict[str, object]
-    """Additional data about the user (e.g., plan type, preferences)."""
-
     name: str
     """The user's full name."""
 
+    organization_id: Annotated[str, PropertyInfo(alias="organizationId")]
+    """The Greenflash organization ID that the user belongs to."""
+
     phone: str
     """The user's phone number."""
+
+    properties: Dict[str, object]
+    """Additional data about the user (e.g., plan type, preferences)."""

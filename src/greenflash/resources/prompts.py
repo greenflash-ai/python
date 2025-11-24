@@ -67,19 +67,19 @@ class PromptsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreatePromptResponse:
-        """Create a new immutable prompt with one or more components.
+        """Create a new prompt that you can use across your AI applications.
 
-        Supports
-        handlebars-style variables like `{{variable_name}}` in component content.
+        Build prompts
+        from one or more components, and use handlebars-style variables like
+        `{{userName}}` for personalization.
 
-        **Versioning behavior:**
+        **Safe by Default:** Creating a prompt creates a new version but doesn't
+        activate it. Your production prompts stay unchanged until you explicitly
+        activate the new version (via the UI or when you reference it in the Messages
+        API). This lets you test and prepare new prompts without risk.
 
-        - Creates prompt + components (immutable)
-        - Creates a new version with fingerprinting (idempotent)
-        - Version is created but NOT activated
-        - Activation happens separately via UI or when used by Messages API
-
-        This allows you to create and prepare prompts without affecting production.
+        **Versioning:** Every prompt is immutable and versioned with fingerprinting, so
+        you can safely iterate and track changes over time.
 
         Args:
           components: Array of component objects.
@@ -140,20 +140,21 @@ class PromptsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UpdatePromptResponse:
-        """Update a prompt.
+        """Update a prompt with new content or properties.
 
-        Creates a new immutable row (never mutates existing).
+        Your production prompt stays
+        safe—updates create new versions without affecting what's currently active.
 
-        **Versioning behavior:**
+        **How it Works:**
 
-        - Always creates a new row if components are provided
-        - Creates a new version with fingerprinting (idempotent)
-        - Version is created but NOT activated
-        - Activation happens separately via UI
-        - Old versions continue pointing to old prompts (preserves history)
+        - **Updating components:** Creates a new immutable version with fingerprinting.
+          The new version is created but NOT activated, so you can test before going
+          live.
+        - **Updating only properties (name/description):** Updates the prompt in-place
+          without creating a new version.
 
-        If only metadata (name, description) is updated without components, updates the
-        existing prompt in-place and does not create a new version.
+        **Version Safety:** Old versions always point to their original prompts,
+        preserving your message history and allowing you to roll back if needed.
 
         Args:
           id: The prompt ID to update
@@ -213,15 +214,21 @@ class PromptsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ListPromptsResponse:
-        """List all prompts for your organization.
+        """
+        Browse through all your prompts to see what you're using across your AI
+        applications. Returns all prompts by default (both active and inactive
+        versions), or filter by product or version to narrow down the results.
 
-        By default, returns all prompts (both
-        active and inactive versions) across all products. Use `versionId` to filter by
-        a specific version, or `productId` to filter by a specific product. Supports
-        both cursor-based pagination (using `limit` and `cursor`) and page-based
-        pagination (using `page` and `pageSize`). The response includes a Link header
-        with pagination navigation URLs following RFC 8288. Returns slimmed down data
-        with only component IDs (use GET /prompts/:id for full details).
+        **Filtering & Pagination:**
+
+        - Filter by `productId` to see prompts for a specific product
+        - Filter by `versionId` to see a specific version
+        - Choose your pagination style: cursor-based (`limit` + `cursor`) or page-based
+          (`page` + `pageSize`)
+        - Check the `Link` header for easy pagination navigation
+
+        **Note:** This returns lightweight data with just component IDs. Use
+        `GET /prompts/:id` to fetch the full prompt content.
 
         Args:
           active_only: Filter to only show prompts that are part of active versions. When true, only
@@ -284,17 +291,18 @@ class PromptsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DeletePromptResponse:
-        """Archive (soft delete) a prompt.
+        """Archive a prompt you no longer need.
 
-        Sets the `archived_at` timestamp.
+        Archived prompts are soft-deleted (we set
+        an `archived_at` timestamp) so you can still access them for historical data.
 
-        **Safety constraints:**
+        **Safety First:**
 
-        - BLOCKS archiving if the prompt is referenced by any active version
-        - You must promote a different version first before archiving
-        - Historical versions continue to reference archived prompts (preserves message
-          history)
-        - Archived prompts can still be retrieved for historical data
+        - Can't archive a prompt that's currently active. You must activate a different
+          version first.
+        - Historical data is preserved—old conversations continue to reference archived
+          prompts so your message history stays intact.
+        - Archived prompts remain accessible for reporting and analysis.
 
         Args:
           id: The prompt ID to archive
@@ -328,15 +336,17 @@ class PromptsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GetPromptResponse:
-        """Retrieve a prompt with optional variable interpolation.
+        """Retrieve a prompt and optionally personalize it with dynamic variables.
 
-        Supports
-        handlebars-style variables like `{{variable_name}}` in the prompt content. Pass
-        query parameters to interpolate variables.
+        Perfect
+        for fetching the prompt you want to use right before sending it to your AI.
 
-        **Example:** `/prompts/abc-123?userName=Alice&productName=Premium` will replace
-        `{{userName}}` with "Alice" and `{{productName}}` with "Premium" in the composed
-        prompt.
+        **Dynamic Variables:** Use handlebars-style placeholders like `{{userName}}` in
+        your prompt, then pass query parameters to fill them in.
+
+        **Example:** Calling `/prompts/abc-123?userName=Alice&productName=Premium` will
+        replace `{{userName}}` with "Alice" and `{{productName}}` with "Premium" in the
+        returned prompt.
 
         Args:
           id: The prompt identifier. Can be: internal prompt ID (UUID), or externalPromptId
@@ -398,19 +408,19 @@ class AsyncPromptsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreatePromptResponse:
-        """Create a new immutable prompt with one or more components.
+        """Create a new prompt that you can use across your AI applications.
 
-        Supports
-        handlebars-style variables like `{{variable_name}}` in component content.
+        Build prompts
+        from one or more components, and use handlebars-style variables like
+        `{{userName}}` for personalization.
 
-        **Versioning behavior:**
+        **Safe by Default:** Creating a prompt creates a new version but doesn't
+        activate it. Your production prompts stay unchanged until you explicitly
+        activate the new version (via the UI or when you reference it in the Messages
+        API). This lets you test and prepare new prompts without risk.
 
-        - Creates prompt + components (immutable)
-        - Creates a new version with fingerprinting (idempotent)
-        - Version is created but NOT activated
-        - Activation happens separately via UI or when used by Messages API
-
-        This allows you to create and prepare prompts without affecting production.
+        **Versioning:** Every prompt is immutable and versioned with fingerprinting, so
+        you can safely iterate and track changes over time.
 
         Args:
           components: Array of component objects.
@@ -471,20 +481,21 @@ class AsyncPromptsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UpdatePromptResponse:
-        """Update a prompt.
+        """Update a prompt with new content or properties.
 
-        Creates a new immutable row (never mutates existing).
+        Your production prompt stays
+        safe—updates create new versions without affecting what's currently active.
 
-        **Versioning behavior:**
+        **How it Works:**
 
-        - Always creates a new row if components are provided
-        - Creates a new version with fingerprinting (idempotent)
-        - Version is created but NOT activated
-        - Activation happens separately via UI
-        - Old versions continue pointing to old prompts (preserves history)
+        - **Updating components:** Creates a new immutable version with fingerprinting.
+          The new version is created but NOT activated, so you can test before going
+          live.
+        - **Updating only properties (name/description):** Updates the prompt in-place
+          without creating a new version.
 
-        If only metadata (name, description) is updated without components, updates the
-        existing prompt in-place and does not create a new version.
+        **Version Safety:** Old versions always point to their original prompts,
+        preserving your message history and allowing you to roll back if needed.
 
         Args:
           id: The prompt ID to update
@@ -544,15 +555,21 @@ class AsyncPromptsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ListPromptsResponse:
-        """List all prompts for your organization.
+        """
+        Browse through all your prompts to see what you're using across your AI
+        applications. Returns all prompts by default (both active and inactive
+        versions), or filter by product or version to narrow down the results.
 
-        By default, returns all prompts (both
-        active and inactive versions) across all products. Use `versionId` to filter by
-        a specific version, or `productId` to filter by a specific product. Supports
-        both cursor-based pagination (using `limit` and `cursor`) and page-based
-        pagination (using `page` and `pageSize`). The response includes a Link header
-        with pagination navigation URLs following RFC 8288. Returns slimmed down data
-        with only component IDs (use GET /prompts/:id for full details).
+        **Filtering & Pagination:**
+
+        - Filter by `productId` to see prompts for a specific product
+        - Filter by `versionId` to see a specific version
+        - Choose your pagination style: cursor-based (`limit` + `cursor`) or page-based
+          (`page` + `pageSize`)
+        - Check the `Link` header for easy pagination navigation
+
+        **Note:** This returns lightweight data with just component IDs. Use
+        `GET /prompts/:id` to fetch the full prompt content.
 
         Args:
           active_only: Filter to only show prompts that are part of active versions. When true, only
@@ -615,17 +632,18 @@ class AsyncPromptsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DeletePromptResponse:
-        """Archive (soft delete) a prompt.
+        """Archive a prompt you no longer need.
 
-        Sets the `archived_at` timestamp.
+        Archived prompts are soft-deleted (we set
+        an `archived_at` timestamp) so you can still access them for historical data.
 
-        **Safety constraints:**
+        **Safety First:**
 
-        - BLOCKS archiving if the prompt is referenced by any active version
-        - You must promote a different version first before archiving
-        - Historical versions continue to reference archived prompts (preserves message
-          history)
-        - Archived prompts can still be retrieved for historical data
+        - Can't archive a prompt that's currently active. You must activate a different
+          version first.
+        - Historical data is preserved—old conversations continue to reference archived
+          prompts so your message history stays intact.
+        - Archived prompts remain accessible for reporting and analysis.
 
         Args:
           id: The prompt ID to archive
@@ -659,15 +677,17 @@ class AsyncPromptsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GetPromptResponse:
-        """Retrieve a prompt with optional variable interpolation.
+        """Retrieve a prompt and optionally personalize it with dynamic variables.
 
-        Supports
-        handlebars-style variables like `{{variable_name}}` in the prompt content. Pass
-        query parameters to interpolate variables.
+        Perfect
+        for fetching the prompt you want to use right before sending it to your AI.
 
-        **Example:** `/prompts/abc-123?userName=Alice&productName=Premium` will replace
-        `{{userName}}` with "Alice" and `{{productName}}` with "Premium" in the composed
-        prompt.
+        **Dynamic Variables:** Use handlebars-style placeholders like `{{userName}}` in
+        your prompt, then pass query parameters to fill them in.
+
+        **Example:** Calling `/prompts/abc-123?userName=Alice&productName=Premium` will
+        replace `{{userName}}` with "Alice" and `{{productName}}` with "Premium" in the
+        returned prompt.
 
         Args:
           id: The prompt identifier. Can be: internal prompt ID (UUID), or externalPromptId
