@@ -65,9 +65,6 @@ class MessageItemParam(TypedDict, total=False):
     callback, llm, task, workflow
     """
 
-    metadata: Dict[str, object]
-    """Additional data about the message."""
-
     output: Dict[str, object]
     """Structured output data from tool calls, retrievals, or other operations."""
 
@@ -82,6 +79,9 @@ class MessageItemParam(TypedDict, total=False):
 
     Cannot be used with parentExternalMessageId.
     """
+
+    properties: Dict[str, object]
+    """Custom message properties."""
 
     role: Literal["user", "assistant", "system"]
     """Simple message role for basic chat: user, assistant, or system.

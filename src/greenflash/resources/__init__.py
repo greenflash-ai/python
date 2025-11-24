@@ -8,6 +8,14 @@ from .users import (
     UsersResourceWithStreamingResponse,
     AsyncUsersResourceWithStreamingResponse,
 )
+from .events import (
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
+)
 from .prompts import (
     PromptsResource,
     AsyncPromptsResource,
@@ -32,13 +40,13 @@ from .messages import (
     MessagesResourceWithStreamingResponse,
     AsyncMessagesResourceWithStreamingResponse,
 )
-from .conversions import (
-    ConversionsResource,
-    AsyncConversionsResource,
-    ConversionsResourceWithRawResponse,
-    AsyncConversionsResourceWithRawResponse,
-    ConversionsResourceWithStreamingResponse,
-    AsyncConversionsResourceWithStreamingResponse,
+from .interactions import (
+    InteractionsResource,
+    AsyncInteractionsResource,
+    InteractionsResourceWithRawResponse,
+    AsyncInteractionsResourceWithRawResponse,
+    InteractionsResourceWithStreamingResponse,
+    AsyncInteractionsResourceWithStreamingResponse,
 )
 from .organizations import (
     OrganizationsResource,
@@ -56,6 +64,12 @@ __all__ = [
     "AsyncMessagesResourceWithRawResponse",
     "MessagesResourceWithStreamingResponse",
     "AsyncMessagesResourceWithStreamingResponse",
+    "InteractionsResource",
+    "AsyncInteractionsResource",
+    "InteractionsResourceWithRawResponse",
+    "AsyncInteractionsResourceWithRawResponse",
+    "InteractionsResourceWithStreamingResponse",
+    "AsyncInteractionsResourceWithStreamingResponse",
     "UsersResource",
     "AsyncUsersResource",
     "UsersResourceWithRawResponse",
@@ -68,12 +82,6 @@ __all__ = [
     "AsyncRatingsResourceWithRawResponse",
     "RatingsResourceWithStreamingResponse",
     "AsyncRatingsResourceWithStreamingResponse",
-    "ConversionsResource",
-    "AsyncConversionsResource",
-    "ConversionsResourceWithRawResponse",
-    "AsyncConversionsResourceWithRawResponse",
-    "ConversionsResourceWithStreamingResponse",
-    "AsyncConversionsResourceWithStreamingResponse",
     "OrganizationsResource",
     "AsyncOrganizationsResource",
     "OrganizationsResourceWithRawResponse",
@@ -86,4 +94,10 @@ __all__ = [
     "AsyncPromptsResourceWithRawResponse",
     "PromptsResourceWithStreamingResponse",
     "AsyncPromptsResourceWithStreamingResponse",
+    "EventsResource",
+    "AsyncEventsResource",
+    "EventsResourceWithRawResponse",
+    "AsyncEventsResourceWithRawResponse",
+    "EventsResourceWithStreamingResponse",
+    "AsyncEventsResourceWithStreamingResponse",
 ]

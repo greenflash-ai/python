@@ -9,8 +9,8 @@ __all__ = ["OrganizationUpdateParams"]
 
 
 class OrganizationUpdateParams(TypedDict, total=False):
-    metadata: Dict[str, object]
-    """Custom metadata for the organization."""
-
     name: str
     """The organization's name."""
+
+    properties: Dict[str, object]
+    """Custom organization properties."""

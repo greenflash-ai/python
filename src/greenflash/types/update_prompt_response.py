@@ -17,7 +17,7 @@ class UpdatePromptResponse(BaseModel):
     """The version ID.
 
     Version is created/updated but not activated (activation happens via UI). Null
-    if only metadata was updated without components.
+    if only prompt metadata was updated without components.
     """
 
     external_prompt_id: Optional[str] = FieldInfo(alias="externalPromptId", default=None)

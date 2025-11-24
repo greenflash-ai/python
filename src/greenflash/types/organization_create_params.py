@@ -17,8 +17,8 @@ class OrganizationCreateParams(TypedDict, total=False):
     Use this same ID in other API calls to reference this organization.
     """
 
-    metadata: Dict[str, object]
-    """Custom metadata for the organization."""
-
     name: str
     """The organization's name."""
+
+    properties: Dict[str, object]
+    """Custom organization properties."""
