@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.28 (2025-11-28)
+
+Full Changelog: [v0.1.0-alpha.27...v0.1.0-alpha.28](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.27...v0.1.0-alpha.28)
+
+### Bug Fixes
+
+* ensure streams are always closed ([d502131](https://github.com/greenflash-ai/python/commit/d502131b52e35f71673362c6ece423fda17cc949))
+
+
+### Chores
+
+* **deps:** mypy 1.18.1 has a regression, pin to 1.17 ([9eebcd1](https://github.com/greenflash-ai/python/commit/9eebcd1a77913a84c5ede342d222e8a801afc0ee))
+
 ## 0.1.0-alpha.27 (2025-11-24)
 
 Full Changelog: [v0.1.0-alpha.26...v0.1.0-alpha.27](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.26...v0.1.0-alpha.27)
