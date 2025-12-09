@@ -11,6 +11,8 @@ __all__ = ["TenantOrganization"]
 
 
 class TenantOrganization(BaseModel):
+    """The organization that was created or updated."""
+
     id: str
     """The Greenflash organization ID."""
 

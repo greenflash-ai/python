@@ -7,6 +7,8 @@ __all__ = ["UpdateUserResponse"]
 
 
 class UpdateUserResponse(BaseModel):
+    """Success response for user update."""
+
     participant: Participant
     """The user profile."""
 

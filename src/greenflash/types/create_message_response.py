@@ -21,6 +21,8 @@ class Message(BaseModel):
 
 
 class CreateMessageResponse(BaseModel):
+    """Success response for message logging."""
+
     conversation_id: str = FieldInfo(alias="conversationId")
     """The ID of the conversation that was created or updated."""
 

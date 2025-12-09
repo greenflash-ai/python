@@ -11,6 +11,8 @@ __all__ = ["Prompt"]
 
 
 class Prompt(BaseModel):
+    """The full prompt object with components."""
+
     id: str
     """The Greenflash prompt ID."""
 

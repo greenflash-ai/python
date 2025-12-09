@@ -7,6 +7,8 @@ __all__ = ["CreateOrganizationResponse"]
 
 
 class CreateOrganizationResponse(BaseModel):
+    """Success response for organization creation."""
+
     organization: TenantOrganization
     """The organization that was created or updated."""
 

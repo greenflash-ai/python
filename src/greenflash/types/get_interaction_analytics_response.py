@@ -17,30 +17,40 @@ __all__ = [
 
 
 class AverageUserSentiment(BaseModel):
+    """Average sentiment across user messages."""
+
     label: str
 
     score: float
 
 
 class ChangeInUserSentiment(BaseModel):
+    """How sentiment changed during the interaction."""
+
     label: str
 
     score: float
 
 
 class CommercialIntent(BaseModel):
+    """Commercial intent detected."""
+
     primary_signal: str = FieldInfo(alias="primarySignal")
 
     score: float
 
 
 class Frustration(BaseModel):
+    """Frustration level detected."""
+
     label: str
 
     score: float
 
 
 class Struggle(BaseModel):
+    """Struggle level detected."""
+
     label: str
 
     score: float

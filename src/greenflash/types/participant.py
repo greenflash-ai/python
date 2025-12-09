@@ -11,6 +11,8 @@ __all__ = ["Participant"]
 
 
 class Participant(BaseModel):
+    """The user profile."""
+
     id: str
     """The Greenflash participant ID."""
 
