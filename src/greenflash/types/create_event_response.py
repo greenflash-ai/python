@@ -8,6 +8,8 @@ __all__ = ["CreateEventResponse"]
 
 
 class CreateEventResponse(BaseModel):
+    """Success response for event creation."""
+
     event_id: str = FieldInfo(alias="eventId")
     """The unique Greenflash ID of the event record that was created."""
 

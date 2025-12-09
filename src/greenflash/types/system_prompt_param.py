@@ -12,6 +12,11 @@ __all__ = ["SystemPromptParam"]
 
 
 class SystemPromptParam(TypedDict, total=False):
+    """System prompt as a prompt object.
+
+    Can reference an existing prompt by ID or define new components inline.
+    """
+
     components: Iterable[ComponentInputParam]
     """Array of component objects.
 
