@@ -105,9 +105,11 @@ class TestMessages:
             conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             external_conversation_id="conv-456",
             external_organization_id="org-789",
+            force_sample=True,
             model="gpt-greenflash-1",
             product_id="123e4567-e89b-12d3-a456-426614174001",
             properties={"campaign": "bar"},
+            sample_rate=0,
             system_prompt={
                 "components": [
                     {
@@ -245,9 +247,11 @@ class TestAsyncMessages:
             conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             external_conversation_id="conv-456",
             external_organization_id="org-789",
+            force_sample=True,
             model="gpt-greenflash-1",
             product_id="123e4567-e89b-12d3-a456-426614174001",
             properties={"campaign": "bar"},
+            sample_rate=0,
             system_prompt={
                 "components": [
                     {
