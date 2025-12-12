@@ -52,9 +52,11 @@ class MessagesResource(SyncAPIResource):
         conversation_id: str | Omit = omit,
         external_conversation_id: str | Omit = omit,
         external_organization_id: str | Omit = omit,
+        force_sample: bool | Omit = omit,
         model: str | Omit = omit,
         product_id: str | Omit = omit,
         properties: Dict[str, object] | Omit = omit,
+        sample_rate: float | Omit = omit,
         system_prompt: message_create_params.SystemPrompt | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -105,12 +107,19 @@ class MessagesResource(SyncAPIResource):
           external_organization_id: Your unique identifier for the organization this user belongs to. If provided,
               the user will be associated with this organization.
 
+          force_sample: When true, bypasses sampling and ensures this request is always ingested
+              regardless of sampleRate. Use for critical conversations that must be captured.
+
           model: The AI model used for the conversation.
 
           product_id: The Greenflash product this conversation belongs to. Either conversationId,
               externalConversationId, productId must be provided.
 
           properties: Additional data about the conversation.
+
+          sample_rate: Controls the percentage of requests that are ingested (0.0 to 1.0). For example,
+              0.1 means 10% of requests will be stored. Defaults to 1.0 (all requests
+              ingested). Sampling is deterministic based on conversation ID.
 
           system_prompt: System prompt for the conversation. Can be a simple string or a prompt object
               with components.
@@ -132,9 +141,11 @@ class MessagesResource(SyncAPIResource):
                     "conversation_id": conversation_id,
                     "external_conversation_id": external_conversation_id,
                     "external_organization_id": external_organization_id,
+                    "force_sample": force_sample,
                     "model": model,
                     "product_id": product_id,
                     "properties": properties,
+                    "sample_rate": sample_rate,
                     "system_prompt": system_prompt,
                 },
                 message_create_params.MessageCreateParams,
@@ -174,9 +185,11 @@ class AsyncMessagesResource(AsyncAPIResource):
         conversation_id: str | Omit = omit,
         external_conversation_id: str | Omit = omit,
         external_organization_id: str | Omit = omit,
+        force_sample: bool | Omit = omit,
         model: str | Omit = omit,
         product_id: str | Omit = omit,
         properties: Dict[str, object] | Omit = omit,
+        sample_rate: float | Omit = omit,
         system_prompt: message_create_params.SystemPrompt | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -227,12 +240,19 @@ class AsyncMessagesResource(AsyncAPIResource):
           external_organization_id: Your unique identifier for the organization this user belongs to. If provided,
               the user will be associated with this organization.
 
+          force_sample: When true, bypasses sampling and ensures this request is always ingested
+              regardless of sampleRate. Use for critical conversations that must be captured.
+
           model: The AI model used for the conversation.
 
           product_id: The Greenflash product this conversation belongs to. Either conversationId,
               externalConversationId, productId must be provided.
 
           properties: Additional data about the conversation.
+
+          sample_rate: Controls the percentage of requests that are ingested (0.0 to 1.0). For example,
+              0.1 means 10% of requests will be stored. Defaults to 1.0 (all requests
+              ingested). Sampling is deterministic based on conversation ID.
 
           system_prompt: System prompt for the conversation. Can be a simple string or a prompt object
               with components.
@@ -254,9 +274,11 @@ class AsyncMessagesResource(AsyncAPIResource):
                     "conversation_id": conversation_id,
                     "external_conversation_id": external_conversation_id,
                     "external_organization_id": external_organization_id,
+                    "force_sample": force_sample,
                     "model": model,
                     "product_id": product_id,
                     "properties": properties,
+                    "sample_rate": sample_rate,
                     "system_prompt": system_prompt,
                 },
                 message_create_params.MessageCreateParams,

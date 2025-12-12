@@ -38,6 +38,12 @@ class MessageCreateParams(TypedDict, total=False):
     If provided, the user will be associated with this organization.
     """
 
+    force_sample: Annotated[bool, PropertyInfo(alias="forceSample")]
+    """
+    When true, bypasses sampling and ensures this request is always ingested
+    regardless of sampleRate. Use for critical conversations that must be captured.
+    """
+
     model: str
     """The AI model used for the conversation."""
 
@@ -49,6 +55,13 @@ class MessageCreateParams(TypedDict, total=False):
 
     properties: Dict[str, object]
     """Additional data about the conversation."""
+
+    sample_rate: Annotated[float, PropertyInfo(alias="sampleRate")]
+    """Controls the percentage of requests that are ingested (0.0 to 1.0).
+
+    For example, 0.1 means 10% of requests will be stored. Defaults to 1.0 (all
+    requests ingested). Sampling is deterministic based on conversation ID.
+    """
 
     system_prompt: Annotated[SystemPrompt, PropertyInfo(alias="systemPrompt")]
     """System prompt for the conversation.
