@@ -17,7 +17,7 @@ The REST API documentation can be found on [docs.greenflash.ai](https://docs.gre
 
 ```sh
 # install from PyPI
-pip install --pre greenflash
+pip install '--pre greenflash'
 ```
 
 ## Usage
@@ -83,12 +83,13 @@ You can enable this by installing `aiohttp`:
 
 ```sh
 # install from PyPI
-pip install --pre greenflash[aiohttp]
+pip install '--pre greenflash[aiohttp]'
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
+import os
 import asyncio
 from greenflash import DefaultAioHttpClient
 from greenflash import AsyncGreenflash
@@ -96,7 +97,7 @@ from greenflash import AsyncGreenflash
 
 async def main() -> None:
     async with AsyncGreenflash(
-        api_key="My API Key",
+        api_key=os.environ.get("GREENFLASH_API_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         create_message_response = await client.messages.create(

@@ -10,7 +10,7 @@ import pytest
 from greenflash import Greenflash, AsyncGreenflash
 from tests.utils import assert_matches_type
 from greenflash.types import CreateEventResponse
-from greenflash._utils import parse_date
+from greenflash._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,6 +23,7 @@ class TestEvents:
         event = client.events.create(
             event_type="x",
             product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            value="value",
         )
         assert_matches_type(CreateEventResponse, event, path=["response"])
 
@@ -31,18 +32,20 @@ class TestEvents:
         event = client.events.create(
             event_type="x",
             product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            value="value",
             conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            event_at=parse_date("2019-12-27"),
+            event_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             external_conversation_id="externalConversationId",
             external_organization_id="externalOrganizationId",
             external_user_id="externalUserId",
+            force_sample=True,
             influence="positive",
             insert_id="insertId",
             organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             properties={"foo": "bar"},
             quality_impact_score=-1,
+            sample_rate=0,
             user_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            value="value",
             value_type="currency",
         )
         assert_matches_type(CreateEventResponse, event, path=["response"])
@@ -52,6 +55,7 @@ class TestEvents:
         response = client.events.with_raw_response.create(
             event_type="x",
             product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            value="value",
         )
 
         assert response.is_closed is True
@@ -64,6 +68,7 @@ class TestEvents:
         with client.events.with_streaming_response.create(
             event_type="x",
             product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            value="value",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -84,6 +89,7 @@ class TestAsyncEvents:
         event = await async_client.events.create(
             event_type="x",
             product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            value="value",
         )
         assert_matches_type(CreateEventResponse, event, path=["response"])
 
@@ -92,18 +98,20 @@ class TestAsyncEvents:
         event = await async_client.events.create(
             event_type="x",
             product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            value="value",
             conversation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            event_at=parse_date("2019-12-27"),
+            event_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             external_conversation_id="externalConversationId",
             external_organization_id="externalOrganizationId",
             external_user_id="externalUserId",
+            force_sample=True,
             influence="positive",
             insert_id="insertId",
             organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             properties={"foo": "bar"},
             quality_impact_score=-1,
+            sample_rate=0,
             user_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            value="value",
             value_type="currency",
         )
         assert_matches_type(CreateEventResponse, event, path=["response"])
@@ -113,6 +121,7 @@ class TestAsyncEvents:
         response = await async_client.events.with_raw_response.create(
             event_type="x",
             product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            value="value",
         )
 
         assert response.is_closed is True
@@ -125,6 +134,7 @@ class TestAsyncEvents:
         async with async_client.events.with_streaming_response.create(
             event_type="x",
             product_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            value="value",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

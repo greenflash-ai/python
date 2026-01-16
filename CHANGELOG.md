@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.40.0 (2026-01-14)
+
+Full Changelog: [v0.1.0-alpha.27...v0.40.0](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.27...v0.40.0)
+
+### Features
+
+* **api:** manual updates ([7137d99](https://github.com/greenflash-ai/python/commit/7137d99beba8c434ea41fb1c83b6c4f49bf80d4b))
+* **client:** add support for binary request streaming ([b9397f0](https://github.com/greenflash-ai/python/commit/b9397f0e24f7736a0f563fd9cc8d63d70b3a41c3))
+
+
+### Bug Fixes
+
+* **client:** loosen auth header validation ([18728a4](https://github.com/greenflash-ai/python/commit/18728a4f607e510a513d4ceee3c20201d1b4ee61))
+* ensure streams are always closed ([d502131](https://github.com/greenflash-ai/python/commit/d502131b52e35f71673362c6ece423fda17cc949))
+* **types:** allow pyright to infer TypedDict types within SequenceNotStr ([179acea](https://github.com/greenflash-ai/python/commit/179aceae90318e6d54665dea6bf9463950f170da))
+* use async_to_httpx_files in patch method ([1f0e917](https://github.com/greenflash-ai/python/commit/1f0e91728bff46f4d6725ea4cb921de107f96840))
+
+
+### Chores
+
+* add missing docstrings ([e5701df](https://github.com/greenflash-ai/python/commit/e5701df6d98991cdc05474d4f345da01b9132d1b))
+* **deps:** mypy 1.18.1 has a regression, pin to 1.17 ([9eebcd1](https://github.com/greenflash-ai/python/commit/9eebcd1a77913a84c5ede342d222e8a801afc0ee))
+* **docs:** use environment variables for authentication in code snippets ([2f7d590](https://github.com/greenflash-ai/python/commit/2f7d590f5be07f293c8f1a07af3c90440de3d973))
+* **internal:** add `--fix` argument to lint script ([0a0dbd2](https://github.com/greenflash-ai/python/commit/0a0dbd2333bef4dff767b0ec07300fd127f3e63f))
+* **internal:** add missing files argument to base client ([1c45f5f](https://github.com/greenflash-ai/python/commit/1c45f5fcd739bcfd5c6b4492713331547b26cab6))
+* **internal:** codegen related update ([626cd83](https://github.com/greenflash-ai/python/commit/626cd83e4b8f37a17eb7744930f9705371b82152))
+* **internal:** codegen related update ([58976f2](https://github.com/greenflash-ai/python/commit/58976f26865e13f3539654a79c56f39fe57bc541))
+* speedup initial import ([b313fdc](https://github.com/greenflash-ai/python/commit/b313fdc679b3f77c04c1e2751201fa22f15c991d))
+* update lockfile ([d4e41dc](https://github.com/greenflash-ai/python/commit/d4e41dc28433659c1dd29a77add4453f046bd1f7))
+
 ## 0.1.0-alpha.27 (2025-11-24)
 
 Full Changelog: [v0.1.0-alpha.26...v0.1.0-alpha.27](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.26...v0.1.0-alpha.27)

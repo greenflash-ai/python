@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -21,8 +21,8 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import users, events, prompts, ratings, messages, interactions, organizations
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -30,6 +30,16 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
+
+if TYPE_CHECKING:
+    from .resources import users, events, prompts, ratings, messages, interactions, organizations
+    from .resources.users import UsersResource, AsyncUsersResource
+    from .resources.events import EventsResource, AsyncEventsResource
+    from .resources.prompts import PromptsResource, AsyncPromptsResource
+    from .resources.ratings import RatingsResource, AsyncRatingsResource
+    from .resources.messages import MessagesResource, AsyncMessagesResource
+    from .resources.interactions import InteractionsResource, AsyncInteractionsResource
+    from .resources.organizations import OrganizationsResource, AsyncOrganizationsResource
 
 __all__ = [
     "Timeout",
@@ -44,16 +54,6 @@ __all__ = [
 
 
 class Greenflash(SyncAPIClient):
-    messages: messages.MessagesResource
-    interactions: interactions.InteractionsResource
-    users: users.UsersResource
-    ratings: ratings.RatingsResource
-    organizations: organizations.OrganizationsResource
-    prompts: prompts.PromptsResource
-    events: events.EventsResource
-    with_raw_response: GreenflashWithRawResponse
-    with_streaming_response: GreenflashWithStreamedResponse
-
     # client options
     api_key: str | None
 
@@ -104,15 +104,55 @@ class Greenflash(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.messages = messages.MessagesResource(self)
-        self.interactions = interactions.InteractionsResource(self)
-        self.users = users.UsersResource(self)
-        self.ratings = ratings.RatingsResource(self)
-        self.organizations = organizations.OrganizationsResource(self)
-        self.prompts = prompts.PromptsResource(self)
-        self.events = events.EventsResource(self)
-        self.with_raw_response = GreenflashWithRawResponse(self)
-        self.with_streaming_response = GreenflashWithStreamedResponse(self)
+    @cached_property
+    def messages(self) -> MessagesResource:
+        from .resources.messages import MessagesResource
+
+        return MessagesResource(self)
+
+    @cached_property
+    def interactions(self) -> InteractionsResource:
+        from .resources.interactions import InteractionsResource
+
+        return InteractionsResource(self)
+
+    @cached_property
+    def users(self) -> UsersResource:
+        from .resources.users import UsersResource
+
+        return UsersResource(self)
+
+    @cached_property
+    def ratings(self) -> RatingsResource:
+        from .resources.ratings import RatingsResource
+
+        return RatingsResource(self)
+
+    @cached_property
+    def organizations(self) -> OrganizationsResource:
+        from .resources.organizations import OrganizationsResource
+
+        return OrganizationsResource(self)
+
+    @cached_property
+    def prompts(self) -> PromptsResource:
+        from .resources.prompts import PromptsResource
+
+        return PromptsResource(self)
+
+    @cached_property
+    def events(self) -> EventsResource:
+        from .resources.events import EventsResource
+
+        return EventsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> GreenflashWithRawResponse:
+        return GreenflashWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> GreenflashWithStreamedResponse:
+        return GreenflashWithStreamedResponse(self)
 
     @property
     @override
@@ -138,9 +178,7 @@ class Greenflash(SyncAPIClient):
 
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if self.api_key and headers.get("Authorization"):
-            return
-        if isinstance(custom_headers.get("Authorization"), Omit):
+        if headers.get("Authorization") or isinstance(custom_headers.get("Authorization"), Omit):
             return
 
         raise TypeError(
@@ -233,16 +271,6 @@ class Greenflash(SyncAPIClient):
 
 
 class AsyncGreenflash(AsyncAPIClient):
-    messages: messages.AsyncMessagesResource
-    interactions: interactions.AsyncInteractionsResource
-    users: users.AsyncUsersResource
-    ratings: ratings.AsyncRatingsResource
-    organizations: organizations.AsyncOrganizationsResource
-    prompts: prompts.AsyncPromptsResource
-    events: events.AsyncEventsResource
-    with_raw_response: AsyncGreenflashWithRawResponse
-    with_streaming_response: AsyncGreenflashWithStreamedResponse
-
     # client options
     api_key: str | None
 
@@ -293,15 +321,55 @@ class AsyncGreenflash(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.messages = messages.AsyncMessagesResource(self)
-        self.interactions = interactions.AsyncInteractionsResource(self)
-        self.users = users.AsyncUsersResource(self)
-        self.ratings = ratings.AsyncRatingsResource(self)
-        self.organizations = organizations.AsyncOrganizationsResource(self)
-        self.prompts = prompts.AsyncPromptsResource(self)
-        self.events = events.AsyncEventsResource(self)
-        self.with_raw_response = AsyncGreenflashWithRawResponse(self)
-        self.with_streaming_response = AsyncGreenflashWithStreamedResponse(self)
+    @cached_property
+    def messages(self) -> AsyncMessagesResource:
+        from .resources.messages import AsyncMessagesResource
+
+        return AsyncMessagesResource(self)
+
+    @cached_property
+    def interactions(self) -> AsyncInteractionsResource:
+        from .resources.interactions import AsyncInteractionsResource
+
+        return AsyncInteractionsResource(self)
+
+    @cached_property
+    def users(self) -> AsyncUsersResource:
+        from .resources.users import AsyncUsersResource
+
+        return AsyncUsersResource(self)
+
+    @cached_property
+    def ratings(self) -> AsyncRatingsResource:
+        from .resources.ratings import AsyncRatingsResource
+
+        return AsyncRatingsResource(self)
+
+    @cached_property
+    def organizations(self) -> AsyncOrganizationsResource:
+        from .resources.organizations import AsyncOrganizationsResource
+
+        return AsyncOrganizationsResource(self)
+
+    @cached_property
+    def prompts(self) -> AsyncPromptsResource:
+        from .resources.prompts import AsyncPromptsResource
+
+        return AsyncPromptsResource(self)
+
+    @cached_property
+    def events(self) -> AsyncEventsResource:
+        from .resources.events import AsyncEventsResource
+
+        return AsyncEventsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncGreenflashWithRawResponse:
+        return AsyncGreenflashWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncGreenflashWithStreamedResponse:
+        return AsyncGreenflashWithStreamedResponse(self)
 
     @property
     @override
@@ -327,9 +395,7 @@ class AsyncGreenflash(AsyncAPIClient):
 
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if self.api_key and headers.get("Authorization"):
-            return
-        if isinstance(custom_headers.get("Authorization"), Omit):
+        if headers.get("Authorization") or isinstance(custom_headers.get("Authorization"), Omit):
             return
 
         raise TypeError(
@@ -422,47 +488,199 @@ class AsyncGreenflash(AsyncAPIClient):
 
 
 class GreenflashWithRawResponse:
+    _client: Greenflash
+
     def __init__(self, client: Greenflash) -> None:
-        self.messages = messages.MessagesResourceWithRawResponse(client.messages)
-        self.interactions = interactions.InteractionsResourceWithRawResponse(client.interactions)
-        self.users = users.UsersResourceWithRawResponse(client.users)
-        self.ratings = ratings.RatingsResourceWithRawResponse(client.ratings)
-        self.organizations = organizations.OrganizationsResourceWithRawResponse(client.organizations)
-        self.prompts = prompts.PromptsResourceWithRawResponse(client.prompts)
-        self.events = events.EventsResourceWithRawResponse(client.events)
+        self._client = client
+
+    @cached_property
+    def messages(self) -> messages.MessagesResourceWithRawResponse:
+        from .resources.messages import MessagesResourceWithRawResponse
+
+        return MessagesResourceWithRawResponse(self._client.messages)
+
+    @cached_property
+    def interactions(self) -> interactions.InteractionsResourceWithRawResponse:
+        from .resources.interactions import InteractionsResourceWithRawResponse
+
+        return InteractionsResourceWithRawResponse(self._client.interactions)
+
+    @cached_property
+    def users(self) -> users.UsersResourceWithRawResponse:
+        from .resources.users import UsersResourceWithRawResponse
+
+        return UsersResourceWithRawResponse(self._client.users)
+
+    @cached_property
+    def ratings(self) -> ratings.RatingsResourceWithRawResponse:
+        from .resources.ratings import RatingsResourceWithRawResponse
+
+        return RatingsResourceWithRawResponse(self._client.ratings)
+
+    @cached_property
+    def organizations(self) -> organizations.OrganizationsResourceWithRawResponse:
+        from .resources.organizations import OrganizationsResourceWithRawResponse
+
+        return OrganizationsResourceWithRawResponse(self._client.organizations)
+
+    @cached_property
+    def prompts(self) -> prompts.PromptsResourceWithRawResponse:
+        from .resources.prompts import PromptsResourceWithRawResponse
+
+        return PromptsResourceWithRawResponse(self._client.prompts)
+
+    @cached_property
+    def events(self) -> events.EventsResourceWithRawResponse:
+        from .resources.events import EventsResourceWithRawResponse
+
+        return EventsResourceWithRawResponse(self._client.events)
 
 
 class AsyncGreenflashWithRawResponse:
+    _client: AsyncGreenflash
+
     def __init__(self, client: AsyncGreenflash) -> None:
-        self.messages = messages.AsyncMessagesResourceWithRawResponse(client.messages)
-        self.interactions = interactions.AsyncInteractionsResourceWithRawResponse(client.interactions)
-        self.users = users.AsyncUsersResourceWithRawResponse(client.users)
-        self.ratings = ratings.AsyncRatingsResourceWithRawResponse(client.ratings)
-        self.organizations = organizations.AsyncOrganizationsResourceWithRawResponse(client.organizations)
-        self.prompts = prompts.AsyncPromptsResourceWithRawResponse(client.prompts)
-        self.events = events.AsyncEventsResourceWithRawResponse(client.events)
+        self._client = client
+
+    @cached_property
+    def messages(self) -> messages.AsyncMessagesResourceWithRawResponse:
+        from .resources.messages import AsyncMessagesResourceWithRawResponse
+
+        return AsyncMessagesResourceWithRawResponse(self._client.messages)
+
+    @cached_property
+    def interactions(self) -> interactions.AsyncInteractionsResourceWithRawResponse:
+        from .resources.interactions import AsyncInteractionsResourceWithRawResponse
+
+        return AsyncInteractionsResourceWithRawResponse(self._client.interactions)
+
+    @cached_property
+    def users(self) -> users.AsyncUsersResourceWithRawResponse:
+        from .resources.users import AsyncUsersResourceWithRawResponse
+
+        return AsyncUsersResourceWithRawResponse(self._client.users)
+
+    @cached_property
+    def ratings(self) -> ratings.AsyncRatingsResourceWithRawResponse:
+        from .resources.ratings import AsyncRatingsResourceWithRawResponse
+
+        return AsyncRatingsResourceWithRawResponse(self._client.ratings)
+
+    @cached_property
+    def organizations(self) -> organizations.AsyncOrganizationsResourceWithRawResponse:
+        from .resources.organizations import AsyncOrganizationsResourceWithRawResponse
+
+        return AsyncOrganizationsResourceWithRawResponse(self._client.organizations)
+
+    @cached_property
+    def prompts(self) -> prompts.AsyncPromptsResourceWithRawResponse:
+        from .resources.prompts import AsyncPromptsResourceWithRawResponse
+
+        return AsyncPromptsResourceWithRawResponse(self._client.prompts)
+
+    @cached_property
+    def events(self) -> events.AsyncEventsResourceWithRawResponse:
+        from .resources.events import AsyncEventsResourceWithRawResponse
+
+        return AsyncEventsResourceWithRawResponse(self._client.events)
 
 
 class GreenflashWithStreamedResponse:
+    _client: Greenflash
+
     def __init__(self, client: Greenflash) -> None:
-        self.messages = messages.MessagesResourceWithStreamingResponse(client.messages)
-        self.interactions = interactions.InteractionsResourceWithStreamingResponse(client.interactions)
-        self.users = users.UsersResourceWithStreamingResponse(client.users)
-        self.ratings = ratings.RatingsResourceWithStreamingResponse(client.ratings)
-        self.organizations = organizations.OrganizationsResourceWithStreamingResponse(client.organizations)
-        self.prompts = prompts.PromptsResourceWithStreamingResponse(client.prompts)
-        self.events = events.EventsResourceWithStreamingResponse(client.events)
+        self._client = client
+
+    @cached_property
+    def messages(self) -> messages.MessagesResourceWithStreamingResponse:
+        from .resources.messages import MessagesResourceWithStreamingResponse
+
+        return MessagesResourceWithStreamingResponse(self._client.messages)
+
+    @cached_property
+    def interactions(self) -> interactions.InteractionsResourceWithStreamingResponse:
+        from .resources.interactions import InteractionsResourceWithStreamingResponse
+
+        return InteractionsResourceWithStreamingResponse(self._client.interactions)
+
+    @cached_property
+    def users(self) -> users.UsersResourceWithStreamingResponse:
+        from .resources.users import UsersResourceWithStreamingResponse
+
+        return UsersResourceWithStreamingResponse(self._client.users)
+
+    @cached_property
+    def ratings(self) -> ratings.RatingsResourceWithStreamingResponse:
+        from .resources.ratings import RatingsResourceWithStreamingResponse
+
+        return RatingsResourceWithStreamingResponse(self._client.ratings)
+
+    @cached_property
+    def organizations(self) -> organizations.OrganizationsResourceWithStreamingResponse:
+        from .resources.organizations import OrganizationsResourceWithStreamingResponse
+
+        return OrganizationsResourceWithStreamingResponse(self._client.organizations)
+
+    @cached_property
+    def prompts(self) -> prompts.PromptsResourceWithStreamingResponse:
+        from .resources.prompts import PromptsResourceWithStreamingResponse
+
+        return PromptsResourceWithStreamingResponse(self._client.prompts)
+
+    @cached_property
+    def events(self) -> events.EventsResourceWithStreamingResponse:
+        from .resources.events import EventsResourceWithStreamingResponse
+
+        return EventsResourceWithStreamingResponse(self._client.events)
 
 
 class AsyncGreenflashWithStreamedResponse:
+    _client: AsyncGreenflash
+
     def __init__(self, client: AsyncGreenflash) -> None:
-        self.messages = messages.AsyncMessagesResourceWithStreamingResponse(client.messages)
-        self.interactions = interactions.AsyncInteractionsResourceWithStreamingResponse(client.interactions)
-        self.users = users.AsyncUsersResourceWithStreamingResponse(client.users)
-        self.ratings = ratings.AsyncRatingsResourceWithStreamingResponse(client.ratings)
-        self.organizations = organizations.AsyncOrganizationsResourceWithStreamingResponse(client.organizations)
-        self.prompts = prompts.AsyncPromptsResourceWithStreamingResponse(client.prompts)
-        self.events = events.AsyncEventsResourceWithStreamingResponse(client.events)
+        self._client = client
+
+    @cached_property
+    def messages(self) -> messages.AsyncMessagesResourceWithStreamingResponse:
+        from .resources.messages import AsyncMessagesResourceWithStreamingResponse
+
+        return AsyncMessagesResourceWithStreamingResponse(self._client.messages)
+
+    @cached_property
+    def interactions(self) -> interactions.AsyncInteractionsResourceWithStreamingResponse:
+        from .resources.interactions import AsyncInteractionsResourceWithStreamingResponse
+
+        return AsyncInteractionsResourceWithStreamingResponse(self._client.interactions)
+
+    @cached_property
+    def users(self) -> users.AsyncUsersResourceWithStreamingResponse:
+        from .resources.users import AsyncUsersResourceWithStreamingResponse
+
+        return AsyncUsersResourceWithStreamingResponse(self._client.users)
+
+    @cached_property
+    def ratings(self) -> ratings.AsyncRatingsResourceWithStreamingResponse:
+        from .resources.ratings import AsyncRatingsResourceWithStreamingResponse
+
+        return AsyncRatingsResourceWithStreamingResponse(self._client.ratings)
+
+    @cached_property
+    def organizations(self) -> organizations.AsyncOrganizationsResourceWithStreamingResponse:
+        from .resources.organizations import AsyncOrganizationsResourceWithStreamingResponse
+
+        return AsyncOrganizationsResourceWithStreamingResponse(self._client.organizations)
+
+    @cached_property
+    def prompts(self) -> prompts.AsyncPromptsResourceWithStreamingResponse:
+        from .resources.prompts import AsyncPromptsResourceWithStreamingResponse
+
+        return AsyncPromptsResourceWithStreamingResponse(self._client.prompts)
+
+    @cached_property
+    def events(self) -> events.AsyncEventsResourceWithStreamingResponse:
+        from .resources.events import AsyncEventsResourceWithStreamingResponse
+
+        return AsyncEventsResourceWithStreamingResponse(self._client.events)
 
 
 Client = Greenflash

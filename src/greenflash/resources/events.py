@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Union
-from datetime import date
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
@@ -50,19 +50,21 @@ class EventsResource(SyncAPIResource):
         *,
         event_type: str,
         product_id: str,
+        value: str,
         conversation_id: str | Omit = omit,
-        event_at: Union[str, date] | Omit = omit,
+        event_at: Union[str, datetime] | Omit = omit,
         external_conversation_id: str | Omit = omit,
         external_organization_id: str | Omit = omit,
         external_user_id: str | Omit = omit,
+        force_sample: bool | Omit = omit,
         influence: Literal["positive", "negative", "neutral"] | Omit = omit,
         insert_id: str | Omit = omit,
         organization_id: str | Omit = omit,
         properties: Dict[str, object] | Omit = omit,
         quality_impact_score: float | Omit = omit,
+        sample_rate: float | Omit = omit,
         user_id: str | Omit = omit,
-        value: str | Omit = omit,
-        value_type: Literal["currency", "numeric", "text"] | Omit = omit,
+        value_type: Literal["currency", "numeric", "text", "boolean"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -85,6 +87,10 @@ class EventsResource(SyncAPIResource):
           product_id: The unique identifier of the Greenflash product associated with this event. This
               links the event to a specific product context.
 
+          value: The specific value associated with the event (e.g., "99.00", "5",
+              "premium_plan"). This pairs with "valueType" and "eventType" to define the
+              magnitude or content of the event.
+
           conversation_id: The unique Greenflash identifier for the conversation. Links the event to a
               specific chat session in Greenflash.
 
@@ -99,6 +105,9 @@ class EventsResource(SyncAPIResource):
 
           external_user_id: Your system's unique identifier for the user associated with this event. Used to
               map Greenflash events back to your user records.
+
+          force_sample: When true, bypasses sampling and ensures this event is always ingested
+              regardless of sampleRate. Use for critical events that must be captured.
 
           influence: A high-level categorization of how this event generally "changed things" or
               influenced quality (positive, negative, or neutral). Use this for broad
@@ -116,12 +125,12 @@ class EventsResource(SyncAPIResource):
           quality_impact_score: A precise numeric score between -1.0 and 1.0 for direct control over the quality
               impact. If omitted, it is automatically derived from the "influence" field.
 
+          sample_rate: Controls the percentage of requests that are ingested (0.0 to 1.0). For example,
+              0.1 means 10% of events will be stored. Defaults to 1.0 (all events ingested).
+              Sampling is deterministic based on event type and organization.
+
           user_id: The unique Greenflash identifier for the user. Provide this if you already have
               the Greenflash User ID; otherwise, use "externalUserId".
-
-          value: The specific value associated with the event (e.g., "99.00", "5",
-              "premium_plan"). This pairs with "valueType" and "eventType" to define the
-              magnitude or content of the event.
 
           value_type: Defines the format of the "value" field (currency, numeric, or text). This
               ensures the value is interpreted and processed correctly.
@@ -140,18 +149,20 @@ class EventsResource(SyncAPIResource):
                 {
                     "event_type": event_type,
                     "product_id": product_id,
+                    "value": value,
                     "conversation_id": conversation_id,
                     "event_at": event_at,
                     "external_conversation_id": external_conversation_id,
                     "external_organization_id": external_organization_id,
                     "external_user_id": external_user_id,
+                    "force_sample": force_sample,
                     "influence": influence,
                     "insert_id": insert_id,
                     "organization_id": organization_id,
                     "properties": properties,
                     "quality_impact_score": quality_impact_score,
+                    "sample_rate": sample_rate,
                     "user_id": user_id,
-                    "value": value,
                     "value_type": value_type,
                 },
                 event_create_params.EventCreateParams,
@@ -188,19 +199,21 @@ class AsyncEventsResource(AsyncAPIResource):
         *,
         event_type: str,
         product_id: str,
+        value: str,
         conversation_id: str | Omit = omit,
-        event_at: Union[str, date] | Omit = omit,
+        event_at: Union[str, datetime] | Omit = omit,
         external_conversation_id: str | Omit = omit,
         external_organization_id: str | Omit = omit,
         external_user_id: str | Omit = omit,
+        force_sample: bool | Omit = omit,
         influence: Literal["positive", "negative", "neutral"] | Omit = omit,
         insert_id: str | Omit = omit,
         organization_id: str | Omit = omit,
         properties: Dict[str, object] | Omit = omit,
         quality_impact_score: float | Omit = omit,
+        sample_rate: float | Omit = omit,
         user_id: str | Omit = omit,
-        value: str | Omit = omit,
-        value_type: Literal["currency", "numeric", "text"] | Omit = omit,
+        value_type: Literal["currency", "numeric", "text", "boolean"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -223,6 +236,10 @@ class AsyncEventsResource(AsyncAPIResource):
           product_id: The unique identifier of the Greenflash product associated with this event. This
               links the event to a specific product context.
 
+          value: The specific value associated with the event (e.g., "99.00", "5",
+              "premium_plan"). This pairs with "valueType" and "eventType" to define the
+              magnitude or content of the event.
+
           conversation_id: The unique Greenflash identifier for the conversation. Links the event to a
               specific chat session in Greenflash.
 
@@ -237,6 +254,9 @@ class AsyncEventsResource(AsyncAPIResource):
 
           external_user_id: Your system's unique identifier for the user associated with this event. Used to
               map Greenflash events back to your user records.
+
+          force_sample: When true, bypasses sampling and ensures this event is always ingested
+              regardless of sampleRate. Use for critical events that must be captured.
 
           influence: A high-level categorization of how this event generally "changed things" or
               influenced quality (positive, negative, or neutral). Use this for broad
@@ -254,12 +274,12 @@ class AsyncEventsResource(AsyncAPIResource):
           quality_impact_score: A precise numeric score between -1.0 and 1.0 for direct control over the quality
               impact. If omitted, it is automatically derived from the "influence" field.
 
+          sample_rate: Controls the percentage of requests that are ingested (0.0 to 1.0). For example,
+              0.1 means 10% of events will be stored. Defaults to 1.0 (all events ingested).
+              Sampling is deterministic based on event type and organization.
+
           user_id: The unique Greenflash identifier for the user. Provide this if you already have
               the Greenflash User ID; otherwise, use "externalUserId".
-
-          value: The specific value associated with the event (e.g., "99.00", "5",
-              "premium_plan"). This pairs with "valueType" and "eventType" to define the
-              magnitude or content of the event.
 
           value_type: Defines the format of the "value" field (currency, numeric, or text). This
               ensures the value is interpreted and processed correctly.
@@ -278,18 +298,20 @@ class AsyncEventsResource(AsyncAPIResource):
                 {
                     "event_type": event_type,
                     "product_id": product_id,
+                    "value": value,
                     "conversation_id": conversation_id,
                     "event_at": event_at,
                     "external_conversation_id": external_conversation_id,
                     "external_organization_id": external_organization_id,
                     "external_user_id": external_user_id,
+                    "force_sample": force_sample,
                     "influence": influence,
                     "insert_id": insert_id,
                     "organization_id": organization_id,
                     "properties": properties,
                     "quality_impact_score": quality_impact_score,
+                    "sample_rate": sample_rate,
                     "user_id": user_id,
-                    "value": value,
                     "value_type": value_type,
                 },
                 event_create_params.EventCreateParams,

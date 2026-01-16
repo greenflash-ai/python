@@ -20,36 +20,48 @@ __all__ = [
 
 
 class AverageChangeInUserSentiment(BaseModel):
+    """Distribution of sentiment changes."""
+
     label: str
 
     score: float
 
 
 class AverageCommercialIntent(BaseModel):
+    """Average commercial intent."""
+
     label: str
 
     score: float
 
 
 class AverageFrustration(BaseModel):
+    """Average frustration level."""
+
     label: str
 
     score: float
 
 
 class AverageStruggle(BaseModel):
+    """Average struggle level."""
+
     label: str
 
     score: float
 
 
 class AverageUserSentiment(BaseModel):
+    """Average sentiment across all conversations."""
+
     label: str
 
     score: float
 
 
 class Summary(BaseModel):
+    """Summary of the organization analytics."""
+
     analysis: str
 
     reason: str

@@ -7,6 +7,8 @@ __all__ = ["CreateUserResponse"]
 
 
 class CreateUserResponse(BaseModel):
+    """Success response for user creation."""
+
     participant: Participant
     """The user profile."""
 
