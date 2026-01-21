@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0 (2026-01-21)
+
+Full Changelog: [v0.40.0...v1.0.0](https://github.com/greenflash-ai/python/compare/v0.40.0...v1.0.0)
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([db4caee](https://github.com/greenflash-ai/python/commit/db4caeed0cf6a01376a2d7e4f2e0e789ec68ccd0))
+
 ## 0.40.0 (2026-01-14)
 
 Full Changelog: [v0.1.0-alpha.27...v0.40.0](https://github.com/greenflash-ai/python/compare/v0.1.0-alpha.27...v0.40.0)
