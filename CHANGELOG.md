@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.1 (2026-01-24)
+
+Full Changelog: [v1.0.0...v1.0.1](https://github.com/greenflash-ai/python/compare/v1.0.0...v1.0.1)
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([2226275](https://github.com/greenflash-ai/python/commit/2226275ae3567b06028c60f45085548f781f0430))
+
 ## 1.0.0 (2026-01-21)
 
 Full Changelog: [v0.40.0...v1.0.0](https://github.com/greenflash-ai/python/compare/v0.40.0...v1.0.0)
