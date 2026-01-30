@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0 (2026-01-30)
+
+Full Changelog: [v1.0.1...v1.1.0](https://github.com/greenflash-ai/python/compare/v1.0.1...v1.1.0)
+
+### Features
+
+* **client:** add custom JSON encoder for extended type support ([a20ec3b](https://github.com/greenflash-ai/python/commit/a20ec3bfef1c80fcf8c1fd6cfc2d4c86feedcba5))
+
 ## 1.0.1 (2026-01-24)
 
 Full Changelog: [v1.0.0...v1.0.1](https://github.com/greenflash-ai/python/compare/v1.0.0...v1.0.1)
