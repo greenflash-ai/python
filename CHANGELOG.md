@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.1 (2026-02-13)
+
+Full Changelog: [v1.1.0...v1.1.1](https://github.com/greenflash-ai/python/compare/v1.1.0...v1.1.1)
+
+### Chores
+
+* format all `api.md` files ([c63d6ef](https://github.com/greenflash-ai/python/commit/c63d6ef78d20830afb60bdc7a09a1a783dcecd7d))
+* **internal:** bump dependencies ([e647089](https://github.com/greenflash-ai/python/commit/e647089c78b7f43f676f2cf900701b914c2fac66))
+* **internal:** fix lint error on Python 3.14 ([ab0d5a6](https://github.com/greenflash-ai/python/commit/ab0d5a63ee968c7d16b4bd878c1519a3d70ac152))
+
 ## 1.1.0 (2026-01-30)
 
 Full Changelog: [v1.0.1...v1.1.0](https://github.com/greenflash-ai/python/compare/v1.0.1...v1.1.0)
