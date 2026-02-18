@@ -6,7 +6,7 @@ from typing import Dict, Iterable
 
 import httpx
 
-from ..types import message_create_params
+from ..types import SystemPrompt, message_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -18,6 +18,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
+from ..types.system_prompt import SystemPrompt
 from ..types.message_item_param import MessageItemParam
 from ..types.create_message_response import CreateMessageResponse
 
@@ -57,7 +58,7 @@ class MessagesResource(SyncAPIResource):
         product_id: str | Omit = omit,
         properties: Dict[str, object] | Omit = omit,
         sample_rate: float | Omit = omit,
-        system_prompt: message_create_params.SystemPrompt | Omit = omit,
+        system_prompt: SystemPrompt | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -88,6 +89,12 @@ class MessagesResource(SyncAPIResource):
         - **Organization Tracking:** Associate users with organizations via
           `externalOrganizationId`. We'll create the organization automatically if it
           doesn't exist.
+        - **Automatic De-duplication:** Messages with an `externalMessageId` that
+          already exists in the conversation are automatically skipped. This allows you
+          to safely resend a batch of messages with new messages appended — previously
+          ingested messages will be deduplicated and only new messages will be inserted.
+          Each message in the response includes a `status` field ("created" or
+          "deduplicated") so you know what happened.
 
         Perfect for understanding how your AI is performing in production and
         identifying areas for improvement.
@@ -121,8 +128,7 @@ class MessagesResource(SyncAPIResource):
               0.1 means 10% of requests will be stored. Defaults to 1.0 (all requests
               ingested). Sampling is deterministic based on conversation ID.
 
-          system_prompt: System prompt for the conversation. Can be a simple string or a prompt object
-              with components.
+          system_prompt: System prompt as a simple string (will be converted to a prompt object).
 
           extra_headers: Send extra headers
 
@@ -190,7 +196,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         product_id: str | Omit = omit,
         properties: Dict[str, object] | Omit = omit,
         sample_rate: float | Omit = omit,
-        system_prompt: message_create_params.SystemPrompt | Omit = omit,
+        system_prompt: SystemPrompt | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -221,6 +227,12 @@ class AsyncMessagesResource(AsyncAPIResource):
         - **Organization Tracking:** Associate users with organizations via
           `externalOrganizationId`. We'll create the organization automatically if it
           doesn't exist.
+        - **Automatic De-duplication:** Messages with an `externalMessageId` that
+          already exists in the conversation are automatically skipped. This allows you
+          to safely resend a batch of messages with new messages appended — previously
+          ingested messages will be deduplicated and only new messages will be inserted.
+          Each message in the response includes a `status` field ("created" or
+          "deduplicated") so you know what happened.
 
         Perfect for understanding how your AI is performing in production and
         identifying areas for improvement.
@@ -254,8 +266,7 @@ class AsyncMessagesResource(AsyncAPIResource):
               0.1 means 10% of requests will be stored. Defaults to 1.0 (all requests
               ingested). Sampling is deterministic based on conversation ID.
 
-          system_prompt: System prompt for the conversation. Can be a simple string or a prompt object
-              with components.
+          system_prompt: System prompt as a simple string (will be converted to a prompt object).
 
           extra_headers: Send extra headers
 

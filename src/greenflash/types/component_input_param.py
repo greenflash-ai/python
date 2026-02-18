@@ -28,5 +28,8 @@ class ComponentInputParam(TypedDict, total=False):
     source: Literal["customer", "participant", "greenflash", "agent"]
     """Component source: customer, participant, greenflash, or agent."""
 
-    type: Literal["system", "endUser", "userModified", "rag", "agent"]
-    """Component type: system, endUser, userModified, rag, or agent."""
+    type: Literal["system", "user", "tool", "guardrail", "rag", "agent", "other"]
+    """
+    Component type: system, user, tool, guardrail, rag, agent, or a custom type
+    (other).
+    """
