@@ -5,7 +5,6 @@ from __future__ import annotations
 from .prompt import Prompt as Prompt
 from .participant import Participant as Participant
 from .slim_prompt import SlimPrompt as SlimPrompt
-from .system_prompt import SystemPrompt as SystemPrompt
 from .prompt_component import PromptComponent as PromptComponent
 from .user_list_params import UserListParams as UserListParams
 from .rating_log_params import RatingLogParams as RatingLogParams
@@ -17,6 +16,7 @@ from .event_create_params import EventCreateParams as EventCreateParams
 from .get_prompt_response import GetPromptResponse as GetPromptResponse
 from .list_users_response import ListUsersResponse as ListUsersResponse
 from .log_rating_response import LogRatingResponse as LogRatingResponse
+from .system_prompt_param import SystemPromptParam as SystemPromptParam
 from .tenant_organization import TenantOrganization as TenantOrganization
 from .create_user_response import CreateUserResponse as CreateUserResponse
 from .prompt_create_params import PromptCreateParams as PromptCreateParams
