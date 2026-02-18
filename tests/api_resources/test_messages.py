@@ -10,7 +10,7 @@ import pytest
 from greenflash import Greenflash, AsyncGreenflash
 from tests.utils import assert_matches_type
 from greenflash.types import CreateMessageResponse
-from greenflash._utils import parse_date
+from greenflash._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -34,10 +34,11 @@ class TestMessages:
                 {
                     "content": "Hello!",
                     "context": "context",
-                    "created_at": parse_date("2019-12-27"),
+                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "external_message_id": "user-msg-1",
                     "input": {"foo": "bar"},
                     "message_type": "user_message",
+                    "model": "model",
                     "output": {"foo": "bar"},
                     "parent_external_message_id": "parentExternalMessageId",
                     "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -48,10 +49,11 @@ class TestMessages:
                 {
                     "content": "Hi there! How can I help you?",
                     "context": "context",
-                    "created_at": parse_date("2019-12-27"),
+                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "external_message_id": "assistant-msg-1",
                     "input": {"foo": "bar"},
                     "message_type": "user_message",
+                    "model": "model",
                     "output": {"foo": "bar"},
                     "parent_external_message_id": "parentExternalMessageId",
                     "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -62,10 +64,11 @@ class TestMessages:
                 {
                     "content": "Calling search tool",
                     "context": "context",
-                    "created_at": parse_date("2019-12-27"),
+                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "external_message_id": "tool-call-1",
                     "input": {"query": "bar"},
                     "message_type": "tool_call",
+                    "model": "model",
                     "output": {"foo": "bar"},
                     "parent_external_message_id": "parentExternalMessageId",
                     "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -76,10 +79,11 @@ class TestMessages:
                 {
                     "content": "Search completed",
                     "context": "context",
-                    "created_at": parse_date("2019-12-27"),
+                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "external_message_id": "tool-result-1",
                     "input": {"foo": "bar"},
                     "message_type": "observation",
+                    "model": "model",
                     "output": {"results": "bar"},
                     "parent_external_message_id": "tool-call-1",
                     "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -90,10 +94,11 @@ class TestMessages:
                 {
                     "content": "Based on the search, today will be sunny with a high of 75°F.",
                     "context": "context",
-                    "created_at": parse_date("2019-12-27"),
+                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "external_message_id": "final-1",
                     "input": {"foo": "bar"},
                     "message_type": "final_response",
+                    "model": "model",
                     "output": {"foo": "bar"},
                     "parent_external_message_id": "parentExternalMessageId",
                     "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -110,21 +115,7 @@ class TestMessages:
             product_id="123e4567-e89b-12d3-a456-426614174001",
             properties={"campaign": "bar"},
             sample_rate=0,
-            system_prompt={
-                "components": [
-                    {
-                        "content": "You are a helpful assistant.",
-                        "component_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "external_component_id": "externalComponentId",
-                        "is_dynamic": True,
-                        "name": "name",
-                        "source": "customer",
-                        "type": "system",
-                    }
-                ],
-                "external_prompt_id": "externalPromptId",
-                "prompt_id": "123e4567-e89b-12d3-a456-426614174004",
-            },
+            system_prompt="x",
         )
         assert_matches_type(CreateMessageResponse, message, path=["response"])
 
@@ -176,10 +167,11 @@ class TestAsyncMessages:
                 {
                     "content": "Hello!",
                     "context": "context",
-                    "created_at": parse_date("2019-12-27"),
+                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "external_message_id": "user-msg-1",
                     "input": {"foo": "bar"},
                     "message_type": "user_message",
+                    "model": "model",
                     "output": {"foo": "bar"},
                     "parent_external_message_id": "parentExternalMessageId",
                     "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -190,10 +182,11 @@ class TestAsyncMessages:
                 {
                     "content": "Hi there! How can I help you?",
                     "context": "context",
-                    "created_at": parse_date("2019-12-27"),
+                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "external_message_id": "assistant-msg-1",
                     "input": {"foo": "bar"},
                     "message_type": "user_message",
+                    "model": "model",
                     "output": {"foo": "bar"},
                     "parent_external_message_id": "parentExternalMessageId",
                     "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -204,10 +197,11 @@ class TestAsyncMessages:
                 {
                     "content": "Calling search tool",
                     "context": "context",
-                    "created_at": parse_date("2019-12-27"),
+                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "external_message_id": "tool-call-1",
                     "input": {"query": "bar"},
                     "message_type": "tool_call",
+                    "model": "model",
                     "output": {"foo": "bar"},
                     "parent_external_message_id": "parentExternalMessageId",
                     "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -218,10 +212,11 @@ class TestAsyncMessages:
                 {
                     "content": "Search completed",
                     "context": "context",
-                    "created_at": parse_date("2019-12-27"),
+                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "external_message_id": "tool-result-1",
                     "input": {"foo": "bar"},
                     "message_type": "observation",
+                    "model": "model",
                     "output": {"results": "bar"},
                     "parent_external_message_id": "tool-call-1",
                     "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -232,10 +227,11 @@ class TestAsyncMessages:
                 {
                     "content": "Based on the search, today will be sunny with a high of 75°F.",
                     "context": "context",
-                    "created_at": parse_date("2019-12-27"),
+                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "external_message_id": "final-1",
                     "input": {"foo": "bar"},
                     "message_type": "final_response",
+                    "model": "model",
                     "output": {"foo": "bar"},
                     "parent_external_message_id": "parentExternalMessageId",
                     "parent_message_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -252,21 +248,7 @@ class TestAsyncMessages:
             product_id="123e4567-e89b-12d3-a456-426614174001",
             properties={"campaign": "bar"},
             sample_rate=0,
-            system_prompt={
-                "components": [
-                    {
-                        "content": "You are a helpful assistant.",
-                        "component_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "external_component_id": "externalComponentId",
-                        "is_dynamic": True,
-                        "name": "name",
-                        "source": "customer",
-                        "type": "system",
-                    }
-                ],
-                "external_prompt_id": "externalPromptId",
-                "prompt_id": "123e4567-e89b-12d3-a456-426614174004",
-            },
+            system_prompt="x",
         )
         assert_matches_type(CreateMessageResponse, message, path=["response"])
 

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Union, Optional
-from datetime import date
+from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -18,7 +18,7 @@ class MessageItemParam(TypedDict, total=False):
     context: Optional[str]
     """Additional context (e.g., RAG data) used to generate the message."""
 
-    created_at: Annotated[Union[str, date], PropertyInfo(alias="createdAt", format="iso8601")]
+    created_at: Annotated[Union[str, datetime], PropertyInfo(alias="createdAt", format="iso8601")]
     """When this message was created.
 
     If not provided, messages get sequential timestamps. Use for importing
@@ -63,6 +63,13 @@ class MessageItemParam(TypedDict, total=False):
     system_message, thought, tool_call, observation, final_response, retrieval,
     memory_read, memory_write, chain_start, chain_end, embedding, tool_error,
     callback, llm, task, workflow
+    """
+
+    model: str
+    """The AI model used for this specific message.
+
+    Use for multi-agent scenarios where different messages use different models.
+    Overrides the conversation-level model for this message.
     """
 
     output: Dict[str, object]
