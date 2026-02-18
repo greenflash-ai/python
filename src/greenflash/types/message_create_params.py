@@ -6,8 +6,8 @@ from typing import Dict, Iterable
 from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .system_prompt import SystemPrompt
 from .message_item_param import MessageItemParam
+from .system_prompt_param import SystemPromptParam
 
 __all__ = ["MessageCreateParams"]
 
@@ -63,5 +63,8 @@ class MessageCreateParams(TypedDict, total=False):
     requests ingested). Sampling is deterministic based on conversation ID.
     """
 
-    system_prompt: Annotated[SystemPrompt, PropertyInfo(alias="systemPrompt")]
-    """System prompt as a simple string (will be converted to a prompt object)."""
+    system_prompt: Annotated[SystemPromptParam, PropertyInfo(alias="systemPrompt")]
+    """System prompt for the conversation.
+
+    Can be a simple string or a prompt object with components.
+    """

@@ -6,7 +6,7 @@ from typing import Dict, Iterable
 
 import httpx
 
-from ..types import SystemPrompt, message_create_params
+from ..types import message_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -18,8 +18,8 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.system_prompt import SystemPrompt
 from ..types.message_item_param import MessageItemParam
+from ..types.system_prompt_param import SystemPromptParam
 from ..types.create_message_response import CreateMessageResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
@@ -58,7 +58,7 @@ class MessagesResource(SyncAPIResource):
         product_id: str | Omit = omit,
         properties: Dict[str, object] | Omit = omit,
         sample_rate: float | Omit = omit,
-        system_prompt: SystemPrompt | Omit = omit,
+        system_prompt: SystemPromptParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -128,7 +128,8 @@ class MessagesResource(SyncAPIResource):
               0.1 means 10% of requests will be stored. Defaults to 1.0 (all requests
               ingested). Sampling is deterministic based on conversation ID.
 
-          system_prompt: System prompt as a simple string (will be converted to a prompt object).
+          system_prompt: System prompt for the conversation. Can be a simple string or a prompt object
+              with components.
 
           extra_headers: Send extra headers
 
@@ -196,7 +197,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         product_id: str | Omit = omit,
         properties: Dict[str, object] | Omit = omit,
         sample_rate: float | Omit = omit,
-        system_prompt: SystemPrompt | Omit = omit,
+        system_prompt: SystemPromptParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -266,7 +267,8 @@ class AsyncMessagesResource(AsyncAPIResource):
               0.1 means 10% of requests will be stored. Defaults to 1.0 (all requests
               ingested). Sampling is deterministic based on conversation ID.
 
-          system_prompt: System prompt as a simple string (will be converted to a prompt object).
+          system_prompt: System prompt for the conversation. Can be a simple string or a prompt object
+              with components.
 
           extra_headers: Send extra headers
 

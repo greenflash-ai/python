@@ -115,7 +115,23 @@ class TestMessages:
             product_id="123e4567-e89b-12d3-a456-426614174001",
             properties={"campaign": "bar"},
             sample_rate=0,
-            system_prompt="x",
+            system_prompt={
+                "components": [
+                    {
+                        "content": "You are a helpful assistant.",
+                        "component_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "external_component_id": "externalComponentId",
+                        "is_dynamic": True,
+                        "name": "name",
+                        "source": "customer",
+                        "type": "system",
+                    }
+                ],
+                "content": "x",
+                "external_prompt_id": "externalPromptId",
+                "prompt_id": "123e4567-e89b-12d3-a456-426614174004",
+                "variables": {"foo": "string"},
+            },
         )
         assert_matches_type(CreateMessageResponse, message, path=["response"])
 
@@ -248,7 +264,23 @@ class TestAsyncMessages:
             product_id="123e4567-e89b-12d3-a456-426614174001",
             properties={"campaign": "bar"},
             sample_rate=0,
-            system_prompt="x",
+            system_prompt={
+                "components": [
+                    {
+                        "content": "You are a helpful assistant.",
+                        "component_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "external_component_id": "externalComponentId",
+                        "is_dynamic": True,
+                        "name": "name",
+                        "source": "customer",
+                        "type": "system",
+                    }
+                ],
+                "content": "x",
+                "external_prompt_id": "externalPromptId",
+                "prompt_id": "123e4567-e89b-12d3-a456-426614174004",
+                "variables": {"foo": "string"},
+            },
         )
         assert_matches_type(CreateMessageResponse, message, path=["response"])
 
