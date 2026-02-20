@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
@@ -28,11 +29,14 @@ class PromptComponent(BaseModel):
     source: str
     """Component source (e.g., customer, participant, greenflash)."""
 
-    type: str
-    """Component type (e.g., system, endUser, rag, agent)."""
-
     updated_at: str = FieldInfo(alias="updatedAt")
     """ISO 8601 timestamp when last updated."""
 
     external_component_id: Optional[str] = FieldInfo(alias="externalComponentId", default=None)
     """Your external identifier for the component."""
+
+    type: Optional[Literal["system", "user", "tool", "guardrail", "rag", "agent", "other"]] = None
+    """
+    Component type: system, user, tool, guardrail, rag, agent, or a custom type
+    (other).
+    """

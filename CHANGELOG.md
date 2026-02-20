@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.2.0 (2026-02-20)
+
+Full Changelog: [v1.1.1...v1.2.0](https://github.com/greenflash-ai/python/compare/v1.1.1...v1.2.0)
+
+### Features
+
+* **api:** manual updates ([7c3347d](https://github.com/greenflash-ai/python/commit/7c3347d7c9282294f5c8d13bc6992fb0c7ab92fe))
+* **api:** manual updates ([406818f](https://github.com/greenflash-ai/python/commit/406818f9e6a06789767241ed1afd9e4c9b3b3676))
+
+
+### Chores
+
+* update mock server docs ([c1c45d9](https://github.com/greenflash-ai/python/commit/c1c45d985c6ec8827843f0b3350cff4686cb275a))
+
 ## 1.1.1 (2026-02-13)
 
 Full Changelog: [v1.1.0...v1.1.1](https://github.com/greenflash-ai/python/compare/v1.1.0...v1.1.1)

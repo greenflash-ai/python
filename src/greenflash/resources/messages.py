@@ -19,6 +19,7 @@ from .._response import (
 )
 from .._base_client import make_request_options
 from ..types.message_item_param import MessageItemParam
+from ..types.system_prompt_param import SystemPromptParam
 from ..types.create_message_response import CreateMessageResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
@@ -57,7 +58,7 @@ class MessagesResource(SyncAPIResource):
         product_id: str | Omit = omit,
         properties: Dict[str, object] | Omit = omit,
         sample_rate: float | Omit = omit,
-        system_prompt: message_create_params.SystemPrompt | Omit = omit,
+        system_prompt: SystemPromptParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -88,6 +89,12 @@ class MessagesResource(SyncAPIResource):
         - **Organization Tracking:** Associate users with organizations via
           `externalOrganizationId`. We'll create the organization automatically if it
           doesn't exist.
+        - **Automatic De-duplication:** Messages with an `externalMessageId` that
+          already exists in the conversation are automatically skipped. This allows you
+          to safely resend a batch of messages with new messages appended — previously
+          ingested messages will be deduplicated and only new messages will be inserted.
+          Each message in the response includes a `status` field ("created" or
+          "deduplicated") so you know what happened.
 
         Perfect for understanding how your AI is performing in production and
         identifying areas for improvement.
@@ -190,7 +197,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         product_id: str | Omit = omit,
         properties: Dict[str, object] | Omit = omit,
         sample_rate: float | Omit = omit,
-        system_prompt: message_create_params.SystemPrompt | Omit = omit,
+        system_prompt: SystemPromptParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -221,6 +228,12 @@ class AsyncMessagesResource(AsyncAPIResource):
         - **Organization Tracking:** Associate users with organizations via
           `externalOrganizationId`. We'll create the organization automatically if it
           doesn't exist.
+        - **Automatic De-duplication:** Messages with an `externalMessageId` that
+          already exists in the conversation are automatically skipped. This allows you
+          to safely resend a batch of messages with new messages appended — previously
+          ingested messages will be deduplicated and only new messages will be inserted.
+          Each message in the response includes a `status` field ("created" or
+          "deduplicated") so you know what happened.
 
         Perfect for understanding how your AI is performing in production and
         identifying areas for improvement.

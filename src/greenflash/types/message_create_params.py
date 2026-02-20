@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
-from typing_extensions import Required, Annotated, TypeAlias, TypedDict
+from typing import Dict, Iterable
+from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 from .message_item_param import MessageItemParam
 from .system_prompt_param import SystemPromptParam
 
-__all__ = ["MessageCreateParams", "SystemPrompt"]
+__all__ = ["MessageCreateParams"]
 
 
 class MessageCreateParams(TypedDict, total=False):
@@ -63,11 +63,8 @@ class MessageCreateParams(TypedDict, total=False):
     requests ingested). Sampling is deterministic based on conversation ID.
     """
 
-    system_prompt: Annotated[SystemPrompt, PropertyInfo(alias="systemPrompt")]
+    system_prompt: Annotated[SystemPromptParam, PropertyInfo(alias="systemPrompt")]
     """System prompt for the conversation.
 
     Can be a simple string or a prompt object with components.
     """
-
-
-SystemPrompt: TypeAlias = Union[str, SystemPromptParam]

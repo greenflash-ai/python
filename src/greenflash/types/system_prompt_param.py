@@ -2,16 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-from typing_extensions import Annotated, TypedDict
+from typing import Dict, Union, Iterable
+from typing_extensions import Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
 from .component_input_param import ComponentInputParam
 
-__all__ = ["SystemPromptParam"]
+__all__ = ["SystemPromptParam", "SystemPromptObject"]
 
 
-class SystemPromptParam(TypedDict, total=False):
+class SystemPromptObject(TypedDict, total=False):
     """System prompt as a prompt object.
 
     Can reference an existing prompt by ID or define new components inline.
@@ -22,6 +22,12 @@ class SystemPromptParam(TypedDict, total=False):
 
     When provided with promptId/externalPromptId, will upsert the prompt. When
     omitted with promptId/externalPromptId, will reference an existing prompt.
+    """
+
+    content: str
+    """Simple string content (shorthand for a single system component).
+
+    Mutually exclusive with components.
     """
 
     external_prompt_id: Annotated[str, PropertyInfo(alias="externalPromptId")]
@@ -35,3 +41,9 @@ class SystemPromptParam(TypedDict, total=False):
 
     Can be used to reference an existing prompt created via system prompt APIs.
     """
+
+    variables: Dict[str, str]
+    """Template variables for {{placeholder}} interpolation in component content."""
+
+
+SystemPromptParam: TypeAlias = Union[str, SystemPromptObject]
