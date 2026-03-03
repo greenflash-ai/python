@@ -26,6 +26,8 @@ __all__ = ["MessagesResource", "AsyncMessagesResource"]
 
 
 class MessagesResource(SyncAPIResource):
+    """Capture interactions between users and AI"""
+
     @cached_property
     def with_raw_response(self) -> MessagesResourceWithRawResponse:
         """
@@ -165,6 +167,8 @@ class MessagesResource(SyncAPIResource):
 
 
 class AsyncMessagesResource(AsyncAPIResource):
+    """Capture interactions between users and AI"""
+
     @cached_property
     def with_raw_response(self) -> AsyncMessagesResourceWithRawResponse:
         """

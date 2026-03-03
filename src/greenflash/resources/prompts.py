@@ -31,6 +31,8 @@ __all__ = ["PromptsResource", "AsyncPromptsResource"]
 
 
 class PromptsResource(SyncAPIResource):
+    """Manage prompts"""
+
     @cached_property
     def with_raw_response(self) -> PromptsResourceWithRawResponse:
         """
@@ -372,6 +374,8 @@ class PromptsResource(SyncAPIResource):
 
 
 class AsyncPromptsResource(AsyncAPIResource):
+    """Manage prompts"""
+
     @cached_property
     def with_raw_response(self) -> AsyncPromptsResourceWithRawResponse:
         """

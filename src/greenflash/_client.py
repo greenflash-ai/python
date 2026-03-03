@@ -106,42 +106,49 @@ class Greenflash(SyncAPIClient):
 
     @cached_property
     def messages(self) -> MessagesResource:
+        """Capture interactions between users and AI"""
         from .resources.messages import MessagesResource
 
         return MessagesResource(self)
 
     @cached_property
     def interactions(self) -> InteractionsResource:
+        """Capture interactions between users and AI"""
         from .resources.interactions import InteractionsResource
 
         return InteractionsResource(self)
 
     @cached_property
     def users(self) -> UsersResource:
+        """Manage users"""
         from .resources.users import UsersResource
 
         return UsersResource(self)
 
     @cached_property
     def ratings(self) -> RatingsResource:
+        """Capture interactions between users and AI"""
         from .resources.ratings import RatingsResource
 
         return RatingsResource(self)
 
     @cached_property
     def organizations(self) -> OrganizationsResource:
+        """Manage users"""
         from .resources.organizations import OrganizationsResource
 
         return OrganizationsResource(self)
 
     @cached_property
     def prompts(self) -> PromptsResource:
+        """Manage prompts"""
         from .resources.prompts import PromptsResource
 
         return PromptsResource(self)
 
     @cached_property
     def events(self) -> EventsResource:
+        """Capture business events"""
         from .resources.events import EventsResource
 
         return EventsResource(self)
@@ -323,42 +330,49 @@ class AsyncGreenflash(AsyncAPIClient):
 
     @cached_property
     def messages(self) -> AsyncMessagesResource:
+        """Capture interactions between users and AI"""
         from .resources.messages import AsyncMessagesResource
 
         return AsyncMessagesResource(self)
 
     @cached_property
     def interactions(self) -> AsyncInteractionsResource:
+        """Capture interactions between users and AI"""
         from .resources.interactions import AsyncInteractionsResource
 
         return AsyncInteractionsResource(self)
 
     @cached_property
     def users(self) -> AsyncUsersResource:
+        """Manage users"""
         from .resources.users import AsyncUsersResource
 
         return AsyncUsersResource(self)
 
     @cached_property
     def ratings(self) -> AsyncRatingsResource:
+        """Capture interactions between users and AI"""
         from .resources.ratings import AsyncRatingsResource
 
         return AsyncRatingsResource(self)
 
     @cached_property
     def organizations(self) -> AsyncOrganizationsResource:
+        """Manage users"""
         from .resources.organizations import AsyncOrganizationsResource
 
         return AsyncOrganizationsResource(self)
 
     @cached_property
     def prompts(self) -> AsyncPromptsResource:
+        """Manage prompts"""
         from .resources.prompts import AsyncPromptsResource
 
         return AsyncPromptsResource(self)
 
     @cached_property
     def events(self) -> AsyncEventsResource:
+        """Capture business events"""
         from .resources.events import AsyncEventsResource
 
         return AsyncEventsResource(self)
@@ -495,42 +509,49 @@ class GreenflashWithRawResponse:
 
     @cached_property
     def messages(self) -> messages.MessagesResourceWithRawResponse:
+        """Capture interactions between users and AI"""
         from .resources.messages import MessagesResourceWithRawResponse
 
         return MessagesResourceWithRawResponse(self._client.messages)
 
     @cached_property
     def interactions(self) -> interactions.InteractionsResourceWithRawResponse:
+        """Capture interactions between users and AI"""
         from .resources.interactions import InteractionsResourceWithRawResponse
 
         return InteractionsResourceWithRawResponse(self._client.interactions)
 
     @cached_property
     def users(self) -> users.UsersResourceWithRawResponse:
+        """Manage users"""
         from .resources.users import UsersResourceWithRawResponse
 
         return UsersResourceWithRawResponse(self._client.users)
 
     @cached_property
     def ratings(self) -> ratings.RatingsResourceWithRawResponse:
+        """Capture interactions between users and AI"""
         from .resources.ratings import RatingsResourceWithRawResponse
 
         return RatingsResourceWithRawResponse(self._client.ratings)
 
     @cached_property
     def organizations(self) -> organizations.OrganizationsResourceWithRawResponse:
+        """Manage users"""
         from .resources.organizations import OrganizationsResourceWithRawResponse
 
         return OrganizationsResourceWithRawResponse(self._client.organizations)
 
     @cached_property
     def prompts(self) -> prompts.PromptsResourceWithRawResponse:
+        """Manage prompts"""
         from .resources.prompts import PromptsResourceWithRawResponse
 
         return PromptsResourceWithRawResponse(self._client.prompts)
 
     @cached_property
     def events(self) -> events.EventsResourceWithRawResponse:
+        """Capture business events"""
         from .resources.events import EventsResourceWithRawResponse
 
         return EventsResourceWithRawResponse(self._client.events)
@@ -544,42 +565,49 @@ class AsyncGreenflashWithRawResponse:
 
     @cached_property
     def messages(self) -> messages.AsyncMessagesResourceWithRawResponse:
+        """Capture interactions between users and AI"""
         from .resources.messages import AsyncMessagesResourceWithRawResponse
 
         return AsyncMessagesResourceWithRawResponse(self._client.messages)
 
     @cached_property
     def interactions(self) -> interactions.AsyncInteractionsResourceWithRawResponse:
+        """Capture interactions between users and AI"""
         from .resources.interactions import AsyncInteractionsResourceWithRawResponse
 
         return AsyncInteractionsResourceWithRawResponse(self._client.interactions)
 
     @cached_property
     def users(self) -> users.AsyncUsersResourceWithRawResponse:
+        """Manage users"""
         from .resources.users import AsyncUsersResourceWithRawResponse
 
         return AsyncUsersResourceWithRawResponse(self._client.users)
 
     @cached_property
     def ratings(self) -> ratings.AsyncRatingsResourceWithRawResponse:
+        """Capture interactions between users and AI"""
         from .resources.ratings import AsyncRatingsResourceWithRawResponse
 
         return AsyncRatingsResourceWithRawResponse(self._client.ratings)
 
     @cached_property
     def organizations(self) -> organizations.AsyncOrganizationsResourceWithRawResponse:
+        """Manage users"""
         from .resources.organizations import AsyncOrganizationsResourceWithRawResponse
 
         return AsyncOrganizationsResourceWithRawResponse(self._client.organizations)
 
     @cached_property
     def prompts(self) -> prompts.AsyncPromptsResourceWithRawResponse:
+        """Manage prompts"""
         from .resources.prompts import AsyncPromptsResourceWithRawResponse
 
         return AsyncPromptsResourceWithRawResponse(self._client.prompts)
 
     @cached_property
     def events(self) -> events.AsyncEventsResourceWithRawResponse:
+        """Capture business events"""
         from .resources.events import AsyncEventsResourceWithRawResponse
 
         return AsyncEventsResourceWithRawResponse(self._client.events)
@@ -593,42 +621,49 @@ class GreenflashWithStreamedResponse:
 
     @cached_property
     def messages(self) -> messages.MessagesResourceWithStreamingResponse:
+        """Capture interactions between users and AI"""
         from .resources.messages import MessagesResourceWithStreamingResponse
 
         return MessagesResourceWithStreamingResponse(self._client.messages)
 
     @cached_property
     def interactions(self) -> interactions.InteractionsResourceWithStreamingResponse:
+        """Capture interactions between users and AI"""
         from .resources.interactions import InteractionsResourceWithStreamingResponse
 
         return InteractionsResourceWithStreamingResponse(self._client.interactions)
 
     @cached_property
     def users(self) -> users.UsersResourceWithStreamingResponse:
+        """Manage users"""
         from .resources.users import UsersResourceWithStreamingResponse
 
         return UsersResourceWithStreamingResponse(self._client.users)
 
     @cached_property
     def ratings(self) -> ratings.RatingsResourceWithStreamingResponse:
+        """Capture interactions between users and AI"""
         from .resources.ratings import RatingsResourceWithStreamingResponse
 
         return RatingsResourceWithStreamingResponse(self._client.ratings)
 
     @cached_property
     def organizations(self) -> organizations.OrganizationsResourceWithStreamingResponse:
+        """Manage users"""
         from .resources.organizations import OrganizationsResourceWithStreamingResponse
 
         return OrganizationsResourceWithStreamingResponse(self._client.organizations)
 
     @cached_property
     def prompts(self) -> prompts.PromptsResourceWithStreamingResponse:
+        """Manage prompts"""
         from .resources.prompts import PromptsResourceWithStreamingResponse
 
         return PromptsResourceWithStreamingResponse(self._client.prompts)
 
     @cached_property
     def events(self) -> events.EventsResourceWithStreamingResponse:
+        """Capture business events"""
         from .resources.events import EventsResourceWithStreamingResponse
 
         return EventsResourceWithStreamingResponse(self._client.events)
@@ -642,42 +677,49 @@ class AsyncGreenflashWithStreamedResponse:
 
     @cached_property
     def messages(self) -> messages.AsyncMessagesResourceWithStreamingResponse:
+        """Capture interactions between users and AI"""
         from .resources.messages import AsyncMessagesResourceWithStreamingResponse
 
         return AsyncMessagesResourceWithStreamingResponse(self._client.messages)
 
     @cached_property
     def interactions(self) -> interactions.AsyncInteractionsResourceWithStreamingResponse:
+        """Capture interactions between users and AI"""
         from .resources.interactions import AsyncInteractionsResourceWithStreamingResponse
 
         return AsyncInteractionsResourceWithStreamingResponse(self._client.interactions)
 
     @cached_property
     def users(self) -> users.AsyncUsersResourceWithStreamingResponse:
+        """Manage users"""
         from .resources.users import AsyncUsersResourceWithStreamingResponse
 
         return AsyncUsersResourceWithStreamingResponse(self._client.users)
 
     @cached_property
     def ratings(self) -> ratings.AsyncRatingsResourceWithStreamingResponse:
+        """Capture interactions between users and AI"""
         from .resources.ratings import AsyncRatingsResourceWithStreamingResponse
 
         return AsyncRatingsResourceWithStreamingResponse(self._client.ratings)
 
     @cached_property
     def organizations(self) -> organizations.AsyncOrganizationsResourceWithStreamingResponse:
+        """Manage users"""
         from .resources.organizations import AsyncOrganizationsResourceWithStreamingResponse
 
         return AsyncOrganizationsResourceWithStreamingResponse(self._client.organizations)
 
     @cached_property
     def prompts(self) -> prompts.AsyncPromptsResourceWithStreamingResponse:
+        """Manage prompts"""
         from .resources.prompts import AsyncPromptsResourceWithStreamingResponse
 
         return AsyncPromptsResourceWithStreamingResponse(self._client.prompts)
 
     @cached_property
     def events(self) -> events.AsyncEventsResourceWithStreamingResponse:
+        """Capture business events"""
         from .resources.events import AsyncEventsResourceWithStreamingResponse
 
         return AsyncEventsResourceWithStreamingResponse(self._client.events)

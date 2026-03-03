@@ -25,6 +25,8 @@ __all__ = ["InteractionsResource", "AsyncInteractionsResource"]
 
 
 class InteractionsResource(SyncAPIResource):
+    """Capture interactions between users and AI"""
+
     @cached_property
     def with_raw_response(self) -> InteractionsResourceWithRawResponse:
         """
@@ -167,6 +169,8 @@ class InteractionsResource(SyncAPIResource):
 
 
 class AsyncInteractionsResource(AsyncAPIResource):
+    """Capture interactions between users and AI"""
+
     @cached_property
     def with_raw_response(self) -> AsyncInteractionsResourceWithRawResponse:
         """
