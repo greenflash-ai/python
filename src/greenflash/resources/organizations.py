@@ -33,6 +33,8 @@ __all__ = ["OrganizationsResource", "AsyncOrganizationsResource"]
 
 
 class OrganizationsResource(SyncAPIResource):
+    """Manage users"""
+
     @cached_property
     def with_raw_response(self) -> OrganizationsResourceWithRawResponse:
         """
@@ -298,6 +300,8 @@ class OrganizationsResource(SyncAPIResource):
 
 
 class AsyncOrganizationsResource(AsyncAPIResource):
+    """Manage users"""
+
     @cached_property
     def with_raw_response(self) -> AsyncOrganizationsResourceWithRawResponse:
         """
