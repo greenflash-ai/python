@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.2.0 (2026-03-12)
+
+Full Changelog: [v1.1.1...v1.2.0](https://github.com/greenflash-ai/python/compare/v1.1.1...v1.2.0)
+
+### Features
+
+* **api:** manual updates ([f6884c3](https://github.com/greenflash-ai/python/commit/f6884c3ebd192d6b039b39ee76390aabb4f3e708))
+* **api:** manual updates ([7c3347d](https://github.com/greenflash-ai/python/commit/7c3347d7c9282294f5c8d13bc6992fb0c7ab92fe))
+* **api:** manual updates ([406818f](https://github.com/greenflash-ai/python/commit/406818f9e6a06789767241ed1afd9e4c9b3b3676))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([6f4dbcf](https://github.com/greenflash-ai/python/commit/6f4dbcfdc38053cb1132f0986975896ab2c551ec))
+* configure new SDK language ([eb4ead2](https://github.com/greenflash-ai/python/commit/eb4ead271aabfe0bf0dd7633f628c03c4ff27a0f))
+* configure new SDK language ([6b867a9](https://github.com/greenflash-ai/python/commit/6b867a95bf9f9ad8c2974148eac288600b4b0633))
+* **internal:** add request options to SSE classes ([20725d7](https://github.com/greenflash-ai/python/commit/20725d79decbb5ba4f296414c03b3e898ad9944d))
+* **internal:** codegen related update ([e7839bb](https://github.com/greenflash-ai/python/commit/e7839bbcf129aeb512a7b90fbc97f76958b478d7))
+* **internal:** make `test_proxy_environment_variables` more resilient ([26d737e](https://github.com/greenflash-ai/python/commit/26d737e48809b0d4392d34c5c2c2d8f8481aad0d))
+* **internal:** make `test_proxy_environment_variables` more resilient to env ([0dd24ab](https://github.com/greenflash-ai/python/commit/0dd24abc66ab9eabbc0145c56fcd8e3519e98cc9))
+* **test:** do not count install time for mock server timeout ([4b84d3e](https://github.com/greenflash-ai/python/commit/4b84d3eef134c09a8f915d5c60e105e1731fa469))
+* update mock server docs ([c1c45d9](https://github.com/greenflash-ai/python/commit/c1c45d985c6ec8827843f0b3350cff4686cb275a))
+
 ## 1.1.1 (2026-02-13)
 
 Full Changelog: [v1.1.0...v1.1.1](https://github.com/greenflash-ai/python/compare/v1.1.0...v1.1.1)
