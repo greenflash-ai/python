@@ -10,7 +10,7 @@ import pytest
 from greenflash import Greenflash, AsyncGreenflash
 from tests.utils import assert_matches_type
 from greenflash.types import CreateMessageResponse
-from greenflash._utils import parse_datetime
+from greenflash._utils import parse_date
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -34,7 +34,7 @@ class TestMessages:
                 {
                     "content": "Hello!",
                     "context": "context",
-                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "user-msg-1",
                     "input": {"foo": "bar"},
                     "message_type": "user_message",
@@ -49,7 +49,7 @@ class TestMessages:
                 {
                     "content": "Hi there! How can I help you?",
                     "context": "context",
-                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "assistant-msg-1",
                     "input": {"foo": "bar"},
                     "message_type": "user_message",
@@ -64,7 +64,7 @@ class TestMessages:
                 {
                     "content": "Calling search tool",
                     "context": "context",
-                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "tool-call-1",
                     "input": {"query": "bar"},
                     "message_type": "tool_call",
@@ -79,7 +79,7 @@ class TestMessages:
                 {
                     "content": "Search completed",
                     "context": "context",
-                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "tool-result-1",
                     "input": {"foo": "bar"},
                     "message_type": "observation",
@@ -94,7 +94,7 @@ class TestMessages:
                 {
                     "content": "Based on the search, today will be sunny with a high of 75°F.",
                     "context": "context",
-                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "final-1",
                     "input": {"foo": "bar"},
                     "message_type": "final_response",
@@ -183,7 +183,7 @@ class TestAsyncMessages:
                 {
                     "content": "Hello!",
                     "context": "context",
-                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "user-msg-1",
                     "input": {"foo": "bar"},
                     "message_type": "user_message",
@@ -198,7 +198,7 @@ class TestAsyncMessages:
                 {
                     "content": "Hi there! How can I help you?",
                     "context": "context",
-                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "assistant-msg-1",
                     "input": {"foo": "bar"},
                     "message_type": "user_message",
@@ -213,7 +213,7 @@ class TestAsyncMessages:
                 {
                     "content": "Calling search tool",
                     "context": "context",
-                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "tool-call-1",
                     "input": {"query": "bar"},
                     "message_type": "tool_call",
@@ -228,7 +228,7 @@ class TestAsyncMessages:
                 {
                     "content": "Search completed",
                     "context": "context",
-                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "tool-result-1",
                     "input": {"foo": "bar"},
                     "message_type": "observation",
@@ -243,7 +243,7 @@ class TestAsyncMessages:
                 {
                     "content": "Based on the search, today will be sunny with a high of 75°F.",
                     "context": "context",
-                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "created_at": parse_date("2019-12-27"),
                     "external_message_id": "final-1",
                     "input": {"foo": "bar"},
                     "message_type": "final_response",
