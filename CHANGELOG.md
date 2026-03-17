@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.2.1 (2026-03-17)
+
+Full Changelog: [v1.2.0...v1.2.1](https://github.com/greenflash-ai/python/compare/v1.2.0...v1.2.1)
+
+### Bug Fixes
+
+* **deps:** bump minimum typing-extensions version ([65f6cad](https://github.com/greenflash-ai/python/commit/65f6cad04c3475976116abea210b136fa8628f1b))
+* **pydantic:** do not pass `by_alias` unless set ([b5aeae1](https://github.com/greenflash-ai/python/commit/b5aeae1b1d5313ca78114c789cd122f7e762511d))
+
+
+### Chores
+
+* **internal:** tweak CI branches ([45725a2](https://github.com/greenflash-ai/python/commit/45725a2acc786a1d8c1428f2dd6647bbfff6cdd3))
+
 ## 1.2.0 (2026-03-12)
 
 Full Changelog: [v1.1.1...v1.2.0](https://github.com/greenflash-ai/python/compare/v1.1.1...v1.2.0)
