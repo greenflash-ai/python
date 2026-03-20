@@ -8,7 +8,7 @@ import httpx
 
 from ..types import interaction_list_params, interaction_get_interaction_analytics_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -153,7 +153,7 @@ class InteractionsResource(SyncAPIResource):
         if not interaction_id:
             raise ValueError(f"Expected a non-empty value for `interaction_id` but received {interaction_id!r}")
         return self._get(
-            f"/interactions/{interaction_id}/analytics",
+            path_template("/interactions/{interaction_id}/analytics", interaction_id=interaction_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -297,7 +297,7 @@ class AsyncInteractionsResource(AsyncAPIResource):
         if not interaction_id:
             raise ValueError(f"Expected a non-empty value for `interaction_id` but received {interaction_id!r}")
         return await self._get(
-            f"/interactions/{interaction_id}/analytics",
+            path_template("/interactions/{interaction_id}/analytics", interaction_id=interaction_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
