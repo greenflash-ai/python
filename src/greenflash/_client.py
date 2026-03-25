@@ -32,12 +32,30 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import users, events, prompts, ratings, messages, interactions, organizations
+    from .resources import (
+        chat,
+        inbox,
+        users,
+        events,
+        models,
+        prompts,
+        ratings,
+        messages,
+        products,
+        segments,
+        interactions,
+        organizations,
+    )
+    from .resources.chat import ChatResource, AsyncChatResource
+    from .resources.inbox import InboxResource, AsyncInboxResource
     from .resources.users import UsersResource, AsyncUsersResource
     from .resources.events import EventsResource, AsyncEventsResource
+    from .resources.models import ModelsResource, AsyncModelsResource
     from .resources.prompts import PromptsResource, AsyncPromptsResource
     from .resources.ratings import RatingsResource, AsyncRatingsResource
     from .resources.messages import MessagesResource, AsyncMessagesResource
+    from .resources.products import ProductsResource, AsyncProductsResource
+    from .resources.segments import SegmentsResource, AsyncSegmentsResource
     from .resources.interactions import InteractionsResource, AsyncInteractionsResource
     from .resources.organizations import OrganizationsResource, AsyncOrganizationsResource
 
@@ -145,6 +163,41 @@ class Greenflash(SyncAPIClient):
         from .resources.prompts import PromptsResource
 
         return PromptsResource(self)
+
+    @cached_property
+    def chat(self) -> ChatResource:
+        """Stream chat and agentic conversations"""
+        from .resources.chat import ChatResource
+
+        return ChatResource(self)
+
+    @cached_property
+    def inbox(self) -> InboxResource:
+        """Review flagged conversations"""
+        from .resources.inbox import InboxResource
+
+        return InboxResource(self)
+
+    @cached_property
+    def models(self) -> ModelsResource:
+        """Manage AI models"""
+        from .resources.models import ModelsResource
+
+        return ModelsResource(self)
+
+    @cached_property
+    def products(self) -> ProductsResource:
+        """Manage products"""
+        from .resources.products import ProductsResource
+
+        return ProductsResource(self)
+
+    @cached_property
+    def segments(self) -> SegmentsResource:
+        """Manage user segments"""
+        from .resources.segments import SegmentsResource
+
+        return SegmentsResource(self)
 
     @cached_property
     def events(self) -> EventsResource:
@@ -371,6 +424,41 @@ class AsyncGreenflash(AsyncAPIClient):
         return AsyncPromptsResource(self)
 
     @cached_property
+    def chat(self) -> AsyncChatResource:
+        """Stream chat and agentic conversations"""
+        from .resources.chat import AsyncChatResource
+
+        return AsyncChatResource(self)
+
+    @cached_property
+    def inbox(self) -> AsyncInboxResource:
+        """Review flagged conversations"""
+        from .resources.inbox import AsyncInboxResource
+
+        return AsyncInboxResource(self)
+
+    @cached_property
+    def models(self) -> AsyncModelsResource:
+        """Manage AI models"""
+        from .resources.models import AsyncModelsResource
+
+        return AsyncModelsResource(self)
+
+    @cached_property
+    def products(self) -> AsyncProductsResource:
+        """Manage products"""
+        from .resources.products import AsyncProductsResource
+
+        return AsyncProductsResource(self)
+
+    @cached_property
+    def segments(self) -> AsyncSegmentsResource:
+        """Manage user segments"""
+        from .resources.segments import AsyncSegmentsResource
+
+        return AsyncSegmentsResource(self)
+
+    @cached_property
     def events(self) -> AsyncEventsResource:
         """Capture business events"""
         from .resources.events import AsyncEventsResource
@@ -550,6 +638,41 @@ class GreenflashWithRawResponse:
         return PromptsResourceWithRawResponse(self._client.prompts)
 
     @cached_property
+    def chat(self) -> chat.ChatResourceWithRawResponse:
+        """Stream chat and agentic conversations"""
+        from .resources.chat import ChatResourceWithRawResponse
+
+        return ChatResourceWithRawResponse(self._client.chat)
+
+    @cached_property
+    def inbox(self) -> inbox.InboxResourceWithRawResponse:
+        """Review flagged conversations"""
+        from .resources.inbox import InboxResourceWithRawResponse
+
+        return InboxResourceWithRawResponse(self._client.inbox)
+
+    @cached_property
+    def models(self) -> models.ModelsResourceWithRawResponse:
+        """Manage AI models"""
+        from .resources.models import ModelsResourceWithRawResponse
+
+        return ModelsResourceWithRawResponse(self._client.models)
+
+    @cached_property
+    def products(self) -> products.ProductsResourceWithRawResponse:
+        """Manage products"""
+        from .resources.products import ProductsResourceWithRawResponse
+
+        return ProductsResourceWithRawResponse(self._client.products)
+
+    @cached_property
+    def segments(self) -> segments.SegmentsResourceWithRawResponse:
+        """Manage user segments"""
+        from .resources.segments import SegmentsResourceWithRawResponse
+
+        return SegmentsResourceWithRawResponse(self._client.segments)
+
+    @cached_property
     def events(self) -> events.EventsResourceWithRawResponse:
         """Capture business events"""
         from .resources.events import EventsResourceWithRawResponse
@@ -604,6 +727,41 @@ class AsyncGreenflashWithRawResponse:
         from .resources.prompts import AsyncPromptsResourceWithRawResponse
 
         return AsyncPromptsResourceWithRawResponse(self._client.prompts)
+
+    @cached_property
+    def chat(self) -> chat.AsyncChatResourceWithRawResponse:
+        """Stream chat and agentic conversations"""
+        from .resources.chat import AsyncChatResourceWithRawResponse
+
+        return AsyncChatResourceWithRawResponse(self._client.chat)
+
+    @cached_property
+    def inbox(self) -> inbox.AsyncInboxResourceWithRawResponse:
+        """Review flagged conversations"""
+        from .resources.inbox import AsyncInboxResourceWithRawResponse
+
+        return AsyncInboxResourceWithRawResponse(self._client.inbox)
+
+    @cached_property
+    def models(self) -> models.AsyncModelsResourceWithRawResponse:
+        """Manage AI models"""
+        from .resources.models import AsyncModelsResourceWithRawResponse
+
+        return AsyncModelsResourceWithRawResponse(self._client.models)
+
+    @cached_property
+    def products(self) -> products.AsyncProductsResourceWithRawResponse:
+        """Manage products"""
+        from .resources.products import AsyncProductsResourceWithRawResponse
+
+        return AsyncProductsResourceWithRawResponse(self._client.products)
+
+    @cached_property
+    def segments(self) -> segments.AsyncSegmentsResourceWithRawResponse:
+        """Manage user segments"""
+        from .resources.segments import AsyncSegmentsResourceWithRawResponse
+
+        return AsyncSegmentsResourceWithRawResponse(self._client.segments)
 
     @cached_property
     def events(self) -> events.AsyncEventsResourceWithRawResponse:
@@ -662,6 +820,41 @@ class GreenflashWithStreamedResponse:
         return PromptsResourceWithStreamingResponse(self._client.prompts)
 
     @cached_property
+    def chat(self) -> chat.ChatResourceWithStreamingResponse:
+        """Stream chat and agentic conversations"""
+        from .resources.chat import ChatResourceWithStreamingResponse
+
+        return ChatResourceWithStreamingResponse(self._client.chat)
+
+    @cached_property
+    def inbox(self) -> inbox.InboxResourceWithStreamingResponse:
+        """Review flagged conversations"""
+        from .resources.inbox import InboxResourceWithStreamingResponse
+
+        return InboxResourceWithStreamingResponse(self._client.inbox)
+
+    @cached_property
+    def models(self) -> models.ModelsResourceWithStreamingResponse:
+        """Manage AI models"""
+        from .resources.models import ModelsResourceWithStreamingResponse
+
+        return ModelsResourceWithStreamingResponse(self._client.models)
+
+    @cached_property
+    def products(self) -> products.ProductsResourceWithStreamingResponse:
+        """Manage products"""
+        from .resources.products import ProductsResourceWithStreamingResponse
+
+        return ProductsResourceWithStreamingResponse(self._client.products)
+
+    @cached_property
+    def segments(self) -> segments.SegmentsResourceWithStreamingResponse:
+        """Manage user segments"""
+        from .resources.segments import SegmentsResourceWithStreamingResponse
+
+        return SegmentsResourceWithStreamingResponse(self._client.segments)
+
+    @cached_property
     def events(self) -> events.EventsResourceWithStreamingResponse:
         """Capture business events"""
         from .resources.events import EventsResourceWithStreamingResponse
@@ -716,6 +909,41 @@ class AsyncGreenflashWithStreamedResponse:
         from .resources.prompts import AsyncPromptsResourceWithStreamingResponse
 
         return AsyncPromptsResourceWithStreamingResponse(self._client.prompts)
+
+    @cached_property
+    def chat(self) -> chat.AsyncChatResourceWithStreamingResponse:
+        """Stream chat and agentic conversations"""
+        from .resources.chat import AsyncChatResourceWithStreamingResponse
+
+        return AsyncChatResourceWithStreamingResponse(self._client.chat)
+
+    @cached_property
+    def inbox(self) -> inbox.AsyncInboxResourceWithStreamingResponse:
+        """Review flagged conversations"""
+        from .resources.inbox import AsyncInboxResourceWithStreamingResponse
+
+        return AsyncInboxResourceWithStreamingResponse(self._client.inbox)
+
+    @cached_property
+    def models(self) -> models.AsyncModelsResourceWithStreamingResponse:
+        """Manage AI models"""
+        from .resources.models import AsyncModelsResourceWithStreamingResponse
+
+        return AsyncModelsResourceWithStreamingResponse(self._client.models)
+
+    @cached_property
+    def products(self) -> products.AsyncProductsResourceWithStreamingResponse:
+        """Manage products"""
+        from .resources.products import AsyncProductsResourceWithStreamingResponse
+
+        return AsyncProductsResourceWithStreamingResponse(self._client.products)
+
+    @cached_property
+    def segments(self) -> segments.AsyncSegmentsResourceWithStreamingResponse:
+        """Manage user segments"""
+        from .resources.segments import AsyncSegmentsResourceWithStreamingResponse
+
+        return AsyncSegmentsResourceWithStreamingResponse(self._client.segments)
 
     @cached_property
     def events(self) -> events.AsyncEventsResourceWithStreamingResponse:

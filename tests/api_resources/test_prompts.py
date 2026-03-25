@@ -15,6 +15,7 @@ from greenflash.types import (
     CreatePromptResponse,
     DeletePromptResponse,
     UpdatePromptResponse,
+    GetPromptAnalyticsResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -260,6 +261,44 @@ class TestPrompts:
                 "",
             )
 
+    @parametrize
+    def test_method_get_prompt_analytics(self, client: Greenflash) -> None:
+        prompt = client.prompts.get_prompt_analytics(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(GetPromptAnalyticsResponse, prompt, path=["response"])
+
+    @parametrize
+    def test_raw_response_get_prompt_analytics(self, client: Greenflash) -> None:
+        response = client.prompts.with_raw_response.get_prompt_analytics(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        prompt = response.parse()
+        assert_matches_type(GetPromptAnalyticsResponse, prompt, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get_prompt_analytics(self, client: Greenflash) -> None:
+        with client.prompts.with_streaming_response.get_prompt_analytics(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            prompt = response.parse()
+            assert_matches_type(GetPromptAnalyticsResponse, prompt, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get_prompt_analytics(self, client: Greenflash) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.prompts.with_raw_response.get_prompt_analytics(
+                "",
+            )
+
 
 class TestAsyncPrompts:
     parametrize = pytest.mark.parametrize(
@@ -500,5 +539,43 @@ class TestAsyncPrompts:
     async def test_path_params_get(self, async_client: AsyncGreenflash) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.prompts.with_raw_response.get(
+                "",
+            )
+
+    @parametrize
+    async def test_method_get_prompt_analytics(self, async_client: AsyncGreenflash) -> None:
+        prompt = await async_client.prompts.get_prompt_analytics(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(GetPromptAnalyticsResponse, prompt, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get_prompt_analytics(self, async_client: AsyncGreenflash) -> None:
+        response = await async_client.prompts.with_raw_response.get_prompt_analytics(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        prompt = await response.parse()
+        assert_matches_type(GetPromptAnalyticsResponse, prompt, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get_prompt_analytics(self, async_client: AsyncGreenflash) -> None:
+        async with async_client.prompts.with_streaming_response.get_prompt_analytics(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            prompt = await response.parse()
+            assert_matches_type(GetPromptAnalyticsResponse, prompt, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get_prompt_analytics(self, async_client: AsyncGreenflash) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.prompts.with_raw_response.get_prompt_analytics(
                 "",
             )
