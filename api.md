@@ -18,6 +18,9 @@ Types:
 from greenflash.types import (
     GetInteractionAnalyticsParams,
     GetInteractionAnalyticsResponse,
+    GetInteractionDetailParams,
+    Interaction,
+    InteractionDetail,
     ListInteractionsParams,
     ListInteractionsResponse,
 )
@@ -26,6 +29,7 @@ from greenflash.types import (
 Methods:
 
 - <code title="get /interactions">client.interactions.<a href="./src/greenflash/resources/interactions.py">list</a>(\*\*<a href="src/greenflash/types/interaction_list_params.py">params</a>) -> <a href="./src/greenflash/types/list_interactions_response.py">ListInteractionsResponse</a></code>
+- <code title="get /interactions/{interactionId}">client.interactions.<a href="./src/greenflash/resources/interactions.py">get</a>(interaction_id) -> <a href="./src/greenflash/types/interaction_detail.py">InteractionDetail</a></code>
 - <code title="get /interactions/{interactionId}/analytics">client.interactions.<a href="./src/greenflash/resources/interactions.py">get_interaction_analytics</a>(interaction_id, \*\*<a href="src/greenflash/types/interaction_get_interaction_analytics_params.py">params</a>) -> <a href="./src/greenflash/types/get_interaction_analytics_response.py">GetInteractionAnalyticsResponse</a></code>
 
 # Users
@@ -38,11 +42,13 @@ from greenflash.types import (
     CreateUserResponse,
     GetUserAnalyticsParams,
     GetUserAnalyticsResponse,
+    GetUserSegmentsResponse,
     ListUsersParams,
     ListUsersResponse,
     Participant,
     UpdateUserParams,
     UpdateUserResponse,
+    UserSegmentMembership,
 )
 ```
 
@@ -52,6 +58,7 @@ Methods:
 - <code title="put /users/{userId}">client.users.<a href="./src/greenflash/resources/users.py">update</a>(user_id, \*\*<a href="src/greenflash/types/user_update_params.py">params</a>) -> <a href="./src/greenflash/types/update_user_response.py">UpdateUserResponse</a></code>
 - <code title="get /users">client.users.<a href="./src/greenflash/resources/users.py">list</a>(\*\*<a href="src/greenflash/types/user_list_params.py">params</a>) -> <a href="./src/greenflash/types/list_users_response.py">ListUsersResponse</a></code>
 - <code title="get /users/{userId}/analytics">client.users.<a href="./src/greenflash/resources/users.py">get_user_analytics</a>(user_id, \*\*<a href="src/greenflash/types/user_get_user_analytics_params.py">params</a>) -> <a href="./src/greenflash/types/get_user_analytics_response.py">GetUserAnalyticsResponse</a></code>
+- <code title="get /users/{userId}/segments">client.users.<a href="./src/greenflash/resources/users.py">get_user_segments</a>(user_id) -> <a href="./src/greenflash/types/get_user_segments_response.py">GetUserSegmentsResponse</a></code>
 
 # Ratings
 
@@ -101,6 +108,7 @@ from greenflash.types import (
     CreatePromptParams,
     CreatePromptResponse,
     DeletePromptResponse,
+    GetPromptAnalyticsResponse,
     GetPromptParams,
     GetPromptResponse,
     ListPromptsParams,
@@ -121,6 +129,110 @@ Methods:
 - <code title="get /prompts">client.prompts.<a href="./src/greenflash/resources/prompts.py">list</a>(\*\*<a href="src/greenflash/types/prompt_list_params.py">params</a>) -> <a href="./src/greenflash/types/list_prompts_response.py">ListPromptsResponse</a></code>
 - <code title="delete /prompts/{id}">client.prompts.<a href="./src/greenflash/resources/prompts.py">delete</a>(id) -> <a href="./src/greenflash/types/delete_prompt_response.py">DeletePromptResponse</a></code>
 - <code title="get /prompts/{id}">client.prompts.<a href="./src/greenflash/resources/prompts.py">get</a>(id) -> <a href="./src/greenflash/types/get_prompt_response.py">GetPromptResponse</a></code>
+- <code title="get /prompts/{id}/analytics">client.prompts.<a href="./src/greenflash/resources/prompts.py">get_prompt_analytics</a>(id) -> <a href="./src/greenflash/types/get_prompt_analytics_response.py">GetPromptAnalyticsResponse</a></code>
+
+# Chat
+
+Types:
+
+```python
+from greenflash.types import StreamChatRequest
+```
+
+Methods:
+
+- <code title="post /chat">client.chat.<a href="./src/greenflash/resources/chat.py">create</a>(\*\*<a href="src/greenflash/types/chat_create_params.py">params</a>) -> None</code>
+
+# Inbox
+
+Types:
+
+```python
+from greenflash.types import (
+    AnalysisScores,
+    ConversationMessage,
+    GetInboxItemParams,
+    GetInboxItemResponse,
+    InboxItemSummary,
+    ListInboxParams,
+    ListInboxResponse,
+    ParticipantInfo,
+    TriggerDetail,
+)
+```
+
+Methods:
+
+- <code title="get /inbox">client.inbox.<a href="./src/greenflash/resources/inbox.py">list</a>(\*\*<a href="src/greenflash/types/inbox_list_params.py">params</a>) -> <a href="./src/greenflash/types/list_inbox_response.py">ListInboxResponse</a></code>
+- <code title="get /inbox/{conversationId}">client.inbox.<a href="./src/greenflash/resources/inbox.py">get</a>(conversation_id) -> <a href="./src/greenflash/types/get_inbox_item_response.py">GetInboxItemResponse</a></code>
+
+# Models
+
+Types:
+
+```python
+from greenflash.types import (
+    GetModelAnalyticsParams,
+    GetModelAnalyticsResponse,
+    GetModelResponse,
+    ListModelsParams,
+    ListModelsResponse,
+    ModelProductUsage,
+    ModelSummary,
+)
+```
+
+Methods:
+
+- <code title="get /models">client.models.<a href="./src/greenflash/resources/models.py">list</a>(\*\*<a href="src/greenflash/types/model_list_params.py">params</a>) -> <a href="./src/greenflash/types/list_models_response.py">ListModelsResponse</a></code>
+- <code title="get /models/{modelId}">client.models.<a href="./src/greenflash/resources/models.py">get</a>(model_id) -> <a href="./src/greenflash/types/get_model_response.py">GetModelResponse</a></code>
+- <code title="get /models/{modelId}/analytics">client.models.<a href="./src/greenflash/resources/models.py">get_model_analytics</a>(model_id, \*\*<a href="src/greenflash/types/model_get_model_analytics_params.py">params</a>) -> <a href="./src/greenflash/types/get_model_analytics_response.py">GetModelAnalyticsResponse</a></code>
+
+# Products
+
+Types:
+
+```python
+from greenflash.types import (
+    GetProductAnalyticsResponse,
+    GetProductResponse,
+    ListProductsParams,
+    ListProductsResponse,
+    ProductMember,
+    ProductSummary,
+    QualityIndexMetricWeight,
+)
+```
+
+Methods:
+
+- <code title="get /products">client.products.<a href="./src/greenflash/resources/products.py">list</a>(\*\*<a href="src/greenflash/types/product_list_params.py">params</a>) -> <a href="./src/greenflash/types/list_products_response.py">ListProductsResponse</a></code>
+- <code title="get /products/{productId}">client.products.<a href="./src/greenflash/resources/products.py">get</a>(product_id) -> <a href="./src/greenflash/types/get_product_response.py">GetProductResponse</a></code>
+- <code title="get /products/{productId}/analytics">client.products.<a href="./src/greenflash/resources/products.py">get_product_analytics</a>(product_id) -> <a href="./src/greenflash/types/get_product_analytics_response.py">GetProductAnalyticsResponse</a></code>
+
+# Segments
+
+Types:
+
+```python
+from greenflash.types import (
+    CreateSegmentParams,
+    CreateSegmentResponse,
+    GetSegmentAnalyticsParams,
+    GetSegmentAnalyticsResponse,
+    GetSegmentResponse,
+    ListSegmentsParams,
+    ListSegmentsResponse,
+    SegmentSummary,
+)
+```
+
+Methods:
+
+- <code title="post /segments">client.segments.<a href="./src/greenflash/resources/segments.py">create</a>(\*\*<a href="src/greenflash/types/segment_create_params.py">params</a>) -> <a href="./src/greenflash/types/create_segment_response.py">CreateSegmentResponse</a></code>
+- <code title="get /segments">client.segments.<a href="./src/greenflash/resources/segments.py">list</a>(\*\*<a href="src/greenflash/types/segment_list_params.py">params</a>) -> <a href="./src/greenflash/types/list_segments_response.py">ListSegmentsResponse</a></code>
+- <code title="get /segments/{segmentId}">client.segments.<a href="./src/greenflash/resources/segments.py">get</a>(segment_id) -> <a href="./src/greenflash/types/get_segment_response.py">GetSegmentResponse</a></code>
+- <code title="get /segments/{segmentId}/analytics">client.segments.<a href="./src/greenflash/resources/segments.py">get_segment_analytics</a>(segment_id, \*\*<a href="src/greenflash/types/segment_get_segment_analytics_params.py">params</a>) -> <a href="./src/greenflash/types/get_segment_analytics_response.py">GetSegmentAnalyticsResponse</a></code>
 
 # Events
 

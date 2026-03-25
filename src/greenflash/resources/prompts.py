@@ -26,6 +26,7 @@ from ..types.component_update_param import ComponentUpdateParam
 from ..types.create_prompt_response import CreatePromptResponse
 from ..types.delete_prompt_response import DeletePromptResponse
 from ..types.update_prompt_response import UpdatePromptResponse
+from ..types.get_prompt_analytics_response import GetPromptAnalyticsResponse
 
 __all__ = ["PromptsResource", "AsyncPromptsResource"]
 
@@ -372,6 +373,53 @@ class PromptsResource(SyncAPIResource):
             cast_to=GetPromptResponse,
         )
 
+    def get_prompt_analytics(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GetPromptAnalyticsResponse:
+        """
+        Get computed analytics for a specific prompt, including quality metrics, usage
+        statistics, and suggestion data.
+
+        **Requires Growth+ plan or higher.**
+
+        Returns:
+
+        - **Quality**: Average conversation quality index
+        - **Usage**: Total conversations and last used timestamp
+        - **Suggestions**: Suggestion count, effective suggestion count (active versions
+          only), and needs-review flag
+
+        Rate limited based on your plan's `maxAnalysesPerHour`.
+
+        Args:
+          id: The prompt ID to get analytics for
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            path_template("/prompts/{id}/analytics", id=id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=GetPromptAnalyticsResponse,
+        )
+
 
 class AsyncPromptsResource(AsyncAPIResource):
     """Manage prompts"""
@@ -715,6 +763,53 @@ class AsyncPromptsResource(AsyncAPIResource):
             cast_to=GetPromptResponse,
         )
 
+    async def get_prompt_analytics(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GetPromptAnalyticsResponse:
+        """
+        Get computed analytics for a specific prompt, including quality metrics, usage
+        statistics, and suggestion data.
+
+        **Requires Growth+ plan or higher.**
+
+        Returns:
+
+        - **Quality**: Average conversation quality index
+        - **Usage**: Total conversations and last used timestamp
+        - **Suggestions**: Suggestion count, effective suggestion count (active versions
+          only), and needs-review flag
+
+        Rate limited based on your plan's `maxAnalysesPerHour`.
+
+        Args:
+          id: The prompt ID to get analytics for
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            path_template("/prompts/{id}/analytics", id=id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=GetPromptAnalyticsResponse,
+        )
+
 
 class PromptsResourceWithRawResponse:
     def __init__(self, prompts: PromptsResource) -> None:
@@ -734,6 +829,9 @@ class PromptsResourceWithRawResponse:
         )
         self.get = to_raw_response_wrapper(
             prompts.get,
+        )
+        self.get_prompt_analytics = to_raw_response_wrapper(
+            prompts.get_prompt_analytics,
         )
 
 
@@ -756,6 +854,9 @@ class AsyncPromptsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             prompts.get,
         )
+        self.get_prompt_analytics = async_to_raw_response_wrapper(
+            prompts.get_prompt_analytics,
+        )
 
 
 class PromptsResourceWithStreamingResponse:
@@ -777,6 +878,9 @@ class PromptsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             prompts.get,
         )
+        self.get_prompt_analytics = to_streamed_response_wrapper(
+            prompts.get_prompt_analytics,
+        )
 
 
 class AsyncPromptsResourceWithStreamingResponse:
@@ -797,4 +901,7 @@ class AsyncPromptsResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             prompts.get,
+        )
+        self.get_prompt_analytics = async_to_streamed_response_wrapper(
+            prompts.get_prompt_analytics,
         )

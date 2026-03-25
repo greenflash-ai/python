@@ -3,8 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .interaction import Interaction
+from .segment_summary import SegmentSummary
 
-__all__ = ["ListInteractionsResponse"]
+__all__ = ["ListSegmentsResponse"]
 
-ListInteractionsResponse: TypeAlias = List[Interaction]
+ListSegmentsResponse: TypeAlias = List[SegmentSummary]

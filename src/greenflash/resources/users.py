@@ -22,6 +22,7 @@ from .._base_client import make_request_options
 from ..types.list_users_response import ListUsersResponse
 from ..types.create_user_response import CreateUserResponse
 from ..types.update_user_response import UpdateUserResponse
+from ..types.get_user_segments_response import GetUserSegmentsResponse
 from ..types.get_user_analytics_response import GetUserAnalyticsResponse
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
@@ -341,6 +342,46 @@ class UsersResource(SyncAPIResource):
             cast_to=GetUserAnalyticsResponse,
         )
 
+    def get_user_segments(
+        self,
+        user_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GetUserSegmentsResponse:
+        """Find out which segments a user belongs to.
+
+        Returns segment membership data
+        including segment ID, name, type, and preset identifier.
+
+        This endpoint returns membership data (not analytics), so it is available on
+        **all plans** including Free.
+
+        Args:
+          user_id: The user ID to get segment memberships for
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        return self._get(
+            path_template("/users/{user_id}/segments", user_id=user_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=GetUserSegmentsResponse,
+        )
+
 
 class AsyncUsersResource(AsyncAPIResource):
     """Manage users"""
@@ -656,6 +697,46 @@ class AsyncUsersResource(AsyncAPIResource):
             cast_to=GetUserAnalyticsResponse,
         )
 
+    async def get_user_segments(
+        self,
+        user_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GetUserSegmentsResponse:
+        """Find out which segments a user belongs to.
+
+        Returns segment membership data
+        including segment ID, name, type, and preset identifier.
+
+        This endpoint returns membership data (not analytics), so it is available on
+        **all plans** including Free.
+
+        Args:
+          user_id: The user ID to get segment memberships for
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        return await self._get(
+            path_template("/users/{user_id}/segments", user_id=user_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=GetUserSegmentsResponse,
+        )
+
 
 class UsersResourceWithRawResponse:
     def __init__(self, users: UsersResource) -> None:
@@ -672,6 +753,9 @@ class UsersResourceWithRawResponse:
         )
         self.get_user_analytics = to_raw_response_wrapper(
             users.get_user_analytics,
+        )
+        self.get_user_segments = to_raw_response_wrapper(
+            users.get_user_segments,
         )
 
 
@@ -691,6 +775,9 @@ class AsyncUsersResourceWithRawResponse:
         self.get_user_analytics = async_to_raw_response_wrapper(
             users.get_user_analytics,
         )
+        self.get_user_segments = async_to_raw_response_wrapper(
+            users.get_user_segments,
+        )
 
 
 class UsersResourceWithStreamingResponse:
@@ -709,6 +796,9 @@ class UsersResourceWithStreamingResponse:
         self.get_user_analytics = to_streamed_response_wrapper(
             users.get_user_analytics,
         )
+        self.get_user_segments = to_streamed_response_wrapper(
+            users.get_user_segments,
+        )
 
 
 class AsyncUsersResourceWithStreamingResponse:
@@ -726,4 +816,7 @@ class AsyncUsersResourceWithStreamingResponse:
         )
         self.get_user_analytics = async_to_streamed_response_wrapper(
             users.get_user_analytics,
+        )
+        self.get_user_segments = async_to_streamed_response_wrapper(
+            users.get_user_segments,
         )

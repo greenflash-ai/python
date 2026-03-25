@@ -3,8 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .interaction import Interaction
+from .inbox_item_summary import InboxItemSummary
 
-__all__ = ["ListInteractionsResponse"]
+__all__ = ["ListInboxResponse"]
 
-ListInteractionsResponse: TypeAlias = List[Interaction]
+ListInboxResponse: TypeAlias = List[InboxItemSummary]
