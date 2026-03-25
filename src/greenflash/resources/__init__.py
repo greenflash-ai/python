@@ -1,5 +1,21 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .chat import (
+    ChatResource,
+    AsyncChatResource,
+    ChatResourceWithRawResponse,
+    AsyncChatResourceWithRawResponse,
+    ChatResourceWithStreamingResponse,
+    AsyncChatResourceWithStreamingResponse,
+)
+from .inbox import (
+    InboxResource,
+    AsyncInboxResource,
+    InboxResourceWithRawResponse,
+    AsyncInboxResourceWithRawResponse,
+    InboxResourceWithStreamingResponse,
+    AsyncInboxResourceWithStreamingResponse,
+)
 from .users import (
     UsersResource,
     AsyncUsersResource,
@@ -15,6 +31,14 @@ from .events import (
     AsyncEventsResourceWithRawResponse,
     EventsResourceWithStreamingResponse,
     AsyncEventsResourceWithStreamingResponse,
+)
+from .models import (
+    ModelsResource,
+    AsyncModelsResource,
+    ModelsResourceWithRawResponse,
+    AsyncModelsResourceWithRawResponse,
+    ModelsResourceWithStreamingResponse,
+    AsyncModelsResourceWithStreamingResponse,
 )
 from .prompts import (
     PromptsResource,
@@ -39,6 +63,22 @@ from .messages import (
     AsyncMessagesResourceWithRawResponse,
     MessagesResourceWithStreamingResponse,
     AsyncMessagesResourceWithStreamingResponse,
+)
+from .products import (
+    ProductsResource,
+    AsyncProductsResource,
+    ProductsResourceWithRawResponse,
+    AsyncProductsResourceWithRawResponse,
+    ProductsResourceWithStreamingResponse,
+    AsyncProductsResourceWithStreamingResponse,
+)
+from .segments import (
+    SegmentsResource,
+    AsyncSegmentsResource,
+    SegmentsResourceWithRawResponse,
+    AsyncSegmentsResourceWithRawResponse,
+    SegmentsResourceWithStreamingResponse,
+    AsyncSegmentsResourceWithStreamingResponse,
 )
 from .interactions import (
     InteractionsResource,
@@ -94,6 +134,36 @@ __all__ = [
     "AsyncPromptsResourceWithRawResponse",
     "PromptsResourceWithStreamingResponse",
     "AsyncPromptsResourceWithStreamingResponse",
+    "ChatResource",
+    "AsyncChatResource",
+    "ChatResourceWithRawResponse",
+    "AsyncChatResourceWithRawResponse",
+    "ChatResourceWithStreamingResponse",
+    "AsyncChatResourceWithStreamingResponse",
+    "InboxResource",
+    "AsyncInboxResource",
+    "InboxResourceWithRawResponse",
+    "AsyncInboxResourceWithRawResponse",
+    "InboxResourceWithStreamingResponse",
+    "AsyncInboxResourceWithStreamingResponse",
+    "ModelsResource",
+    "AsyncModelsResource",
+    "ModelsResourceWithRawResponse",
+    "AsyncModelsResourceWithRawResponse",
+    "ModelsResourceWithStreamingResponse",
+    "AsyncModelsResourceWithStreamingResponse",
+    "ProductsResource",
+    "AsyncProductsResource",
+    "ProductsResourceWithRawResponse",
+    "AsyncProductsResourceWithRawResponse",
+    "ProductsResourceWithStreamingResponse",
+    "AsyncProductsResourceWithStreamingResponse",
+    "SegmentsResource",
+    "AsyncSegmentsResource",
+    "SegmentsResourceWithRawResponse",
+    "AsyncSegmentsResourceWithRawResponse",
+    "SegmentsResourceWithStreamingResponse",
+    "AsyncSegmentsResourceWithStreamingResponse",
     "EventsResource",
     "AsyncEventsResource",
     "EventsResourceWithRawResponse",

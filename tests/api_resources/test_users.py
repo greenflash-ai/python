@@ -13,6 +13,7 @@ from greenflash.types import (
     ListUsersResponse,
     CreateUserResponse,
     UpdateUserResponse,
+    GetUserSegmentsResponse,
     GetUserAnalyticsResponse,
 )
 
@@ -202,6 +203,44 @@ class TestUsers:
                 user_id="",
             )
 
+    @parametrize
+    def test_method_get_user_segments(self, client: Greenflash) -> None:
+        user = client.users.get_user_segments(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(GetUserSegmentsResponse, user, path=["response"])
+
+    @parametrize
+    def test_raw_response_get_user_segments(self, client: Greenflash) -> None:
+        response = client.users.with_raw_response.get_user_segments(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        user = response.parse()
+        assert_matches_type(GetUserSegmentsResponse, user, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get_user_segments(self, client: Greenflash) -> None:
+        with client.users.with_streaming_response.get_user_segments(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            user = response.parse()
+            assert_matches_type(GetUserSegmentsResponse, user, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get_user_segments(self, client: Greenflash) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
+            client.users.with_raw_response.get_user_segments(
+                "",
+            )
+
 
 class TestAsyncUsers:
     parametrize = pytest.mark.parametrize(
@@ -386,4 +425,42 @@ class TestAsyncUsers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
             await async_client.users.with_raw_response.get_user_analytics(
                 user_id="",
+            )
+
+    @parametrize
+    async def test_method_get_user_segments(self, async_client: AsyncGreenflash) -> None:
+        user = await async_client.users.get_user_segments(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(GetUserSegmentsResponse, user, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get_user_segments(self, async_client: AsyncGreenflash) -> None:
+        response = await async_client.users.with_raw_response.get_user_segments(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        user = await response.parse()
+        assert_matches_type(GetUserSegmentsResponse, user, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get_user_segments(self, async_client: AsyncGreenflash) -> None:
+        async with async_client.users.with_streaming_response.get_user_segments(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            user = await response.parse()
+            assert_matches_type(GetUserSegmentsResponse, user, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get_user_segments(self, async_client: AsyncGreenflash) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
+            await async_client.users.with_raw_response.get_user_segments(
+                "",
             )

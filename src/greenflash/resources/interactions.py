@@ -18,6 +18,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
+from ..types.interaction_detail import InteractionDetail
 from ..types.list_interactions_response import ListInteractionsResponse
 from ..types.get_interaction_analytics_response import GetInteractionAnalyticsResponse
 
@@ -104,6 +105,45 @@ class InteractionsResource(SyncAPIResource):
                 ),
             ),
             cast_to=ListInteractionsResponse,
+        )
+
+    def get(
+        self,
+        interaction_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> InteractionDetail:
+        """
+        Get full interaction detail including the conversation transcript, participant
+        info, and metadata. Returns all message types including tool calls and
+        observations for complete diagnostic visibility.
+
+        Available on all plans.
+
+        Args:
+          interaction_id: The interaction ID to retrieve
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not interaction_id:
+            raise ValueError(f"Expected a non-empty value for `interaction_id` but received {interaction_id!r}")
+        return self._get(
+            path_template("/interactions/{interaction_id}", interaction_id=interaction_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=InteractionDetail,
         )
 
     def get_interaction_analytics(
@@ -250,6 +290,45 @@ class AsyncInteractionsResource(AsyncAPIResource):
             cast_to=ListInteractionsResponse,
         )
 
+    async def get(
+        self,
+        interaction_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> InteractionDetail:
+        """
+        Get full interaction detail including the conversation transcript, participant
+        info, and metadata. Returns all message types including tool calls and
+        observations for complete diagnostic visibility.
+
+        Available on all plans.
+
+        Args:
+          interaction_id: The interaction ID to retrieve
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not interaction_id:
+            raise ValueError(f"Expected a non-empty value for `interaction_id` but received {interaction_id!r}")
+        return await self._get(
+            path_template("/interactions/{interaction_id}", interaction_id=interaction_id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=InteractionDetail,
+        )
+
     async def get_interaction_analytics(
         self,
         interaction_id: str,
@@ -319,6 +398,9 @@ class InteractionsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             interactions.list,
         )
+        self.get = to_raw_response_wrapper(
+            interactions.get,
+        )
         self.get_interaction_analytics = to_raw_response_wrapper(
             interactions.get_interaction_analytics,
         )
@@ -330,6 +412,9 @@ class AsyncInteractionsResourceWithRawResponse:
 
         self.list = async_to_raw_response_wrapper(
             interactions.list,
+        )
+        self.get = async_to_raw_response_wrapper(
+            interactions.get,
         )
         self.get_interaction_analytics = async_to_raw_response_wrapper(
             interactions.get_interaction_analytics,
@@ -343,6 +428,9 @@ class InteractionsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             interactions.list,
         )
+        self.get = to_streamed_response_wrapper(
+            interactions.get,
+        )
         self.get_interaction_analytics = to_streamed_response_wrapper(
             interactions.get_interaction_analytics,
         )
@@ -354,6 +442,9 @@ class AsyncInteractionsResourceWithStreamingResponse:
 
         self.list = async_to_streamed_response_wrapper(
             interactions.list,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            interactions.get,
         )
         self.get_interaction_analytics = async_to_streamed_response_wrapper(
             interactions.get_interaction_analytics,
