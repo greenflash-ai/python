@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Dict, Iterable
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 from .message_item_param import MessageItemParam
 from .system_prompt_param import SystemPromptParam
 
-__all__ = ["MessageCreateParams"]
+__all__ = ["MessageCreateParams", "VoiceCall", "VoiceCallLatency"]
 
 
 class MessageCreateParams(TypedDict, total=False):
@@ -67,4 +67,81 @@ class MessageCreateParams(TypedDict, total=False):
     """System prompt for the conversation.
 
     Can be a simple string or a prompt object with components.
+    """
+
+    voice_call: Annotated[VoiceCall, PropertyInfo(alias="voiceCall")]
+    """
+    Voice-specific signals for the full call/conversation (platform, duration,
+    latency aggregates, recording URL, etc.). Stored on the conversation alongside
+    `properties` and analyzed by voice-aware pipelines.
+    """
+
+
+class VoiceCallLatency(TypedDict, total=False):
+    """Component and end-to-end latency aggregates for the call."""
+
+    asr_ms: Annotated[int, PropertyInfo(alias="asrMs")]
+    """Average ASR (speech-to-text) latency in ms."""
+
+    e2e_ms: Annotated[int, PropertyInfo(alias="e2eMs")]
+    """Average end-to-end latency from user end-of-turn to agent first audio (ms)."""
+
+    llm_ms: Annotated[int, PropertyInfo(alias="llmMs")]
+    """Average LLM inference latency in ms."""
+
+    tts_ms: Annotated[int, PropertyInfo(alias="ttsMs")]
+    """Average TTS (text-to-speech) latency in ms."""
+
+
+class VoiceCall(TypedDict, total=False):
+    """
+    Voice-specific signals for the full call/conversation (platform, duration, latency aggregates, recording URL, etc.). Stored on the conversation alongside `properties` and analyzed by voice-aware pipelines.
+    """
+
+    call_successful: Annotated[bool, PropertyInfo(alias="callSuccessful")]
+    """Optional platform-supplied success determination (e.g.
+
+    Retell’s `call_successful`).
+    """
+
+    duration_ms: Annotated[int, PropertyInfo(alias="durationMs")]
+    """Total call duration in milliseconds."""
+
+    ended_reason: Annotated[str, PropertyInfo(alias="endedReason")]
+    """How the call ended (platform-specific string, e.g.
+
+    "user_hangup", "assistant_hangup", "timeout").
+    """
+
+    interruption_count: Annotated[int, PropertyInfo(alias="interruptionCount")]
+    """Number of barge-ins / interruptions detected over the call."""
+
+    latency: VoiceCallLatency
+    """Component and end-to-end latency aggregates for the call."""
+
+    platform: Literal[
+        "vapi", "retell", "elevenlabs", "openai_realtime", "livekit", "bland", "synthflow", "simpleai", "other"
+    ]
+    """Identifier of the voice platform that produced the call."""
+
+    platform_call_id: Annotated[str, PropertyInfo(alias="platformCallId")]
+    """The voice platform’s native call ID.
+
+    Useful for cross-referencing back to the source.
+    """
+
+    recording_url: Annotated[str, PropertyInfo(alias="recordingUrl")]
+    """Optional URL to the full call recording.
+
+    Greenflash does not store audio; the URL is embedded in the UI as a
+    pass-through.
+    """
+
+    silence_count: Annotated[int, PropertyInfo(alias="silenceCount")]
+    """Number of long silence segments detected over the call."""
+
+    structured_outputs: Annotated[Dict[str, object], PropertyInfo(alias="structuredOutputs")]
+    """Optional structured data extracted from the call by the platform (e.g.
+
+    Vapi structured outputs, Retell custom analysis data).
     """
