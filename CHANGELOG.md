@@ -1,5 +1,50 @@
 # Changelog
 
+## 1.3.0 (2026-05-01)
+
+Full Changelog: [v1.2.1...v1.3.0](https://github.com/greenflash-ai/python/compare/v1.2.1...v1.3.0)
+
+### Features
+
+* **api:** manual updates ([6f7ed61](https://github.com/greenflash-ai/python/commit/6f7ed615600660da9838cd82211dbb97dbbcee11))
+* **api:** manual updates ([e4476ad](https://github.com/greenflash-ai/python/commit/e4476ad9ac066e7e1e4fd005aafb485e32cbc20a))
+* **internal:** implement indices array format for query and form serialization ([1ef488d](https://github.com/greenflash-ai/python/commit/1ef488d051bc3d3c87e66c274e016c4c00fdd01f))
+* support setting headers via env ([7c36374](https://github.com/greenflash-ai/python/commit/7c36374fccf8970e51dc2e003d005771895fef36))
+
+
+### Bug Fixes
+
+* **client:** preserve hardcoded query params when merging with user params ([c059bb1](https://github.com/greenflash-ai/python/commit/c059bb1d5f9aeac98d69d8baf46a8744caa50479))
+* ensure file data are only sent as 1 parameter ([124e754](https://github.com/greenflash-ai/python/commit/124e7549bdba2b58fbdad3c489ff48ac701bc84e))
+* sanitize endpoint path params ([454971b](https://github.com/greenflash-ai/python/commit/454971b2b67ddd4cb3133283a3256ca876c7eace))
+* use correct field name format for multipart file arrays ([fe3fa90](https://github.com/greenflash-ai/python/commit/fe3fa90f1e49ef44747a8198f9705b37a27c85b1))
+
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([e2d2b80](https://github.com/greenflash-ai/python/commit/e2d2b804a5916f500d99ba356d6323363819c417))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([7dab93d](https://github.com/greenflash-ai/python/commit/7dab93db9516a5650dfec1cf30b095798b3ff5cf))
+* **internal:** more robust bootstrap script ([5335fa4](https://github.com/greenflash-ai/python/commit/5335fa48e7f79d7675ce69870b8c3fcb15115377))
+* **internal:** reformat pyproject.toml ([894c838](https://github.com/greenflash-ai/python/commit/894c838f0243a1e3a9943a1d9dc013779003d267))
+* **internal:** update gitignore ([9c23ffb](https://github.com/greenflash-ai/python/commit/9c23ffb535219094fa31ab86cbc88d29d788802b))
+* remove custom code ([2de296b](https://github.com/greenflash-ai/python/commit/2de296be0c4db707383bcfac179a94982a9b8fc1))
+* **tests:** bump steady to v0.19.4 ([c64ab1d](https://github.com/greenflash-ai/python/commit/c64ab1d065a3495a373dcc2d9702da37ed54a84a))
+* **tests:** bump steady to v0.19.5 ([2a0b099](https://github.com/greenflash-ai/python/commit/2a0b099cf1125409d8dc8958fad48c31eaeadfad))
+* **tests:** bump steady to v0.19.6 ([fb0720c](https://github.com/greenflash-ai/python/commit/fb0720c135b62efd799ed52111828e79cd7b2ca4))
+* **tests:** bump steady to v0.19.7 ([af1c7f8](https://github.com/greenflash-ai/python/commit/af1c7f87aad1c6d90390bdf1d230064998df4442))
+* **tests:** bump steady to v0.20.1 ([b928246](https://github.com/greenflash-ai/python/commit/b9282461749b7312b629292366d70c6a16ccf8e4))
+* **tests:** bump steady to v0.20.2 ([5b7c00f](https://github.com/greenflash-ai/python/commit/5b7c00f99a2efe97972ceb1afe42253405b33440))
+* **tests:** bump steady to v0.22.1 ([51f0469](https://github.com/greenflash-ai/python/commit/51f046945b2a3d29f89ced35a8e8b77265120aa1))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([30c8de4](https://github.com/greenflash-ai/python/commit/30c8de4373e6cea5d2bf4eb58f2d79466cec998b))
+
 ## 1.2.1 (2026-03-17)
 
 Full Changelog: [v1.2.0...v1.2.1](https://github.com/greenflash-ai/python/compare/v1.2.0...v1.2.1)
