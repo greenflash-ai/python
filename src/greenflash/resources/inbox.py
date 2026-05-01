@@ -49,6 +49,7 @@ class InboxResource(SyncAPIResource):
     def list(
         self,
         *,
+        axis: Literal["attention", "opportunity"] | Omit = omit,
         min_severity: int | Omit = omit,
         status: Literal["unreviewed", "reviewed", "dismissed"] | Omit = omit,
         trigger_type: Literal["guardrail", "expectation_check", "novelty", "manual_review", "revenue_risk"]
@@ -67,6 +68,9 @@ class InboxResource(SyncAPIResource):
         attention score (unreviewed) or last updated (reviewed/dismissed).
 
         Args:
+          axis: Filter by axis: "attention" for risk/quality triggers, "opportunity" for
+              positive business signals.
+
           min_severity: Minimum severity level to include (1-5).
 
           status: Filter by review status. Defaults to "unreviewed".
@@ -90,6 +94,7 @@ class InboxResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "axis": axis,
                         "min_severity": min_severity,
                         "status": status,
                         "trigger_type": trigger_type,
@@ -162,6 +167,7 @@ class AsyncInboxResource(AsyncAPIResource):
     async def list(
         self,
         *,
+        axis: Literal["attention", "opportunity"] | Omit = omit,
         min_severity: int | Omit = omit,
         status: Literal["unreviewed", "reviewed", "dismissed"] | Omit = omit,
         trigger_type: Literal["guardrail", "expectation_check", "novelty", "manual_review", "revenue_risk"]
@@ -180,6 +186,9 @@ class AsyncInboxResource(AsyncAPIResource):
         attention score (unreviewed) or last updated (reviewed/dismissed).
 
         Args:
+          axis: Filter by axis: "attention" for risk/quality triggers, "opportunity" for
+              positive business signals.
+
           min_severity: Minimum severity level to include (1-5).
 
           status: Filter by review status. Defaults to "unreviewed".
@@ -203,6 +212,7 @@ class AsyncInboxResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "axis": axis,
                         "min_severity": min_severity,
                         "status": status,
                         "trigger_type": trigger_type,

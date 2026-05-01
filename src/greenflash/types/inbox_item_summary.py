@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -29,3 +29,21 @@ class InboxItemSummary(BaseModel):
 
     trigger_type: Optional[str] = FieldInfo(alias="triggerType", default=None)
     """Primary trigger type that flagged this conversation."""
+
+    axis: Optional[Literal["attention", "opportunity", "manual"]] = None
+    """
+    Top-level axis for this item: attention (risk), opportunity (positive signal),
+    or manual (team flagged).
+    """
+
+    cluster_member_ids: Optional[List[str]] = FieldInfo(alias="clusterMemberIds", default=None)
+    """IDs of the other conversations in the cluster."""
+
+    cluster_root_cause: Optional[str] = FieldInfo(alias="clusterRootCause", default=None)
+    """Root-cause label that anchors the cluster."""
+
+    cluster_size: Optional[int] = FieldInfo(alias="clusterSize", default=None)
+    """
+    When this card represents a root-cause cluster, total number of conversations
+    sharing the cause.
+    """

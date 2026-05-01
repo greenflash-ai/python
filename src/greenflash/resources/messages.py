@@ -61,6 +61,7 @@ class MessagesResource(SyncAPIResource):
         properties: Dict[str, object] | Omit = omit,
         sample_rate: float | Omit = omit,
         system_prompt: SystemPromptParam | Omit = omit,
+        voice_call: message_create_params.VoiceCall | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -71,7 +72,7 @@ class MessagesResource(SyncAPIResource):
         """Send us your AI conversations so we can analyze them for you.
 
         Works with
-        everything from simple chatbots to complex agentic systems.
+        everything from simple chatbots to complex agentic systems — text or voice.
 
         **Getting Started (Simple Chat):** Just provide the `role` ("user", "assistant",
         or "system") and `content` for each message, along with an
@@ -81,6 +82,14 @@ class MessagesResource(SyncAPIResource):
         AI agents using `messageType` for tool calls, thoughts, observations, and more.
         Include structured data via `input`/`output` fields to track what your agents
         are doing.
+
+        **Voice Agents:** For voice conversations, include a `voiceCall` object on the
+        request (call duration, recording URL, ended reason, latency stats, structured
+        outputs) and a `voice` object on each message (per-turn timing, ASR confidence,
+        prosody, interruption signals). Native webhook integrations are available for
+        Vapi, Retell, ElevenLabs, Bland AI, Synthflow, and Simple.ai — point your
+        provider at `/v1/integrations/<provider>?productId=<uuid>` and we'll handle the
+        transform. See the voice example below for the canonical shape.
 
         **Key Features:**
 
@@ -133,6 +142,10 @@ class MessagesResource(SyncAPIResource):
           system_prompt: System prompt for the conversation. Can be a simple string or a prompt object
               with components.
 
+          voice_call: Voice-specific signals for the full call/conversation (platform, duration,
+              latency aggregates, recording URL, etc.). Stored on the conversation alongside
+              `properties` and analyzed by voice-aware pipelines.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -156,6 +169,7 @@ class MessagesResource(SyncAPIResource):
                     "properties": properties,
                     "sample_rate": sample_rate,
                     "system_prompt": system_prompt,
+                    "voice_call": voice_call,
                 },
                 message_create_params.MessageCreateParams,
             ),
@@ -202,6 +216,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         properties: Dict[str, object] | Omit = omit,
         sample_rate: float | Omit = omit,
         system_prompt: SystemPromptParam | Omit = omit,
+        voice_call: message_create_params.VoiceCall | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -212,7 +227,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         """Send us your AI conversations so we can analyze them for you.
 
         Works with
-        everything from simple chatbots to complex agentic systems.
+        everything from simple chatbots to complex agentic systems — text or voice.
 
         **Getting Started (Simple Chat):** Just provide the `role` ("user", "assistant",
         or "system") and `content` for each message, along with an
@@ -222,6 +237,14 @@ class AsyncMessagesResource(AsyncAPIResource):
         AI agents using `messageType` for tool calls, thoughts, observations, and more.
         Include structured data via `input`/`output` fields to track what your agents
         are doing.
+
+        **Voice Agents:** For voice conversations, include a `voiceCall` object on the
+        request (call duration, recording URL, ended reason, latency stats, structured
+        outputs) and a `voice` object on each message (per-turn timing, ASR confidence,
+        prosody, interruption signals). Native webhook integrations are available for
+        Vapi, Retell, ElevenLabs, Bland AI, Synthflow, and Simple.ai — point your
+        provider at `/v1/integrations/<provider>?productId=<uuid>` and we'll handle the
+        transform. See the voice example below for the canonical shape.
 
         **Key Features:**
 
@@ -274,6 +297,10 @@ class AsyncMessagesResource(AsyncAPIResource):
           system_prompt: System prompt for the conversation. Can be a simple string or a prompt object
               with components.
 
+          voice_call: Voice-specific signals for the full call/conversation (platform, duration,
+              latency aggregates, recording URL, etc.). Stored on the conversation alongside
+              `properties` and analyzed by voice-aware pipelines.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -297,6 +324,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                     "properties": properties,
                     "sample_rate": sample_rate,
                     "system_prompt": system_prompt,
+                    "voice_call": voice_call,
                 },
                 message_create_params.MessageCreateParams,
             ),

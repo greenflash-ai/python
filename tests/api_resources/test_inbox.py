@@ -25,6 +25,7 @@ class TestInbox:
     @parametrize
     def test_method_list_with_all_params(self, client: Greenflash) -> None:
         inbox = client.inbox.list(
+            axis="attention",
             min_severity=1,
             status="unreviewed",
             trigger_type="guardrail",
@@ -103,6 +104,7 @@ class TestAsyncInbox:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGreenflash) -> None:
         inbox = await async_client.inbox.list(
+            axis="attention",
             min_severity=1,
             status="unreviewed",
             trigger_type="guardrail",

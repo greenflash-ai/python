@@ -130,25 +130,12 @@ from greenflash import Greenflash
 
 client = Greenflash()
 
-create_segment_response = client.segments.create(
-    filters={
-        "rules": [
-            {
-                "field": "commercialIntent",
-                "operator": "gte",
-                "type": "analysis",
-                "value": 0.6,
-            },
-            {
-                "key": "plan",
-                "operator": "eq",
-                "type": "property",
-                "value": "enterprise",
-            },
-        ]
-    },
+create_message_response = client.messages.create(
+    external_user_id="user-123",
+    messages=[{}, {}, {}, {}, {}],
+    voice_call={},
 )
-print(create_segment_response.filters)
+print(create_message_response.voice_call)
 ```
 
 ## Handling errors
