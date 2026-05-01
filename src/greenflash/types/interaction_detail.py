@@ -15,7 +15,7 @@ class Message(BaseModel):
     content: str
     """The message content."""
 
-    role: Literal["user", "assistant", "system", "tool_call", "observation"]
+    role: Literal["user", "assistant", "system", "tool_call", "observation", "final_response"]
     """The message role."""
 
     timestamp: Optional[datetime] = None

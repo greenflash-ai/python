@@ -77,7 +77,9 @@ class ChatResource(SyncAPIResource):
         - `tool_call` — The agent is invoking a tool. Data:
           `{"step": 1, "toolName": "...", "displayName": "..."}`
         - `tool_result` — A tool returned its result. Data:
-          `{"step": 1, "toolName": "...", "displayName": "..."}`
+          `{"step": 1, "toolName": "...", "displayName": "..."}`. For `draftTicket` and
+          `createTicket`, the event also includes an `output` field with the tool's
+          payload (see _Ticket creation_ below).
         - `text_delta` — A chunk of the agent's text response. Concatenate all deltas to
           build the full message. Data: `{"text": "..."}`
         - `done` — The stream completed successfully. Data:
@@ -90,6 +92,55 @@ class ChatResource(SyncAPIResource):
 
         **Rate limits:** This endpoint is rate-limited per tenant (requests/hour) and
         subject to token usage limits.
+
+        ### Ticket creation (two-step draft → confirm)
+
+        When the tenant has an active ticket-provider connection (e.g. Linear), the
+        agent may emit a `draftTicket` tool call. The `tool_result` event includes an
+        `output` field shaped like:
+
+        ```json
+        {
+          "step": 2,
+          "toolName": "draftTicket",
+          "displayName": "Drafting ticket",
+          "output": {
+            "draft": {
+              "provider": "linear",
+              "title": "Billing page 500 for enterprise users",
+              "description": "...",
+              "target": { "teamId": "t_123", "teamName": "Core", "teamKey": "CORE" },
+              "labelIds": ["lbl_bug"],
+              "source": { "type": "conversation", "conversationId": "conv-abc-123" }
+            },
+            "availableLabels": [{ "id": "lbl_bug", "name": "bug", "color": "#f00" }],
+            "dedupWarning": null
+          }
+        }
+        ```
+
+        API consumers should render this draft to the end user. To confirm (optionally
+        with edits), send a follow-up user message asking the agent to call
+        `createTicket` with the final payload. The `createTicket` `tool_result` event
+        contains:
+
+        ```json
+        {
+          "step": 3,
+          "toolName": "createTicket",
+          "displayName": "Creating ticket",
+          "output": {
+            "status": "created",
+            "providerIdentifier": "LIN-99",
+            "providerTicketUrl": "https://linear.app/acme/issue/LIN-99"
+          }
+        }
+        ```
+
+        `status` is `"created"` on success, `"already_exists"` when deduplication
+        matched an existing ticket (the existing `providerIdentifier` /
+        `providerTicketUrl` are returned), or the event may carry an `error` field (e.g.
+        `"provider_needs_setup"`).
 
         Args:
           question: The current user question to send to the AI agent.
@@ -188,7 +239,9 @@ class AsyncChatResource(AsyncAPIResource):
         - `tool_call` — The agent is invoking a tool. Data:
           `{"step": 1, "toolName": "...", "displayName": "..."}`
         - `tool_result` — A tool returned its result. Data:
-          `{"step": 1, "toolName": "...", "displayName": "..."}`
+          `{"step": 1, "toolName": "...", "displayName": "..."}`. For `draftTicket` and
+          `createTicket`, the event also includes an `output` field with the tool's
+          payload (see _Ticket creation_ below).
         - `text_delta` — A chunk of the agent's text response. Concatenate all deltas to
           build the full message. Data: `{"text": "..."}`
         - `done` — The stream completed successfully. Data:
@@ -201,6 +254,55 @@ class AsyncChatResource(AsyncAPIResource):
 
         **Rate limits:** This endpoint is rate-limited per tenant (requests/hour) and
         subject to token usage limits.
+
+        ### Ticket creation (two-step draft → confirm)
+
+        When the tenant has an active ticket-provider connection (e.g. Linear), the
+        agent may emit a `draftTicket` tool call. The `tool_result` event includes an
+        `output` field shaped like:
+
+        ```json
+        {
+          "step": 2,
+          "toolName": "draftTicket",
+          "displayName": "Drafting ticket",
+          "output": {
+            "draft": {
+              "provider": "linear",
+              "title": "Billing page 500 for enterprise users",
+              "description": "...",
+              "target": { "teamId": "t_123", "teamName": "Core", "teamKey": "CORE" },
+              "labelIds": ["lbl_bug"],
+              "source": { "type": "conversation", "conversationId": "conv-abc-123" }
+            },
+            "availableLabels": [{ "id": "lbl_bug", "name": "bug", "color": "#f00" }],
+            "dedupWarning": null
+          }
+        }
+        ```
+
+        API consumers should render this draft to the end user. To confirm (optionally
+        with edits), send a follow-up user message asking the agent to call
+        `createTicket` with the final payload. The `createTicket` `tool_result` event
+        contains:
+
+        ```json
+        {
+          "step": 3,
+          "toolName": "createTicket",
+          "displayName": "Creating ticket",
+          "output": {
+            "status": "created",
+            "providerIdentifier": "LIN-99",
+            "providerTicketUrl": "https://linear.app/acme/issue/LIN-99"
+          }
+        }
+        ```
+
+        `status` is `"created"` on success, `"already_exists"` when deduplication
+        matched an existing ticket (the existing `providerIdentifier` /
+        `providerTicketUrl` are returned), or the event may carry an `error` field (e.g.
+        `"provider_needs_setup"`).
 
         Args:
           question: The current user question to send to the AI agent.

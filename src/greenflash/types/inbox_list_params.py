@@ -10,6 +10,12 @@ __all__ = ["InboxListParams"]
 
 
 class InboxListParams(TypedDict, total=False):
+    axis: Literal["attention", "opportunity"]
+    """
+    Filter by axis: "attention" for risk/quality triggers, "opportunity" for
+    positive business signals.
+    """
+
     min_severity: Annotated[int, PropertyInfo(alias="minSeverity")]
     """Minimum severity level to include (1-5)."""
 

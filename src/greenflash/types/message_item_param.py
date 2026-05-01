@@ -8,7 +8,87 @@ from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["MessageItemParam"]
+__all__ = ["MessageItemParam", "Voice", "VoiceProsody"]
+
+
+class VoiceProsody(TypedDict, total=False):
+    """
+    Optional prosody / tone signals from upstream voice infrastructure (Deepgram, Hume, Retell, etc.).
+    """
+
+    arousal: float
+    """Vocal energy / intensity, 0 (calm) to 1 (highly energetic)."""
+
+    emotion: str
+    """Optional fine-grained emotion label provided by an upstream prosody model."""
+
+    sentiment_label: Annotated[Literal["positive", "neutral", "negative"], PropertyInfo(alias="sentimentLabel")]
+    """Prosody-derived sentiment label."""
+
+    sentiment_score: Annotated[float, PropertyInfo(alias="sentimentScore")]
+    """Prosody-derived sentiment score from -1 (negative) to 1 (positive).
+
+    Distinct from text-derived sentiment — captures tone/intonation rather than word
+    choice.
+    """
+
+
+class Voice(TypedDict, total=False):
+    """
+    Voice-specific signals for this turn (latency, interruption, ASR confidence, prosody, etc.). Stored alongside `properties` and analyzed by voice-aware pipelines.
+    """
+
+    asr_confidence: Annotated[float, PropertyInfo(alias="asrConfidence")]
+    """
+    ASR transcription confidence for this turn, 0 (uncertain) to 1 (fully
+    confident).
+    """
+
+    audio_url: Annotated[str, PropertyInfo(alias="audioUrl")]
+    """Optional URL to the audio segment for this turn.
+
+    Greenflash does not store audio; the URL is embedded in the UI as a
+    pass-through.
+    """
+
+    barge_in: Annotated[bool, PropertyInfo(alias="bargeIn")]
+    """
+    True when this turn began while the other speaker was still talking (a barge-in
+    / overlap).
+    """
+
+    duration_ms: Annotated[int, PropertyInfo(alias="durationMs")]
+    """Length of this turn in milliseconds."""
+
+    ended_at: Annotated[int, PropertyInfo(alias="endedAt")]
+    """When this turn finished speaking, as Unix epoch milliseconds."""
+
+    prosody: VoiceProsody
+    """
+    Optional prosody / tone signals from upstream voice infrastructure (Deepgram,
+    Hume, Retell, etc.).
+    """
+
+    response_latency_ms: Annotated[int, PropertyInfo(alias="responseLatencyMs")]
+    """Time between the previous speaker ending and this turn starting (ms).
+
+    Useful for measuring agent response latency.
+    """
+
+    silence_before_ms: Annotated[int, PropertyInfo(alias="silenceBeforeMs")]
+    """Silence duration immediately before this turn (ms)."""
+
+    speaker: str
+    """Optional speaker label (e.g.
+
+    "agent", "user", or a diarization-assigned ID like "Speaker 0").
+    """
+
+    started_at: Annotated[int, PropertyInfo(alias="startedAt")]
+    """When this turn started speaking, as Unix epoch milliseconds."""
+
+    was_interrupted: Annotated[bool, PropertyInfo(alias="wasInterrupted")]
+    """True when this turn was cut off by the other speaker."""
 
 
 class MessageItemParam(TypedDict, total=False):
@@ -18,11 +98,13 @@ class MessageItemParam(TypedDict, total=False):
     context: Optional[str]
     """Additional context (e.g., RAG data) used to generate the message."""
 
-    created_at: Annotated[Union[str, date], PropertyInfo(alias="createdAt", format="iso8601")]
+    created_at: Annotated[Union[str, date, None], PropertyInfo(alias="createdAt", format="iso8601")]
     """When this message was created.
 
-    If not provided, messages get sequential timestamps. Use for importing
-    historical data.
+    Accepts a Date or an ISO-8601 string. If not provided, messages get sequential
+    timestamps. Use for importing historical data — and required when you want the
+    voice analysis pipeline to derive response-latency / silence-before signals from
+    inter-message gaps on uninstrumented voice transcripts.
     """
 
     external_message_id: Annotated[str, PropertyInfo(alias="externalMessageId")]
@@ -39,10 +121,10 @@ class MessageItemParam(TypedDict, total=False):
             "user_message",
             "assistant_message",
             "system_message",
+            "final_response",
             "thought",
             "tool_call",
             "observation",
-            "final_response",
             "retrieval",
             "memory_read",
             "memory_write",
@@ -60,7 +142,7 @@ class MessageItemParam(TypedDict, total=False):
     """Detailed message type for agentic workflows.
 
     Cannot be used with role. Available types: user_message, assistant_message,
-    system_message, thought, tool_call, observation, final_response, retrieval,
+    system_message, final_response, thought, tool_call, observation, retrieval,
     memory_read, memory_write, chain_start, chain_end, embedding, tool_error,
     callback, llm, task, workflow
     """
@@ -98,3 +180,10 @@ class MessageItemParam(TypedDict, total=False):
 
     tool_name: Annotated[str, PropertyInfo(alias="toolName")]
     """Name of the tool being called. Required for tool_call messages."""
+
+    voice: Voice
+    """
+    Voice-specific signals for this turn (latency, interruption, ASR confidence,
+    prosody, etc.). Stored alongside `properties` and analyzed by voice-aware
+    pipelines.
+    """
