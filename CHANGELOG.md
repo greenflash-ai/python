@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.4.0 (2026-05-13)
+
+Full Changelog: [v1.3.0...v1.4.0](https://github.com/greenflash-ai/python/compare/v1.3.0...v1.4.0)
+
+### Features
+
+* **internal/types:** support eagerly validating pydantic iterators ([9629214](https://github.com/greenflash-ai/python/commit/962921447f36a8f0d55bc54a31a98a3cebcb0ada))
+
+
+### Bug Fixes
+
+* **client:** add missing f-string prefix in file type error message ([cfa40a5](https://github.com/greenflash-ai/python/commit/cfa40a5531d4934ec5e0bb3858d12aa30731eea7))
+
 ## 1.3.0 (2026-05-01)
 
 Full Changelog: [v1.2.1...v1.3.0](https://github.com/greenflash-ai/python/compare/v1.2.1...v1.3.0)
