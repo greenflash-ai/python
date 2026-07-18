@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.0 (2026-07-18)
+
+Full Changelog: [v1.4.0...v1.5.0](https://github.com/greenflash-ai/python/compare/v1.4.0...v1.5.0)
+
+### Features
+
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([9dea18c](https://github.com/greenflash-ai/python/commit/9dea18ce953aa5b17cd83d1caecc23cf1ad434e8))
+
 ## 1.4.0 (2026-05-13)
 
 Full Changelog: [v1.3.0...v1.4.0](https://github.com/greenflash-ai/python/compare/v1.3.0...v1.4.0)
